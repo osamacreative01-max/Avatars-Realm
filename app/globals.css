@@ -1,0 +1,557 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   AVATARS REALM — brand system
+   --------------------------------------------------------------------------
+   Palette   Ink black #05070D · Navy #08182F · Blue #1E7BE0 · Red #E11225
+   Type      Poppins (display + body), loaded through next/font
+   Treatment Dark, premium, energetic, uncluttered. Red arc + dragon watermark
+             appear selectively, never as decoration for its own sake.
+   ========================================================================== */
+
+@theme {
+  /* Ink: the deepest page ground (hero, footer, full-bleed dark bands). */
+  --color-ink-950: #04060c;
+  --color-ink-900: #060a12;
+  --color-ink-850: #080d18;
+  --color-ink-800: #0a111e;
+  --color-ink-700: #101a2c;
+  --color-ink-600: #17233b;
+
+  /* Navy: structural surfaces — cards, panels, alternating bands. */
+  --color-navy-950: #050d1f;
+  --color-navy-900: #08182f;
+  --color-navy-800: #0c2344;
+  --color-navy-700: #123158;
+  --color-navy-600: #1a4174;
+
+  /* Red: primary accent, CTA, status rules, arc motif. */
+  --color-flame-700: #a80d1c;
+  --color-flame-600: #e11225;
+  --color-flame-500: #ff2f42;
+  --color-flame-400: #ff6b78;
+
+  /* Blue: secondary accent — links, informational states, cool highlights. */
+  --color-azure-700: #0f5bb5;
+  --color-azure-600: #1e7be0;
+  --color-azure-500: #3b93f5;
+  --color-azure-400: #7dbbff;
+
+  /* Ink-on-dark text scale. */
+  --color-paper-50: #f5f8ff;
+  --color-paper-100: #e3e9f5;
+  --color-paper-200: #c3ccdf;
+  --color-paper-300: #97a3bd;
+  --color-paper-400: #7483a0;
+  --color-paper-500: #4b5771;
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, sans-serif;
+
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.04) inset,
+    0 18px 40px -24px rgb(0 0 0 / 0.9);
+  --shadow-lift: 0 1px 0 rgb(255 255 255 / 0.06) inset,
+    0 30px 60px -30px rgb(0 0 0 / 0.95);
+
+  --animate-rise: rise 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+:root {
+  --page-gutter: 1.25rem;
+  --section-y: 4.5rem;
+  --header-h: 5.5rem;
+  color-scheme: dark;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --page-gutter: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --page-gutter: 2.5rem;
+    --section-y: 6rem;
+    --header-h: 7rem;
+  }
+}
+
+/* Full-bleed layout — there is deliberately NO max-width on the container.
+   These gutters only keep content off the physical screen edges; reading
+   length is capped per block with `.measure` / `max-w-*`. */
+@media (min-width: 1400px) {
+  :root {
+    --page-gutter: 3rem;
+  }
+}
+
+@media (min-width: 1680px) {
+  :root {
+    --page-gutter: 4rem;
+  }
+}
+
+* {
+  border-color: rgb(255 255 255 / 0.08);
+}
+
+html {
+  background-color: var(--color-ink-950);
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink-950);
+  color: var(--color-paper-100);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* `clip` (not `hidden`) so the sticky header keeps working. */
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-flame-600);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-azure-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  color: var(--color-paper-50);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   Layout primitives
+   -------------------------------------------------------------------------- */
+
+/* Full-bleed: no max-width. The layout uses the whole viewport and only
+   stops at `--page-gutter`, so wide monitors show no empty side margins. */
+.container-page {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section-tight {
+  padding-block: calc(var(--section-y) * 0.65);
+}
+
+.hairline {
+  border-top: 1px solid rgb(255 255 255 / 0.07);
+}
+
+.grid-lines {
+  background-image: linear-gradient(
+      to right,
+      rgb(255 255 255 / 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* --------------------------------------------------------------------------
+   Typography helpers
+   -------------------------------------------------------------------------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-flame-500);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-flame-600), transparent);
+}
+
+.eyebrow-blue {
+  color: var(--color-azure-400);
+}
+
+.eyebrow-blue::before {
+  background: linear-gradient(to right, var(--color-azure-500), transparent);
+}
+
+.display-1 {
+  font-size: clamp(2.35rem, 1.2rem + 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+}
+
+.display-2 {
+  font-size: clamp(1.9rem, 1.1rem + 3.2vw, 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.display-3 {
+  font-size: clamp(1.35rem, 1rem + 1.5vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  line-height: 1.75;
+  color: var(--color-paper-200);
+}
+
+/* Keeps line length readable now that the container runs wider on large
+   screens. Apply it to any paragraph that sits in a wide column. */
+.measure {
+  max-width: 64ch;
+}
+
+.body-muted {
+  color: var(--color-paper-300);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-paper-50) 20%,
+    var(--color-flame-400) 95%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, border-color 0.18s ease,
+    color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-flame-500);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: var(--color-flame-600);
+  color: #fff;
+  box-shadow: 0 12px 30px -18px var(--color-flame-600);
+}
+
+.btn-primary:hover {
+  background: var(--color-flame-500);
+  box-shadow: 0 16px 34px -16px var(--color-flame-600);
+}
+
+/* Extra soft red halo — applied on the hero's primary CTA. */
+.btn-glow {
+  box-shadow:
+    0 0 28px rgb(225 18 37 / 0.45),
+    0 12px 30px -18px var(--color-flame-600);
+}
+
+.btn-glow:hover {
+  box-shadow:
+    0 0 36px rgb(225 18 37 / 0.55),
+    0 16px 34px -16px var(--color-flame-600);
+}
+
+/* Clearly visible on dark panels — white 40% border, lighter wash. */
+.btn-secondary {
+  border-color: rgb(255 255 255 / 0.4);
+  background: rgb(255 255 255 / 0.07);
+  color: var(--color-paper-50);
+}
+
+.btn-secondary:hover {
+  border-color: rgb(255 255 255 / 0.6);
+  background: rgb(255 255 255 / 0.12);
+  color: #fff;
+}
+
+.btn-outline {
+  border-color: rgb(255 255 255 / 0.22);
+  background: rgb(255 255 255 / 0.03);
+  color: var(--color-paper-50);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-azure-500);
+  background: rgb(30 123 224 / 0.12);
+  color: #fff;
+}
+
+.btn-ghost {
+  color: var(--color-paper-100);
+}
+
+.btn-ghost:hover {
+  color: var(--color-flame-400);
+}
+
+.btn-sm {
+  padding: 0.6rem 1.05rem;
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 0.95rem 1.85rem;
+  font-size: 0.9375rem;
+}
+
+/* Arrow affordance shared by text links and buttons. */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-flame-400);
+  transition: color 0.18s ease, gap 0.18s ease;
+}
+
+.arrow-link:hover {
+  gap: 0.75rem;
+  color: var(--color-flame-500);
+}
+
+/* --------------------------------------------------------------------------
+   Surfaces
+   -------------------------------------------------------------------------- */
+
+.card {
+  position: relative;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 8px;
+  background: linear-gradient(
+    160deg,
+    rgb(18 34 60 / 0.85),
+    rgb(8 16 30 / 0.92)
+  );
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.22s ease, transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.card-hover:hover {
+  border-color: rgb(225 18 37 / 0.45);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+.card-flat {
+  border: 1px solid rgb(255 255 255 / 0.07);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 0.025);
+}
+
+.card-pad {
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .card-pad {
+    padding: 1.85rem;
+  }
+}
+
+.card-media {
+  overflow: hidden;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-media img {
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.card-hover:hover .card-media img {
+  transform: scale(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   Status treatments — the honesty layer of this site.
+   Cut-corner plate: dark tinted slate, tone gradient, 3px accent rule on the
+   left. Square and technical rather than a rounded pill.
+   -------------------------------------------------------------------------- */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.3rem 0.4rem 0.8rem;
+  border-left: 3px solid;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%);
+  background-color: rgb(5 8 15 / 0.74);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.status-dev {
+  border-left-color: var(--color-flame-500);
+  background-image: linear-gradient(
+    90deg,
+    rgb(225 18 37 / 0.4),
+    rgb(225 18 37 / 0.07) 72%
+  );
+  color: var(--color-flame-400);
+}
+
+.status-planned {
+  border-left-color: var(--color-azure-500);
+  background-image: linear-gradient(
+    90deg,
+    rgb(30 123 224 / 0.4),
+    rgb(30 123 224 / 0.07) 72%
+  );
+  color: var(--color-azure-400);
+}
+
+.status-neutral {
+  border-left-color: rgb(255 255 255 / 0.55);
+  background-image: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 0.14),
+    rgb(255 255 255 / 0.03) 72%
+  );
+  color: var(--color-paper-200);
+}
+
+/* --------------------------------------------------------------------------
+   Reveal on scroll — fast, restrained, disabled for reduced motion.
+   -------------------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
