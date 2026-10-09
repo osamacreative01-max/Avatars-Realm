@@ -44,8 +44,8 @@ export const ACADEMY_AREAS = [
     title: "Small Arena",
     description:
       "A compact stage area intended for showcases, finals and small-format competition.",
-    image: "/images/arena-chairs.jpg",
-    alt: "Gaming chairs lined up at a competitive event",
+    image: "/images/arena-pc-room.png",
+    alt: "Gaming PCs and headsets in a dark esports room",
   },
   {
     title: "Gaming Lounge",
@@ -103,8 +103,8 @@ export const EVENTS = [
       "The flagship planned championship across five titles, presented as the centrepiece of the Avatars Realm event programme.",
     status: SUBJECT,
     href: "/open-esports-championship-2026/",
-    image: "/images/event-crowd.jpg",
-    alt: "Players competing at a live gaming event",
+    image: "/images/arena-stage.png",
+    alt: "Pro teams competing on a stadium stage",
   },
   {
     title: "Academy Showcases",
@@ -112,8 +112,8 @@ export const EVENTS = [
       "Proposed session-based showcases where academy participants would present progress in a structured, supportive setting.",
     status: PROPOSED,
     href: "/esports-academy/",
-    image: "/images/team-play.jpg",
-    alt: "Esports team playing together",
+    image: "/images/2-male-gamers-high-fiving.jpg",
+    alt: "Two gamers celebrating with a high five",
   },
   {
     title: "Community Play Sessions",
@@ -121,8 +121,8 @@ export const EVENTS = [
       "Proposed open sessions intended to grow a local gaming community around the organisation.",
     status: PROPOSED,
     href: "/contact/",
-    image: "/images/audience.jpg",
-    alt: "Audience watching an indoor event",
+    image: "/images/community-gaming.webp",
+    alt: "Community gamers playing together at a LAN setup",
   },
 ] as const;
 

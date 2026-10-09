@@ -43,7 +43,7 @@ export default function Footer() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-[0.9375rem] text-paper-200 transition-colors hover:text-flame-400"
+                  className="inline-block text-[0.9375rem] text-paper-200 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-flame-400"
                 >
                   {item.label}
                 </Link>
@@ -91,8 +91,16 @@ export default function Footer() {
           <p>
             © {year} {SITE.legalName}. All rights reserved.
           </p>
-          <p className="text-paper-400">
-            Website content is provisional and subject to confirmation.
+          <p>
+            Made by{" "}
+            <a
+              href="https://www.webexperts.com.pk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-paper-200 underline-offset-4 transition-colors hover:text-flame-400 hover:underline"
+            >
+              Web Experts
+            </a>
           </p>
         </div>
       </div>

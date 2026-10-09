@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import Button from "@/components/Button";
-import { DragonWatermark, GridBackdrop, RedArc } from "@/components/Marks";
+import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -63,7 +63,8 @@ export default function ContactPage() {
       />
 
       {/* -------------------------------------------------------- Contact cards */}
-      <section className="section">
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="right" />
         <div className="container-page">
           <Reveal>
             <SectionHeading
@@ -129,7 +130,7 @@ export default function ContactPage() {
       <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
         <GridBackdrop className="opacity-40" />
         <RedArc className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 -scale-x-100 opacity-70" />
-        <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem] text-white/[0.04]" />
+        <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem]" />
 
         <div className="container-page relative grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
@@ -181,7 +182,8 @@ export default function ContactPage() {
       </section>
 
       {/* --------------------------------------------------------- Partnership */}
-      <section className="section">
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="right" />
         <div className="container-page grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <Reveal>
             <SectionHeading

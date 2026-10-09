@@ -35,19 +35,19 @@ export default function PageHero({
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center opacity-45"
+        className="object-cover object-center opacity-75"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/45"
+        className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/70 to-ink-950/20"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/70"
+        className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/45"
       />
       <GridBackdrop className="opacity-60" />
 
-      <DragonWatermark className="pointer-events-none absolute -right-16 -bottom-24 h-[26rem] w-[26rem] text-white/[0.05] sm:-right-10 sm:-bottom-16" />
+      <DragonWatermark className="pointer-events-none absolute -right-16 -bottom-24 h-[26rem] w-[26rem] sm:-right-10 sm:-bottom-16" />
       <RedArc className="pointer-events-none absolute -top-24 -left-24 h-[30rem] w-[30rem] rotate-12 opacity-70" />
 
       <div className="container-page relative py-20 sm:py-24 lg:py-28">

@@ -42,19 +42,20 @@ export default function Navbar() {
   }, []);
 
   const linkClass = (href: string) =>
-    `relative py-2 text-[0.9375rem] font-medium tracking-[0.01em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flame-500 ${
+    `group relative py-2 text-[0.9375rem] font-medium tracking-[0.01em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flame-500 ${
       current === href
         ? "text-paper-50"
         : "text-paper-300 hover:text-paper-50"
     }`;
 
-  const underline = (href: string) =>
-    current === href ? (
-      <span
-        aria-hidden="true"
-        className="absolute -bottom-0.5 left-0 h-px w-full bg-flame-600"
-      />
-    ) : null;
+  const underline = (href: string) => (
+    <span
+      aria-hidden="true"
+      className={`absolute -bottom-0.5 left-0 h-px w-full origin-left bg-flame-600 transition-transform duration-300 ${
+        current === href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+      }`}
+    />
+  );
 
   return (
     <header

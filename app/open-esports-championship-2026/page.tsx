@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
-import { DragonWatermark, GridBackdrop, RedArc } from "@/components/Marks";
+import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
@@ -66,7 +66,7 @@ export default function ChampionshipPage() {
           className="absolute top-1/3 -right-24 h-72 w-72 rounded-full bg-flame-700/25 blur-[120px]"
         />
         <RedArc className="pointer-events-none absolute -top-28 -left-24 h-[32rem] w-[32rem] opacity-80" />
-        <DragonWatermark className="pointer-events-none absolute -right-20 bottom-0 h-[28rem] w-[28rem] text-white/[0.055]" />
+        <DragonWatermark className="pointer-events-none absolute -right-20 bottom-0 h-[28rem] w-[28rem]" />
 
         <div className="container-page relative py-20 sm:py-24 lg:py-32">
           <div className="max-w-3xl">
@@ -129,7 +129,7 @@ export default function ChampionshipPage() {
 
       {/* -------------------------------------------------------------- Titles */}
       <section id="titles" className="section relative overflow-hidden">
-        <DragonWatermark className="pointer-events-none absolute -top-20 -right-16 h-[26rem] w-[26rem] text-white/[0.035]" />
+        <SectionDragon side="left" />
 
         <div className="container-page relative">
           <Reveal>
@@ -161,7 +161,8 @@ export default function ChampionshipPage() {
       </section>
 
       {/* ---------------------------------------------------------- Expect */}
-      <section className="section-tight border-y border-white/[0.07] bg-navy-950">
+      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
+        <SectionDragon side="right" />
         <div className="container-page grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <Reveal>
             <SectionHeading
@@ -199,7 +200,8 @@ export default function ChampionshipPage() {
       </section>
 
       {/* -------------------------------------------------------- Atmosphere */}
-      <section className="section">
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="left" />
         <div className="container-page">
           <Reveal>
             <SectionHeading
@@ -212,20 +214,20 @@ export default function ChampionshipPage() {
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                src: "/images/duo-competition.jpg",
-                alt: "Two players focused on a competitive match",
+                src: "/images/arena-stage.png",
+                alt: "Pro teams competing on a stadium stage",
               },
               {
-                src: "/images/arena-chairs.jpg",
-                alt: "Gaming chairs lined up for a competition",
+                src: "/images/keyarena_seattle.jpg",
+                alt: "Packed arena watching a final on the big screen",
               },
               {
-                src: "/images/community-play.jpg",
-                alt: "Group of players at a gaming event",
+                src: "/images/copper_box_arena.jpg",
+                alt: "Arena crowd around a lit competition stage",
               },
               {
-                src: "/images/player-setup.jpg",
-                alt: "Player at a dual-monitor gaming setup",
+                src: "/images/2-male-gamers-high-fiving.jpg",
+                alt: "Two gamers celebrating a win with a high five",
               },
             ].map((image, index) => (
               <Reveal key={image.src} delay={index * 60}>

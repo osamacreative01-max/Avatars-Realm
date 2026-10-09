@@ -28,7 +28,7 @@ export default function CtaBand({
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(225,18,37,0.18),transparent_55%)]"
       />
       <RedArc className="pointer-events-none absolute -top-32 -right-24 h-[26rem] w-[26rem] -scale-x-100 opacity-70" />
-      <DragonWatermark className="pointer-events-none absolute -bottom-28 -left-20 h-[24rem] w-[24rem] text-white/[0.04]" />
+      <DragonWatermark className="pointer-events-none absolute -bottom-28 -left-20 h-[24rem] w-[24rem]" />
 
       <div className="container-page relative py-16 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14">

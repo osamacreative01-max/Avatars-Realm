@@ -20,3 +20,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# oversized unused stock photos (kept local only)
+public/images/low-angle-man-playing-videogame.jpg
+public/images/smiley-man-fist-bumping-with-colleague.jpg

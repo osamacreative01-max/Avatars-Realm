@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
-import { DragonWatermark, GridBackdrop, RedArc } from "@/components/Marks";
+import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -104,13 +104,14 @@ export default function AboutPage() {
                 <StatusBadge tone="neutral">Currently in development</StatusBadge>
               </div>
             </div>
-            <DragonWatermark className="pointer-events-none absolute -top-14 -left-14 h-56 w-56 text-white/[0.05]" />
+            <DragonWatermark className="pointer-events-none absolute -top-14 -left-14 h-56 w-56" />
           </Reveal>
         </div>
       </section>
 
       {/* ---------------------------------------------------------- Direction */}
-      <section className="section-tight border-y border-white/[0.07] bg-navy-950">
+      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
+        <SectionDragon side="right" />
         <div className="container-page">
           <Reveal>
             <SectionHeading
@@ -139,7 +140,8 @@ export default function AboutPage() {
       </section>
 
       {/* ----------------------------------------------------------- Status */}
-      <section className="section">
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="left" />
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <SectionHeading
@@ -220,6 +222,7 @@ export default function AboutPage() {
 
       {/* ----------------------------------------------------------- Values */}
       <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
+        <SectionDragon side="right" />
         <GridBackdrop className="opacity-40" />
         <RedArc className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 -scale-x-100 opacity-70" />
 
@@ -252,13 +255,14 @@ export default function AboutPage() {
       </section>
 
       {/* ------------------------------------------------------------- Vision */}
-      <section className="section">
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="left" />
         <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal className="relative order-2 lg:order-1">
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">
               <Image
-                src="/images/audience.jpg"
-                alt="Audience gathered at an indoor community event"
+                src="/images/young-professional-esports-players-playing-games-i-2021-12-09-13-29-30-utc.jpg"
+                alt="Two esports players in team jerseys competing at their PCs"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"

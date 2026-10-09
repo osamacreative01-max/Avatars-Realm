@@ -4,7 +4,7 @@ import Image from "next/image";
 import AreaCard from "@/components/AreaCard";
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
-import { DragonWatermark, GridBackdrop, RedArc } from "@/components/Marks";
+import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -73,7 +73,8 @@ export default function EsportsAcademyPage() {
       </section>
 
       {/* ---------------------------------------------------- Starter Edition */}
-      <section id="starter-edition" className="section">
+      <section id="starter-edition" className="section relative overflow-hidden">
+        <SectionDragon side="right" />
         <div className="container-page">
           <Reveal>
             <SectionHeading
@@ -128,7 +129,7 @@ export default function EsportsAcademyPage() {
       {/* ---------------------------------------------------------- Vision */}
       <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
         <GridBackdrop className="opacity-40" />
-        <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem] text-white/[0.04]" />
+        <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem]" />
 
         <div className="container-page relative grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
@@ -159,8 +160,8 @@ export default function EsportsAcademyPage() {
           <Reveal delay={90} className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">
               <Image
-                src="/images/player-headset.jpg"
-                alt="Player wearing a headset during an online match"
+                src="/images/arena-pc-room.png"
+                alt="Gaming PCs and headsets in a dark esports room"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
@@ -176,7 +177,8 @@ export default function EsportsAcademyPage() {
       </section>
 
       {/* ------------------------------------------------------ Training env */}
-      <section className="section">
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="right" />
         <div className="container-page">
           <Reveal>
             <SectionHeading
@@ -208,13 +210,14 @@ export default function EsportsAcademyPage() {
       </section>
 
       {/* -------------------------------------------------------- Community */}
-      <section className="section-tight border-y border-white/[0.07] bg-navy-950">
+      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
+        <SectionDragon side="left" />
         <div className="container-page grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal className="relative order-2 lg:order-1">
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">
               <Image
-                src="/images/duo-competition.jpg"
-                alt="Two players focused on a competitive gaming session"
+                src="/images/2-male-gamers-high-fiving.jpg"
+                alt="Two gamers celebrating with a high five"
                 fill
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 className="object-cover"

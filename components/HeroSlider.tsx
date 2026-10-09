@@ -16,16 +16,52 @@ const SLIDES: Slide[] = [
     position: "object-[62%_center]",
   },
   {
+    src: "/images/arena-stage.png",
+    alt: "Professional esports final played out on a stadium stage",
+  },
+  {
     src: "/images/pc-stations.jpg",
     alt: "A row of gaming PCs set up at the academy stations",
+  },
+  {
+    src: "/images/keyarena_seattle.jpg",
+    alt: "Esports arena packed with fans watching a match on the big screen",
   },
   {
     src: "/images/duo-competition.jpg",
     alt: "Two players competing side by side during a match",
   },
   {
+    src: "/images/arena-pc-room.png",
+    alt: "Gaming PCs and headsets lined up inside an esports room",
+  },
+  {
     src: "/images/gaming-gear.jpg",
     alt: "Keyboard, headset and peripherals on a gaming desk",
+  },
+  {
+    src: "/images/sse_arena_wembley.jpg",
+    alt: "Full arena crowd under red and blue stage lights",
+  },
+  {
+    src: "/images/young-professional-esports-players-playing-games-i-2021-12-09-13-29-30-utc.jpg",
+    alt: "Two esports players in team jerseys competing at their PCs",
+  },
+  {
+    src: "/images/copper_box_arena.jpg",
+    alt: "Arena finals with a lit stage and a full crowd",
+  },
+  {
+    src: "/images/2-male-gamers-high-fiving.jpg",
+    alt: "Two gamers celebrating a win with a high five",
+  },
+  {
+    src: "/images/20220302-Telkom-VR-Gaming2-980x613.jpg",
+    alt: "Player smiling with a headset at a gaming station",
+  },
+  {
+    src: "/images/community-gaming.webp",
+    alt: "Community gamers playing together at a LAN setup",
   },
 ];
 
@@ -70,7 +106,7 @@ export default function HeroSlider({ className = "" }: { className?: string }) {
         );
       })}
 
-      <div className="absolute top-4 right-4 z-10 flex gap-1.5">
+      <div className="absolute top-4 right-4 z-10 flex gap-1">
         {SLIDES.map((slide, i) => (
           <button
             key={slide.src}
@@ -78,7 +114,7 @@ export default function HeroSlider({ className = "" }: { className?: string }) {
             aria-label={`Show image ${i + 1} of ${SLIDES.length}`}
             aria-current={i === index}
             onClick={() => setIndex(i)}
-            className={`h-1.5 w-5 transition-colors ${
+            className={`h-1.5 w-1.5 transition-all duration-200 hover:scale-150 ${
               i === index
                 ? "bg-[#FF2B55]"
                 : "bg-white/35 hover:bg-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF2B55]"

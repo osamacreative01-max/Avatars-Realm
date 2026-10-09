@@ -48,7 +48,7 @@ export function DragonWatermark({ className = "" }: Common) {
       viewBox="0 0 300 300"
       fill="none"
       aria-hidden="true"
-      className={className}
+      className={`text-flame-600/25 ${className}`.trim()}
       stroke="currentColor"
       strokeWidth="5"
       strokeLinecap="round"
@@ -82,6 +82,28 @@ export function GridBackdrop({ className = "" }: Common) {
     <div
       aria-hidden="true"
       className={`pointer-events-none absolute inset-0 grid-lines ${className}`.trim()}
+    />
+  );
+}
+
+/**
+ * The logo dragon, reused as a section watermark. Alternate `side` down the
+ * page — left sections sit bottom-left, right sections top-right and mirrored
+ * so the head always faces into the content.
+ */
+export function SectionDragon({
+  side = "right",
+  className = "",
+}: {
+  side?: "left" | "right";
+  className?: string;
+}) {
+  const position =
+    side === "right" ? "-top-24 -right-20 -scale-x-100" : "-bottom-24 -left-20";
+
+  return (
+    <DragonWatermark
+      className={`pointer-events-none absolute ${position} h-[26rem] w-[26rem] ${className}`.trim()}
     />
   );
 }

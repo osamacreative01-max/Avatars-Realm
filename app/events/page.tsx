@@ -4,7 +4,7 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
 import EventCard from "@/components/EventCard";
-import { DragonWatermark, GridBackdrop, RedArc } from "@/components/Marks";
+import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -54,7 +54,8 @@ export default function EventsPage() {
       />
 
       {/* -------------------------------------------------------- Programme */}
-      <section className="section">
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="right" />
         <div className="container-page">
           <Reveal>
             <SectionHeading
@@ -104,7 +105,7 @@ export default function EventsPage() {
 
       {/* -------------------------------------------------------- Event list */}
       <section className="section relative overflow-hidden">
-        <DragonWatermark className="pointer-events-none absolute -top-24 -right-20 h-[26rem] w-[26rem] text-white/[0.035]" />
+        <SectionDragon side="left" />
 
         <div className="container-page relative">
           <Reveal>
@@ -159,6 +160,7 @@ export default function EventsPage() {
         />
         <GridBackdrop className="opacity-50" />
         <RedArc className="pointer-events-none absolute -bottom-28 -left-24 h-[26rem] w-[26rem] -rotate-90 opacity-70" />
+        <SectionDragon side="right" />
 
         <div className="container-page relative py-16 sm:py-20">
           <Reveal className="max-w-3xl">

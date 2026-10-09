@@ -6,7 +6,7 @@ import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
 import EventCard from "@/components/EventCard";
 import Hero from "@/components/Hero";
-import { DragonWatermark, GridBackdrop, RedArc } from "@/components/Marks";
+import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import Marquee from "@/components/Marquee";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -33,12 +33,13 @@ export default function HomePage() {
 
       {/* ------------------------------------------------------------- About */}
       <section className="section relative overflow-hidden">
+        <SectionDragon side="right" />
         <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">
               <Image
-                src="/images/esports-setup.jpg"
-                alt="Competitive gaming stations with RGB lighting"
+                src="/images/20220302-Telkom-VR-Gaming2-980x613.jpg"
+                alt="Players competing at a row of gaming stations"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
@@ -102,7 +103,7 @@ export default function HomePage() {
       {/* ----------------------------------------------------------- Academy */}
       <section className="section relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
         <GridBackdrop className="opacity-40" />
-        <DragonWatermark className="pointer-events-none absolute -top-20 -right-16 h-[24rem] w-[24rem] text-white/[0.04]" />
+        <SectionDragon side="left" />
 
         <div className="container-page relative">
           <Reveal>
@@ -138,7 +139,8 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------- Events */}
-      <section className="section">
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="right" />
         <div className="container-page">
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -175,8 +177,8 @@ export default function HomePage() {
       {/* ------------------------------------------------------ Championship */}
       <section className="relative isolate overflow-hidden border-y border-white/[0.07]">
         <Image
-          src="/images/event-crowd.jpg"
-          alt="Players competing at a live gaming event"
+          src="/images/sse_arena_wembley.jpg"
+          alt="A packed arena crowd under red and blue stage lights"
           fill
           sizes="100vw"
           className="object-cover opacity-35"
@@ -186,6 +188,7 @@ export default function HomePage() {
           className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/85 to-ink-950"
         />
         <RedArc className="pointer-events-none absolute -right-28 -bottom-32 h-[30rem] w-[30rem] -scale-100 opacity-70" />
+        <SectionDragon side="left" />
 
         <div className="container-page relative py-16 sm:py-20">
           <Reveal className="max-w-3xl">
