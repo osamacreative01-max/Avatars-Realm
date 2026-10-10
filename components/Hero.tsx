@@ -56,7 +56,6 @@ export default function Hero({
       className={`relative isolate flex min-h-[calc(100svh-var(--header-h))] flex-col overflow-hidden ${className}`.trim()}
     >
       {/* Tactical grid, faded toward the edges with a radial mask. */}
-      <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-20 h-[34rem] w-[34rem]" />
       <GridBackdrop className="opacity-90 [-webkit-mask-image:radial-gradient(ellipse_75%_70%_at_50%_38%,black_25%,transparent_80%)] [mask-image:radial-gradient(ellipse_75%_70%_at_50%_38%,black_25%,transparent_80%)]" />
 
       {/* Soft red glow sitting behind the right-hand panel. */}
@@ -113,6 +112,9 @@ export default function Hero({
               />
               {/* Single red curved accent across the panel. */}
               <RedArc className="pointer-events-none absolute -bottom-32 -left-28 h-[36rem] w-[36rem] -rotate-90 opacity-90" />
+
+              {/* Brand dragon over the top-left corner of the panel image. */}
+              <DragonWatermark className="pointer-events-none absolute -top-16 -left-16 h-[30rem] w-[30rem]" />
 
               {/* Translucent status card. */}
               <div className="absolute inset-x-4 bottom-4 rounded-lg border border-white/12 bg-ink-950/55 p-4 backdrop-blur-md sm:inset-x-5 sm:bottom-5 sm:p-5">
