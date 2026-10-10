@@ -62,15 +62,15 @@ export default function Hero({
       {/* Soft red glow sitting behind the right-hand panel. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 right-[-12%] hidden h-[52rem] w-[52rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,43,85,0.17),transparent_65%)] blur-3xl lg:block"
+        className="pointer-events-none absolute top-1/2 right-[-12%] hidden h-[44rem] w-[44rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,43,85,0.17),transparent_65%)] blur-3xl lg:block"
       />
 
-      <div className="container-page relative flex flex-1 items-center py-16 lg:py-20">
-        <div className="grid w-full items-center gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-14 xl:gap-16">
+      <div className="container-page relative flex flex-1 items-center py-14 lg:py-16">
+        <div className="grid w-full items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-14 xl:gap-16">
           {/* ------------------------------------------------------ Copy */}
           <div className="max-w-none">
             <Reveal>
-              <h1 className="text-[clamp(58px,7.6vw,116px)] leading-[1] font-bold tracking-[-0.03em] text-paper-50">
+              <h1 className="text-[clamp(52px,6.6vw,92px)] leading-[1] font-bold tracking-[-0.03em] text-paper-50">
                 {headlineTop}
                 <br />
                 <span className="text-[#FF2B55] [text-shadow:0_0_38px_rgba(255,43,85,0.45)]">
@@ -80,7 +80,7 @@ export default function Hero({
             </Reveal>
 
             <Reveal delay={90}>
-              <p className="mt-14 max-w-[32em] text-[20px] leading-[1.7] text-[#C4CAD8]">
+              <p className="mt-14 max-w-[30em] text-[19px] leading-[1.7] text-[#C4CAD8]">
                 {body}
               </p>
             </Reveal>
@@ -99,7 +99,7 @@ export default function Hero({
 
           {/* ------------------------------------------------------ Panel */}
           <Reveal delay={120} className="relative">
-            <div className="relative mx-auto aspect-[16/10] w-full max-w-[30rem] overflow-hidden rounded-xl border border-white/14 bg-gradient-to-br from-navy-800 via-ink-900 to-ink-950 shadow-lift sm:max-w-2xl lg:max-w-none">
+            <div className="relative mx-auto aspect-[16/10] w-full max-w-[26rem] overflow-hidden rounded-xl border border-white/14 bg-gradient-to-br from-navy-800 via-ink-900 to-ink-950 shadow-lift sm:max-w-xl lg:max-w-none">
               <HeroSlider className="absolute inset-0" />
               {/* Lighter top-down wash so the subject stays readable. */}
               <div
@@ -112,7 +112,7 @@ export default function Hero({
                 className="absolute inset-0 bg-[radial-gradient(circle_at_64%_38%,rgba(255,43,85,0.24),transparent_58%)] mix-blend-screen"
               />
               {/* Single red curved accent across the panel. */}
-              <RedArc className="pointer-events-none absolute -bottom-32 -left-28 h-[36rem] w-[36rem] -rotate-90 opacity-90" />
+              <RedArc className="pointer-events-none absolute -bottom-28 -left-24 h-[30rem] w-[30rem] -rotate-90 opacity-90" />
 
               {/* Translucent status card. */}
               <div className="absolute inset-x-4 bottom-4 rounded-lg border border-white/12 bg-ink-950/55 p-4 backdrop-blur-md sm:inset-x-5 sm:bottom-5 sm:p-5">
@@ -124,11 +124,11 @@ export default function Hero({
                     >
                       <span className="flex items-center gap-3">
                         <Marker fill={row.fill} />
-                        <span className="text-[0.95rem] font-medium text-paper-100">
+                        <span className="text-sm font-medium text-paper-100">
                           {row.label}
                         </span>
                       </span>
-                      <span className="text-[0.75rem] font-semibold tracking-[0.08em] text-paper-300 uppercase">
+                      <span className="text-[0.7rem] font-semibold tracking-[0.08em] text-paper-300 uppercase">
                         {row.value}
                       </span>
                     </li>
