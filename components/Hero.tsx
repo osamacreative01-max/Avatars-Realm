@@ -40,14 +40,13 @@ function Marker({ fill }: { fill: StatusRow["fill"] }) {
  */
 export default function Hero({
   headlineTop = "Serious esports.",
-  headlineBottom = "Open every day.",
-  body = "Avatars Realm is an established esports academy and gaming arena in Northcliff — coached subscriptions for players who want to improve, an open arena floor for everyone, junior programmes, team bootcamps and a full competitive calendar.",
-  primary = { label: "See pricing & join", href: "/pricing/" },
-  secondary = { label: "Book a free trial", href: "/contact/" },
+  headlineBottom = "Still being built.",
+  body = "Avatars Realm is an emerging esports and gaming organisation developing an academy concept and a competitive event programme, including the planned Open Esports Championship 2026.",
+  primary = { label: "Explore the Academy", href: "/esports-academy/" },
+  secondary = { label: "Championship 2026", href: "/open-esports-championship-2026/" },
   statusRows = [
-    { label: "Esports Academy", value: "Accepting members", fill: "solid" },
-    { label: "Arena floor", value: "Walk-ins welcome", fill: "solid" },
-    { label: "Open Esports Championship 2026", value: "Upcoming", fill: "half" },
+    { label: "Esports Academy", value: "In development", fill: "solid" },
+    { label: "Open Esports Championship 2026", value: "Planned", fill: "half" },
   ],
   className = "",
 }: Props) {
