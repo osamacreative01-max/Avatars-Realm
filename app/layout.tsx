@@ -6,6 +6,7 @@ import AppLoader from "@/components/AppLoader";
 import CursorEffects from "@/components/CursorEffects";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import ScrollToTop from "@/components/ScrollToTop";
 import { SITE } from "@/lib/site";
 
 import "./globals.css";
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main id="main">{children}</main>
         <Footer />
         <CursorEffects />
+        <ScrollToTop />
         <AppLoader />
       </body>
     </html>
