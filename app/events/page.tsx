@@ -15,21 +15,21 @@ import { EVENTS, TOURNAMENTS } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Events",
   description:
-    "The planned Avatars Realm event programme, including the Open Esports Championship 2026. Event details are published when confirmed.",
+    "The Avatars Realm event programme — monthly academy showcases, weekly community play and the Open Esports Championship 2026, all from the Northcliff arena.",
 };
 
 const PROGRAMME = [
   {
     title: "Competitive events",
-    body: "Structured tournaments across console, PC and mobile titles, led by the Open Esports Championship 2026.",
+    body: "Tournaments across console, PC and mobile titles, led by the Open Esports Championship 2026 and the in-house league.",
   },
   {
     title: "Academy showcases",
-    body: "Proposed session-based showcases where participants can present progress in a supportive setting.",
+    body: "A monthly ticketed night on the main arena stage where members present their progress in front of a crowd.",
   },
   {
     title: "Community sessions",
-    body: "Proposed open play and meet-up formats intended to grow a local gaming community.",
+    body: "Weekly open play, casual ladders and meet-ups that keep the local scene connected between events.",
   },
 ];
 
@@ -40,13 +40,13 @@ export default function EventsPage() {
         eyebrow="Events"
         title={
           <>
-            A planned programme,
+            A programme that
             <br />
-            published when confirmed.
+            runs all year.
           </>
         }
-        lede="Avatars Realm is developing an event programme built around competition, development and community. Until details are confirmed, everything here is presented as planned or proposed."
-        status={{ label: "Planned", tone: "planned" }}
+        lede="Showcases, community nights and championship qualifying run from the Northcliff arena every month. Tickets and entry are handled at reception and by email."
+        status={{ label: "Events running weekly", tone: "live" }}
         image={{
           src: "/images/event-crowd.jpg",
           alt: "Players competing at a live gaming event",
@@ -61,7 +61,7 @@ export default function EventsPage() {
             <SectionHeading
               eyebrow="Event Programme"
               title="Three strands, one direction."
-              lede="The programme is being shaped around three connected formats. Each carries its own status, and none of them is announced as confirmed."
+              lede="The programme runs on three connected formats, all booked through the same team and all hosted on our own floor."
             />
           </Reveal>
 
@@ -87,9 +87,9 @@ export default function EventsPage() {
       <section className="border-y border-white/[0.07] bg-navy-950">
         <div className="container-page grid gap-px bg-white/[0.07] sm:grid-cols-3">
           {[
-            { label: "Dates", value: "Subject to confirmation" },
-            { label: "Venues", value: "Subject to confirmation" },
-            { label: "Registration", value: "Subject to confirmation" },
+            { label: "Calendar", value: "Published monthly" },
+            { label: "Venue", value: "9 Madge Ave, Northcliff" },
+            { label: "Registration", value: "Open at reception & by email" },
           ].map((item) => (
             <div key={item.label} className="bg-navy-950 px-6 py-7">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
@@ -111,11 +111,11 @@ export default function EventsPage() {
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
-                eyebrow="Upcoming & Planned"
-                title="What is in the pipeline."
+                eyebrow="Upcoming & Recurring"
+                title="What is on."
               />
               <div className="md:pb-2">
-                <StatusBadge tone="planned">Planned / Proposed</StatusBadge>
+                <StatusBadge tone="live">Booking now</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -130,7 +130,7 @@ export default function EventsPage() {
                   href={event.href}
                   image={event.image}
                   alt={event.alt}
-                  ctaLabel={event.href === "/contact/" ? "Get in touch" : "View Event"}
+                  ctaLabel={event.href === "/contact/" ? "Get tickets" : "View Event"}
                 />
               </Reveal>
             ))}
@@ -139,7 +139,8 @@ export default function EventsPage() {
           <Reveal delay={120}>
             <p className="mt-10 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-200">
               <StatusBadge tone="neutral">Please note</StatusBadge>
-              Event details will be published when confirmed.
+              Entry is booked at reception, by email or by phone — places are
+              limited by station capacity.
             </p>
           </Reveal>
         </div>
@@ -167,9 +168,9 @@ export default function EventsPage() {
             <p className="eyebrow">Flagship event</p>
             <h2 className="display-2 mt-4">Open Esports Championship 2026</h2>
             <p className="lede mt-5">
-              The centrepiece of the planned programme: five titles across
-              console, PC and mobile. All tournament details remain subject to
-              confirmation.
+              The centrepiece of the calendar: five titles across console, PC and
+              mobile, hosted on the main arena stage on 21–22 November 2026.
+              Entries are open now, with qualifying ladders running on the floor.
             </p>
           </Reveal>
 
@@ -199,9 +200,9 @@ export default function EventsPage() {
       <CtaBand
         eyebrow="Event enquiries"
         title="Hosting, competing or covering an event?"
-        body="Tell us what you have in mind. We will confirm what is possible before anything is announced."
+        body="Tell us what you have in mind — tickets, team entries, venue hire or coverage — and the events team will confirm what is possible."
         primary={{ label: "Get in touch", href: "/contact/" }}
-        secondary={{ label: "About Avatars Realm", href: "/about/" }}
+        secondary={{ label: "Team bookings", href: "/pricing/" }}
       />
     </>
   );

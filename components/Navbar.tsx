@@ -88,7 +88,7 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden xl:block xl:justify-self-end">
-          <Button href="/contact/">Get in Touch</Button>
+          <Button href="/pricing/">Join Now</Button>
         </div>
 
         {/* Mobile trigger */}
@@ -148,8 +148,8 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-4">
-            <Button href="/contact/" className="w-full">
-              Get in Touch
+            <Button href="/pricing/" className="w-full">
+              Join Now
             </Button>
           </div>
         </nav>

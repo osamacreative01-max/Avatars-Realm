@@ -8,7 +8,7 @@ type Props = {
   index?: number;
 };
 
-/** One module of the proposed Starter Edition. */
+/** One space on the academy and arena floor. */
 export default function AreaCard({ title, description, image, alt, index }: Props) {
   return (
     <article className="card card-hover group flex h-full flex-col overflow-hidden">

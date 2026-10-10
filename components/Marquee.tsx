@@ -18,8 +18,8 @@ type Props = {
  *
  * Usage:
  *   <Marquee
- *     items={["In Development", "Planned", "Subject to Confirmation"]}
- *     speed={16}
+ *     items={["Open 7 Days", "Coached Subscriptions", "Walk-ins Welcome"]}
+ *     speed={22}
  *   />
  */
 export default function Marquee({

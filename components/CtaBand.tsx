@@ -74,14 +74,14 @@ export default function CtaBand({
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                <StatusBadge tone="dev">In Development</StatusBadge>
-                <StatusBadge tone="planned">Planned</StatusBadge>
-                <StatusBadge tone="neutral">Subject to Confirmation</StatusBadge>
+                <StatusBadge tone="live">Open 7 days</StatusBadge>
+                <StatusBadge tone="live">Walk-ins welcome</StatusBadge>
+                <StatusBadge tone="soon">Championship 2026</StatusBadge>
               </div>
 
               <p className="mt-5 text-[0.875rem] leading-relaxed text-paper-400">
-                Details are published only once confirmed. Partnership
-                opportunities are under establishment.
+                Memberships start at R450 per month with no joining fee, and
+                every new member gets a free coached intake session.
               </p>
             </div>
           </Reveal>

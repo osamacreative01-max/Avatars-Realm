@@ -13,24 +13,24 @@ import { LEADERSHIP, VALUES } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About Avatars Realm",
   description:
-    "Who Avatars Realm is, the direction of its esports and gaming work, its current establishment status, leadership and future vision.",
+    "Avatars Realm (Pty) Ltd is an established esports academy and gaming arena in Northcliff, Randburg — its people, its programme and how it operates.",
 };
 
 const DIRECTION = [
   {
-    title: "Academy development",
-    body: "A proposed Starter Edition for structured learning, practice and competitive development — currently being shaped rather than delivered.",
-    status: { label: "In Development", tone: "dev" as const },
+    title: "Esports academy",
+    body: "Three coached membership tracks running six days a week, with assessments, VOD review and an in-house league.",
+    status: { label: "Open", tone: "live" as const },
+  },
+  {
+    title: "Gaming arena",
+    body: "Twenty PC stations, console bays, a lounge and streaming booths open to the public at published rates.",
+    status: { label: "Open", tone: "live" as const },
   },
   {
     title: "Event programme",
-    body: "A planned calendar of competitive and community events, led by the Open Esports Championship 2026.",
-    status: { label: "Planned", tone: "planned" as const },
-  },
-  {
-    title: "Community building",
-    body: "A long-term effort to grow a local gaming community that players, families and partners can trust.",
-    status: { label: "Proposed", tone: "neutral" as const },
+    body: "Monthly showcases, weekly community play and the flagship Open Esports Championship 2026.",
+    status: { label: "Running", tone: "neutral" as const },
   },
 ];
 
@@ -41,12 +41,12 @@ export default function AboutPage() {
         eyebrow="About"
         title={
           <>
-            An emerging organisation, <br className="hidden sm:block" />
-            described honestly.
+            An established academy <br className="hidden sm:block" />
+            and arena.
           </>
         }
-        lede="Avatars Realm (Pty) Ltd is being established as an esports and gaming organisation. This page explains who we are, what we are working on, and what is still to be confirmed."
-        status={{ label: "Establishment in Progress", tone: "dev" }}
+        lede="Avatars Realm (Pty) Ltd has been running a coached esports academy and a public gaming arena from Northcliff since 2023. This page explains who we are, what we operate and how to join."
+        status={{ label: "Operating since 2023", tone: "live" }}
         image={{
           src: "/images/esports-setup.jpg",
           alt: "Competitive gaming stations lit with RGB lighting",
@@ -59,31 +59,28 @@ export default function AboutPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Who We Are"
-              title="We are building Avatars Realm in the open."
-              lede="Our aim is straightforward: to establish a credible online presence that explains our direction, and gives people a clear way to make contact while the organisation takes shape."
+              title="A training floor and a competition floor, run as one business."
+              lede="Our aim is straightforward: give local players a place to improve, a place to play, and a calendar worth showing up for — with prices and capacity published openly."
             />
 
             <div className="measure mt-8 space-y-5 text-[1rem] leading-relaxed text-paper-300">
               <p>
                 Avatars Realm operates at the intersection of competitive
-                gaming, structured development and community events. The
-                organisation and its initiatives are still being established, so
-                we describe them as building, developing, planned, proposed or
-                in development — because that is exactly where they are.
+                gaming, structured coaching and community events. The academy
+                delivers the coaching; the arena keeps the doors open to
+                everyone else; the event programme ties the two together.
               </p>
               <p>
-                We would rather publish an accurate picture of an organisation
-                under construction than an impressive picture of one that does
-                not exist yet. Where information is not confirmed, it is
-                labelled as such across the entire site.
+                We publish what we run: session timetables, membership
+                entitlements, drop-in rates and event dates. If something appears
+                on this site, it is available to book today.
               </p>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="dev">Building</StatusBadge>
-              <StatusBadge tone="dev">Developing</StatusBadge>
-              <StatusBadge tone="planned">Planned</StatusBadge>
-              <StatusBadge tone="neutral">Proposed</StatusBadge>
+              <StatusBadge tone="live">Open 7 days</StatusBadge>
+              <StatusBadge tone="live">Accepting members</StatusBadge>
+              <StatusBadge tone="neutral">Published pricing</StatusBadge>
             </div>
           </Reveal>
 
@@ -101,7 +98,7 @@ export default function AboutPage() {
                 className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"
               />
               <div className="absolute right-5 bottom-5 left-5">
-                <StatusBadge tone="neutral">Currently in development</StatusBadge>
+                <StatusBadge tone="live">9 Madge Ave, Northcliff</StatusBadge>
               </div>
             </div>
             <DragonWatermark className="pointer-events-none absolute -top-14 -left-14 h-56 w-56" />
@@ -115,9 +112,9 @@ export default function AboutPage() {
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow="Our Direction"
-              title="Esports and gaming, with a development bias."
-              lede="Three connected directions guide the organisation. Each one carries its own honest status."
+              eyebrow="What We Operate"
+              title="Three connected programmes, one venue."
+              lede="Everything below is running now, on the floor at Northcliff."
             />
           </Reveal>
 
@@ -145,32 +142,31 @@ export default function AboutPage() {
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <SectionHeading
-              eyebrow="Current Status"
-              title="What stage we are actually at."
+              eyebrow="How We Operate"
+              title="What you can expect from us."
               tone="blue"
-              lede="Everything is in development — nothing on this site claims a facility, academy or event is already operating."
+              lede="An established venue should be easy to deal with. These are the commitments we hold to on the floor and on this site."
             />
 
             <div className="mt-8 card card-pad">
               <h3 className="text-[0.95rem] font-semibold text-paper-50">
-                Established as
+                Published, not negotiated
               </h3>
               <p className="measure mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
-                A company building its brand, its people and its programme. No
-                facility opening date, confirmed venue, event date or
-                registration window is published, because none has been
-                confirmed.
+                Membership entitlements, drop-in rates, junior programmes and
+                booking fees are all listed on the pricing page. The price you
+                see is the price you pay.
               </p>
             </div>
 
             <div className="mt-4 card card-pad">
               <h3 className="text-[0.95rem] font-semibold text-paper-50">
-                Not yet claimed
+                Capacity you can rely on
               </h3>
               <p className="measure mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
-                Partnerships, sponsors, prize pools, awards, student numbers,
-                player counts and tournament results are not stated anywhere on
-                this website.
+                Twenty PC stations, a 120-seat arena and six streaming booths.
+                Members book sessions ahead; the arena floor takes walk-ins while
+                stations are free.
               </p>
             </div>
           </Reveal>
@@ -179,7 +175,7 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="Leadership"
               title="The people behind it."
-              lede="Two roles carry the organisation forward while it is being established."
+              lede="Two roles run the organisation day to day."
             />
 
             <div className="mt-8 space-y-4">
@@ -230,7 +226,7 @@ export default function AboutPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Values"
-              title="What we hold to while we build."
+              title="What we hold to on the floor."
             />
           </Reveal>
 
@@ -276,20 +272,19 @@ export default function AboutPage() {
 
           <Reveal delay={90} className="order-1 lg:order-2">
             <SectionHeading
-              eyebrow="Future Vision"
-              title="A place where players can develop and compete."
-              lede="Our long-term direction is an organisation that supports structured development and meaningful competition — an academy environment, a sustainable events programme, and a community that stays engaged between the two."
+              eyebrow="What's Next"
+              title="Growing the scene around the venue."
+              lede="The next phase is competitive: bigger in-house leagues, more showcase nights and a full qualifying ladder feeding into the Open Esports Championship 2026."
             />
             <p className="measure mt-6 text-[1rem] leading-relaxed text-paper-300">
-              The vision is deliberately ambitious and deliberately unproven.
-              Each part of it moves forward only when it can be described
-              accurately, and every milestone we reach will be published as
-              confirmed rather than anticipated.
+              We add what the floor can support properly — more coaching staff,
+              more titles and more event days — rather than promising what we
+              cannot staff.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/esports-academy/">Explore the Academy</Button>
-              <Button href="/events/" variant="outline">
-                See the events programme
+              <Button href="/pricing/" variant="outline">
+                See pricing
               </Button>
             </div>
           </Reveal>
@@ -298,8 +293,8 @@ export default function AboutPage() {
 
       <CtaBand
         eyebrow="Contact"
-        title="Want to follow the build?"
-        body="Ask a question, raise a proposal or register your interest in the academy and event programme. We will respond with what is confirmed."
+        title="Come and see the floor."
+        body="Ask a question, book a free coached intake session or arrange a venue tour. We respond within one business day."
         primary={{ label: "Get in touch", href: "/contact/" }}
         secondary={{ label: "Championship 2026", href: "/open-esports-championship-2026/" }}
       />

@@ -12,7 +12,7 @@ import { NAV, SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Avatars Realm (Pty) Ltd. General enquiries about the esports academy, the event programme and partnership opportunities.",
+    "Contact Avatars Realm (Pty) Ltd — academy membership, arena bookings, team bootcamps, event entries and partnerships at 9 Madge Ave, Northcliff.",
 };
 
 const CARDS = [
@@ -22,7 +22,7 @@ const CARDS = [
     value: SITE.email,
     href: `mailto:${SITE.email}`,
     action: "Send an email",
-    note: "For academy, event and organisation questions.",
+    note: "Memberships, event entries, venue hire and partnerships.",
   },
   {
     label: "Telephone",
@@ -30,7 +30,7 @@ const CARDS = [
     value: SITE.phone,
     href: SITE.phoneHref,
     action: "Call this number",
-    note: "A direct line for enquiries while the organisation is being established.",
+    note: "Answered during venue hours for bookings and enquiries.",
   },
   {
     label: "Location",
@@ -38,7 +38,7 @@ const CARDS = [
     value: SITE.address,
     href: "",
     action: "",
-    note: "Postal, venue and event addresses are published once confirmed.",
+    note: "Open seven days — walk-ins welcome at the arena front desk.",
   },
 ];
 
@@ -54,8 +54,8 @@ export default function ContactPage() {
             with Avatars Realm.
           </>
         }
-        lede="Whether you are a player, a parent, a school, a business or a potential partner — this is the simplest way to reach us while the organisation is being established."
-        status={{ label: "General enquiries", tone: "neutral" }}
+        lede="Whether you are a player, a parent, a school, a team or a business — this is the fastest way to reach us. We reply within one business day."
+        status={{ label: "Replies within one business day", tone: "live" }}
         image={{
           src: "/images/player-headset.jpg",
           alt: "Player wearing a headset during an online gaming session",
@@ -136,9 +136,9 @@ export default function ContactPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Before you write"
-              title="What we can and cannot confirm."
+              title="Where things stand right now."
               tone="blue"
-              lede="To keep replies useful, here is the current state of the information people ask for most often."
+              lede="The current state of the things people ask about most often."
             />
           </Reveal>
 
@@ -147,22 +147,22 @@ export default function ContactPage() {
               {[
                 {
                   ask: "Academy registration",
-                  answer: "Not open — the Starter Edition is in development.",
-                  tone: "dev" as const,
+                  answer: "Open — free intake session available.",
+                  tone: "live" as const,
                 },
                 {
-                  ask: "Championship registration",
-                  answer: "Not open — subject to confirmation.",
-                  tone: "planned" as const,
+                  ask: "Arena walk-ins",
+                  answer: "Welcome during opening hours.",
+                  tone: "live" as const,
                 },
                 {
-                  ask: "Event dates and venues",
-                  answer: "Published once confirmed.",
-                  tone: "planned" as const,
+                  ask: "Championship entries",
+                  answer: "Open — closes 14 November.",
+                  tone: "live" as const,
                 },
                 {
-                  ask: "Partnerships",
-                  answer: "Under establishment.",
+                  ask: "Team & school bookings",
+                  answer: "Quotes within one business day.",
                   tone: "neutral" as const,
                 },
               ].map((row) => (
@@ -181,19 +181,36 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* --------------------------------------------------------- Partnership */}
+      {/* ------------------------------------------------------- Opening hours */}
       <section className="section relative overflow-hidden">
         <SectionDragon side="right" />
         <div className="container-page grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <Reveal>
             <SectionHeading
-              eyebrow="Partnership Note"
-              title="Partnership opportunities are under establishment."
-              lede="We are not announcing partners, sponsors or collaborations at this stage. If a partnership conversation is relevant to you, get in touch and we will pick it up at the right time."
+              eyebrow="Opening Hours"
+              title="The floor is open seven days."
+              lede="Coached sessions run to the academy timetable; the arena floor stays open to everyone else during these hours."
             />
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="neutral">Under establishment</StatusBadge>
-              <StatusBadge tone="dev">No partners announced</StatusBadge>
+            <div className="mt-8 card card-pad">
+              <ul className="divide-y divide-white/[0.08]">
+                {SITE.hours.map((row) => (
+                  <li
+                    key={row.label}
+                    className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0"
+                  >
+                    <span className="text-[0.9375rem] text-paper-200">
+                      {row.label}
+                    </span>
+                    <span className="text-[0.9375rem] font-medium text-azure-400">
+                      {row.value}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              <StatusBadge tone="live">Walk-ins welcome</StatusBadge>
+              <StatusBadge tone="live">Free intake session</StatusBadge>
             </div>
           </Reveal>
 

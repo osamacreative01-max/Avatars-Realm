@@ -1,8 +1,8 @@
-type Tone = "dev" | "planned" | "neutral";
+type Tone = "live" | "soon" | "neutral";
 
 const TONE: Record<Tone, string> = {
-  dev: "status-dev",
-  planned: "status-planned",
+  live: "status-live",
+  soon: "status-soon",
   neutral: "status-neutral",
 };
 

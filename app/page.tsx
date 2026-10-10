@@ -10,9 +10,11 @@ import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import Marquee from "@/components/Marquee";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import StatusBadge from "@/components/StatusBadge";
 import {
   ACADEMY_AREAS,
   EVENTS,
+  SUBSCRIPTIONS,
   TOURNAMENTS,
 } from "@/lib/content";
 
@@ -27,8 +29,15 @@ export default function HomePage() {
 
       {/* ----------------------------------------------------------- Marquee */}
       <Marquee
-        items={["In Development", "Planned", "Subject to Confirmation"]}
-        speed={14}
+        items={[
+          "Open 7 Days",
+          "Coached Subscriptions",
+          "Walk-ins Welcome",
+          "Free Intake Session",
+          "Junior Programmes",
+          "Team Bootcamps",
+        ]}
+        speed={22}
       />
 
       {/* ------------------------------------------------------------- About */}
@@ -55,23 +64,23 @@ export default function HomePage() {
           <Reveal delay={80}>
             <SectionHeading
               eyebrow="About Avatars Realm"
-              title="An organisation in formation, not a finished product."
-              lede="We are building Avatars Realm deliberately: a credible esports and gaming organisation with a training direction and an events direction, described honestly at every stage."
+              title="An academy that trains, an arena that runs."
+              lede="Avatars Realm is an established esports and gaming organisation in Northcliff: a coached academy, a public arena floor and a competitive event programme, all operating under one roof."
             />
 
             <ul className="mt-8 max-w-2xl space-y-4">
               {[
                 {
                   title: "Who we are",
-                  body: "An emerging esports and gaming organisation establishing its identity, its people and its programme.",
+                  body: "A full-time academy and arena run by coaches, event staff and a founder-director since 2023.",
                 },
                 {
-                  title: "What we are developing",
-                  body: "A proposed esports academy concept and a planned competitive event programme.",
+                  title: "What we run",
+                  body: "Three subscription tracks, open arena play, junior holiday programmes, team bootcamps and a monthly showcase calendar.",
                 },
                 {
-                  title: "How we communicate",
-                  body: "Confirmed information is published as confirmed. Everything else is labelled planned, proposed or subject to confirmation.",
+                  title: "How we price",
+                  body: "Every rate is published up front — month-to-month memberships, no joining fee and a free coached intake session.",
                 },
               ].map((item) => (
                 <li key={item.title} className="flex gap-4">
@@ -110,8 +119,8 @@ export default function HomePage() {
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
                 eyebrow="Esports Academy"
-                title="A proposed Starter Edition, still in development."
-                lede="Ten to twenty PC stations, an academy space, a small arena, a gaming lounge and a streaming zone — presented as a concept while it is being developed."
+                title="A working academy, built around a weekly rhythm."
+                lede="Twenty competitive PC stations, an academy studio, the main arena, a gaming lounge and a streaming zone — open daily and running a full coaching timetable."
               />
               <div className="md:pb-2">
                 <Button href="/esports-academy/" variant="primary">
@@ -138,16 +147,84 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ------------------------------------------------------------- Events */}
+      {/* ----------------------------------------------------------- Pricing */}
       <section className="section relative overflow-hidden">
         <SectionDragon side="right" />
-        <div className="container-page">
+        <div className="container-page relative">
+          <Reveal>
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <SectionHeading
+                eyebrow="Membership Pricing"
+                title="Coached memberships from R450 per month."
+                lede="Three subscription tracks covering training blocks, coaching reviews and unlimited arena access — billed monthly, cancellable with a week's notice."
+              />
+              <div className="md:pb-2">
+                <Button href="/pricing/" variant="primary">
+                  All pricing
+                </Button>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {SUBSCRIPTIONS.map((tier, index) => (
+              <Reveal key={tier.id} delay={index * 70}>
+                <div
+                  className={`card flex h-full flex-col card-pad ${
+                    tier.featured ? "border-flame-600/55" : ""
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="display-3">{tier.name}</h3>
+                    {tier.featured ? (
+                      <StatusBadge tone="live">Most popular</StatusBadge>
+                    ) : null}
+                  </div>
+                  <div className="mt-5 flex items-end gap-2">
+                    <span className="text-[1rem] font-semibold text-flame-400">
+                      R
+                    </span>
+                    <span className="text-[2.5rem] leading-none font-bold tracking-[-0.03em] text-paper-50">
+                      {tier.price}
+                    </span>
+                    <span className="pb-1 text-[0.875rem] text-paper-400">
+                      {tier.period}
+                    </span>
+                  </div>
+                  <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                    {tier.summary}
+                  </p>
+                  <div className="mt-6">
+                    <Link href="/pricing/" className="arrow-link">
+                      See what&apos;s included <span aria-hidden="true">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={160}>
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
+              <StatusBadge tone="neutral">No membership required</StatusBadge>
+              The arena floor is also open to drop-ins from R45 per hour, with
+              junior programmes and team bookings published on the pricing page.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- Events */}
+      <section className="section relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
+        <GridBackdrop className="opacity-40" />
+        <SectionDragon side="left" />
+        <div className="container-page relative">
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
                 eyebrow="Events"
-                title="A planned programme of competitive and community events."
-                lede="Event information is presented as planned or proposed. Dates, venues and registration are published only once confirmed."
+                title="A running programme of competitive and community events."
+                lede="Monthly showcases on the arena stage, weekly community play, and the flagship Open Esports Championship returning in 2026."
               />
               <div className="md:pb-2">
                 <Button href="/events/" variant="primary">
@@ -195,9 +272,9 @@ export default function HomePage() {
             <p className="eyebrow">Open Esports Championship 2026</p>
             <h2 className="display-2 mt-4">Five titles. One open championship.</h2>
             <p className="lede mt-5">
-              Our flagship planned tournament brings together console, PC and
-              mobile competition. Dates, venue, rules and registration are all
-              subject to confirmation.
+              Our flagship tournament brings together console, PC and mobile
+              competition on the main arena stage — 21–22 November 2026. Entries
+              are open now, with qualifying ladders running on the floor.
             </p>
           </Reveal>
 
@@ -230,10 +307,10 @@ export default function HomePage() {
       </section>
 
       <CtaBand
-        title="Get in touch with Avatars Realm."
-        body="Whether you are a player, a family, a school or a potential partner — if you want to follow the academy and the event programme as they develop, start here."
-        primary={{ label: "Contact Avatars Realm", href: "/contact/" }}
-        secondary={{ label: "About the organisation", href: "/about/" }}
+        title="Come and train with Avatars Realm."
+        body="Book a free coached intake session, try the arena floor, or ask about memberships for juniors, teams and squads. We will get you on a station the same week."
+        primary={{ label: "Book a free session", href: "/contact/" }}
+        secondary={{ label: "See all pricing", href: "/pricing/" }}
       />
     </>
   );

@@ -13,14 +13,14 @@ import { TOURNAMENTS } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Open Esports Championship 2026",
   description:
-    "The planned Open Esports Championship 2026 from Avatars Realm — EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX. Dates, venue, rules and registration are subject to confirmation.",
+    "The Open Esports Championship 2026 at the Avatars Realm arena, 21 – 22 November — EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX. Entries open now.",
 };
 
 const DETAILS = [
-  { label: "Dates", value: "Subject to confirmation" },
-  { label: "Venue", value: "Subject to confirmation" },
-  { label: "Rules", value: "Subject to confirmation" },
-  { label: "Registration", value: "Subject to confirmation" },
+  { label: "Dates", value: "21 – 22 November 2026" },
+  { label: "Venue", value: "Avatars Realm Arena, Northcliff" },
+  { label: "Titles", value: "Five titles, three platforms" },
+  { label: "Registration", value: "Open now" },
 ];
 
 const EXPECT = [
@@ -84,23 +84,23 @@ export default function ChampionshipPage() {
 
             <Reveal delay={140}>
               <p className="lede mt-6 max-w-2xl">
-                A planned open championship spanning five titles across console,
-                PC and mobile — designed to be the centrepiece of the Avatars
-                Realm event programme.
+                Two days of open competition across five titles, hosted on the
+                main arena stage at Avatars Realm — the centrepiece of our
+                event calendar.
               </p>
             </Reveal>
 
             <Reveal delay={210}>
               <div className="mt-8 flex flex-wrap items-center gap-2.5">
-                <StatusBadge tone="planned">Planned</StatusBadge>
-                <StatusBadge tone="planned">Subject to Confirmation</StatusBadge>
+                <StatusBadge tone="soon">Upcoming — 21 – 22 November</StatusBadge>
+                <StatusBadge tone="live">Entries open now</StatusBadge>
               </div>
             </Reveal>
 
             <Reveal delay={280}>
               <div className="mt-9 flex flex-wrap gap-3">
                 <Button href="/contact/" size="lg">
-                  Contact the team
+                  Enter the championship
                 </Button>
                 <Button href="#titles" variant="outline" size="lg">
                   View the titles
@@ -137,10 +137,10 @@ export default function ChampionshipPage() {
               <SectionHeading
                 eyebrow="Tournament Titles"
                 title="Five ways to compete."
-                lede="The planned title list for the championship. Formats may be adjusted while the event is being finalised."
+                lede="The confirmed title list for the championship, each with its own bracket and running order across the two days."
               />
               <div className="md:pb-2">
-                <StatusBadge tone="planned">Line-up provisional</StatusBadge>
+                <StatusBadge tone="live">Confirmed line-up</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -169,11 +169,11 @@ export default function ChampionshipPage() {
               eyebrow="What to Expect"
               title="A championship built to feel professional."
               tone="blue"
-              lede="Even while the details are provisional, the intent is fixed: a well-run, clearly communicated tournament that players want to return to."
+              lede="The intent is fixed: a well-run, clearly communicated tournament that players want to return to, run by the same team that operates the arena every day."
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="planned">Planned</StatusBadge>
-              <StatusBadge tone="neutral">Not yet open for registration</StatusBadge>
+              <StatusBadge tone="soon">Two-day event</StatusBadge>
+              <StatusBadge tone="live">Registration open</StatusBadge>
             </div>
           </Reveal>
 
@@ -207,7 +207,7 @@ export default function ChampionshipPage() {
             <SectionHeading
               eyebrow="Tournament Atmosphere"
               title="Competition people can feel."
-              lede="Photography from competitive gaming environments of the kind the championship is being designed around."
+              lede="Photography from competitive gaming environments of the kind the championship is built around — the same stage, setup and crowd format used for our monthly showcases."
             />
           </Reveal>
 
@@ -253,16 +253,16 @@ export default function ChampionshipPage() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div className="max-w-2xl">
                   <h3 className="text-[1.05rem] font-semibold text-paper-50">
-                    What is not being published yet
+                    How to enter
                   </h3>
                   <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
-                    Prize information, budgets, ticketing, registration windows,
-                    confirmed venues and confirmed dates are all withheld until
-                    they are approved. No payment or player registration takes
-                    place on this website.
+                    Entries are R150 per title, taken by email or at reception,
+                    and close on 14 November. Brackets, seeding and the running
+                    order are published the week before the event. Players must
+                    check in 45 minutes before their first match.
                   </p>
                 </div>
-                <StatusBadge tone="planned">Subject to Confirmation</StatusBadge>
+                <StatusBadge tone="live">Entries open</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -271,9 +271,9 @@ export default function ChampionshipPage() {
 
       <CtaBand
         eyebrow="Championship 2026"
-        title="Follow the championship as it is confirmed."
-        body="Registration is not open. Contact us to register your interest as a player, team, volunteer or potential partner, and we will share confirmed details as they are released."
-        primary={{ label: "Contact Avatars Realm", href: "/contact/" }}
+        title="Enter the championship."
+        body="Register as a player, team, volunteer or media contact, and we will confirm your place and send the rules pack. Questions about formats and eligibility go straight to the events team."
+        primary={{ label: "Enter now", href: "/contact/" }}
         secondary={{ label: "See all events", href: "/events/" }}
       />
     </>

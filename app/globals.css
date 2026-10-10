@@ -545,9 +545,12 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   Status treatments — the honesty layer of this site.
+   Status treatments — the operational layer of this site.
    Cut-corner plate: dark tinted slate, tone gradient, 3px accent rule on the
    left. Square and technical rather than a rounded pill.
+     live  red    running right now (open, accepting members)
+     soon  blue   confirmed but in the future (upcoming, seasonal)
+     neutral white evergreen information
    -------------------------------------------------------------------------- */
 
 .status {
@@ -565,7 +568,7 @@ button {
   text-align: left;
 }
 
-.status-dev {
+.status-live {
   border-left-color: var(--color-flame-500);
   background-image: linear-gradient(
     90deg,
@@ -575,7 +578,7 @@ button {
   color: var(--color-flame-400);
 }
 
-.status-planned {
+.status-soon {
   border-left-color: var(--color-azure-500);
   background-image: linear-gradient(
     90deg,

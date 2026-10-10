@@ -78,13 +78,13 @@ export default function SplashCursor({
   COLOR = '#ff2f42'
 }: SplashCursorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  // Skip entirely on touch devices and for anyone who asked for reduced motion.
+  // Skip entirely for anyone who asked for reduced motion. Touch devices stay
+  // enabled — they run a lighter simulation so scrolling still leaves a trail.
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    const fine = window.matchMedia('(pointer: fine)').matches;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (fine && !reduced) setDisabled(false);
+    if (!reduced) setDisabled(false);
   }, []);
 
   useEffect(() => {
@@ -124,6 +124,17 @@ export default function SplashCursor({
     }
     const { gl, ext } = context;
     if (!gl || !ext) return;
+
+    // Touch devices: lighter simulation so the trail stays smooth while the
+    // page is being scrolled and the phone does not get warm.
+    const coarse = window.matchMedia('(pointer: coarse)').matches;
+    if (coarse) {
+      config.SIM_RESOLUTION = 96;
+      config.DYE_RESOLUTION = 384;
+      config.PRESSURE_ITERATIONS = 12;
+      config.SPLAT_RADIUS = 0.2;
+      config.SHADING = false;
+    }
 
     if (!ext.supportLinearFiltering) {
       config.DYE_RESOLUTION = 256;
@@ -875,7 +886,10 @@ export default function SplashCursor({
     }
 
     function scaleByPixelRatio(input: number) {
-      const pixelRatio = window.devicePixelRatio || 1;
+      const raw = window.devicePixelRatio || 1;
+      // Phones report DPR 3 — the full-screen dye pass is too expensive at that
+      // resolution, so touch devices are capped at 2×.
+      const pixelRatio = coarse ? Math.min(raw, 2) : raw;
       return Math.floor(input * pixelRatio);
     }
 
@@ -1298,9 +1312,9 @@ export default function SplashCursor({
     window.addEventListener('mousedown', onMouseDown);
     document.body.addEventListener('mousemove', handleFirstMouseMove);
     window.addEventListener('mousemove', onMouseMove);
-    document.body.addEventListener('touchstart', handleFirstTouchStart);
-    window.addEventListener('touchstart', onTouchStart, false);
-    window.addEventListener('touchmove', onTouchMove, false);
+    document.body.addEventListener('touchstart', handleFirstTouchStart, { passive: true });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
     window.addEventListener('touchend', onTouchEnd);
 
     return () => {

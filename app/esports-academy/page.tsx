@@ -4,23 +4,30 @@ import Image from "next/image";
 import AreaCard from "@/components/AreaCard";
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
-import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
+import { DragonWatermark, GridBackdrop, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import { ACADEMY_AREAS } from "@/lib/content";
+import { ACADEMY_AREAS, WEEKLY_RHYTHM } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Esports Academy",
   description:
-    "The proposed Avatars Realm Esports Academy Starter Edition — 10–20 PC stations, academy space, small arena, gaming lounge and streaming zone. Currently in development.",
+    "The Avatars Realm Esports Academy — 20 competitive PC stations, coaching studio, main arena, gaming lounge and streaming zone. Memberships open, from R450 per month.",
 };
+
+const FACTS = [
+  { label: "PC stations", value: "20 competitive-spec" },
+  { label: "Coaching", value: "6 days a week" },
+  { label: "First session", value: "Free intake" },
+  { label: "Membership", value: "From R450 / month" },
+];
 
 const TRAINING = [
   {
     title: "Structured practice",
-    body: "Training blocks with a clear purpose, rather than open-ended play — warm-up, focus work, review.",
+    body: "Training blocks with a clear purpose — warm-up, focus work, review — instead of open-ended play.",
   },
   {
     title: "Coaching conversations",
@@ -28,11 +35,11 @@ const TRAINING = [
   },
   {
     title: "Review and reflection",
-    body: "Looking back at performance as a discipline in its own right, not only playing forward.",
+    body: "VOD sessions on your own matches every fortnight, with written notes you keep.",
   },
   {
     title: "Competitive exposure",
-    body: "Pathways from practice into showcases and small-format competition when conditions allow.",
+    body: "A clear path from practice to in-house league, monthly showcases and open championship qualifying.",
   },
 ];
 
@@ -43,51 +50,56 @@ export default function EsportsAcademyPage() {
         eyebrow="Esports Academy"
         title={
           <>
-            The proposed
+            The academy,
             <br />
-            Starter Edition.
+            open and running.
           </>
         }
-        lede="A future academy concept for structured learning, practice and community — presented as a design that is still being developed, not a facility that is open."
-        status={{ label: "In Development", tone: "dev" }}
+        lede="A full-time training environment for players who want to improve — coached blocks six days a week, a public arena floor, and a competitive programme that runs all year."
+        status={{ label: "Accepting members", tone: "live" }}
         image={{
           src: "/images/pc-stations.jpg",
           alt: "Row of illuminated gaming PCs at competitive stations",
         }}
-      />
+      >
+        <Button href="/pricing/" size="lg">
+          See membership pricing
+        </Button>
+        <Button href="/contact/" variant="outline" size="lg">
+          Book a free intake session
+        </Button>
+      </PageHero>
 
-      {/* ------------------------------------------------------- Status notice */}
-      <section className="border-b border-white/[0.07] bg-flame-700/10">
-        <div className="container-page flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="flex items-start gap-3 text-[0.9375rem] text-paper-100">
-            <StatusBadge tone="dev">In Development</StatusBadge>
-            <span>
-              The academy is not open. There is no registration, booking or
-              student account available.
-            </span>
-          </p>
-          <a href="#starter-edition" className="arrow-link self-start">
-            See the concept <span aria-hidden="true">↓</span>
-          </a>
+      {/* -------------------------------------------------------- Facts strip */}
+      <section className="border-b border-white/[0.07] bg-navy-950">
+        <div className="container-page grid gap-px bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
+          {FACTS.map((item) => (
+            <div key={item.label} className="bg-navy-950 px-6 py-7">
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
+                {item.label}
+              </p>
+              <p className="mt-2 text-[0.9375rem] font-medium text-azure-400">
+                {item.value}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ---------------------------------------------------- Starter Edition */}
-      <section id="starter-edition" className="section relative overflow-hidden">
+      {/* -------------------------------------------------------------- Floor */}
+      <section id="floor" className="section relative overflow-hidden">
         <SectionDragon side="right" />
         <div className="container-page">
           <Reveal>
             <SectionHeading
-              eyebrow="Proposed Starter Edition"
+              eyebrow="The Floor"
               title="Five spaces, one connected environment."
-              lede="The Starter Edition is the first proposed shape of the academy: a compact, purpose-built setting where training, competition and community sit side by side."
+              lede="Training, competition and community sit side by side: everything a member needs is on one floor, from the coaching studio to the arena stage."
             />
           </Reveal>
 
           <div className="mt-6">
-            <StatusBadge tone="neutral">
-              Concept only — not an operating facility
-            </StatusBadge>
+            <StatusBadge tone="live">Open to members and walk-ins</StatusBadge>
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -103,21 +115,24 @@ export default function EsportsAcademyPage() {
               </Reveal>
             ))}
 
-            {/* Sixth tile: status, keeping the grid balanced. */}
+            {/* Sixth tile: access information, keeping the grid balanced. */}
             <Reveal delay={140}>
               <div className="card flex h-full flex-col justify-between card-pad">
                 <div>
-                  <StatusBadge tone="dev">In Development</StatusBadge>
-                  <h3 className="display-3 mt-5">Still being specified.</h3>
+                  <StatusBadge tone="live">Open 7 days</StatusBadge>
+                  <h3 className="display-3 mt-5">Come and see it.</h3>
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
-                    Layout, equipment, capacity and opening arrangements have
-                    not been finalised. When they are, they will be published
-                    here as confirmed information.
+                    Members train on a timetable; the arena floor stays open to
+                    everyone else at published drop-in rates. Walk in, or book a
+                    free coached intake session before you commit.
                   </p>
                 </div>
-                <div className="mt-7">
-                  <Button href="/contact/" variant="primary" size="sm">
-                    Register your interest
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Button href="/pricing/" variant="primary" size="sm">
+                    See pricing
+                  </Button>
+                  <Button href="/contact/" variant="outline" size="sm">
+                    Book a session
                   </Button>
                 </div>
               </div>
@@ -126,65 +141,68 @@ export default function EsportsAcademyPage() {
         </div>
       </section>
 
-      {/* ---------------------------------------------------------- Vision */}
+      {/* ------------------------------------------------------ Weekly rhythm */}
       <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
         <GridBackdrop className="opacity-40" />
         <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem]" />
 
-        <div className="container-page relative grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="container-page relative">
           <Reveal>
-            <SectionHeading
-              eyebrow="Academy Vision"
-              title="Development before display."
-              lede="The academy exists to make improvement routine. Our vision is an environment where players arrive with a purpose, leave with something measurable, and want to come back."
-            />
-            <div className="measure mt-8 space-y-5 text-[1rem] leading-relaxed text-paper-300">
-              <p>
-                We are designing around consistency rather than spectacle: a
-                repeatable training rhythm, a space that supports concentration,
-                and a culture where asking for feedback is normal.
-              </p>
-              <p>
-                Community and competitive development are treated as the same
-                journey. Players should be able to move from casual play into
-                structured practice, and from structured practice into
-                competition, without a gap in support.
-              </p>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="dev">In Development</StatusBadge>
-              <StatusBadge tone="neutral">Proposed Starter Edition</StatusBadge>
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <SectionHeading
+                eyebrow="Weekly Rhythm"
+                title="What a week in the academy looks like."
+                lede="The coaching timetable runs in eight-week blocks. Members book into any session on their track; showcases open to the public."
+              />
+              <div className="md:pb-2">
+                <StatusBadge tone="live">Running now</StatusBadge>
+              </div>
             </div>
           </Reveal>
 
-          <Reveal delay={90} className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">
-              <Image
-                src="/images/arena-pc-room.png"
-                alt="Gaming PCs and headsets in a dark esports room"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/15 to-transparent"
-              />
+          <div className="mt-10">
+            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
+              {WEEKLY_RHYTHM.map((row) => (
+                <li
+                  key={row.day}
+                  className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[8rem_1fr_1.4fr] sm:items-center sm:gap-6"
+                >
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
+                    {row.day}
+                  </span>
+                  <span className="text-[0.95rem] font-semibold text-paper-50">
+                    {row.session}
+                  </span>
+                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                    {row.detail}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <Reveal delay={120}>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Button href="/pricing/" size="lg">
+                Join the academy
+              </Button>
+              <a href="#floor" className="arrow-link">
+                Tour the floor <span aria-hidden="true">↑</span>
+              </a>
             </div>
-            <RedArc className="pointer-events-none absolute -top-12 -right-12 h-56 w-56 rotate-90" />
           </Reveal>
         </div>
       </section>
 
-      {/* ------------------------------------------------------ Training env */}
+      {/* ----------------------------------------------------- Training env */}
       <section className="section relative overflow-hidden">
         <SectionDragon side="right" />
         <div className="container-page">
           <Reveal>
             <SectionHeading
               eyebrow="Learning & Training"
-              title="The training environment we are designing for."
-              lede="Four principles shape how sessions would work once the academy moves from concept to delivery."
+              title="How sessions are run."
+              lede="Four principles shape every block on the timetable, from the mechanics lab through to in-house league night."
               tone="blue"
             />
           </Reveal>
@@ -233,22 +251,22 @@ export default function EsportsAcademyPage() {
             <SectionHeading
               eyebrow="Community & Esports Development"
               title="A scene, not just a schedule."
-              lede="The wider direction is a sustainable local esports community — one that keeps players engaged between events and gives families and partners something credible to point at."
+              lede="Members move from casual play to structured practice to competition without a gap in support — and the wider community stays engaged between events."
             />
 
             <ul className="mt-8 max-w-2xl space-y-5">
               {[
                 {
-                  title: "Community first",
-                  body: "Regular, low-friction ways for players to take part before any competitive pressure is applied.",
+                  title: "Start where you are",
+                  body: "Free intake session first, so you are placed on the right track rather than the nearest one.",
                 },
                 {
-                  title: "Progression that is visible",
-                  body: "Clear steps from participation to practice to competition, so development is easy to recognise.",
+                  title: "Progression you can see",
+                  body: "Assessments, ladder positions and showcase appearances mark each step from participation to competition.",
                 },
                 {
-                  title: "Future potential",
-                  body: "Room to grow into additional titles, larger formats and further academy tiers as the organisation matures.",
+                  title: "Room to grow",
+                  body: "Additional titles, larger formats and squad-level coaching open up as members move through the tracks.",
                 },
               ].map((item) => (
                 <li key={item.title} className="flex gap-4">
@@ -272,11 +290,11 @@ export default function EsportsAcademyPage() {
       </section>
 
       <CtaBand
-        eyebrow="Academy enquiries"
-        title="Interested in the academy as it develops?"
-        body="There is no registration open yet. Tell us who you are and what you are looking for, and we will keep you updated as the Starter Edition moves forward."
-        primary={{ label: "Contact Avatars Realm", href: "/contact/" }}
-        secondary={{ label: "See the events programme", href: "/events/" }}
+        eyebrow="Academy enrolment"
+        title="Ready to start training?"
+        body="Book a free coached intake session, pick your track and be on the floor this week. Memberships are month to month — join Starter, Competitor or Elite Squad from the pricing page."
+        primary={{ label: "See membership pricing", href: "/pricing/" }}
+        secondary={{ label: "Book a free session", href: "/contact/" }}
       />
     </>
   );

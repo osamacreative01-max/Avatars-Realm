@@ -21,9 +21,9 @@ export default function Footer() {
         <div className="max-w-md">
           <Logo />
           <p className="mt-5 text-[0.9375rem] leading-relaxed text-paper-300">
-            Avatars Realm is an emerging esports and gaming organisation. We are
-            developing an academy and a competitive event programme, and we
-            publish details only once they are confirmed.
+            An established esports academy and gaming arena in Northcliff.
+            Coached subscriptions, open arena play, junior programmes and a
+            competitive event calendar — seven days a week.
           </p>
           <a
             href={`mailto:${SITE.email}`}
@@ -75,13 +75,13 @@ export default function Footer() {
             </li>
             <li className="text-paper-400">{SITE.address}</li>
             <li className="text-paper-400">
-              Partnership opportunities are under establishment.
+              Open Monday to Sunday — walk-ins welcome.
             </li>
           </ul>
 
           <div className="mt-6 flex flex-wrap gap-2">
-            <span className="status status-planned">Planned</span>
-            <span className="status status-dev">In Development</span>
+            <span className="status status-live">Open 7 days</span>
+            <span className="status status-soon">Championship 2026</span>
           </div>
         </div>
       </div>

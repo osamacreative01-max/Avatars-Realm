@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type Common = { className?: string };
 
 /** The brand's red arc motif — used sparingly as a framing device. */
@@ -39,40 +41,19 @@ export function RedArc({ className = "" }: Common) {
 }
 
 /**
- * Stylised eastern dragon, drawn as a single coiling stroke.
- * Used only as a large, very low-opacity watermark.
+ * Brand dragon artwork, used only as a large, very low-opacity watermark.
  */
 export function DragonWatermark({ className = "" }: Common) {
   return (
-    <svg
-      viewBox="0 0 300 300"
-      fill="none"
+    <Image
+      src="/images/Asset%207.svg"
+      alt=""
       aria-hidden="true"
-      className={`text-flame-600/25 ${className}`.trim()}
-      stroke="currentColor"
-      strokeWidth="5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {/* Coiling body */}
-      <path d="M38 262 C38 188 92 152 152 164 C214 176 244 132 232 78" />
-      <path
-        d="M74 268 C74 210 116 188 162 198 C212 209 230 176 224 132"
-        opacity="0.55"
-      />
-      {/* Head */}
-      <path d="M232 78 C248 60 272 64 280 80 C287 96 277 113 261 115 C248 117 237 108 234 96" />
-      {/* Horns */}
-      <path d="M264 64 L276 38 M250 68 L250 40" />
-      {/* Jaw */}
-      <path d="M261 115 L250 131 M242 111 L235 127" />
-      {/* Back spikes */}
-      <path d="M152 164 L141 140 M186 176 L182 150 M114 186 L101 164 M224 132 L228 108" />
-      {/* Eye */}
-      <circle cx="261" cy="89" r="3.6" fill="currentColor" stroke="none" />
-      {/* Whisker */}
-      <path d="M280 80 C294 76 300 88 292 98" opacity="0.7" />
-    </svg>
+      width={441}
+      height={337}
+      unoptimized
+      className={`opacity-30 ${className}`.trim()}
+    />
   );
 }
 
