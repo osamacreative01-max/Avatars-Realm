@@ -149,7 +149,7 @@ export default function HomePage() {
 
       {/* ----------------------------------------------------------- Pricing */}
       <section className="section relative overflow-hidden">
-        <SectionDragon side="right" />
+        <SectionDragon side="right" size="h-[42rem] w-[42rem]" />
         <div className="container-page relative">
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -265,7 +265,7 @@ export default function HomePage() {
           className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/85 to-ink-950"
         />
         <RedArc className="pointer-events-none absolute -right-28 -bottom-32 h-[30rem] w-[30rem] -scale-100 opacity-70" />
-        <SectionDragon side="left" />
+        <SectionDragon side="right" />
 
         <div className="container-page relative py-16 sm:py-20">
           <Reveal className="max-w-3xl">

@@ -74,9 +74,11 @@ export function GridBackdrop({ className = "" }: Common) {
  */
 export function SectionDragon({
   side = "right",
+  size = "h-[26rem] w-[26rem]",
   className = "",
 }: {
   side?: "left" | "right";
+  size?: string;
   className?: string;
 }) {
   const position =
@@ -84,7 +86,7 @@ export function SectionDragon({
 
   return (
     <DragonWatermark
-      className={`pointer-events-none absolute ${position} h-[26rem] w-[26rem] ${className}`.trim()}
+      className={`pointer-events-none absolute ${position} ${size} ${className}`.trim()}
     />
   );
 }
