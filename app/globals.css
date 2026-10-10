@@ -77,6 +77,135 @@
 }
 
 /* --------------------------------------------------------------------------
+   Route loader — the brand dragon breathing fire while pages load
+   -------------------------------------------------------------------------- */
+
+@keyframes loader-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1.5deg);
+  }
+}
+
+@keyframes loader-halo {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.07);
+  }
+}
+
+@keyframes loader-breath {
+  0% {
+    opacity: 0;
+    transform: translate(-8%, -50%) scale(0.3, 0.55);
+  }
+  25% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 0.95;
+    transform: translate(2%, -50%) scale(1, 1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(16%, -50%) scale(1.15, 0.8);
+  }
+}
+
+@keyframes loader-breath-2 {
+  0%,
+  35% {
+    opacity: 0;
+    transform: translate(-4%, -50%) scale(0.35, 0.6);
+  }
+  55% {
+    opacity: 1;
+    transform: translate(2%, -50%) scale(1, 1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(12%, -50%) scale(1.2, 0.75);
+  }
+}
+
+@keyframes loader-ember {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(58px, -30px) scale(0.15);
+  }
+}
+
+@keyframes loader-ember-2 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(44px, 26px) scale(0.15);
+  }
+}
+
+@keyframes loader-bar {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.loader-bob {
+  animation: loader-bob 3.2s ease-in-out infinite;
+}
+
+.loader-halo {
+  animation: loader-halo 2.4s ease-in-out infinite;
+}
+
+/* transform-origin sits on the mouth so the flame grows outward. */
+.loader-breath {
+  transform-origin: 0 50%;
+  animation: loader-breath 1.1s ease-out infinite;
+}
+
+.loader-breath-2 {
+  transform-origin: 0 50%;
+  animation: loader-breath-2 1.1s ease-out infinite;
+}
+
+.loader-ember {
+  animation: loader-ember 1.5s ease-out infinite;
+}
+
+.loader-ember-2 {
+  animation: loader-ember-2 1.5s ease-out 0.4s infinite;
+}
+
+.loader-bar {
+  animation: loader-bar 1.15s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+
+/* --------------------------------------------------------------------------
    Base
    -------------------------------------------------------------------------- */
 

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import type { ReactNode } from "react";
 
+import AppLoader from "@/components/AppLoader";
 import CursorEffects from "@/components/CursorEffects";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main id="main">{children}</main>
         <Footer />
         <CursorEffects />
+        <AppLoader />
       </body>
     </html>
   );
