@@ -143,13 +143,6 @@ export default function HomePage() {
             ))}
           </div>
 
-          <Reveal delay={160}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
-              <StatusBadge tone="neutral">Proposed pilot pricing</StatusBadge>
-              Programme prices are illustrative and not binding. Final pricing
-              is confirmed with the opening programme.
-            </p>
-          </Reveal>
         </div>
       </section>
 
@@ -224,14 +217,6 @@ export default function HomePage() {
             )}
           </div>
 
-          <Reveal delay={160}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
-              <StatusBadge tone="neutral">No membership required</StatusBadge>
-              The lounge is open to everyone at hourly rates from R40, with
-              prepaid 5-hour and 10-hour gaming packs and an institution offer
-              for schools.
-            </p>
-          </Reveal>
         </div>
       </section>
 

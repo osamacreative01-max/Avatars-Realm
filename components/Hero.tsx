@@ -75,12 +75,10 @@ export default function Hero({
   primary = {
     label: "Explore Programmes",
     href: "/academy-programmes/",
-    note: "Find the right starting point for your esports journey.",
   },
   secondary = {
     label: "View Memberships",
     href: "/memberships/",
-    note: "Choose a lounge membership or hourly gaming option.",
   },
   statusRows = [
     { label: "Academy programmes", value: "Enrolment opening", fill: "half" },
