@@ -7,12 +7,13 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
+import { PARTNER_CATEGORIES, PARTNER_LABEL } from "@/lib/content";
 import { NAV, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Avatars Realm (Pty) Ltd — academy membership, arena bookings, team bootcamps, event entries and partnerships at 9 Madge Ave, Northcliff.",
+    "Contact Avatars Realm (Pty) Ltd — programme, membership, lounge, league, event and partnership enquiries for the Avatars Realm Esports Academy & Gaming Arena in Northcliff.",
 };
 
 const CARDS = [
@@ -22,7 +23,7 @@ const CARDS = [
     value: SITE.email,
     href: `mailto:${SITE.email}`,
     action: "Send an email",
-    note: "Memberships, event entries, venue hire and partnerships.",
+    note: "Programmes, memberships, league entry, school groups and partnerships.",
   },
   {
     label: "Telephone",
@@ -30,7 +31,7 @@ const CARDS = [
     value: SITE.phone,
     href: SITE.phoneHref,
     action: "Call this number",
-    note: "Answered during venue hours for bookings and enquiries.",
+    note: "For direct questions while the opening programme is being finalised.",
   },
   {
     label: "Location",
@@ -38,7 +39,69 @@ const CARDS = [
     value: SITE.address,
     href: "",
     action: "",
-    note: "Open seven days — walk-ins welcome at the arena front desk.",
+    note: SITE.statusLine,
+  },
+];
+
+/** Enquiry prompts the brief asks the contact page to carry (§4). */
+const ENQUIRIES = [
+  {
+    label: "Programme enquiries",
+    title: "Academy programmes",
+    body: "Beginner, Intermediate and Pro — durations, pilot pricing and start dates.",
+    subject: "Programme enquiry",
+  },
+  {
+    label: "Membership enquiries",
+    title: "Memberships & gaming lounge",
+    body: "Social, Competitive and Pro Pathway memberships, hourly rates and gaming packs.",
+    subject: "Membership enquiry",
+  },
+  {
+    label: "Venue & event enquiries",
+    title: "League, tournaments & hosting",
+    body: "League entry, quarterly tournaments, watch parties and event hosting at the arena.",
+    subject: "Event enquiry",
+  },
+  {
+    label: "Group enquiries",
+    title: "Schools & institutions",
+    body: "Curriculum-aligned academy activity for up to 20 learners per term.",
+    subject: "School group enquiry",
+  },
+  {
+    label: "Partnership enquiries",
+    title: "Partner opportunities",
+    body: "Technology, equipment, education, food and beverage, production and community collaborations.",
+    subject: "Partnership enquiry",
+  },
+];
+
+const STATUS_ROWS = [
+  {
+    ask: "Academy programmes",
+    answer: "Enrolment opening soon",
+    tone: "soon" as const,
+  },
+  {
+    ask: "Gaming lounge & memberships",
+    answer: "Pilot pricing published",
+    tone: "neutral" as const,
+  },
+  {
+    ask: "League & quarterly tournaments",
+    answer: "Announced with the launch programme",
+    tone: "soon" as const,
+  },
+  {
+    ask: "Open Esports Championship 2026",
+    answer: "Registration to be announced",
+    tone: "soon" as const,
+  },
+  {
+    ask: "Partnerships",
+    answer: "Under establishment",
+    tone: "neutral" as const,
   },
 ];
 
@@ -126,46 +189,66 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* -------------------------------------------------------- What to ask */}
+      {/* ------------------------------------------------------ Enquiries */}
       <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
         <GridBackdrop className="opacity-40" />
         <RedArc className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 -scale-x-100 opacity-70" />
         <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem]" />
 
+        <div className="container-page relative">
+          <Reveal>
+            <SectionHeading
+              eyebrow="What to ask about"
+              title="Five ways we can help."
+              lede="There is no form on this site — pick the closest subject below and email the team directly."
+              tone="blue"
+            />
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {ENQUIRIES.map((item, index) => (
+              <Reveal key={item.title} delay={index * 60}>
+                <a
+                  href={`mailto:${SITE.email}?subject=${encodeURIComponent(item.subject)}`}
+                  className="card card-hover flex h-full flex-col card-pad"
+                >
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
+                    {item.label}
+                  </p>
+                  <h3 className="display-3 mt-4">{item.title}</h3>
+                  <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                    {item.body}
+                  </p>
+                  <span className="arrow-link mt-6 pt-1">
+                    {item.subject} <span aria-hidden="true">→</span>
+                  </span>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* -------------------------------------------------------- What to ask */}
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="left" />
         <div className="container-page relative grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <SectionHeading
-              eyebrow="Before you write"
-              title="Where things stand right now."
+              eyebrow="Where Things Stand"
+              title="The current state of play."
               tone="blue"
-              lede="The current state of the things people ask about most often."
+              lede="The status of the things people ask about most often — updated as the opening programme is confirmed."
             />
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              <StatusBadge tone="soon">Proposed pilot pricing</StatusBadge>
+              <StatusBadge tone="soon">Championship 2026</StatusBadge>
+            </div>
           </Reveal>
 
           <Reveal delay={90}>
             <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {[
-                {
-                  ask: "Academy registration",
-                  answer: "Open — free intake session available.",
-                  tone: "live" as const,
-                },
-                {
-                  ask: "Arena walk-ins",
-                  answer: "Welcome during opening hours.",
-                  tone: "live" as const,
-                },
-                {
-                  ask: "Championship entries",
-                  answer: "Open — closes 14 November.",
-                  tone: "live" as const,
-                },
-                {
-                  ask: "Team & school bookings",
-                  answer: "Quotes within one business day.",
-                  tone: "neutral" as const,
-                },
-              ].map((row) => (
+              {STATUS_ROWS.map((row) => (
                 <li
                   key={row.ask}
                   className="flex flex-col gap-3 bg-ink-900/60 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
@@ -181,15 +264,64 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ------------------------------------------------------- Opening hours */}
-      <section className="section relative overflow-hidden">
+      {/* ----------------------------------------------------- Partnerships */}
+      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
+        <GridBackdrop className="opacity-40" />
+        <RedArc className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 -scale-x-100 opacity-70" />
+
+        <div className="container-page relative">
+          <Reveal>
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <SectionHeading
+                eyebrow="Partner Opportunities"
+                title="The types of partners we are exploring."
+                lede={PARTNER_LABEL}
+                tone="blue"
+              />
+              <div className="md:pb-2">
+                <StatusBadge tone="neutral">No partners confirmed yet</StatusBadge>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+            {PARTNER_CATEGORIES.map((item, index) => (
+              <Reveal key={item.title} delay={index * 50}>
+                <div className="h-full bg-navy-950 p-7 transition-colors duration-200 hover:bg-navy-900">
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                    {item.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={200}>
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
+              <StatusBadge tone="neutral">Partnership status</StatusBadge>
+              Partnership opportunities are under establishment — no partner
+              logos or confirmed partners are published until agreements are
+              signed.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------- Venue & hours */}
+      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
         <SectionDragon side="right" />
         <div className="container-page grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <Reveal>
             <SectionHeading
-              eyebrow="Opening Hours"
-              title="The floor is open seven days."
-              lede="Coached sessions run to the academy timetable; the arena floor stays open to everyone else during these hours."
+              eyebrow="Venue"
+              title="Northcliff, Randburg."
+              lede="Indicative venue hours are listed below. Final opening hours are confirmed with the opening programme and membership enrolment."
             />
             <div className="mt-8 card card-pad">
               <ul className="divide-y divide-white/[0.08]">
@@ -209,8 +341,8 @@ export default function ContactPage() {
               </ul>
             </div>
             <div className="mt-6 flex flex-wrap gap-2.5">
-              <StatusBadge tone="live">Walk-ins welcome</StatusBadge>
-              <StatusBadge tone="live">Free intake session</StatusBadge>
+              <StatusBadge tone="neutral">Indicative hours</StatusBadge>
+              <StatusBadge tone="soon">{SITE.statusLine}</StatusBadge>
             </div>
           </Reveal>
 

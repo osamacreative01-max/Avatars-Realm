@@ -21,7 +21,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — Esports Academy & Gaming Arena`,
+    default: `${SITE.fullName} — Train. Play. Compete. Belong.`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: SITE.locale,
     url: SITE.url,
-    siteName: SITE.name,
-    title: `${SITE.name} — Esports Academy & Gaming Arena`,
+    siteName: SITE.fullName,
+    title: `${SITE.fullName} — Train. Play. Compete. Belong.`,
     description: SITE.description,
   },
   robots: { index: true, follow: true },

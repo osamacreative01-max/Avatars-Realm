@@ -9,6 +9,25 @@ const nextConfig: NextConfig = {
     deviceSizes: [360, 414, 640, 768, 1024, 1280, 1440, 1920],
     imageSizes: [96, 160, 240, 320, 480, 640],
   },
+  async redirects() {
+    return [
+      // Renamed by the website repositioning brief — keep old URLs working.
+      {
+        source: "/esports-academy",
+        destination: "/academy-programmes/",
+        permanent: true,
+      },
+      {
+        source: "/esports-academy/",
+        destination: "/academy-programmes/",
+        permanent: true,
+      },
+      { source: "/pricing", destination: "/memberships/", permanent: true },
+      { source: "/pricing/", destination: "/memberships/", permanent: true },
+      { source: "/events", destination: "/arena-events/", permanent: true },
+      { source: "/events/", destination: "/arena-events/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

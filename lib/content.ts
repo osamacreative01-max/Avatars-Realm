@@ -1,9 +1,11 @@
 /**
- * Editorial content for the site.
+ * Editorial content for the site, written to the Website Repositioning &
+ * Modification Brief.
  *
- * Avatars Realm is presented as an operating academy and arena: facilities are
- * open, programmes are running and prices are published. Only genuinely
- * future items (the 2026 championship) carry an "Upcoming" status.
+ * Positioning: Avatars Realm is presented as an academy and arena proposition
+ * with a visible commercial model. The venue is pre-launch, so the public
+ * status line is "Opening programme and membership enrolment to be announced"
+ * and every price carries the pilot-pricing note.
  */
 
 export type Status = {
@@ -11,9 +13,15 @@ export type Status = {
   tone: "live" | "soon" | "neutral";
 };
 
-export const LIVE: Status = { label: "Open", tone: "live" };
+export const ANNOUNCING: Status = {
+  label: "Enrolment opening soon",
+  tone: "soon",
+};
 
-export const ACCEPTING: Status = { label: "Accepting Members", tone: "live" };
+export const PILOT_PRICING: Status = {
+  label: "Proposed pilot pricing",
+  tone: "neutral",
+};
 
 export const UPCOMING: Status = { label: "Upcoming", tone: "soon" };
 
@@ -21,319 +29,562 @@ export const SEASONAL: Status = { label: "Seasonal", tone: "soon" };
 
 export const ONGOING: Status = { label: "Runs Weekly", tone: "neutral" };
 
-/** The five spaces that make up the academy and arena floor. */
-export const ACADEMY_AREAS = [
-  {
-    title: "20 PC Stations",
-    description:
-      "A bank of competitive-spec machines — 240Hz displays, mechanical boards and team comms — used for training blocks, scrimmages and ranked practice.",
-    image: "/images/pc-stations.jpg",
-    alt: "Row of illuminated gaming PCs at competitive stations",
-  },
-  {
-    title: "Academy Studio",
-    description:
-      "A dedicated classroom for structured learning, VOD review and coaching conversations, with a projector for team sessions.",
-    image: "/images/player-setup.jpg",
-    alt: "Player at a dual-monitor gaming setup wearing a headset",
-  },
-  {
-    title: "Main Arena",
-    description:
-      "A 120-seat competition stage with a live broadcast desk, used for showcases, finals and ticketed events.",
-    image: "/images/arena-pc-room.png",
-    alt: "Gaming PCs and headsets in a dark esports room",
-  },
-  {
-    title: "Gaming Lounge",
-    description:
-      "An informal floor for community play, drop-in sessions and downtime between matches — consoles, couches and a snack bar.",
-    image: "/images/community-play.jpg",
-    alt: "Group of players at a gaming event",
-  },
-  {
-    title: "Streaming Zone",
-    description:
-      "Six sound-treated broadcast booths for content, commentary, creator sessions and event coverage.",
-    image: "/images/gaming-gear.jpg",
-    alt: "Gaming equipment in a darkened room",
-  },
-] as const;
+/* --------------------------------------------------------------------------
+   The four pathways — Learn, Play, Compete, Progress (brief §3 and §5).
+   -------------------------------------------------------------------------- */
 
-/** Tournament titles confirmed in the client specification. */
-export const TOURNAMENTS = [
+export const PATHWAYS = [
   {
-    title: "EA Sports FC 25",
-    format: "1v1",
-    note: "Solo duels decided match by match.",
-  },
-  {
-    title: "Call of Duty BO6",
-    format: "4v4",
-    note: "Squad-based objective play.",
-  },
-  {
-    title: "Valorant",
-    format: "5v5",
-    note: "Full team tactical competition.",
-  },
-  {
-    title: "PUBG Mobile",
-    format: "Squad",
-    note: "Mobile squad battle royale.",
-  },
-  {
-    title: "Free Fire MAX",
-    format: "Solo Battle Royale",
-    note: "Last-player-standing solo run.",
-  },
-] as const;
-
-/**
- * Event programme. The academy strands run continuously; the championship is
- * the one genuinely future-facing item and carries an "Upcoming" status.
- */
-export const EVENTS = [
-  {
-    title: "Open Esports Championship 2026",
+    title: "Learn",
+    tagline: "Structured academy programmes",
     description:
-      "Our flagship championship across five titles, returning for its next edition as the centrepiece of the Avatars Realm event programme.",
-    status: UPCOMING,
-    href: "/open-esports-championship-2026/",
-    image: "/images/arena-stage.png",
-    alt: "Pro teams competing on a stadium stage",
+      "Beginner, Intermediate and Pro programmes with coaching, review sessions and a clear outcome at the end of every stage.",
+    href: "/academy-programmes/",
+    cta: "View programmes",
   },
   {
-    title: "Academy Showcases",
+    title: "Play",
+    tagline: "Affordable lounge access",
     description:
-      "A monthly ticketed showcase on the main arena stage, where academy members present progress in front of a live crowd.",
-    status: LIVE,
-    href: "/esports-academy/",
-    image: "/images/2-male-gamers-high-fiving.jpg",
-    alt: "Two gamers celebrating with a high five",
+      "Competitive-spec stations at simple hourly rates, prepaid gaming packs and monthly memberships that make the first visit easy.",
+    href: "/memberships/",
+    cta: "See lounge access",
   },
   {
-    title: "Community Play Sessions",
+    title: "Compete",
+    tagline: "Leagues and quarterly tournaments",
     description:
-      "Weekly open sessions on the arena floor — casual ladders, free-play and meet-ups that keep the local scene connected.",
-    status: ONGOING,
-    href: "/contact/",
-    image: "/images/community-gaming.webp",
-    alt: "Community gamers playing together at a LAN setup",
+      "A recurring league with standings and Realm Points, plus four headline tournament windows across the year.",
+    href: "/arena-events/",
+    cta: "Explore the arena",
+  },
+  {
+    title: "Progress",
+    tagline: "Coaching, content and career pathways",
+    description:
+      "Coaching, creator sessions and future career and industry pathways that keep players moving beyond casual play.",
+    href: "/about/",
+    cta: "See the pathway",
   },
 ] as const;
 
 /* --------------------------------------------------------------------------
-   Pricing — published in South African Rand.
+   Academy programmes (brief §6).
    -------------------------------------------------------------------------- */
 
-/** Academy course subscriptions, billed monthly. */
-export const SUBSCRIPTIONS = [
+export const PROGRAMMES = [
   {
-    id: "starter",
-    name: "Starter",
-    price: "450",
-    period: "per month",
-    summary:
-      "For players building a practice habit with structured coaching one step away.",
-    featured: false,
+    id: "beginner",
+    name: "Beginner",
+    headline: "Start with the fundamentals",
+    copy: "Build the habits that make improvement possible: setup, communication, decision-making, practice structure and confidence. No previous competitive experience is required.",
+    bestFor: "New players, casual players and learners building fundamentals.",
+    duration: "4 weeks",
+    price: "3,500",
     includes: [
-      "2 coached training blocks per week",
-      "Access to the arena floor outside sessions",
-      "Monthly skills assessment",
-      "Community Discord and ladder access",
-      "10% off arena day passes",
+      "Foundations and game settings",
+      "Safe practice habits",
+      "Teamwork and communication basics",
+      "Introductory coaching",
+      "A progress review at the end of the block",
     ],
   },
   {
-    id: "competitor",
-    name: "Competitor",
-    price: "850",
+    id: "intermediate",
+    name: "Intermediate",
+    headline: "Turn practice into performance",
+    copy: "Move beyond casual play with structured sessions, match review, role development and preparation for league competition.",
+    bestFor:
+      "Players ready for structured improvement and regular competitive preparation.",
+    duration: "8 weeks",
+    price: "7,500",
+    includes: [
+      "Advanced mechanics",
+      "Review sessions",
+      "Role development",
+      "Team communication",
+      "Match preparation and league readiness",
+    ],
+  },
+  {
+    id: "pro",
+    name: "Pro",
+    headline: "Train for the next level",
+    copy: "A deeper performance pathway for players who want a disciplined training rhythm, higher-level feedback and exposure to organised competition.",
+    bestFor:
+      "High-commitment players targeting advanced competition and a performance pathway.",
+    duration: "6 months",
+    price: "15,000",
+    includes: [
+      "High-performance schedule",
+      "Advanced coaching and individual review",
+      "Performance tracking when available",
+      "League and tournament preparation",
+      "Pathway assessment",
+    ],
+  },
+] as const;
+
+/** How a player moves through the ecosystem (brief §3 and §6). */
+export const PROGRESSION = [
+  {
+    step: "Start",
+    body: "Walk in for lounge play or begin with the Beginner programme — no competitive experience is needed.",
+  },
+  {
+    step: "Develop",
+    body: "Move into the Intermediate programme: structured sessions, review and role development.",
+  },
+  {
+    step: "Compete",
+    body: "Enter league play and quarterly tournaments, with the Pro programme preparing the highest-commitment players.",
+  },
+  {
+    step: "Belong",
+    body: "Earn Realm Points, build a reputation on the ladder and grow toward coaching, content and career pathways.",
+  },
+] as const;
+
+/* --------------------------------------------------------------------------
+   Memberships and gaming lounge (brief §7).
+   -------------------------------------------------------------------------- */
+
+/** Hourly and prepaid lounge access — the lowest-friction entry point. */
+export const LOUNGE_RATES = [
+  {
+    label: "Walk-in off-peak gaming",
+    price: "50",
+    unit: "per hour",
+    note: "Low-friction weekday and daytime access.",
+  },
+  {
+    label: "Walk-in peak gaming",
+    price: "70",
+    unit: "per hour",
+    note: "Evenings, weekends and high-demand periods.",
+  },
+  {
+    label: "Student / school-hour rate",
+    price: "40",
+    unit: "per hour",
+    note: "Encourages daytime participation and youth access.",
+  },
+  {
+    label: "5-hour gaming pack",
+    price: "225",
+    unit: "prepaid",
+    note: "Simple prepaid bundle with a small saving.",
+  },
+  {
+    label: "10-hour gaming pack",
+    price: "400",
+    unit: "prepaid",
+    note: "Higher-retention bundle for regular players.",
+  },
+] as const;
+
+/** Monthly memberships, including the institutional offer. */
+export const MEMBERSHIPS = [
+  {
+    id: "social",
+    name: "Social Pass",
+    price: "399",
     period: "per month",
-    summary:
-      "Our core membership — the full training rhythm for players chasing ranked improvement.",
+    included: "8 off-peak gaming hours",
+    featured: false,
+    note: null,
+    includes: [
+      "8 off-peak gaming hours each month",
+      "Community session access",
+      "Member booking priority",
+    ],
+    reward: "1.0× Realm Points; member pricing on selected food, drinks and events.",
+  },
+  {
+    id: "competitive",
+    name: "Competitive Pass",
+    price: "899",
+    period: "per month",
+    included: "24 gaming hours",
     featured: true,
+    note: null,
     includes: [
-      "4 coached training blocks per week",
-      "Weekly one-to-one coaching review",
-      "Unlimited arena floor access",
-      "Team scrimmages and in-house leagues",
-      "VOD review sessions every fortnight",
-      "15% off arena day passes and bootcamps",
+      "24 gaming hours each month",
+      "Priority pod booking",
+      "2 group coaching sessions",
     ],
+    reward:
+      "1.25× Realm Points; league eligibility; discounted quarterly tournament entry.",
   },
   {
-    id: "elite",
-    name: "Elite Squad",
-    price: "1 400",
+    id: "pro-pathway",
+    name: "Pro Pathway",
+    price: "1,999",
     period: "per month",
-    summary:
-      "Squad-level preparation for competitive rosters with dedicated coaching staff.",
+    included: "50 gaming hours",
     featured: false,
     includes: [
-      "6 coached sessions per week, including scrims",
-      "Dedicated head coach and analyst support",
-      "Unlimited arena floor and streaming zone access",
-      "Priority seeding in all arena tournaments",
-      "Match-day preparation and opponent study",
-      "Free entry to every academy showcase",
+      "50 gaming hours, or an approved off-peak model",
+      "1 individual coaching session",
+      "Monthly performance review",
     ],
+    reward:
+      "1.5× Realm Points; priority league placement; tournament discounts; pathway assessment.",
+    note: "Sold as a capped credit model — not unlimited access — to protect the lounge experience at peak times.",
+  },
+  {
+    id: "institution",
+    name: "Institution / School",
+    price: "12,500",
+    period: "per term",
+    included: "Up to 20 learners",
+    featured: false,
+    note: null,
+    includes: [
+      "Up to 20 learners per term",
+      "Scheduled sessions",
+      "Curriculum-aligned academy activity",
+    ],
+    reward:
+      "Institutional reporting, a group leaderboard and a term-end showcase opportunity.",
   },
 ] as const;
 
-/** Drop-in arena pricing — no membership required. */
-export const ARENA_RATES = [
+/* --------------------------------------------------------------------------
+   Realm Points / XP (brief §8).
+   -------------------------------------------------------------------------- */
+
+export const REALM_POINTS = {
+  headline: "Play more, progress further.",
+  copy: "Every visit can contribute to your Realm Points balance, league journey and access to member benefits.",
+  rules: [
+    "Every paid gaming hour generates Realm Points or XP.",
+    "Membership tiers apply different earning multipliers — for example 1.0×, 1.25× and 1.5×.",
+    "Extra points are earned for coaching, league matches, quarterly tournaments, community sessions and approved learning activities.",
+    "Points unlock booking priority, guest passes, drinks and snack discounts, merchandise discounts, coaching credits, tournament discounts, badges and end-of-season recognition.",
+    "Points never create an in-game competitive advantage — they reward loyalty, development and participation outside the match itself.",
+    "Manufacturer and production-company benefits can be added later through negotiated partnerships.",
+  ],
+} as const;
+
+/* --------------------------------------------------------------------------
+   Lounge and arena experience (brief §9).
+   -------------------------------------------------------------------------- */
+
+export const ARENA_ZONES = [
   {
-    label: "PC station",
-    price: "45",
-    unit: "per hour",
-    note: "240Hz setup, full peripheral library included.",
+    title: "PC Gaming Zone",
+    description:
+      "Competitive-spec stations for casual play, structured practice, scrimmages and league matches.",
+    image: "/images/pc-stations.jpg",
+    alt: "Row of illuminated gaming PCs at competitive stations",
   },
   {
-    label: "Day pass",
-    price: "150",
-    unit: "per day",
-    note: "Unlimited open play from open to close.",
+    title: "Academy Rooms",
+    description:
+      "Dedicated spaces for Beginner, Intermediate and Pro sessions, game analysis and coaching.",
+    image: "/images/player-setup.jpg",
+    alt: "Player at a dual-monitor gaming setup wearing a headset",
   },
   {
-    label: "10-hour play card",
-    price: "380",
-    unit: "one-off",
-    note: "Valid for six months, shareable with a friend.",
+    title: "Arena / Stage",
+    description:
+      "A visible competition environment for finals, showcases, watch parties, broadcasts and quarterly tournaments.",
+    image: "/images/arena-stage.png",
+    alt: "Competition stage with large screens and arena lighting",
   },
   {
-    label: "Console bay",
-    price: "60",
-    unit: "per hour",
-    note: "Two players, controller and headset supplied.",
+    title: "Social Lounge",
+    description:
+      "A welcoming area where players, families and community members spend time between sessions.",
+    image: "/images/community-play.jpg",
+    alt: "Group of players at a community gaming session",
   },
   {
-    label: "Gaming lounge",
-    price: "30",
-    unit: "per hour",
-    note: "Couch play, free Wi-Fi and snack bar access.",
+    title: "Streaming & Content Corner",
+    description:
+      "A future-ready space for commentary, creator sessions, broadcast preparation and event coverage.",
+    image: "/images/esports-setup.jpg",
+    alt: "RGB-lit competitive gaming stations ready for streaming",
   },
   {
-    label: "Streaming booth",
-    price: "80",
-    unit: "per hour",
-    note: "Sound-treated booth with capture gear and lighting.",
+    title: "Food & Beverage",
+    description:
+      "Affordable refreshments designed to support longer visits and a stronger social experience.",
+    image: "/images/arena-chairs.jpg",
+    alt: "Seating area inside a gaming venue",
+  },
+  {
+    title: "Merchandise / Partner Zone",
+    description:
+      "Future space for approved Avatars Realm merchandise, equipment demonstrations and manufacturer activations.",
+    image: "/images/gaming-gear.jpg",
+    alt: "Gaming peripherals and equipment on display",
   },
 ] as const;
 
-/** Junior and school-holiday programmes. */
-export const JUNIOR_PROGRAMMES = [
+/* --------------------------------------------------------------------------
+   League and quarterly tournaments (brief §10).
+   -------------------------------------------------------------------------- */
+
+export const LEAGUE = {
+  copy: "League play gives members a reason to return every week. Players accumulate results across a season, build rivalries, earn Realm Points and work toward finals or showcase matches.",
+  structure: [
+    "Monthly or seasonal league windows, depending on capacity.",
+    "Separate divisions for Social, Competitive and Pro participants.",
+    "A published match rhythm with clear rules and standings.",
+    "Points for participation, match results, sportsmanship and verified development activity.",
+    "Season finals or a showcase event in the Arena.",
+    "Title rotation across EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX.",
+  ],
+} as const;
+
+export const QUARTERLY_TOURNAMENTS = [
   {
-    title: "Saturday Juniors",
-    age: "Ages 8 – 13",
-    price: "650",
-    unit: "per month",
-    note: "Four Saturday mornings of fundamentals, teamwork and supervised play.",
+    quarter: "Q1",
+    direction: "Open community launch tournament",
+    detail: "EA Sports FC 25 and mobile showcase.",
   },
   {
-    title: "Holiday Bootcamp",
-    age: "Ages 10 – 16",
-    price: "1 200",
-    unit: "per week",
-    note: "Weekday day-camps during school holidays: coaching, VOD review and a Friday showcase.",
+    quarter: "Q2",
+    direction: "Team competition",
+    detail: "Valorant or Call of Duty BO6.",
   },
   {
-    title: "School Squad Programme",
-    age: "Grades 4 – 12",
-    price: "On request",
-    unit: "per term",
-    note: "Term-length coaching for school teams, run at our venue or yours.",
+    quarter: "Q3",
+    direction: "Mobile and grassroots tournament",
+    detail: "PUBG Mobile and Free Fire MAX.",
+  },
+  {
+    quarter: "Q4",
+    direction: "Year-end championship finals",
+    detail: "Multi-title Arena showcase.",
   },
 ] as const;
 
-/** Team, school and corporate bookings. */
-export const TEAM_BOOKINGS = [
+export const QUARTERLY_COPY =
+  "Every quarter, Avatars Realm stages a headline tournament that gives the community a major moment to train toward — combining open divisions, member divisions, academy showcases, spectator experiences, food and beverage, merchandise and future brand activations.";
+
+/* --------------------------------------------------------------------------
+   The full-day picture (brief §16).
+   -------------------------------------------------------------------------- */
+
+export const FULL_DAY = [
   {
-    title: "Team bootcamp block",
-    price: "3 500",
-    unit: "per 4-hour block",
-    note: "Full team floor with scrim servers, coaching desk and review room.",
+    title: "Book a low-cost gaming session",
+    body: "An hour off-peak, or a prepaid pack — the easiest way onto the floor.",
   },
   {
-    title: "School or club session",
-    price: "1 800",
-    unit: "per 2-hour block",
-    note: "Up to 20 players across PC stations, with a supervised warm-up and mini-tournament.",
+    title: "Stay for food and community play",
+    body: "Refreshments, the social lounge and drop-in play between sessions.",
   },
   {
-    title: "Corporate tournament",
-    price: "From 6 500",
-    unit: "per event",
-    note: "Staff tournament production on the main arena stage, including brackets, commentary and prizes.",
+    title: "Attend a coaching block",
+    body: "A Beginner, Intermediate or Pro session with review and feedback.",
+  },
+  {
+    title: "Earn Realm Points",
+    body: "Every paid hour, coaching block and league match adds to your balance.",
+  },
+  {
+    title: "Follow the league table",
+    body: "Standings, rivalries and finals moments across the season.",
+  },
+  {
+    title: "Return for a quarterly tournament",
+    body: "Four headline moments a year, with the championship anchoring the calendar.",
+  },
+  {
+    title: "Progress from Beginner to Pro",
+    body: "From your first session to organised competition — one connected journey.",
   },
 ] as const;
+
+/* --------------------------------------------------------------------------
+   The arena & events listing shown on the Arena & Events page.
+   -------------------------------------------------------------------------- */
+
+export const ARENA_EVENTS = [
+  {
+    title: "Community League",
+    description:
+      "Seasonal or monthly league windows with divisions, standings and Realm Points — the recurring reason to come back.",
+    status: SEASONAL,
+    href: "/arena-events/#league",
+    image: "/images/team-play.jpg",
+    alt: "Esports team playing together at their stations",
+    ctaLabel: "How the league works",
+  },
+  {
+    title: "Quarterly Tournaments",
+    description:
+      "Four headline tournament windows per year, with title rotation and member and non-member divisions.",
+    status: SEASONAL,
+    href: "/arena-events/#quarterly",
+    image: "/images/duo-competition.jpg",
+    alt: "Two players competing side by side during a match",
+    ctaLabel: "See the tournament windows",
+  },
+  {
+    title: "Open Esports Championship 2026",
+    description:
+      "The flagship named championship across five titles, sitting inside the wider recurring event programme.",
+    status: UPCOMING,
+    href: "/open-esports-championship-2026/",
+    image: "/images/arena-stage.png",
+    alt: "Pro teams competing on a stadium stage",
+    ctaLabel: "Championship details",
+  },
+  {
+    title: "Watch Parties & Community Sessions",
+    description:
+      "Viewing parties, open play and community sessions that keep the scene connected between competitive windows.",
+    status: ONGOING,
+    href: "/contact/",
+    image: "/images/community-gaming.webp",
+    alt: "Community gamers playing together at a LAN setup",
+    ctaLabel: "Register your interest",
+  },
+] as const;
+
+/* --------------------------------------------------------------------------
+   Championship (brief §11).
+   -------------------------------------------------------------------------- */
+
+/** The five confirmed titles, each with its website angle. */
+export const TOURNAMENTS = [
+  {
+    title: "EA Sports FC 25",
+    format: "1v1",
+    note: "Accessible individual competition and a strong entry point for casual-to-competitive progression.",
+  },
+  {
+    title: "Call of Duty BO6",
+    format: "4v4",
+    note: "Team communication, roles and objective play.",
+  },
+  {
+    title: "Valorant",
+    format: "5v5",
+    note: "Tactical teamwork and structured competitive preparation.",
+  },
+  {
+    title: "PUBG Mobile",
+    format: "Squad",
+    note: "Mobile community participation and squad coordination.",
+  },
+  {
+    title: "Free Fire MAX",
+    format: "Solo Battle Royale",
+    note: "Fast, accessible solo competition with a broad mobile audience.",
+  },
+] as const;
+
+export const CHAMPIONSHIP = {
+  headline: "The Arena's flagship multi-title championship.",
+  copy: "The Open Esports Championship 2026 brings Academy, lounge and community players into one multi-title competition experience. Dates, registration and final event details will be announced as they are confirmed.",
+  prizePool: "Indicative prize pool: R90,000, subject to confirmation.",
+} as const;
+
+/** How a player moves from interest to the arena finals (brief §11). */
+export const TOURNAMENT_JOURNEY = [
+  {
+    step: "Register interest",
+    body: "Players, teams, volunteers and media contacts email the team — registration opens with the announced dates.",
+  },
+  {
+    step: "Confirm your entry",
+    body: "Formats, eligibility and division placement are confirmed, with entry fees and closing dates published at the same time.",
+  },
+  {
+    step: "Qualify & compete",
+    body: "Open and member divisions play across the five titles, with brackets and running order published ahead of the event.",
+  },
+  {
+    step: "Finals in the Arena",
+    body: "The closing matches run on the Arena stage with spectators, commentary and coverage — the moment the season builds toward.",
+  },
+] as const;
+
+/* --------------------------------------------------------------------------
+   Partner opportunities (brief §12).
+   -------------------------------------------------------------------------- */
+
+export const PARTNER_LABEL =
+  "Partner opportunities are under establishment. We are exploring technology, equipment, education, food and beverage, production and community collaborations.";
+
+export const PARTNER_CATEGORIES = [
+  {
+    title: "Gaming hardware & peripherals",
+    body: "Equipment, demonstrations and member rewards.",
+  },
+  {
+    title: "Production & broadcast",
+    body: "Arena screens, streaming and event coverage.",
+  },
+  {
+    title: "Food & beverage",
+    body: "Affordable refreshments that support longer visits.",
+  },
+  {
+    title: "Data & performance technology",
+    body: "Analytics, player feedback and team matching — planned and partner-enabled.",
+  },
+  {
+    title: "Education, schools & institutions",
+    body: "Curriculum, digital skills and learner programmes.",
+  },
+  {
+    title: "Apparel & merchandise",
+    body: "Team identity and community products.",
+  },
+] as const;
+
+/* --------------------------------------------------------------------------
+   Questions (brief §15 validation points, answered honestly).
+   -------------------------------------------------------------------------- */
 
 export const PRICING_FAQ = [
   {
-    question: "Do I need a membership to use the arena?",
+    question: "Do I need a membership to play?",
     answer:
-      "No. The arena floor is open to everyone at the published drop-in rates. Subscriptions add coached sessions, unlimited floor access and member discounts on top.",
+      "No. The gaming lounge is the easiest way in — walk in at the published hourly rates or buy a prepaid gaming pack. Memberships add gaming hours, coaching, booking priority and Realm Points.",
   },
   {
-    question: "Can I cancel a subscription?",
+    question: "Are these final prices?",
     answer:
-      "Yes — subscriptions run month to month and can be cancelled with seven days' notice. There is no joining fee.",
+      "No. Every price on this site is proposed pilot pricing. Final rates are confirmed against station capacity, operating costs and the opening programme before enrolment opens.",
   },
   {
-    question: "Which game should I choose?",
+    question: "What are Realm Points?",
     answer:
-      "Members are placed in a track during a free intake session. You can switch tracks once per month.",
+      "Realm Points are earned through paid gaming hours, coaching, league matches and tournaments. Membership tiers multiply what you earn, and points unlock booking priority, discounts, guest passes and recognition — never an in-game advantage.",
+  },
+  {
+    question: "Which programme is right for me?",
+    answer:
+      "Most people start with the Beginner programme, whatever their experience. The team will place you after an introductory conversation, and you can move up as your review points improve.",
   },
   {
     question: "Is equipment included?",
     answer:
-      "All PC stations, consoles, headsets and peripherals are supplied. You are welcome to bring your own keyboard and mouse.",
+      "Yes — competitive-spec PCs, headsets and peripherals are supplied at every station. You are welcome to bring your own keyboard and mouse.",
   },
   {
-    question: "How do I pay?",
+    question: "When do leagues and tournaments start?",
     answer:
-      "Card, EFT and SnapScan are accepted at reception. Subscriptions can be set up as a monthly debit order.",
+      "League windows and the four quarterly tournament windows are announced with the opening programme. Members get priority placement and discounted tournament entry.",
   },
   {
-    question: "Do you offer trials?",
+    question: "How do I secure a place?",
     answer:
-      "Every new member gets one free coached intake session and a free hour on the arena floor before committing.",
+      "Email the team to register your interest in a programme, a membership or a school group booking. Enrolment opens with the announced opening programme.",
   },
 ] as const;
 
-/** The weekly coaching rhythm shown on the academy page. */
-export const WEEKLY_RHYTHM = [
-  {
-    day: "Monday",
-    session: "Aim & mechanics lab",
-    detail: "Individual fundamentals with coached drills and measurable targets.",
-  },
-  {
-    day: "Tuesday",
-    session: "Team tactics",
-    detail: "Comms, executes and map protocols for squad-based titles.",
-  },
-  {
-    day: "Wednesday",
-    session: "VOD review",
-    detail: "Film sessions on member matches with written feedback.",
-  },
-  {
-    day: "Thursday",
-    session: "Ranked climb block",
-    detail: "Supervised ladder time with coaching available on the floor.",
-  },
-  {
-    day: "Friday",
-    session: "In-house league",
-    detail: "Competitive fixtures across the week's training themes.",
-  },
-  {
-    day: "Saturday",
-    session: "Showcase day",
-    detail: "Monthly arena showcase plus open community play.",
-  },
-] as const;
+/* --------------------------------------------------------------------------
+   Organisation.
+   -------------------------------------------------------------------------- */
 
 export const VALUES = [
   {
@@ -349,7 +600,7 @@ export const VALUES = [
   {
     title: "Say what is true",
     description:
-      "Prices, schedules and capacity are published as they are, with no fine print.",
+      "Proposed prices, capacity and status are published as they are, with no fine print.",
   },
   {
     title: "Community over spectacle",
@@ -370,7 +621,7 @@ export const LEADERSHIP = [
     role: "Head of Coaching",
     name: null as string | null,
     focus:
-      "Owns the training curriculum, coach development and member progression across all three subscription tracks.",
+      "Owns the training curriculum, coach development and member progression across the Beginner, Intermediate and Pro programmes.",
     note: "Name and profile to be published once approved.",
   },
 ] as const;

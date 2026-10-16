@@ -21,9 +21,10 @@ export default function Footer() {
         <div className="max-w-md">
           <Logo />
           <p className="mt-5 text-[0.9375rem] leading-relaxed text-paper-300">
-            An established esports academy and gaming arena in Northcliff.
-            Coached subscriptions, open arena play, junior programmes and a
-            competitive event calendar — seven days a week.
+            Avatars Realm Esports Academy & Gaming Arena — structured esports
+            programmes, an accessible gaming lounge, community leagues and
+            quarterly tournaments. Opening programme and membership enrolment to
+            be announced.
           </p>
           <a
             href={`mailto:${SITE.email}`}
@@ -74,13 +75,11 @@ export default function Footer() {
               </a>
             </li>
             <li className="text-paper-400">{SITE.address}</li>
-            <li className="text-paper-400">
-              Open Monday to Sunday — walk-ins welcome.
-            </li>
+            <li className="text-paper-400">{SITE.statusLine}</li>
           </ul>
 
           <div className="mt-6 flex flex-wrap gap-2">
-            <span className="status status-live">Open 7 days</span>
+            <span className="status status-soon">Enrolment opening soon</span>
             <span className="status status-soon">Championship 2026</span>
           </div>
         </div>

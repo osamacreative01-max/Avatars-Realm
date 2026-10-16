@@ -7,34 +7,34 @@ import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/componen
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import TournamentCard from "@/components/TournamentCard";
-import { TOURNAMENTS } from "@/lib/content";
+import { CHAMPIONSHIP, QUARTERLY_TOURNAMENTS, TOURNAMENT_JOURNEY, TOURNAMENTS } from "@/lib/content";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Open Esports Championship 2026",
   description:
-    "The Open Esports Championship 2026 at the Avatars Realm arena, 21 – 22 November — EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX. Entries open now.",
+    "The Arena's flagship multi-title championship at Avatars Realm — EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX. Dates and registration to be announced.",
 };
 
 const DETAILS = [
-  { label: "Dates", value: "21 – 22 November 2026" },
-  { label: "Venue", value: "Avatars Realm Arena, Northcliff" },
   { label: "Titles", value: "Five titles, three platforms" },
-  { label: "Registration", value: "Open now" },
+  { label: "Format", value: "Open and member divisions" },
+  { label: "Programme", value: "Part of the quarterly event rhythm" },
+  { label: "Registration", value: "To be announced" },
 ];
 
 const EXPECT = [
   {
-    title: "Five titles, three platforms",
-    body: "Console, PC and mobile competition sitting inside a single championship programme.",
+    title: "One part of a wider programme",
+    body: "The championship is the flagship named event, but it sits inside a recurring rhythm of league windows and quarterly tournaments rather than carrying the whole proposition.",
   },
   {
-    title: "Open format",
-    body: "Built to be accessible to a broad field of players rather than an invited few.",
+    title: "Academy, lounge and community in one field",
+    body: "The Open Esports Championship 2026 brings Academy, lounge and community players into one multi-title competition experience.",
   },
   {
-    title: "A complete match day",
-    body: "A structured running order designed around fair play, clear communication and good spectating.",
+    title: "Accessible by design",
+    body: "Built to be open to a broad field of players — from casual-to-competitive progression through to high-commitment squads.",
   },
 ];
 
@@ -84,23 +84,23 @@ export default function ChampionshipPage() {
 
             <Reveal delay={140}>
               <p className="lede mt-6 max-w-2xl">
-                Two days of open competition across five titles, hosted on the
-                main arena stage at Avatars Realm — the centrepiece of our
-                event calendar.
+                {CHAMPIONSHIP.headline} {CHAMPIONSHIP.copy}
               </p>
             </Reveal>
 
             <Reveal delay={210}>
               <div className="mt-8 flex flex-wrap items-center gap-2.5">
-                <StatusBadge tone="soon">Upcoming — 21 – 22 November</StatusBadge>
-                <StatusBadge tone="live">Entries open now</StatusBadge>
+                <StatusBadge tone="soon">Upcoming — 2026 season</StatusBadge>
+                <StatusBadge tone="neutral">
+                  Registration to be announced
+                </StatusBadge>
               </div>
             </Reveal>
 
             <Reveal delay={280}>
               <div className="mt-9 flex flex-wrap gap-3">
                 <Button href="/contact/" size="lg">
-                  Enter the championship
+                  Register your interest
                 </Button>
                 <Button href="#titles" variant="outline" size="lg">
                   View the titles
@@ -136,11 +136,11 @@ export default function ChampionshipPage() {
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
                 eyebrow="Tournament Titles"
-                title="Five ways to compete."
-                lede="The confirmed title list for the championship, each with its own bracket and running order across the two days."
+                title="Five titles, three platforms."
+                lede="Console, PC and mobile competition inside a single championship programme — each title with its own angle, bracket and running order."
               />
               <div className="md:pb-2">
-                <StatusBadge tone="live">Confirmed line-up</StatusBadge>
+                <StatusBadge tone="soon">Final line-up confirmed at launch</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -148,15 +148,67 @@ export default function ChampionshipPage() {
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {TOURNAMENTS.map((tournament, index) => (
               <Reveal key={tournament.title} delay={index * 60}>
-                <TournamentCard
-                  title={tournament.title}
-                  format={tournament.format}
-                  note={tournament.note}
-                  index={index}
-                />
+                <article className="card card-hover group relative overflow-hidden p-6">
+                  <div
+                    aria-hidden="true"
+                    className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-flame-600/10 blur-2xl"
+                  />
+                  <div className="relative flex items-start justify-between gap-4">
+                    <span className="font-mono text-[0.75rem] font-medium tracking-[0.2em] text-flame-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="rounded border border-white/15 bg-white/[0.04] px-2.5 py-1 text-[0.6875rem] font-semibold tracking-[0.1em] text-paper-200 uppercase">
+                      {tournament.format}
+                    </span>
+                  </div>
+                  <h3 className="relative mt-6 text-[1.25rem] leading-tight font-semibold tracking-[-0.01em] text-paper-50">
+                    {tournament.title}
+                  </h3>
+                  <p className="relative mt-2.5 text-[0.875rem] leading-relaxed text-paper-300">
+                    {tournament.note}
+                  </p>
+                </article>
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* --------------------------------------------------- Tournament journey */}
+      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
+        <GridBackdrop className="opacity-40" />
+        <SectionDragon side="right" />
+        <div className="container-page relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <Reveal>
+            <SectionHeading
+              eyebrow="The Tournament Journey"
+              title="From interest to the Arena stage."
+              tone="blue"
+              lede="Every entrant follows the same clear route — no invited shortlists, no hidden brackets."
+            />
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              <StatusBadge tone="soon">Dates to be announced</StatusBadge>
+              <StatusBadge tone="neutral">Open & member divisions</StatusBadge>
+            </div>
+          </Reveal>
+
+          <Reveal delay={90}>
+            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
+              {TOURNAMENT_JOURNEY.map((stage) => (
+                <li
+                  key={stage.step}
+                  className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[10rem_1fr] sm:items-center sm:gap-6"
+                >
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
+                    {stage.step}
+                  </span>
+                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                    {stage.body}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
@@ -166,14 +218,14 @@ export default function ChampionshipPage() {
         <div className="container-page grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <Reveal>
             <SectionHeading
-              eyebrow="What to Expect"
-              title="A championship built to feel professional."
+              eyebrow="How It Fits"
+              title="Flagship, not the whole story."
               tone="blue"
-              lede="The intent is fixed: a well-run, clearly communicated tournament that players want to return to, run by the same team that operates the arena every day."
+              lede="The championship works because it sits inside a living ecosystem — academy progression, lounge play, Realm Points and weekly league windows feed the field every quarter."
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="soon">Two-day event</StatusBadge>
-              <StatusBadge tone="live">Registration open</StatusBadge>
+              <StatusBadge tone="soon">Two-day format planned</StatusBadge>
+              <StatusBadge tone="neutral">Member & open divisions</StatusBadge>
             </div>
           </Reveal>
 
@@ -199,15 +251,53 @@ export default function ChampionshipPage() {
         </div>
       </section>
 
-      {/* -------------------------------------------------------- Atmosphere */}
+      {/* ------------------------------------------------------ Quarterly rhythm */}
       <section className="section relative overflow-hidden">
         <SectionDragon side="left" />
-        <div className="container-page">
+        <div className="container-page relative">
+          <Reveal>
+            <SectionHeading
+              eyebrow="The Wider Rhythm"
+              title="Four tournament windows around it."
+              lede="The championship anchors a calendar of quarterly headline tournaments, so members always have the next moment to train toward."
+            />
+          </Reveal>
+
+          <div className="mt-10">
+            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
+              {QUARTERLY_TOURNAMENTS.map((window) => (
+                <li
+                  key={window.quarter}
+                  className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[5rem_1fr_1.4fr] sm:items-center sm:gap-6"
+                >
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
+                    {window.quarter}
+                  </span>
+                  <span className="text-[0.95rem] font-semibold text-paper-50">
+                    {window.direction}
+                  </span>
+                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                    {window.detail}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* -------------------------------------------------------- Atmosphere */}
+      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
+        <GridBackdrop className="opacity-40" />
+        <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem]" />
+
+        <div className="container-page relative">
           <Reveal>
             <SectionHeading
               eyebrow="Tournament Atmosphere"
               title="Competition people can feel."
-              lede="Photography from competitive gaming environments of the kind the championship is built around — the same stage, setup and crowd format used for our monthly showcases."
+              lede="Reference photography from competitive gaming environments of the kind the championship is built around — stage, setup and crowd format."
+              tone="blue"
             />
           </Reveal>
 
@@ -253,16 +343,16 @@ export default function ChampionshipPage() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div className="max-w-2xl">
                   <h3 className="text-[1.05rem] font-semibold text-paper-50">
-                    How to enter
+                    Dates, entries and prize pool
                   </h3>
                   <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
-                    Entries are R150 per title, taken by email or at reception,
-                    and close on 14 November. Brackets, seeding and the running
-                    order are published the week before the event. Players must
-                    check in 45 minutes before their first match.
+                    Dates, registration and final event details will be
+                    announced as they are confirmed. {CHAMPIONSHIP.prizePool}{" "}
+                    The prize pool and event budget are not published
+                    commitments until the event is funded and approved.
                   </p>
                 </div>
-                <StatusBadge tone="live">Entries open</StatusBadge>
+                <StatusBadge tone="neutral">{SITE.statusLine}</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -271,10 +361,10 @@ export default function ChampionshipPage() {
 
       <CtaBand
         eyebrow="Championship 2026"
-        title="Enter the championship."
-        body="Register as a player, team, volunteer or media contact, and we will confirm your place and send the rules pack. Questions about formats and eligibility go straight to the events team."
-        primary={{ label: "Enter now", href: "/contact/" }}
-        secondary={{ label: "See all events", href: "/events/" }}
+        title="Register your interest."
+        body="Tell the team whether you want to play, volunteer, cover or partner on the championship — we will confirm formats, eligibility and registration as the details are announced."
+        primary={{ label: "Email the team", href: "/contact/" }}
+        secondary={{ label: "See arena & events", href: "/arena-events/" }}
       />
     </>
   );

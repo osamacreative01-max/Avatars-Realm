@@ -74,14 +74,15 @@ export default function CtaBand({
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                <StatusBadge tone="live">Open 7 days</StatusBadge>
-                <StatusBadge tone="live">Walk-ins welcome</StatusBadge>
+                <StatusBadge tone="soon">Enrolment opening soon</StatusBadge>
+                <StatusBadge tone="neutral">Proposed pilot pricing</StatusBadge>
                 <StatusBadge tone="soon">Championship 2026</StatusBadge>
               </div>
 
               <p className="mt-5 text-[0.875rem] leading-relaxed text-paper-400">
-                Memberships start at R450 per month with no joining fee, and
-                every new member gets a free coached intake session.
+                Programmes, memberships and lounge rates are published as
+                proposed pilot pricing — email the team to register your
+                interest before enrolment opens.
               </p>
             </div>
           </Reveal>

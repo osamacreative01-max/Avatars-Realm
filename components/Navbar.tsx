@@ -42,7 +42,7 @@ export default function Navbar() {
   }, []);
 
   const linkClass = (href: string) =>
-    `group relative py-2 text-[0.9375rem] font-medium tracking-[0.01em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flame-500 ${
+    `group relative py-2 text-[0.875rem] font-medium tracking-[0.01em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flame-500 2xl:text-[0.9375rem] ${
       current === href
         ? "text-paper-50"
         : "text-paper-300 hover:text-paper-50"
@@ -73,7 +73,7 @@ export default function Navbar() {
         {/* Desktop navigation — centred between logo and CTA */}
         <nav
           aria-label="Primary"
-          className="hidden items-center gap-6 justify-self-center xl:flex"
+          className="hidden items-center gap-5 justify-self-center xl:flex 2xl:gap-6"
         >
           {NAV.map((item) => (
             <Link
@@ -88,7 +88,7 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden xl:block xl:justify-self-end">
-          <Button href="/pricing/">Join Now</Button>
+          <Button href="/academy-programmes/">View Programmes</Button>
         </div>
 
         {/* Mobile trigger */}
@@ -148,8 +148,8 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-4">
-            <Button href="/pricing/" className="w-full">
-              Join Now
+            <Button href="/academy-programmes/" className="w-full">
+              View Programmes
             </Button>
           </div>
         </nav>

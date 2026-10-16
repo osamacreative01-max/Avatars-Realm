@@ -10,11 +10,13 @@ type StatusRow = {
 };
 
 type Props = {
+  eyebrow?: string;
   headlineTop?: string;
   headlineBottom?: string;
   body?: string;
-  primary?: { label: string; href: string };
-  secondary?: { label: string; href: string };
+  note?: string;
+  primary?: { label: string; href: string; note?: string };
+  secondary?: { label: string; href: string; note?: string };
   statusRows?: StatusRow[];
   className?: string;
 };
@@ -39,14 +41,25 @@ function Marker({ fill }: { fill: StatusRow["fill"] }) {
  * motion is handled by Reveal and fully disabled under prefers-reduced-motion.
  */
 export default function Hero({
-  headlineTop = "Serious esports.",
-  headlineBottom = "Still being built.",
-  body = "Avatars Realm is an emerging esports and gaming organisation developing an academy concept and a competitive event programme, including the planned Open Esports Championship 2026.",
-  primary = { label: "Explore the Academy", href: "/esports-academy/" },
-  secondary = { label: "Championship 2026", href: "/open-esports-championship-2026/" },
+  eyebrow = "Avatars Realm Esports Academy & Gaming Arena",
+  headlineTop = "Train. Play. Compete.",
+  headlineBottom = "Belong.",
+  body = "Avatars Realm is an esports academy and gaming arena built around structured programmes, accessible gaming, community leagues and live competition.",
+  note = "Opening programme and membership enrolment to be announced.",
+  primary = {
+    label: "Explore Programmes",
+    href: "/academy-programmes/",
+    note: "Find the right starting point for your esports journey.",
+  },
+  secondary = {
+    label: "View Memberships",
+    href: "/memberships/",
+    note: "Choose a lounge membership or hourly gaming option.",
+  },
   statusRows = [
-    { label: "Esports Academy", value: "In development", fill: "solid" },
-    { label: "Open Esports Championship 2026", value: "Planned", fill: "half" },
+    { label: "Academy programmes", value: "Enrolment opening", fill: "half" },
+    { label: "Gaming lounge & memberships", value: "Pilot pricing", fill: "solid" },
+    { label: "Open Esports Championship 2026", value: "Upcoming", fill: "half" },
   ],
   className = "",
 }: Props) {
@@ -69,6 +82,7 @@ export default function Hero({
           {/* ------------------------------------------------------ Copy */}
           <div className="max-w-none">
             <Reveal>
+              {eyebrow ? <p className="eyebrow mb-6">{eyebrow}</p> : null}
               <h1 className="text-[clamp(52px,6.6vw,92px)] leading-[1] font-bold tracking-[-0.03em] text-paper-50">
                 {headlineTop}
                 <br />
@@ -79,13 +93,13 @@ export default function Hero({
             </Reveal>
 
             <Reveal delay={90}>
-              <p className="mt-14 max-w-[30em] text-[19px] leading-[1.7] text-[#C4CAD8]">
+              <p className="mt-10 max-w-[30em] text-[19px] leading-[1.7] text-[#C4CAD8]">
                 {body}
               </p>
             </Reveal>
 
             <Reveal delay={180}>
-              <div className="mt-14 flex flex-wrap gap-3">
+              <div className="mt-10 flex flex-wrap gap-3">
                 <Button href={primary.href} size="lg" className="btn-glow">
                   {primary.label}
                 </Button>
@@ -94,6 +108,37 @@ export default function Hero({
                 </Button>
               </div>
             </Reveal>
+
+            {(primary.note || secondary.note) && (
+              <Reveal delay={230}>
+                <div className="mt-6 flex max-w-[38em] flex-wrap gap-x-10 gap-y-2">
+                  {primary.note ? (
+                    <p className="max-w-[19em] text-[0.8125rem] leading-relaxed text-paper-400">
+                      <span className="font-semibold text-paper-200">
+                        {primary.label}
+                      </span>{" "}
+                      — {primary.note}
+                    </p>
+                  ) : null}
+                  {secondary.note ? (
+                    <p className="max-w-[19em] text-[0.8125rem] leading-relaxed text-paper-400">
+                      <span className="font-semibold text-paper-200">
+                        {secondary.label}
+                      </span>{" "}
+                      — {secondary.note}
+                    </p>
+                  ) : null}
+                </div>
+              </Reveal>
+            )}
+
+            {note ? (
+              <Reveal delay={240}>
+                <p className="mt-7 max-w-[34em] text-[0.875rem] leading-relaxed text-paper-400">
+                  {note}
+                </p>
+              </Reveal>
+            ) : null}
           </div>
 
           {/* ------------------------------------------------------ Panel */}

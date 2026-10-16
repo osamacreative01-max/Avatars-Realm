@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import AreaCard from "@/components/AreaCard";
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
-import EventCard from "@/components/EventCard";
 import Hero from "@/components/Hero";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import Marquee from "@/components/Marquee";
@@ -12,16 +10,28 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import {
-  ACADEMY_AREAS,
-  EVENTS,
-  SUBSCRIPTIONS,
+  ARENA_ZONES,
+  CHAMPIONSHIP,
+  FULL_DAY,
+  LEAGUE,
+  MEMBERSHIPS,
+  PATHWAYS,
+  PROGRAMMES,
+  QUARTERLY_COPY,
+  QUARTERLY_TOURNAMENTS,
   TOURNAMENTS,
 } from "@/lib/content";
 
-export default function HomePage() {
-  const academyPreview = [ACADEMY_AREAS[0], ACADEMY_AREAS[2], ACADEMY_AREAS[4]];
-  const eventPreview = [EVENTS[0], EVENTS[2]];
+/** Effective hourly value of each membership, shown up front. */
+const MEMBERSHIP_VALUE = [
+  { id: "social", value: "≈ R50 per gaming hour" },
+  { id: "competitive", value: "≈ R37 per gaming hour" },
+  { id: "pro-pathway", value: "≈ R40 per gaming hour" },
+] as const;
 
+const zonePreview = [ARENA_ZONES[0], ARENA_ZONES[2], ARENA_ZONES[3]];
+
+export default function HomePage() {
   return (
     <>
       {/* ---------------------------------------------------------------- Hero */}
@@ -30,86 +40,53 @@ export default function HomePage() {
       {/* ----------------------------------------------------------- Marquee */}
       <Marquee
         items={[
-          "Open 7 Days",
-          "Coached Subscriptions",
-          "Walk-ins Welcome",
-          "Free Intake Session",
-          "Junior Programmes",
-          "Team Bootcamps",
+          "Train. Play. Compete. Belong.",
+          "Esports Academy Programmes",
+          "Gaming Lounge Memberships",
+          "Realm Points Rewards",
+          "Community League",
+          "Quarterly Tournaments",
         ]}
-        speed={22}
+        speed={24}
       />
 
-      {/* ------------------------------------------------------------- About */}
+      {/* -------------------------------------------------------- Pathways */}
       <section className="section relative overflow-hidden">
         <SectionDragon side="right" />
-        <div className="container-page grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">
-              <Image
-                src="/images/20220302-Telkom-VR-Gaming2-980x613.jpg"
-                alt="Players competing at a row of gaming stations"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-ink-950/70 to-transparent"
-              />
-            </div>
-            <RedArc className="pointer-events-none absolute -bottom-10 -left-10 h-52 w-52 -rotate-90" />
-          </Reveal>
-
-          <Reveal delay={80}>
+        <div className="container-page relative">
+          <Reveal>
             <SectionHeading
-              eyebrow="About Avatars Realm"
-              title="An academy that trains, an arena that runs."
-              lede="Avatars Realm is an established esports and gaming organisation in Northcliff: a coached academy, a public arena floor and a competitive event programme, all operating under one roof."
+              eyebrow="The Avatars Realm Ecosystem"
+              title="One destination, four ways in."
+              lede="Avatars Realm is an esports academy and gaming experience centre. Whether you want to learn, play casually, compete or build toward a career, there is a clear way in — and a reason to come back."
             />
-
-            <ul className="mt-8 max-w-2xl space-y-4">
-              {[
-                {
-                  title: "Who we are",
-                  body: "A full-time academy and arena run by coaches, event staff and a founder-director since 2023.",
-                },
-                {
-                  title: "What we run",
-                  body: "Three subscription tracks, open arena play, junior holiday programmes, team bootcamps and a monthly showcase calendar.",
-                },
-                {
-                  title: "How we price",
-                  body: "Every rate is published up front — month-to-month memberships, no joining fee and a free coached intake session.",
-                },
-              ].map((item) => (
-                <li key={item.title} className="flex gap-4">
-                  <span
-                    aria-hidden="true"
-                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
-                  />
-                  <div>
-                    <h3 className="text-[0.95rem] font-semibold text-paper-50">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 text-[0.9375rem] leading-relaxed text-paper-300">
-                      {item.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-9">
-              <Button href="/about/" variant="primary">
-                More about Avatars Realm
-              </Button>
-            </div>
           </Reveal>
+
+          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
+            {PATHWAYS.map((pathway, index) => (
+              <Reveal key={pathway.title} delay={index * 60}>
+                <div className="flex h-full flex-col bg-ink-900 p-7 transition-colors duration-200 hover:bg-ink-800">
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="display-3 mt-4">{pathway.title}</h3>
+                  <p className="mt-2 text-[0.8125rem] font-semibold tracking-[0.04em] text-azure-400 uppercase">
+                    {pathway.tagline}
+                  </p>
+                  <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                    {pathway.description}
+                  </p>
+                  <Link href={pathway.href} className="arrow-link mt-6 pt-1">
+                    {pathway.cta} <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ----------------------------------------------------------- Academy */}
+      {/* ------------------------------------------------------- Programmes */}
       <section className="section relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
         <GridBackdrop className="opacity-40" />
         <SectionDragon side="left" />
@@ -118,85 +95,46 @@ export default function HomePage() {
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
-                eyebrow="Esports Academy"
-                title="A working academy, built around a weekly rhythm."
-                lede="Twenty competitive PC stations, an academy studio, the main arena, a gaming lounge and a streaming zone — open daily and running a full coaching timetable."
+                eyebrow="Academy Programmes"
+                title="A clear path from beginner to pro."
+                lede="Structured programmes for every stage — you do not need to be elite to start. Each block has a duration, an outcome and a published pilot price."
               />
               <div className="md:pb-2">
-                <Button href="/esports-academy/" variant="primary">
-                  View the Academy
-                </Button>
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {academyPreview.map((area, index) => (
-              <Reveal key={area.title} delay={index * 70}>
-                <AreaCard
-                  title={area.title}
-                  description={area.description}
-                  image={area.image}
-                  alt={area.alt}
-                  index={index}
-                />
-              </Reveal>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ----------------------------------------------------------- Pricing */}
-      <section className="section relative overflow-hidden">
-        <SectionDragon side="right" size="h-[42rem] w-[42rem]" />
-        <div className="container-page relative">
-          <Reveal>
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <SectionHeading
-                eyebrow="Membership Pricing"
-                title="Coached memberships from R450 per month."
-                lede="Three subscription tracks covering training blocks, coaching reviews and unlimited arena access — billed monthly, cancellable with a week's notice."
-              />
-              <div className="md:pb-2">
-                <Button href="/pricing/" variant="primary">
-                  All pricing
+                <Button href="/academy-programmes/" variant="primary">
+                  Explore Programmes
                 </Button>
               </div>
             </div>
           </Reveal>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {SUBSCRIPTIONS.map((tier, index) => (
-              <Reveal key={tier.id} delay={index * 70}>
-                <div
-                  className={`card flex h-full flex-col card-pad ${
-                    tier.featured ? "border-flame-600/55" : ""
-                  }`}
-                >
+            {PROGRAMMES.map((programme, index) => (
+              <Reveal key={programme.id} delay={index * 70}>
+                <div className="card flex h-full flex-col card-pad">
                   <div className="flex items-start justify-between gap-4">
-                    <h3 className="display-3">{tier.name}</h3>
-                    {tier.featured ? (
-                      <StatusBadge tone="live">Most popular</StatusBadge>
-                    ) : null}
+                    <h3 className="display-3">{programme.name}</h3>
+                    <StatusBadge tone="neutral">{programme.duration}</StatusBadge>
                   </div>
+                  <p className="mt-4 text-[0.9375rem] font-semibold text-azure-400">
+                    {programme.headline}
+                  </p>
                   <div className="mt-5 flex items-end gap-2">
                     <span className="text-[1rem] font-semibold text-flame-400">
                       R
                     </span>
                     <span className="text-[2.5rem] leading-none font-bold tracking-[-0.03em] text-paper-50">
-                      {tier.price}
+                      {programme.price}
                     </span>
                     <span className="pb-1 text-[0.875rem] text-paper-400">
-                      {tier.period}
+                      pilot price
                     </span>
                   </div>
                   <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
-                    {tier.summary}
+                    {programme.copy}
                   </p>
                   <div className="mt-6">
-                    <Link href="/pricing/" className="arrow-link">
-                      See what&apos;s included <span aria-hidden="true">→</span>
+                    <Link href="/academy-programmes/" className="arrow-link">
+                      View programme <span aria-hidden="true">→</span>
                     </Link>
                   </div>
                 </div>
@@ -206,15 +144,97 @@ export default function HomePage() {
 
           <Reveal delay={160}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
-              <StatusBadge tone="neutral">No membership required</StatusBadge>
-              The arena floor is also open to drop-ins from R45 per hour, with
-              junior programmes and team bookings published on the pricing page.
+              <StatusBadge tone="neutral">Proposed pilot pricing</StatusBadge>
+              Programme prices are illustrative and not binding. Final pricing
+              is confirmed with the opening programme.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ------------------------------------------------------------- Events */}
+      {/* ------------------------------------------------------- Memberships */}
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="right" size="h-[42rem] w-[42rem]" />
+        <div className="container-page relative">
+          <Reveal>
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <SectionHeading
+                eyebrow="Memberships & Gaming Lounge"
+                title="The easiest way into Avatars Realm."
+                lede="Start with an hourly session, or choose a monthly membership that bundles gaming hours, coaching and Realm Points — the effective hourly value is shown clearly on each tier."
+              />
+              <div className="md:pb-2">
+                <Button href="/memberships/" variant="primary">
+                  View Memberships
+                </Button>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {MEMBERSHIPS.filter((tier) => tier.id !== "institution").map(
+              (tier, index) => {
+                const value = MEMBERSHIP_VALUE.find(
+                  (item) => item.id === tier.id,
+                );
+
+                return (
+                  <Reveal key={tier.id} delay={index * 70}>
+                    <div
+                      className={`card flex h-full flex-col card-pad ${
+                        tier.featured ? "border-flame-600/55" : ""
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <h3 className="display-3">{tier.name}</h3>
+                        {tier.featured ? (
+                          <StatusBadge tone="live">Most popular</StatusBadge>
+                        ) : null}
+                      </div>
+                      <div className="mt-5 flex items-end gap-2">
+                        <span className="text-[1rem] font-semibold text-flame-400">
+                          R
+                        </span>
+                        <span className="text-[2.5rem] leading-none font-bold tracking-[-0.03em] text-paper-50">
+                          {tier.price}
+                        </span>
+                        <span className="pb-1 text-[0.875rem] text-paper-400">
+                          {tier.period}
+                        </span>
+                      </div>
+                      {value ? (
+                        <p className="mt-3 text-[0.8125rem] font-semibold tracking-[0.04em] text-azure-400 uppercase">
+                          {value.value}
+                        </p>
+                      ) : null}
+                      <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                        {tier.includes[0]} — plus booking priority and Realm
+                        Points on everything you play.
+                      </p>
+                      <div className="mt-6">
+                        <Link href="/memberships/" className="arrow-link">
+                          See what&apos;s included <span aria-hidden="true">→</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              },
+            )}
+          </div>
+
+          <Reveal delay={160}>
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
+              <StatusBadge tone="neutral">No membership required</StatusBadge>
+              The lounge is open to everyone at hourly rates from R40, with
+              prepaid 5-hour and 10-hour gaming packs and an institution offer
+              for schools.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------- Arena & Zones */}
       <section className="section relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
         <GridBackdrop className="opacity-40" />
         <SectionDragon side="left" />
@@ -222,31 +242,119 @@ export default function HomePage() {
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
-                eyebrow="Events"
-                title="A running programme of competitive and community events."
-                lede="Monthly showcases on the arena stage, weekly community play, and the flagship Open Esports Championship returning in 2026."
+                eyebrow="Arena Experience"
+                title="A gaming experience centre, not a room with PCs."
+                lede="PC zone, academy rooms, a competition stage, a social lounge, a content corner, food and beverage and future merchandise and partner zones — one connected destination."
               />
               <div className="md:pb-2">
-                <Button href="/events/" variant="primary">
-                  All events
+                <Button href="/arena-events/" variant="primary">
+                  Tour the Arena
                 </Button>
               </div>
             </div>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {eventPreview.map((event, index) => (
-              <Reveal key={event.title} delay={index * 70}>
-                <EventCard
-                  title={event.title}
-                  description={event.description}
-                  status={event.status}
-                  href={event.href}
-                  image={event.image}
-                  alt={event.alt}
-                />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {zonePreview.map((zone, index) => (
+              <Reveal key={zone.title} delay={index * 70}>
+                <article className="card card-hover group flex h-full flex-col overflow-hidden">
+                  <div className="card-media relative aspect-[4/3]">
+                    <Image
+                      src={zone.image}
+                      alt={zone.alt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-transparent"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-5 sm:p-6">
+                    <h3 className="display-3">{zone.title}</h3>
+                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
+                      {zone.description}
+                    </p>
+                  </div>
+                </article>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* -------------------------------------------------------- League */}
+      <section id="league" className="section relative overflow-hidden">
+        <SectionDragon side="right" />
+        <div className="container-page grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Community League"
+              title="A reason to come back every week."
+              lede={`${LEAGUE.copy} Seasonal or monthly league play carries leaderboards, points and finals moments.`}
+            />
+            <div className="mt-8">
+              <Button href="/arena-events/#league" size="lg">
+                How the league works
+              </Button>
+            </div>
+          </Reveal>
+
+          <Reveal delay={90}>
+            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
+              {LEAGUE.structure.slice(0, 5).map((line) => (
+                <li key={line} className="flex gap-4 bg-ink-900/60 px-6 py-4">
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
+                  />
+                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                    {line}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------ Quarterly windows */}
+      <section
+        id="quarterly"
+        className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950"
+      >
+        <GridBackdrop className="opacity-40" />
+        <RedArc className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 -scale-x-100 opacity-70" />
+        <div className="container-page relative">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Quarterly Tournaments"
+              title="Four headline moments to train toward."
+              lede={QUARTERLY_COPY}
+              tone="blue"
+            />
+          </Reveal>
+
+          <div className="mt-10">
+            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
+              {QUARTERLY_TOURNAMENTS.map((window) => (
+                <li
+                  key={window.quarter}
+                  className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[5rem_1fr_1.4fr] sm:items-center sm:gap-6"
+                >
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
+                    {window.quarter}
+                  </span>
+                  <span className="text-[0.95rem] font-semibold text-paper-50">
+                    {window.direction}
+                  </span>
+                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                    {window.detail}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -270,12 +378,8 @@ export default function HomePage() {
         <div className="container-page relative py-16 sm:py-20">
           <Reveal className="max-w-3xl">
             <p className="eyebrow">Open Esports Championship 2026</p>
-            <h2 className="display-2 mt-4">Five titles. One open championship.</h2>
-            <p className="lede mt-5">
-              Our flagship tournament brings together console, PC and mobile
-              competition on the main arena stage — 21–22 November 2026. Entries
-              are open now, with qualifying ladders running on the floor.
-            </p>
+            <h2 className="display-2 mt-4">{CHAMPIONSHIP.headline}</h2>
+            <p className="lede mt-5">{CHAMPIONSHIP.copy}</p>
           </Reveal>
 
           <div className="mt-10 flex flex-wrap gap-2.5">
@@ -293,24 +397,66 @@ export default function HomePage() {
             ))}
           </div>
 
+          <Reveal delay={180}>
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-200">
+              <StatusBadge tone="soon">Registration to be announced</StatusBadge>
+              {CHAMPIONSHIP.prizePool}
+            </p>
+          </Reveal>
+
           <Reveal delay={200}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button href="/open-esports-championship-2026/" size="lg">
                 Championship details
               </Button>
               <Link href="/contact/" className="arrow-link">
-                Speak to the team <span aria-hidden="true">→</span>
+                Register your interest <span aria-hidden="true">→</span>
               </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
+      {/* -------------------------------------------------------- Full day */}
+      <section className="section relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
+        <GridBackdrop className="opacity-40" />
+        <SectionDragon side="left" />
+        <div className="container-page relative">
+          <Reveal>
+            <SectionHeading
+              eyebrow="A Full Day at Avatars Realm"
+              title="Picture the whole journey."
+              lede="Book a low-cost session, stay for food and community play, attend a coaching block, earn Realm Points, follow a league table, return for a quarterly tournament — and progress from Beginner to Pro."
+              tone="blue"
+            />
+          </Reveal>
+
+          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
+            {FULL_DAY.map((item, index) => (
+              <Reveal key={item.title} delay={index * 50}>
+                <div className="h-full bg-navy-950 p-7 transition-colors duration-200 hover:bg-navy-900">
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                    {item.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <CtaBand
-        title="Come and train with Avatars Realm."
-        body="Book a free coached intake session, try the arena floor, or ask about memberships for juniors, teams and squads. We will get you on a station the same week."
-        primary={{ label: "Book a free session", href: "/contact/" }}
-        secondary={{ label: "See all pricing", href: "/pricing/" }}
+        eyebrow="Get in Touch"
+        title="Where players start, improve, compete and find their people."
+        body="Email the team about programmes, memberships, school groups, league entry or event hosting — we will point you to the right way in and confirm details as the opening programme is announced."
+        primary={{ label: "Email the team", href: "/contact/" }}
+        secondary={{ label: "View programmes", href: "/academy-programmes/" }}
       />
     </>
   );
