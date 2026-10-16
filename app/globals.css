@@ -329,6 +329,12 @@ button {
   padding-block: var(--section-y);
 }
 
+/* Anchor targets must clear the sticky header when linked to (#rates,
+   #memberships, #league, #quarterly, #titles …). */
+section[id] {
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
 .section-tight {
   padding-block: calc(var(--section-y) * 0.65);
 }

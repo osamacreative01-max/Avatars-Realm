@@ -93,7 +93,7 @@ export default function ArenaEventsPage() {
             ))}
 
             {/* Eighth tile balances the grid and converts the section. */}
-            <Reveal delay={140}>
+            <Reveal delay={140} className="lg:col-span-2">
               <div className="card flex h-full flex-col justify-between card-pad">
                 <div>
                   <StatusBadge tone="soon">
@@ -284,8 +284,14 @@ export default function ArenaEventsPage() {
               <Reveal
                 key={tournament.title}
                 delay={index * 60}
-                /* Three cards across the first row, two centred below. */
-                className={index < 3 ? "lg:col-span-2" : "lg:col-span-3"}
+                /* Three equal cards across the first row, two centred below. */
+                className={
+                  index < 3
+                    ? "lg:col-span-2"
+                    : index === 3
+                      ? "lg:col-span-2 lg:col-start-2"
+                      : "sm:col-span-2 lg:col-span-2"
+                }
               >
                 <article className="card card-hover group relative h-full overflow-hidden p-6">
                   <div className="relative flex items-start justify-between gap-4">

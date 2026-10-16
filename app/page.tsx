@@ -155,7 +155,7 @@ export default function HomePage() {
 
       {/* ------------------------------------------------------- Memberships */}
       <section className="section relative overflow-hidden">
-        <SectionDragon side="right" size="h-[42rem] w-[42rem]" />
+        <SectionDragon side="right" size="h-[30rem] w-[30rem]" />
         <div className="container-page relative">
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -186,7 +186,7 @@ export default function HomePage() {
                         tier.featured ? "border-flame-600/55" : ""
                       }`}
                     >
-                      <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-start justify-between gap-4 lg:min-h-[4.75rem]">
                         <h3 className="display-3">{tier.name}</h3>
                         {tier.featured ? (
                           <StatusBadge tone="live">Most popular</StatusBadge>

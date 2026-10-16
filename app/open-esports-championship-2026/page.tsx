@@ -150,8 +150,14 @@ export default function ChampionshipPage() {
               <Reveal
                 key={tournament.title}
                 delay={index * 60}
-                /* Three cards across the first row, two centred below. */
-                className={index < 3 ? "lg:col-span-2" : "lg:col-span-3"}
+                /* Three equal cards across the first row, two centred below. */
+                className={
+                  index < 3
+                    ? "lg:col-span-2"
+                    : index === 3
+                      ? "lg:col-span-2 lg:col-start-2"
+                      : "sm:col-span-2 lg:col-span-2"
+                }
               >
                 <article className="card card-hover group relative h-full overflow-hidden p-6">
                   <div

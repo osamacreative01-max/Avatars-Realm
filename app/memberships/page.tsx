@@ -193,7 +193,7 @@ export default function MembershipsPage() {
                       : ""
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-start justify-between gap-4 lg:min-h-[6rem]">
                     <div>
                       <h3 className="display-3">{tier.name}</h3>
                       <p className="mt-2 text-[0.875rem] text-paper-400">
@@ -246,7 +246,11 @@ export default function MembershipsPage() {
                     <p className="mt-4 text-[0.8125rem] leading-relaxed text-paper-400 italic">
                       {tier.note}
                     </p>
-                  ) : null}
+                  ) : (
+                    /* Reserved slot keeps the rewards boxes and buttons
+                       aligned across all three tier cards. */
+                    <div aria-hidden="true" className="mt-4 lg:min-h-[3.5rem]" />
+                  )}
 
                   <div className="mt-6">
                     <Button
