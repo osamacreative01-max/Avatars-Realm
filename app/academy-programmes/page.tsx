@@ -163,7 +163,7 @@ export default function AcademyProgrammesPage() {
                         ))}
                       </ul>
                       <div className="mt-7">
-                        <Button href="/contact/" variant="outline" size="sm">
+                        <Button href="/contact/" variant="outline">
                           Register interest in {programme.name}
                         </Button>
                       </div>

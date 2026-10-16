@@ -123,7 +123,14 @@ export default function ContactPage() {
           src: "/images/player-headset.jpg",
           alt: "Player wearing a headset during an online gaming session",
         }}
-      />
+      >
+        <Button href={`mailto:${SITE.email}`} size="lg">
+          Email the team
+        </Button>
+        <Button href={SITE.phoneHref} variant="outline" size="lg">
+          Call {SITE.phone}
+        </Button>
+      </PageHero>
 
       {/* -------------------------------------------------------- Contact cards */}
       <section className="section relative overflow-hidden">
@@ -225,6 +232,28 @@ export default function ContactPage() {
                 </a>
               </Reveal>
             ))}
+
+            {/* Sixth tile balances the grid and repeats the direct details. */}
+            <Reveal delay={300}>
+              <div className="card flex h-full flex-col card-pad">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
+                  Direct contact
+                </p>
+                <h3 className="display-3 mt-4">Email or call</h3>
+                <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                  Not sure which category fits? Write or call and the team will
+                  route your message to the right person.
+                </p>
+                <div className="mt-6 flex flex-col items-start gap-3">
+                  <a href={`mailto:${SITE.email}`} className="arrow-link">
+                    {SITE.email} <span aria-hidden="true">→</span>
+                  </a>
+                  <a href={SITE.phoneHref} className="arrow-link">
+                    {SITE.phone} <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

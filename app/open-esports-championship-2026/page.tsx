@@ -145,10 +145,15 @@ export default function ChampionshipPage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
             {TOURNAMENTS.map((tournament, index) => (
-              <Reveal key={tournament.title} delay={index * 60}>
-                <article className="card card-hover group relative overflow-hidden p-6">
+              <Reveal
+                key={tournament.title}
+                delay={index * 60}
+                /* Three cards across the first row, two centred below. */
+                className={index < 3 ? "lg:col-span-2" : "lg:col-span-3"}
+              >
+                <article className="card card-hover group relative h-full overflow-hidden p-6">
                   <div
                     aria-hidden="true"
                     className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-flame-600/10 blur-2xl"

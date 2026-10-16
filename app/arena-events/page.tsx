@@ -91,6 +91,31 @@ export default function ArenaEventsPage() {
                 </article>
               </Reveal>
             ))}
+
+            {/* Eighth tile balances the grid and converts the section. */}
+            <Reveal delay={140}>
+              <div className="card flex h-full flex-col justify-between card-pad">
+                <div>
+                  <StatusBadge tone="soon">
+                    Opening programme to be announced
+                  </StatusBadge>
+                  <h3 className="display-3 mt-5">Come and see it.</h3>
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
+                    Some zones open with the launch programme, others are
+                    future-ready. Register your interest and be first to know
+                    what opens, and when.
+                  </p>
+                </div>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Button href="/contact/" variant="primary" size="sm">
+                    Register interest
+                  </Button>
+                  <Button href="/memberships/" variant="outline" size="sm">
+                    Lounge rates
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -254,10 +279,15 @@ export default function ArenaEventsPage() {
             </p>
           </Reveal>
 
-          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {TOURNAMENTS.map((tournament, index) => (
-              <Reveal key={tournament.title} delay={index * 60}>
-                <article className="card card-hover group relative overflow-hidden p-6">
+              <Reveal
+                key={tournament.title}
+                delay={index * 60}
+                /* Three cards across the first row, two centred below. */
+                className={index < 3 ? "lg:col-span-2" : "lg:col-span-3"}
+              >
+                <article className="card card-hover group relative h-full overflow-hidden p-6">
                   <div className="relative flex items-start justify-between gap-4">
                     <span className="font-mono text-[0.75rem] font-medium tracking-[0.2em] text-flame-400">
                       {String(index + 1).padStart(2, "0")}

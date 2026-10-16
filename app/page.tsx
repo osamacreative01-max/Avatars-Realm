@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import AreaCard from "@/components/AreaCard";
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
 import Hero from "@/components/Hero";
@@ -257,27 +258,13 @@ export default function HomePage() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {zonePreview.map((zone, index) => (
               <Reveal key={zone.title} delay={index * 70}>
-                <article className="card card-hover group flex h-full flex-col overflow-hidden">
-                  <div className="card-media relative aspect-[4/3]">
-                    <Image
-                      src={zone.image}
-                      alt={zone.alt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover"
-                    />
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-transparent"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5 sm:p-6">
-                    <h3 className="display-3">{zone.title}</h3>
-                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
-                      {zone.description}
-                    </p>
-                  </div>
-                </article>
+                <AreaCard
+                  title={zone.title}
+                  description={zone.description}
+                  image={zone.image}
+                  alt={zone.alt}
+                  index={index}
+                />
               </Reveal>
             ))}
           </div>
@@ -447,6 +434,30 @@ export default function HomePage() {
                 </div>
               </Reveal>
             ))}
+
+            {/* Eighth tile keeps the four-column grid balanced and closes the
+                sequence with a conversion point. */}
+            <Reveal delay={FULL_DAY.length * 50}>
+              <div className="flex h-full flex-col justify-between bg-navy-950 p-7 transition-colors duration-200 hover:bg-navy-900">
+                <div>
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-azure-400">
+                    ∞
+                  </span>
+                  <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
+                    Then do it again.
+                  </h3>
+                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                    Every visit builds on the last — hours, points, standings
+                    and progress.
+                  </p>
+                </div>
+                <div className="mt-6">
+                  <Link href="/contact/" className="arrow-link">
+                    Register your interest <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
