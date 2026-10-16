@@ -225,7 +225,6 @@ export default function ChampionshipPage() {
 
       {/* ---------------------------------------------------------- Expect */}
       <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
-        <SectionDragon side="right" />
         <div className="container-page grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <Reveal>
             <SectionHeading

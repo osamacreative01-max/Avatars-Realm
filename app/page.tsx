@@ -291,7 +291,7 @@ export default function HomePage() {
           <Reveal delay={90}>
             <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
               {LEAGUE.structure.slice(0, 5).map((line) => (
-                <li key={line} className="flex gap-4 bg-ink-900/60 px-6 py-4">
+                <li key={line} className="flex gap-4 bg-ink-900/85 px-6 py-4">
                   <span
                     aria-hidden="true"
                     className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
@@ -425,7 +425,7 @@ export default function HomePage() {
                   <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
+                  <h3 className="mt-4 min-h-[2.4rem] text-[1.05rem] font-semibold text-paper-50">
                     {item.title}
                   </h3>
                   <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
@@ -443,7 +443,7 @@ export default function HomePage() {
                   <span className="font-mono text-[0.75rem] tracking-[0.2em] text-azure-400">
                     ∞
                   </span>
-                  <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
+                  <h3 className="mt-4 min-h-[2.4rem] text-[1.05rem] font-semibold text-paper-50">
                     Then do it again.
                   </h3>
                   <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">

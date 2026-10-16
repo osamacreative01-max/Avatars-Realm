@@ -411,7 +411,7 @@ export default function MembershipsPage() {
       <section className="section relative overflow-hidden">
         <SectionDragon side="left" />
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal>
+          <Reveal className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading
               eyebrow="Questions"
               title="What players ask before joining."

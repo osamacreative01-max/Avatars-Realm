@@ -41,7 +41,7 @@ export default function EventCard({
         <p className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
           {description}
         </p>
-        <Link href={href} className="arrow-link mt-6 pt-1 self-start">
+        <Link href={href} className="arrow-link mt-auto pt-7 self-start">
           {ctaLabel}
           <span aria-hidden="true">→</span>
         </Link>
