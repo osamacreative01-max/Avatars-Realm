@@ -71,7 +71,7 @@ export default function HomePage() {
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="display-3 mt-4">{pathway.title}</h3>
-                  <p className="mt-2 text-[0.8125rem] font-semibold tracking-[0.04em] text-azure-400 uppercase">
+                  <p className="mt-2 min-h-[2.7rem] text-[0.8125rem] font-semibold tracking-[0.04em] text-azure-400 uppercase">
                     {pathway.tagline}
                   </p>
                   <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
@@ -273,7 +273,7 @@ export default function HomePage() {
 
       {/* -------------------------------------------------------- League */}
       <section id="league" className="section relative overflow-hidden">
-        <SectionDragon side="right" />
+        <SectionDragon side="right" size="h-[20rem] w-[20rem]" />
         <div className="container-page grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <Reveal>
             <SectionHeading
@@ -440,8 +440,8 @@ export default function HomePage() {
             <Reveal delay={FULL_DAY.length * 50}>
               <div className="flex h-full flex-col justify-between bg-navy-950 p-7 transition-colors duration-200 hover:bg-navy-900">
                 <div>
-                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-azure-400">
-                    ∞
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
+                    {String(FULL_DAY.length + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-4 min-h-[2.4rem] text-[1.05rem] font-semibold text-paper-50">
                     Then do it again.
