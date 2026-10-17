@@ -20,8 +20,11 @@ export default function Logo({
       width={444}
       height={171}
       priority={priority}
-      sizes="(max-width: 640px) 208px, 250px"
-      className={`w-auto ${className}`.trim()}
+      sizes="(max-width: 640px) 158px, 178px"
+      /* Explicit width, not `w-auto`: inside the header flex row the logo
+         otherwise shrinks as the viewport tightens and renders smaller than
+         at wider sizes. `shrink-0` on the link keeps it locked. */
+      className={`h-auto w-[158px] sm:w-[178px] ${className}`.trim()}
     />
   );
 }

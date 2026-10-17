@@ -72,11 +72,16 @@ export default function Navbar() {
       }`}
     >
       {/* Header is full-bleed like the body content: no centred max-width,
-         so wide monitors show no empty side margins. min-w-0 on the logo
-         lets its column shrink, and the nav keeps its intrinsic width so
-         items never wrap or overlap — the CTA is pushed to the right edge. */}
+         so wide monitors show no empty side margins. The logo is locked to a
+         fixed width so it renders identically at every viewport; the nav keeps
+         its intrinsic width so items never wrap or overlap — the CTA is pushed
+         to the right edge. */}
       <div className="container-page flex h-[var(--header-h)] items-center gap-4">
-        <Link href="/" aria-label="Avatars Realm — home" className="min-w-0">
+        <Link
+          href="/"
+          aria-label="Avatars Realm — home"
+          className="shrink-0"
+        >
           <Logo priority />
         </Link>
 
