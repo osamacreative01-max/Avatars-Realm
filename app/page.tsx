@@ -1,36 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import AreaCard from "@/components/AreaCard";
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
 import Hero from "@/components/Hero";
+import JourneyStrip from "@/components/JourneyStrip";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
-import Marquee from "@/components/Marquee";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import {
-  ARENA_ZONES,
   CHAMPIONSHIP,
-  LEAGUE,
-  MEMBERSHIPS,
   PATHWAYS,
   PROGRAMMES,
-  QUARTERLY_COPY,
-  QUARTERLY_NOTE,
-  QUARTERLY_TOURNAMENTS,
   TOURNAMENTS,
 } from "@/lib/content";
 
-/** Effective hourly value of each membership, shown up front. */
-const MEMBERSHIP_VALUE = [
-  { id: "social", value: "≈ R50 per gaming hour" },
-  { id: "competitive", value: "≈ R37 per gaming hour" },
-  { id: "pro-pathway", value: "≈ R40 per gaming hour" },
-] as const;
-
-const zonePreview = [ARENA_ZONES[0], ARENA_ZONES[2], ARENA_ZONES[3]];
+/**
+ * Home is a summary, not a duplicate of the inner pages: hero → the four-step
+ * strip → Academy / Lounge / Arena cards → programme teaser → championship
+ * teaser → contact. Detail lives on /academy-programmes, /memberships and
+ * /arena-events.
+ */
 
 export default function HomePage() {
   return (
@@ -38,18 +29,8 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- Hero */}
       <Hero />
 
-      {/* ----------------------------------------------------------- Marquee */}
-      <Marquee
-        items={[
-          "Train. Play. Compete. Belong.",
-          "Esports Academy Programmes",
-          "Gaming Lounge Memberships",
-          "Realm Points Rewards",
-          "Community League",
-          "Quarterly Tournaments",
-        ]}
-        speed={24}
-      />
+      {/* ---------------------------------------------------- Journey strip */}
+      <JourneyStrip />
 
       {/* -------------------------------------------------------- Pathways */}
       <section className="section relative overflow-hidden">
@@ -58,12 +39,12 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="The Avatars Realm Ecosystem"
-              title="One destination, four ways in."
-              lede="Avatars Realm is an esports academy and gaming experience centre. Whether you want to learn, play casually, compete or build toward a career, there is a clear way in — and a reason to come back."
+              title="One destination, three ways in."
+              lede="Avatars Realm is an esports academy and gaming experience centre. Whether you want to learn, play casually or compete, there is a clear way in — and a reason to come back."
             />
           </Reveal>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
             {PATHWAYS.map((pathway, index) => (
               <Reveal key={pathway.title} delay={index * 60}>
                 <div className="flex h-full flex-col bg-ink-900 p-7 transition-colors duration-200 hover:bg-ink-800">
@@ -146,197 +127,6 @@ export default function HomePage() {
             ))}
           </div>
 
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------- Memberships */}
-      <section className="section relative overflow-hidden">
-        <SectionDragon side="right" size="h-[30rem] w-[30rem]" />
-        <div className="container-page relative">
-          <Reveal>
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <SectionHeading
-                eyebrow="Memberships & Gaming Lounge"
-                title="The easiest way into Avatars Realm."
-                lede="Start with an hourly session, or choose a monthly membership that bundles gaming hours, coaching and Realm Points — the effective hourly value is shown clearly on each tier."
-              />
-              <div className="md:pb-2">
-                <Button href="/memberships/" variant="primary">
-                  View Memberships
-                </Button>
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {MEMBERSHIPS.filter((tier) => tier.id !== "institution").map(
-              (tier, index) => {
-                const value = MEMBERSHIP_VALUE.find(
-                  (item) => item.id === tier.id,
-                );
-
-                return (
-                  <Reveal key={tier.id} delay={index * 70}>
-                    <div
-                      className={`card flex h-full flex-col card-pad ${
-                        tier.featured ? "border-flame-600/55" : ""
-                      }`}
-                    >
-                      <div className="flex items-start justify-between gap-4 lg:min-h-[4.75rem]">
-                        <h3 className="display-3">{tier.name}</h3>
-                        {tier.featured ? (
-                          <StatusBadge tone="live">Most popular</StatusBadge>
-                        ) : null}
-                      </div>
-                      <div className="mt-5 flex items-end gap-2">
-                        <span className="text-[1rem] font-semibold text-flame-400">
-                          R
-                        </span>
-                        <span className="text-[2.5rem] leading-none font-bold tracking-[-0.03em] text-paper-50">
-                          {tier.price}
-                        </span>
-                        <span className="pb-1 text-[0.875rem] text-paper-400">
-                          {tier.period}
-                        </span>
-                      </div>
-                      {value ? (
-                        <p className="mt-3 text-[0.8125rem] font-semibold tracking-[0.04em] text-azure-400 uppercase">
-                          {value.value}
-                        </p>
-                      ) : null}
-                      <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
-                        {tier.includes[0]} — plus booking priority and Realm
-                        Points on everything you play.
-                      </p>
-                      <div className="mt-6">
-                        <Link href="/memberships/" className="arrow-link">
-                          See what&apos;s included <span aria-hidden="true">→</span>
-                        </Link>
-                      </div>
-                    </div>
-                  </Reveal>
-                );
-              },
-            )}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ----------------------------------------------------- Arena & Zones */}
-      <section className="section relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
-        <GridBackdrop className="opacity-40" />
-        <SectionDragon side="left" />
-        <div className="container-page relative">
-          <Reveal>
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <SectionHeading
-                eyebrow="Arena Experience"
-                title="A gaming experience centre, not a room with PCs."
-                lede="Seven working zones — PC gaming, academy rooms, the competition stage and more — connected by coaching, league play and events."
-              />
-              <div className="md:pb-2">
-                <Button href="/arena-events/" variant="primary">
-                  Tour the Arena
-                </Button>
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {zonePreview.map((zone, index) => (
-              <Reveal key={zone.title} delay={index * 70}>
-                <AreaCard
-                  title={zone.title}
-                  description={zone.description}
-                  image={zone.image}
-                  alt={zone.alt}
-                  index={index}
-                />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* -------------------------------------------------------- League */}
-      <section id="league" className="section relative overflow-hidden">
-        <SectionDragon side="right" size="h-[20rem] w-[20rem]" />
-        <div className="container-page grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Community League"
-              title="A reason to come back, month after month."
-              lede={LEAGUE.copy}
-            />
-            <div className="mt-8">
-              <Button href="/arena-events/#league" size="lg">
-                How the league works
-              </Button>
-            </div>
-          </Reveal>
-
-          <Reveal delay={90}>
-            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {LEAGUE.structure.slice(0, 5).map((line) => (
-                <li key={line} className="flex gap-4 bg-ink-900/85 px-6 py-4">
-                  <span
-                    aria-hidden="true"
-                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
-                  />
-                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
-                    {line}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------ Quarterly windows */}
-      <section
-        id="quarterly"
-        className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950"
-      >
-        <GridBackdrop className="opacity-40" />
-        <RedArc className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 -scale-x-100 opacity-70" />
-        <div className="container-page relative">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Quarterly Tournaments"
-              title="Four headline moments to train toward."
-              lede={QUARTERLY_COPY}
-              tone="blue"
-            />
-          </Reveal>
-
-          <div className="mt-10">
-            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {QUARTERLY_TOURNAMENTS.map((item) => (
-                <li
-                  key={item.slot}
-                  className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[5rem_1fr_1.4fr] sm:items-center sm:gap-6"
-                >
-                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
-                    {item.slot}
-                  </span>
-                  <span className="text-[0.95rem] font-semibold text-paper-50">
-                    {item.direction}
-                  </span>
-                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
-                    {item.detail}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <Reveal delay={100}>
-            <p className="mt-6 text-[0.875rem] leading-relaxed text-paper-400">
-              {QUARTERLY_NOTE}
-            </p>
-          </Reveal>
         </div>
       </section>
 

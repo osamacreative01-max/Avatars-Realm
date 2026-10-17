@@ -65,14 +65,6 @@ export const PATHWAYS = [
     href: "/arena-events/",
     cta: "Explore the arena",
   },
-  {
-    title: "Progress",
-    tagline: "Coaching, content and career pathways",
-    description:
-      "Coaching, creator sessions and future career and industry pathways that keep players moving beyond casual play.",
-    href: "/about/",
-    cta: "See the pathway",
-  },
 ] as const;
 
 /* --------------------------------------------------------------------------
