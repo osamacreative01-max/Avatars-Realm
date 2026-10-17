@@ -71,8 +71,11 @@ export default function Navbar() {
           : "border-b border-transparent bg-gradient-to-b from-ink-950/85 to-transparent"
       }`}
     >
-      <div className="container-page grid h-[var(--header-h)] grid-cols-[1fr_auto] items-center gap-6 xl:grid-cols-[1fr_auto_1fr]">
-        <Link href="/" aria-label="Avatars Realm — home" className="shrink-0">
+      {/* min-w-0 on the logo link lets its grid column shrink instead of
+         forcing the 1fr track to overflow; the nav has no min-width so it
+         is the only thing that reflows when the box gets tight. */}
+      <div className="container-page grid h-[var(--header-h)] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:gap-6">
+        <Link href="/" aria-label="Avatars Realm — home" className="min-w-0">
           <Logo priority />
         </Link>
 
