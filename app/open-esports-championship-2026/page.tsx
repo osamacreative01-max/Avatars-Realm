@@ -311,8 +311,8 @@ export default function ChampionshipPage() {
                 alt: "Pro teams competing on a stadium stage",
               },
               {
-                src: "/images/arena-chairs.jpg",
-                alt: "Rows of empty arena seating facing a competition stage",
+                src: "/images/team-play.jpg",
+                alt: "Players at a live event on orange arena seating behind a Game Time lit desk",
               },
               {
                 src: "/images/duo-competition.jpg",
