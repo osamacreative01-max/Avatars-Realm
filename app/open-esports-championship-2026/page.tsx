@@ -8,13 +8,16 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import { CHAMPIONSHIP, QUARTERLY_NOTE, QUARTERLY_TOURNAMENTS, TOURNAMENT_JOURNEY, TOURNAMENTS } from "@/lib/content";
+import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/open-esports-championship-2026/",
   title: "Open Esports Championship 2026",
   description:
     "The Arena's flagship multi-title championship at Avatars Realm — EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX. Dates and registration to be announced.",
-};
+  image: "/images/arena-stage.png",
+});
 
 const DETAILS = [
   { label: "Titles", value: "Five titles, three platforms" },

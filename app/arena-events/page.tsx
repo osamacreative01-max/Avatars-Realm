@@ -19,13 +19,16 @@ import {
   QUARTERLY_TOURNAMENTS,
   TOURNAMENTS,
 } from "@/lib/content";
+import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/arena-events/",
   title: "Arena & Events",
   description:
     "The Avatars Realm arena — PC zone, academy rooms, stage, social lounge and content corner, with community league play, quarterly tournaments and the Open Esports Championship 2026.",
-};
+  image: "/images/audience.jpg",
+});
 
 export default function ArenaEventsPage() {
   return (

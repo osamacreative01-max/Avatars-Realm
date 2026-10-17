@@ -9,13 +9,16 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import { LOUNGE_RATES, MEMBERSHIPS, PRICING_FAQ, REALM_POINTS } from "@/lib/content";
+import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/memberships/",
   title: "Memberships & Gaming Lounge",
   description:
     "Gaming lounge hourly rates, prepaid packs and monthly memberships at Avatars Realm — Social, Competitive and Pro Pathway tiers with Realm Points rewards. Proposed pilot pricing.",
-};
+  image: "/images/pc-stations.jpg",
+});
 
 const PROMISES = [
   { label: "Lounge access", value: "From R40 per hour" },

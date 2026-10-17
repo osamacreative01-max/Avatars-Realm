@@ -9,13 +9,16 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import { PARTNER_LABEL, PROGRAMMES } from "@/lib/content";
+import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/academy-programmes/",
   title: "Academy Programmes",
   description:
     "Beginner, Intermediate and Pro esports programmes at Avatars Realm — monthly-fee pathways with published durations, outcomes and proposed pilot pricing.",
-};
+  image: "/images/player-focus.jpg",
+});
 
 /** Programme headline fees, derived so the strip can never drift from content. */
 const FACTS = [

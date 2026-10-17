@@ -9,13 +9,16 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import { FULL_DAY, LEADERSHIP, PARTNER_LABEL, PROGRESSION, VALUES } from "@/lib/content";
+import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/about/",
   title: "About",
   description:
     "Avatars Realm (Pty) Ltd is building an esports academy and gaming arena in Northcliff, Randburg — its mission, progression pathway, leadership and community direction.",
-};
+  image: "/images/community-play.jpg",
+});
 
 const DIRECTION = [
   {

@@ -8,13 +8,16 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import { PARTNER_CATEGORIES, PARTNER_LABEL } from "@/lib/content";
+import { pageMetadata } from "@/lib/metadata";
 import { NAV, SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/contact/",
   title: "Contact",
   description:
     "Contact Avatars Realm (Pty) Ltd — programme, membership, lounge, league, event and partnership enquiries for the Avatars Realm Esports Academy & Gaming Arena in Northcliff.",
-};
+  image: "/images/esports-setup.jpg",
+});
 
 const CARDS = [
   {

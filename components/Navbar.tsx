@@ -41,6 +41,12 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // The header CTA must never point at the page the visitor is already on:
+  // on Academy programmes it becomes a registration prompt instead.
+  const onAcademy = current === "/academy-programmes/";
+  const ctaHref = onAcademy ? "/contact/" : "/academy-programmes/";
+  const ctaLabel = onAcademy ? "Register Interest" : "View Programmes";
+
   const linkClass = (href: string) =>
     `group relative py-2 text-[0.875rem] font-medium tracking-[0.01em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flame-500 2xl:text-[0.9375rem] ${
       current === href
@@ -88,7 +94,7 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden xl:block xl:justify-self-end">
-          <Button href="/academy-programmes/">View Programmes</Button>
+          <Button href={ctaHref}>{ctaLabel}</Button>
         </div>
 
         {/* Mobile trigger */}
@@ -148,8 +154,8 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-4">
-            <Button href="/academy-programmes/" className="w-full">
-              View Programmes
+            <Button href={ctaHref} className="w-full">
+              {ctaLabel}
             </Button>
           </div>
         </nav>
