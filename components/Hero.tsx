@@ -195,7 +195,7 @@ export default function Hero({
                     Launch status
                   </span>
                   <span className="text-[0.62rem] tracking-[0.16em] text-paper-400 uppercase">
-                    Pre-launch
+                    Pre-launch · to be announced
                   </span>
                 </div>
                 <ul className="space-y-2.5">
