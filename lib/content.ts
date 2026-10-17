@@ -25,9 +25,14 @@ export const PILOT_PRICING: Status = {
 
 export const UPCOMING: Status = { label: "Upcoming", tone: "soon" };
 
-export const SEASONAL: Status = { label: "Seasonal", tone: "soon" };
-
+/**
+ * League cadence is monthly everywhere. Seasonal was deliberately retired so
+ * no card can carry a cadence that competes with the published league rhythm.
+ */
 export const MONTHLY: Status = { label: "Monthly", tone: "soon" };
+
+/** For programme items whose cadence or dates are not yet published. */
+export const TBC: Status = { label: "Windows TBC", tone: "neutral" };
 
 export const ONGOING: Status = { label: "Ongoing", tone: "neutral" };
 
@@ -448,7 +453,7 @@ export const ARENA_EVENTS = [
     title: "Quarterly Tournaments",
     description:
       "Four headline tournament windows per year, with title rotation and member and non-member divisions.",
-    status: SEASONAL,
+    status: TBC,
     href: "/arena-events/#quarterly",
     image: "/images/duo-competition.jpg",
     alt: "Two players competing side by side during a match",

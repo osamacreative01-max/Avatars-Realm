@@ -30,8 +30,8 @@ const DIRECTION = [
   },
   {
     title: "Arena, league & events",
-    body: "A competition stage, community league windows and four quarterly tournaments, anchored by the Open Esports Championship 2026.",
-    status: { label: "Seasonal programme", tone: "soon" as const },
+    body: "A competition stage, monthly community league windows and four quarterly tournaments, anchored by the Open Esports Championship 2026.",
+    status: { label: "Monthly league", tone: "soon" as const },
   },
 ];
 
