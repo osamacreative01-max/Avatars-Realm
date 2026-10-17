@@ -396,7 +396,7 @@ export const QUARTERLY_TOURNAMENTS = [
 ] as const;
 
 export const QUARTERLY_COPY =
-  "Across a season, Avatars Realm stages four headline tournaments that give the community a major moment to train toward — combining open divisions, member divisions, academy showcases, spectator experiences, food and beverage, merchandise and future brand activations.";
+  "Across a season, Avatars Realm plans four headline tournaments that give the community a major moment to train toward — combining open and member divisions, academy showcases, spectator experiences, food and beverage, merchandise and future brand activations.";
 
 /** Publishing caveat shown beside the tournament windows. */
 export const QUARTERLY_NOTE =
@@ -532,7 +532,7 @@ export const TOURNAMENT_JOURNEY = [
   },
   {
     step: "Confirm your entry",
-    body: "Formats, eligibility and division placement are confirmed, with entry fees and closing dates published at the same time.",
+    body: "Formats, eligibility and division placement are confirmed with the opening programme, with entry fees and closing dates published at the same time.",
   },
   {
     step: "Qualify & compete",

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const PROMISES = [
   { label: "Lounge access", value: "From R40 per hour" },
   { label: "Memberships", value: "From R399 per month" },
-  { label: "Rewards", value: "Realm Points on every hour" },
+  { label: "Rewards", value: "Planned Realm Points on every hour" },
   { label: "Pricing", value: "Proposed pilot rates" },
 ];
 

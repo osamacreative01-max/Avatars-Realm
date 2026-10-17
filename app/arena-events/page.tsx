@@ -139,7 +139,7 @@ export default function ArenaEventsPage() {
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
               <StatusBadge tone="soon">Windows announced at launch</StatusBadge>
-              <StatusBadge tone="neutral">Realm Points earned</StatusBadge>
+              <StatusBadge tone="neutral">Realm Points planned</StatusBadge>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/contact/" size="lg">
