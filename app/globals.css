@@ -221,7 +221,8 @@
 
 :root {
   --page-gutter: 1.25rem;
-  --section-y: 4.5rem;
+  /* Brief D: 56px mobile / 96px desktop between sections. */
+  --section-y: 3.5rem;
   --header-h: 5.5rem;
   color-scheme: dark;
 }
@@ -240,9 +241,9 @@
   }
 }
 
-/* Full-bleed layout — there is deliberately NO max-width on the container.
-   These gutters only keep content off the physical screen edges; reading
-   length is capped per block with `.measure` / `max-w-*`. */
+/* One container width everywhere (brief D): content is capped at 1200px and
+   centred, with the gutters below keeping it off the physical screen edges.
+   Reading length inside blocks is still capped per block with `.measure`. */
 @media (min-width: 1400px) {
   :root {
     --page-gutter: 3rem;
@@ -331,6 +332,7 @@ button {
    stops at `--page-gutter`, so wide monitors show no empty side margins. */
 .container-page {
   width: 100%;
+  max-width: 1200px;
   margin-inline: auto;
   padding-inline: var(--page-gutter);
 }

@@ -82,7 +82,7 @@ export default function AboutPage() {
                 earn rewards through participation and progress toward
                 competitive play.
               </p>
-              <p className="measure mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
+              <p className="measure mt-3 text-[1rem] leading-relaxed text-paper-300">
                 A structured esports academy and gaming experience centre where
                 players develop, communities connect and competition comes
                 alive.
@@ -153,7 +153,7 @@ export default function AboutPage() {
                     {item.status.label}
                   </StatusBadge>
                   <h3 className="display-3 mt-5">{item.title}</h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-3 text-[1rem] leading-relaxed text-paper-300">
                     {item.body}
                   </p>
                 </div>
@@ -189,7 +189,7 @@ export default function AboutPage() {
                   <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
                     {step.step}
                   </span>
-                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                  <span className="text-[1rem] leading-relaxed text-paper-300">
                     {step.body}
                   </span>
                 </li>
@@ -237,7 +237,7 @@ export default function AboutPage() {
                           {person.role}
                         </p>
                       ) : null}
-                      <p className="measure mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                      <p className="measure mt-2 text-[1rem] leading-relaxed text-paper-300">
                         {person.focus}
                       </p>
                       <p className="mt-3 text-[0.8125rem] text-paper-400 italic">
@@ -262,7 +262,7 @@ export default function AboutPage() {
               <h3 className="text-[0.95rem] font-semibold text-paper-50">
                 Published, not negotiated
               </h3>
-              <p className="measure mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+              <p className="measure mt-2 text-[1rem] leading-relaxed text-paper-300">
                 Programme structures, membership entitlements, lounge rates and
                 reward rules are all published on this site as proposed pilot
                 pricing, and confirmed before enrolment opens.
@@ -273,7 +273,7 @@ export default function AboutPage() {
               <h3 className="text-[0.95rem] font-semibold text-paper-50">
                 Future features stay marked as planned
               </h3>
-              <p className="measure mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+              <p className="measure mt-2 text-[1rem] leading-relaxed text-paper-300">
                 Analytics, AI player feedback, manufacturer benefits and formal
                 accreditation remain marked as planned or partner-dependent
                 until they are contracted and verified. {PARTNER_LABEL}
@@ -304,7 +304,7 @@ export default function AboutPage() {
                   <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
                     {value.title}
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                     {value.description}
                   </p>
                 </div>
@@ -377,7 +377,7 @@ export default function AboutPage() {
                   <h3 className="mt-4 min-h-[2.4rem] text-[1.05rem] font-semibold text-paper-50">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                     {item.body}
                   </p>
                 </div>
@@ -395,7 +395,7 @@ export default function AboutPage() {
                   <h3 className="mt-4 min-h-[2.4rem] text-[1.05rem] font-semibold text-paper-50">
                     Then do it again.
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                     Every visit builds on the last — hours, points, standings
                     and progress.
                   </p>

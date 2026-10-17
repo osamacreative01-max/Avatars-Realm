@@ -122,7 +122,7 @@ export default function ChampionshipPage() {
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
                 {item.label}
               </p>
-              <p className="mt-2.5 text-[0.9375rem] font-medium text-azure-400">
+              <p className="mt-2.5 text-[1rem] font-medium text-azure-400">
                 {item.value}
               </p>
             </div>
@@ -216,7 +216,7 @@ export default function ChampionshipPage() {
                   <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
                     {stage.step}
                   </span>
-                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                  <span className="text-[1rem] leading-relaxed text-paper-300">
                     {stage.body}
                   </span>
                 </li>
@@ -255,7 +255,7 @@ export default function ChampionshipPage() {
                     <h3 className="text-[1.05rem] font-semibold text-paper-50">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                    <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                       {item.body}
                     </p>
                   </div>
@@ -291,7 +291,7 @@ export default function ChampionshipPage() {
                   <span className="text-[0.95rem] font-semibold text-paper-50">
                     {item.direction}
                   </span>
-                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                  <span className="text-[1rem] leading-relaxed text-paper-300">
                     {item.detail}
                   </span>
                 </li>
@@ -366,7 +366,7 @@ export default function ChampionshipPage() {
                   <h3 className="text-[1.05rem] font-semibold text-paper-50">
                     Dates, entries and prize pool
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                     Dates, registration and final event details will be
                     announced as they are confirmed. {CHAMPIONSHIP.prizePool}{" "}
                     The prize pool and event budget are not published

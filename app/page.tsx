@@ -55,7 +55,7 @@ export default function HomePage() {
                   <p className="mt-2 min-h-[2.7rem] text-[0.8125rem] font-semibold tracking-[0.04em] text-azure-400 uppercase">
                     {pathway.tagline}
                   </p>
-                  <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-3 flex-1 text-[1rem] leading-relaxed text-paper-300">
                     {pathway.description}
                   </p>
                   <Link href={pathway.href} className="arrow-link mt-6 pt-1">
@@ -97,7 +97,7 @@ export default function HomePage() {
                     <h3 className="display-3">{programme.name}</h3>
                     <StatusBadge tone="neutral">{programme.duration}</StatusBadge>
                   </div>
-                  <p className="mt-4 text-[0.9375rem] font-semibold text-azure-400">
+                  <p className="mt-4 text-[1rem] font-semibold text-azure-400">
                     {programme.headline}
                   </p>
                   <div className="mt-5 flex items-end gap-2">
@@ -114,7 +114,7 @@ export default function HomePage() {
                   <p className="mt-2 text-[0.8125rem] leading-relaxed text-paper-400">
                     {programme.commitment} commitment · proposed pilot fee
                   </p>
-                  <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-4 flex-1 text-[1rem] leading-relaxed text-paper-300">
                     {programme.copy}
                   </p>
                   <div className="mt-6">
@@ -169,7 +169,7 @@ export default function HomePage() {
           </div>
 
           <Reveal delay={180}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-200">
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-200">
               <StatusBadge tone="coming">Registration to be announced</StatusBadge>
               {CHAMPIONSHIP.prizePool}
             </p>

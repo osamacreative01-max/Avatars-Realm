@@ -20,7 +20,7 @@ export default function Footer() {
       <div className="container-page relative grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-10">
         <div className="max-w-md">
           <Logo />
-          <p className="mt-5 text-[0.9375rem] leading-relaxed text-paper-300">
+          <p className="mt-5 text-[1rem] leading-relaxed text-paper-300">
             Avatars Realm Esports Academy & Gaming Arena — structured esports
             programmes, an accessible gaming lounge, community leagues and
             quarterly tournaments. Opening programme and membership enrolment to
@@ -44,7 +44,7 @@ export default function Footer() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="inline-block text-[0.9375rem] text-paper-200 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-flame-400"
+                  className="inline-block text-[1rem] text-paper-200 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-flame-400"
                 >
                   {item.label}
                 </Link>
@@ -57,7 +57,7 @@ export default function Footer() {
           <h2 className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
             Get in touch
           </h2>
-          <ul className="mt-5 space-y-3 text-[0.9375rem] text-paper-200">
+          <ul className="mt-5 space-y-3 text-[1rem] text-paper-200">
             <li>
               <a
                 href={`mailto:${SITE.email}`}

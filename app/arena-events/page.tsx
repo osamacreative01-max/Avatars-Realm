@@ -88,7 +88,7 @@ export default function ArenaEventsPage() {
                   </div>
                   <div className="flex flex-1 flex-col p-5 sm:p-6">
                     <h3 className="display-3">{zone.title}</h3>
-                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
+                    <p className="mt-3 text-[1rem] leading-relaxed text-paper-300">
                       {zone.description}
                     </p>
                   </div>
@@ -104,7 +104,7 @@ export default function ArenaEventsPage() {
                     Opening programme to be announced
                   </StatusBadge>
                   <h3 className="display-3 mt-5">Come and see it.</h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-3 text-[1rem] leading-relaxed text-paper-300">
                     Some zones open with the launch programme, others are
                     future-ready. Register your interest and be first to know
                     what opens, and when.
@@ -159,7 +159,7 @@ export default function ArenaEventsPage() {
                     aria-hidden="true"
                     className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
                   />
-                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                  <span className="text-[1rem] leading-relaxed text-paper-300">
                     {line}
                   </span>
                 </li>
@@ -199,7 +199,7 @@ export default function ArenaEventsPage() {
                   <span className="text-[0.95rem] font-semibold text-paper-50">
                     {item.direction}
                   </span>
-                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                  <span className="text-[1rem] leading-relaxed text-paper-300">
                     {item.detail}
                   </span>
                 </li>
@@ -208,7 +208,7 @@ export default function ArenaEventsPage() {
           </div>
 
           <Reveal delay={120}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
               <StatusBadge tone="soon">
                 Member &amp; open divisions planned
               </StatusBadge>
@@ -321,7 +321,7 @@ export default function ArenaEventsPage() {
           </div>
 
           <Reveal delay={160}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-200">
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-200">
               <StatusBadge tone="coming">Registration to be announced</StatusBadge>
               {CHAMPIONSHIP.prizePool}
             </p>

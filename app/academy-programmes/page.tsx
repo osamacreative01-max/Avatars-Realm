@@ -83,7 +83,7 @@ export default function AcademyProgrammesPage() {
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
                 {item.label}
               </p>
-              <p className="mt-2 text-[0.9375rem] font-medium text-azure-400">
+              <p className="mt-2 text-[1rem] font-medium text-azure-400">
                 {item.value}
               </p>
             </div>
@@ -146,7 +146,7 @@ export default function AcademyProgrammesPage() {
                       <p className="mt-5 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
                         Best for
                       </p>
-                      <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                      <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                         {programme.bestFor}
                       </p>
                     </div>
@@ -165,7 +165,7 @@ export default function AcademyProgrammesPage() {
                               aria-hidden="true"
                               className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
                             />
-                            <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                            <span className="text-[1rem] leading-relaxed text-paper-300">
                               {line}
                             </span>
                           </li>
@@ -184,7 +184,7 @@ export default function AcademyProgrammesPage() {
           </div>
 
           <Reveal delay={160}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
               <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
               Coach costs, facility hours, equipment, curriculum, staffing and
               payment terms are confirmed before enrolment opens. {SITE.pilotNote}
@@ -253,7 +253,7 @@ export default function AcademyProgrammesPage() {
                     <h3 className="text-[0.95rem] font-semibold text-paper-50">
                       {item.title}
                     </h3>
-                    <p className="mt-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                    <p className="mt-1 text-[1rem] leading-relaxed text-paper-300">
                       {item.body}
                     </p>
                   </div>
@@ -286,7 +286,7 @@ export default function AcademyProgrammesPage() {
           <Reveal delay={90}>
             <div className="card card-pad">
               <p className="eyebrow eyebrow-blue">Planned capabilities</p>
-              <p className="measure mt-4 text-[0.9375rem] leading-relaxed text-paper-300">
+              <p className="measure mt-4 text-[1rem] leading-relaxed text-paper-300">
                 Data analytics, AI player feedback and manufacturer-led benefits
                 are reserved as future or partner-enabled features. They are
                 marked as planned until they have been contracted and

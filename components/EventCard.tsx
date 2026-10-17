@@ -38,7 +38,7 @@ export default function EventCard({
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <h3 className="display-3">{title}</h3>
-        <p className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300">
+        <p className="mt-3 text-[1rem] leading-relaxed text-paper-300">
           {description}
         </p>
         <Link href={href} className="arrow-link mt-auto pt-7 self-start">

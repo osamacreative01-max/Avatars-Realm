@@ -226,7 +226,7 @@ export default function ContactPage() {
                     {item.label}
                   </p>
                   <h3 className="display-3 mt-4">{item.title}</h3>
-                  <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-3 flex-1 text-[1rem] leading-relaxed text-paper-300">
                     {item.body}
                   </p>
                   <span className="arrow-link mt-6 pt-1">
@@ -243,7 +243,7 @@ export default function ContactPage() {
                   Direct contact
                 </p>
                 <h3 className="display-3 mt-4">Email or call</h3>
-                <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
+                <p className="mt-3 flex-1 text-[1rem] leading-relaxed text-paper-300">
                   Not sure which category fits? Write or call and the team will
                   route your message to the right person.
                 </p>
@@ -285,7 +285,7 @@ export default function ContactPage() {
                   key={row.ask}
                   className="flex flex-col gap-3 bg-ink-900/60 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
                 >
-                  <span className="text-[0.9375rem] font-medium text-paper-100">
+                  <span className="text-[1rem] font-medium text-paper-100">
                     {row.ask}
                   </span>
                   <StatusBadge tone={row.tone}>{row.answer}</StatusBadge>
@@ -326,7 +326,7 @@ export default function ContactPage() {
                   <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                     {item.body}
                   </p>
                 </div>
@@ -335,7 +335,7 @@ export default function ContactPage() {
           </div>
 
           <Reveal delay={200}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
               <StatusBadge tone="neutral">Partnership status</StatusBadge>
               Partnership opportunities are under establishment — no partner
               logos or confirmed partners are published until agreements are
@@ -362,10 +362,10 @@ export default function ContactPage() {
                     key={row.label}
                     className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0"
                   >
-                    <span className="text-[0.9375rem] text-paper-200">
+                    <span className="text-[1rem] text-paper-200">
                       {row.label}
                     </span>
-                    <span className="text-[0.9375rem] font-medium text-azure-400">
+                    <span className="text-[1rem] font-medium text-azure-400">
                       {row.value}
                     </span>
                   </li>

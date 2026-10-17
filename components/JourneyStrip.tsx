@@ -113,7 +113,7 @@ export default function JourneyStrip() {
                 <p className="mt-4 text-[1.125rem] font-semibold text-paper-50">
                   {step.title}
                 </p>
-                <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                   {step.body}
                 </p>
               </Reveal>

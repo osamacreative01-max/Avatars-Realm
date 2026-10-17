@@ -85,7 +85,7 @@ export default function MembershipsPage() {
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
                 {item.label}
               </p>
-              <p className="mt-2 text-[0.9375rem] font-medium text-azure-400">
+              <p className="mt-2 text-[1rem] font-medium text-azure-400">
                 {item.value}
               </p>
             </div>
@@ -128,7 +128,7 @@ export default function MembershipsPage() {
                   <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
                     {rate.label}
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                     {rate.note}
                   </p>
                 </div>
@@ -138,7 +138,7 @@ export default function MembershipsPage() {
             <Reveal delay={250}>
               <div className="h-full bg-navy-950 p-7">
                 <p className="eyebrow eyebrow-blue">Good to know</p>
-                <p className="mt-4 text-[0.9375rem] leading-relaxed text-paper-300">
+                <p className="mt-4 text-[1rem] leading-relaxed text-paper-300">
                   Every paid hour earns Realm Points. Members bring their
                   multipliers to the same rates — so a membership is worth more
                   than the hours alone.
@@ -216,7 +216,7 @@ export default function MembershipsPage() {
                           aria-hidden="true"
                           className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
                         />
-                        <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                        <span className="text-[1rem] leading-relaxed text-paper-300">
                           {line}
                         </span>
                       </li>
@@ -288,13 +288,13 @@ export default function MembershipsPage() {
                           aria-hidden="true"
                           className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
                         />
-                        <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                        <span className="text-[1rem] leading-relaxed text-paper-300">
                           {line}
                         </span>
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-4 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-4 text-[1rem] leading-relaxed text-paper-300">
                     {institution.reward}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
@@ -308,7 +308,7 @@ export default function MembershipsPage() {
           ) : null}
 
           <Reveal delay={200}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
               <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
               {SITE.pilotNote}
             </p>
@@ -355,7 +355,7 @@ export default function MembershipsPage() {
                     aria-hidden="true"
                     className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
                   />
-                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
+                  <span className="text-[1rem] leading-relaxed text-paper-300">
                     {line}
                   </span>
                 </li>
@@ -393,7 +393,7 @@ export default function MembershipsPage() {
                   <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                     {item.body}
                   </p>
                 </div>
@@ -428,7 +428,7 @@ export default function MembershipsPage() {
                   <h3 className="text-[0.95rem] font-semibold text-paper-50">
                     {row.question}
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
                     {row.answer}
                   </p>
                 </li>
