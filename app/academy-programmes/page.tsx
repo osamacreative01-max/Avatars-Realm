@@ -14,14 +14,16 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Academy Programmes",
   description:
-    "Beginner, Intermediate and Pro esports programmes at Avatars Realm — structured coaching with published durations, outcomes and proposed pilot pricing.",
+    "Beginner, Intermediate and Pro esports programmes at Avatars Realm — monthly-fee pathways with published durations, outcomes and proposed pilot pricing.",
 };
 
+/** Programme headline fees, derived so the strip can never drift from content. */
 const FACTS = [
-  { label: "Beginner", value: "4 weeks — R3,500" },
-  { label: "Intermediate", value: "8 weeks — R7,500" },
-  { label: "Pro", value: "6 months — R15,000" },
-  { label: "Pricing", value: "Proposed pilot rates" },
+  ...PROGRAMMES.map((programme) => ({
+    label: programme.name,
+    value: `R${programme.price} ${programme.period} — ${programme.duration}`,
+  })),
+  { label: "Pricing", value: "Proposed pilot fees" },
 ];
 
 const PRINCIPLES = [
@@ -35,7 +37,7 @@ const PRINCIPLES = [
   },
   {
     title: "Progress you can point at",
-    body: "Every block ends with a review, so improvement is visible and the next step is obvious.",
+    body: "Beginner opens with a four-week foundation phase, and every phase ends with a performance assessment — so improvement is visible and the next step is obvious.",
   },
   {
     title: "A route into competition",
@@ -55,7 +57,7 @@ export default function AcademyProgrammesPage() {
             beginner to pro.
           </>
         }
-        lede="Structured esports programmes for Beginner, Intermediate and Pro participants — with published durations, outcomes and what is included at every stage."
+        lede="Three monthly-fee pathways — Beginner, Intermediate and Pro — with published commitments, outcomes and what is included at every stage."
         status={{ label: SITE.statusLine, tone: "soon" }}
         image={{
           src: "/images/pc-stations.jpg",
@@ -95,7 +97,7 @@ export default function AcademyProgrammesPage() {
               <SectionHeading
                 eyebrow="The Programmes"
                 title="Three stages, one progression."
-                lede="Each programme has a defined duration, a core outcome and a published pilot price. Visitors do not need to be elite to enter the ecosystem — they need a starting point."
+                lede="Each programme is sold as a monthly fee across a longer commitment, with a defined outcome at every stage. Visitors do not need to be elite to enter the ecosystem — they need a starting point."
               />
               <div className="md:pb-2">
                 <StatusBadge tone="soon">Enrolment opening soon</StatusBadge>
@@ -131,9 +133,13 @@ export default function AcademyProgrammesPage() {
                           {programme.price}
                         </span>
                         <span className="pb-1 text-[0.875rem] text-paper-400">
-                          pilot price
+                          {programme.period}
                         </span>
                       </div>
+                      <p className="mt-2 text-[0.8125rem] leading-relaxed text-paper-400">
+                        {programme.commitment} commitment · {programme.total}{" "}
+                        over the full programme · proposed pilot fee
+                      </p>
                       <p className="mt-5 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
                         Best for
                       </p>

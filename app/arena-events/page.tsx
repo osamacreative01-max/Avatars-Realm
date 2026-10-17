@@ -15,6 +15,7 @@ import {
   CHAMPIONSHIP,
   LEAGUE,
   QUARTERLY_COPY,
+  QUARTERLY_NOTE,
   QUARTERLY_TOURNAMENTS,
   TOURNAMENTS,
 } from "@/lib/content";
@@ -61,7 +62,7 @@ export default function ArenaEventsPage() {
             <SectionHeading
               eyebrow="The Arena Experience"
               title="A gaming experience centre, not a room with PCs."
-              lede="Every zone has a job: some are open to walk-ins today, others are future-ready spaces that complete the destination as the opening programme lands."
+              lede="Every zone has a job: some open with the launch programme, others are future-ready spaces that complete the destination."
             />
           </Reveal>
 
@@ -132,7 +133,7 @@ export default function ArenaEventsPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Community League"
-              title="A reason to return every week."
+              title="A reason to come back, month after month."
               lede={LEAGUE.copy}
               tone="blue"
             />
@@ -177,26 +178,26 @@ export default function ArenaEventsPage() {
                 lede={QUARTERLY_COPY}
               />
               <div className="md:pb-2">
-                <StatusBadge tone="soon">Title rotation confirmed</StatusBadge>
+                <StatusBadge tone="soon">Title rotation planned</StatusBadge>
               </div>
             </div>
           </Reveal>
 
           <div className="mt-10">
             <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {QUARTERLY_TOURNAMENTS.map((window) => (
+              {QUARTERLY_TOURNAMENTS.map((item) => (
                 <li
-                  key={window.quarter}
+                  key={item.slot}
                   className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[5rem_1fr_1.4fr] sm:items-center sm:gap-6"
                 >
                   <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
-                    {window.quarter}
+                    {item.slot}
                   </span>
                   <span className="text-[0.95rem] font-semibold text-paper-50">
-                    {window.direction}
+                    {item.direction}
                   </span>
                   <span className="text-[0.9375rem] leading-relaxed text-paper-300">
-                    {window.detail}
+                    {item.detail}
                   </span>
                 </li>
               ))}
@@ -205,9 +206,12 @@ export default function ArenaEventsPage() {
 
           <Reveal delay={120}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
-              <StatusBadge tone="neutral">Member & open divisions</StatusBadge>
+              <StatusBadge tone="neutral">
+                Member &amp; open divisions planned
+              </StatusBadge>
               Tournaments combine open divisions, member divisions, academy
               showcases, spectator experiences and future brand activations.
+              {` ${QUARTERLY_NOTE}`}
             </p>
           </Reveal>
 

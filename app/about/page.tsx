@@ -8,7 +8,7 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import { LEADERSHIP, PARTNER_LABEL, PROGRESSION, VALUES } from "@/lib/content";
+import { FULL_DAY, LEADERSHIP, PARTNER_LABEL, PROGRESSION, VALUES } from "@/lib/content";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -347,6 +347,62 @@ export default function AboutPage() {
               </Button>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------- Full day */}
+      <section className="section relative overflow-hidden">
+        <SectionDragon side="left" />
+        <div className="container-page relative">
+          <Reveal>
+            <SectionHeading
+              eyebrow="A Full Day at Avatars Realm"
+              title="Picture the whole journey."
+              lede="Book a low-cost session, stay for food and community play, attend a coaching block, earn Realm Points, follow a league table, return for a quarterly tournament — and progress from Beginner to Pro."
+            />
+          </Reveal>
+
+          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
+            {FULL_DAY.map((item, index) => (
+              <Reveal key={item.title} delay={index * 50}>
+                <div className="h-full bg-ink-900 p-7 transition-colors duration-200 hover:bg-ink-800">
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-4 min-h-[2.4rem] text-[1.05rem] font-semibold text-paper-50">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                    {item.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+
+            {/* Eighth tile keeps the four-column grid balanced and closes the
+                sequence with a conversion point. */}
+            <Reveal delay={FULL_DAY.length * 50}>
+              <div className="flex h-full flex-col justify-between bg-ink-900 p-7 transition-colors duration-200 hover:bg-ink-800">
+                <div>
+                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
+                    {String(FULL_DAY.length + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-4 min-h-[2.4rem] text-[1.05rem] font-semibold text-paper-50">
+                    Then do it again.
+                  </h3>
+                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
+                    Every visit builds on the last — hours, points, standings
+                    and progress.
+                  </p>
+                </div>
+                <div className="mt-6">
+                  <Button href="/contact/" variant="outline" size="sm">
+                    Register your interest
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 

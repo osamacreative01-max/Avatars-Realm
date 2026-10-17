@@ -13,12 +13,12 @@ import StatusBadge from "@/components/StatusBadge";
 import {
   ARENA_ZONES,
   CHAMPIONSHIP,
-  FULL_DAY,
   LEAGUE,
   MEMBERSHIPS,
   PATHWAYS,
   PROGRAMMES,
   QUARTERLY_COPY,
+  QUARTERLY_NOTE,
   QUARTERLY_TOURNAMENTS,
   TOURNAMENTS,
 } from "@/lib/content";
@@ -98,7 +98,7 @@ export default function HomePage() {
               <SectionHeading
                 eyebrow="Academy Programmes"
                 title="A clear path from beginner to pro."
-                lede="Structured programmes for every stage — you do not need to be elite to start. Each block has a duration, an outcome and a published pilot price."
+                lede="Three monthly-fee pathways for every stage — you do not need to be elite to start. Each carries a published commitment, outcome and proposed pilot fee."
               />
               <div className="md:pb-2">
                 <Button href="/academy-programmes/" variant="primary">
@@ -127,9 +127,12 @@ export default function HomePage() {
                       {programme.price}
                     </span>
                     <span className="pb-1 text-[0.875rem] text-paper-400">
-                      pilot price
+                      {programme.period}
                     </span>
                   </div>
+                  <p className="mt-2 text-[0.8125rem] leading-relaxed text-paper-400">
+                    {programme.commitment} commitment · proposed pilot fee
+                  </p>
                   <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-paper-300">
                     {programme.copy}
                   </p>
@@ -230,7 +233,7 @@ export default function HomePage() {
               <SectionHeading
                 eyebrow="Arena Experience"
                 title="A gaming experience centre, not a room with PCs."
-                lede="PC zone, academy rooms, a competition stage, a social lounge, a content corner, food and beverage and future merchandise and partner zones — one connected destination."
+                lede="Seven working zones — PC gaming, academy rooms, the competition stage and more — connected by coaching, league play and events."
               />
               <div className="md:pb-2">
                 <Button href="/arena-events/" variant="primary">
@@ -263,8 +266,8 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Community League"
-              title="A reason to come back every week."
-              lede={`${LEAGUE.copy} Seasonal or monthly league play carries leaderboards, points and finals moments.`}
+              title="A reason to come back, month after month."
+              lede={LEAGUE.copy}
             />
             <div className="mt-8">
               <Button href="/arena-events/#league" size="lg">
@@ -310,24 +313,30 @@ export default function HomePage() {
 
           <div className="mt-10">
             <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {QUARTERLY_TOURNAMENTS.map((window) => (
+              {QUARTERLY_TOURNAMENTS.map((item) => (
                 <li
-                  key={window.quarter}
+                  key={item.slot}
                   className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[5rem_1fr_1.4fr] sm:items-center sm:gap-6"
                 >
                   <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
-                    {window.quarter}
+                    {item.slot}
                   </span>
                   <span className="text-[0.95rem] font-semibold text-paper-50">
-                    {window.direction}
+                    {item.direction}
                   </span>
                   <span className="text-[0.9375rem] leading-relaxed text-paper-300">
-                    {window.detail}
+                    {item.detail}
                   </span>
                 </li>
               ))}
             </ul>
           </div>
+
+          <Reveal delay={100}>
+            <p className="mt-6 text-[0.875rem] leading-relaxed text-paper-400">
+              {QUARTERLY_NOTE}
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -386,64 +395,6 @@ export default function HomePage() {
               </Link>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* -------------------------------------------------------- Full day */}
-      <section className="section relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
-        <GridBackdrop className="opacity-40" />
-        <SectionDragon side="left" />
-        <div className="container-page relative">
-          <Reveal>
-            <SectionHeading
-              eyebrow="A Full Day at Avatars Realm"
-              title="Picture the whole journey."
-              lede="Book a low-cost session, stay for food and community play, attend a coaching block, earn Realm Points, follow a league table, return for a quarterly tournament — and progress from Beginner to Pro."
-              tone="blue"
-            />
-          </Reveal>
-
-          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
-            {FULL_DAY.map((item, index) => (
-              <Reveal key={item.title} delay={index * 50}>
-                <div className="h-full bg-navy-950 p-7 transition-colors duration-200 hover:bg-navy-900">
-                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 min-h-[2.4rem] text-[1.05rem] font-semibold text-paper-50">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
-                    {item.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-
-            {/* Eighth tile keeps the four-column grid balanced and closes the
-                sequence with a conversion point. */}
-            <Reveal delay={FULL_DAY.length * 50}>
-              <div className="flex h-full flex-col justify-between bg-navy-950 p-7 transition-colors duration-200 hover:bg-navy-900">
-                <div>
-                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
-                    {String(FULL_DAY.length + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 min-h-[2.4rem] text-[1.05rem] font-semibold text-paper-50">
-                    Then do it again.
-                  </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper-300">
-                    Every visit builds on the last — hours, points, standings
-                    and progress.
-                  </p>
-                </div>
-                <div className="mt-6">
-                  <Link href="/contact/" className="arrow-link">
-                    Register your interest <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
-          </div>
         </div>
       </section>
 

@@ -7,7 +7,7 @@ import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/componen
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import { CHAMPIONSHIP, QUARTERLY_TOURNAMENTS, TOURNAMENT_JOURNEY, TOURNAMENTS } from "@/lib/content";
+import { CHAMPIONSHIP, QUARTERLY_NOTE, QUARTERLY_TOURNAMENTS, TOURNAMENT_JOURNEY, TOURNAMENTS } from "@/lib/content";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 
 const DETAILS = [
   { label: "Titles", value: "Five titles, three platforms" },
-  { label: "Format", value: "Open and member divisions" },
-  { label: "Programme", value: "Part of the quarterly event rhythm" },
+  { label: "Format", value: "Planned two-day event" },
+  { label: "Divisions", value: "Planned open & member divisions" },
   { label: "Registration", value: "To be announced" },
 ];
 
@@ -140,7 +140,7 @@ export default function ChampionshipPage() {
                 lede="Console, PC and mobile competition inside a single championship programme — each title with its own angle, bracket and running order."
               />
               <div className="md:pb-2">
-                <StatusBadge tone="soon">Final line-up confirmed at launch</StatusBadge>
+                <StatusBadge tone="soon">Final line-up planned at launch</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -199,7 +199,7 @@ export default function ChampionshipPage() {
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
               <StatusBadge tone="soon">Dates to be announced</StatusBadge>
-              <StatusBadge tone="neutral">Open & member divisions</StatusBadge>
+              <StatusBadge tone="neutral">Open &amp; member divisions planned</StatusBadge>
             </div>
           </Reveal>
 
@@ -231,11 +231,13 @@ export default function ChampionshipPage() {
               eyebrow="How It Fits"
               title="Flagship, not the whole story."
               tone="blue"
-              lede="The championship works because it sits inside a living ecosystem — academy progression, lounge play, Realm Points and weekly league windows feed the field every quarter."
+              lede="The championship works because it sits inside a living ecosystem — academy progression, lounge play, Realm Points and monthly league windows feed the field across the season."
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
               <StatusBadge tone="soon">Two-day format planned</StatusBadge>
-              <StatusBadge tone="neutral">Member & open divisions</StatusBadge>
+              <StatusBadge tone="neutral">
+                Member &amp; open divisions planned
+              </StatusBadge>
             </div>
           </Reveal>
 
@@ -269,30 +271,36 @@ export default function ChampionshipPage() {
             <SectionHeading
               eyebrow="The Wider Rhythm"
               title="Four tournament windows around it."
-              lede="The championship anchors a calendar of quarterly headline tournaments, so members always have the next moment to train toward."
+              lede="The championship anchors a wider calendar of four quarterly headline tournaments, so members always have the next moment to train toward."
             />
           </Reveal>
 
           <div className="mt-10">
             <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {QUARTERLY_TOURNAMENTS.map((window) => (
+              {QUARTERLY_TOURNAMENTS.map((item) => (
                 <li
-                  key={window.quarter}
+                  key={item.slot}
                   className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[5rem_1fr_1.4fr] sm:items-center sm:gap-6"
                 >
                   <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
-                    {window.quarter}
+                    {item.slot}
                   </span>
                   <span className="text-[0.95rem] font-semibold text-paper-50">
-                    {window.direction}
+                    {item.direction}
                   </span>
                   <span className="text-[0.9375rem] leading-relaxed text-paper-300">
-                    {window.detail}
+                    {item.detail}
                   </span>
                 </li>
               ))}
             </ul>
           </div>
+
+          <Reveal delay={100}>
+            <p className="mt-6 text-[0.875rem] leading-relaxed text-paper-400">
+              {QUARTERLY_NOTE}
+            </p>
+          </Reveal>
         </div>
       </section>
 

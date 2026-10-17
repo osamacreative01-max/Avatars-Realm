@@ -27,7 +27,9 @@ export const UPCOMING: Status = { label: "Upcoming", tone: "soon" };
 
 export const SEASONAL: Status = { label: "Seasonal", tone: "soon" };
 
-export const ONGOING: Status = { label: "Runs Weekly", tone: "neutral" };
+export const MONTHLY: Status = { label: "Monthly", tone: "soon" };
+
+export const ONGOING: Status = { label: "Ongoing", tone: "neutral" };
 
 /* --------------------------------------------------------------------------
    The four pathways — Learn, Play, Compete, Progress (brief §3 and §5).
@@ -72,55 +74,69 @@ export const PATHWAYS = [
    Academy programmes (brief §6).
    -------------------------------------------------------------------------- */
 
+/**
+ * Academy programmes are sold on a monthly fee over a longer commitment —
+ * never on a large total price. `price` is always the monthly fee, and the
+ * full programme total is kept as supporting information only.
+ */
 export const PROGRAMMES = [
   {
     id: "beginner",
     name: "Beginner",
-    headline: "Start with the fundamentals",
-    copy: "Build the habits that make improvement possible: setup, communication, decision-making, practice structure and confidence. No previous competitive experience is required.",
+    headline: "A three-month foundation pathway",
+    copy: "A three-month foundation pathway for new and developing players. The first four weeks establish the fundamentals, and further performance assessments then determine progression, support requirements and readiness for Intermediate-level training.",
     bestFor: "New players, casual players and learners building fundamentals.",
-    duration: "4 weeks",
-    price: "3,500",
+    duration: "3 months",
+    commitment: "three-month",
+    period: "per month",
+    price: "1,500",
+    total: "R4,500",
     includes: [
-      "Foundations and game settings",
-      "Safe practice habits",
+      "A four-week foundation phase",
+      "Foundations, game settings and safe practice habits",
       "Teamwork and communication basics",
-      "Introductory coaching",
-      "A progress review at the end of the block",
+      "Regular introductory coaching and feedback",
+      "Performance assessments that guide the next step",
     ],
   },
   {
     id: "intermediate",
     name: "Intermediate",
-    headline: "Turn practice into performance",
-    copy: "Move beyond casual play with structured sessions, match review, role development and preparation for league competition.",
+    headline: "A six-month development pathway",
+    copy: "A six-month development pathway for players ready to turn practice into reliable match performance and prepare for league competition.",
     bestFor:
       "Players ready for structured improvement and regular competitive preparation.",
-    duration: "8 weeks",
-    price: "7,500",
+    duration: "6 months",
+    commitment: "six-month",
+    period: "per month",
+    price: "2,200",
+    total: "R13,200",
     includes: [
-      "Advanced mechanics",
-      "Review sessions",
-      "Role development",
-      "Team communication",
-      "Match preparation and league readiness",
+      "Advanced mechanics and match review",
+      "Role development and team communication",
+      "Structured, intensive development sessions",
+      "Preparation for league participation",
+      "Regular performance assessments",
     ],
   },
   {
     id: "pro",
     name: "Pro",
-    headline: "Train for the next level",
-    copy: "A deeper performance pathway for players who want a disciplined training rhythm, higher-level feedback and exposure to organised competition.",
+    headline: "A twelve-month performance pathway",
+    copy: "A twelve-month performance pathway for committed players seeking disciplined training, advanced review and sustained competition preparation.",
     bestFor:
       "High-commitment players targeting advanced competition and a performance pathway.",
-    duration: "6 months",
-    price: "15,000",
+    duration: "12 months",
+    commitment: "twelve-month",
+    period: "per month",
+    price: "1,800",
+    total: "R21,600",
     includes: [
-      "High-performance schedule",
+      "Disciplined high-performance schedule",
       "Advanced coaching and individual review",
-      "Performance tracking when available",
-      "League and tournament preparation",
-      "Pathway assessment",
+      "Ongoing performance assessments",
+      "Organised competition preparation",
+      "Pathway assessment at the end of the year",
     ],
   },
 ] as const;
@@ -257,13 +273,15 @@ export const MEMBERSHIPS = [
 export const REALM_POINTS = {
   headline: "Play more, progress further.",
   copy: "Every visit can contribute to your Realm Points balance, league journey and access to member benefits.",
+  status:
+    "Realm Points / XP is a proposed loyalty and participation system. Earning and redemption rules remain proposed until they are finalised.",
   rules: [
     "Every paid gaming hour generates Realm Points or XP.",
     "Membership tiers apply different earning multipliers — for example 1.0×, 1.25× and 1.5×.",
-    "Extra points are earned for coaching, league matches, quarterly tournaments, community sessions and approved learning activities.",
-    "Points unlock booking priority, guest passes, drinks and snack discounts, merchandise discounts, coaching credits, tournament discounts, badges and end-of-season recognition.",
+    "Extra points are earned for coaching sessions, league matches, quarterly tournaments, community sessions and approved learning activities.",
+    "Points may be redeemed for booking priority, guest passes, food and drink discounts, merchandise discounts, coaching credits, tournament discounts, badges and end-of-season recognition.",
     "Points never create an in-game competitive advantage — they reward loyalty, development and participation outside the match itself.",
-    "Manufacturer and production-company benefits can be added later through negotiated partnerships.",
+    "Manufacturer and production-company benefits are future or partner-enabled features, not confirmed benefits.",
   ],
 } as const;
 
@@ -328,9 +346,10 @@ export const ARENA_ZONES = [
    -------------------------------------------------------------------------- */
 
 export const LEAGUE = {
-  copy: "League play gives members a reason to return every week. Players accumulate results across a season, build rivalries, earn Realm Points and work toward finals or showcase matches.",
+  copy: "League play gives members a recurring reason to return. Players accumulate results across a season, build rivalries, earn Realm Points and work toward finals or showcase matches.",
+  frequency: "Monthly league windows across a season.",
   structure: [
-    "Monthly or seasonal league windows, depending on capacity.",
+    "Monthly league windows across a season, published in advance.",
     "Separate divisions for Social, Competitive and Pro participants.",
     "A published match rhythm with clear rules and standings.",
     "Points for participation, match results, sportsmanship and verified development activity.",
@@ -339,34 +358,44 @@ export const LEAGUE = {
   ],
 } as const;
 
+/**
+ * The four headline tournament windows. They are labelled by sequence, not by
+ * a fixed calendar quarter — the opening programme has not been published, so a
+ * hard-coded 2026 quarter plan would already be out of date.
+ */
 export const QUARTERLY_TOURNAMENTS = [
   {
-    quarter: "Q1",
+    slot: "Window 1",
     direction: "Open community launch tournament",
     detail: "EA Sports FC 25 and mobile showcase.",
   },
   {
-    quarter: "Q2",
+    slot: "Window 2",
     direction: "Team competition",
     detail: "Valorant or Call of Duty BO6.",
   },
   {
-    quarter: "Q3",
+    slot: "Window 3",
     direction: "Mobile and grassroots tournament",
     detail: "PUBG Mobile and Free Fire MAX.",
   },
   {
-    quarter: "Q4",
+    slot: "Window 4",
     direction: "Year-end championship finals",
     detail: "Multi-title Arena showcase.",
   },
 ] as const;
 
 export const QUARTERLY_COPY =
-  "Every quarter, Avatars Realm stages a headline tournament that gives the community a major moment to train toward — combining open divisions, member divisions, academy showcases, spectator experiences, food and beverage, merchandise and future brand activations.";
+  "Across a season, Avatars Realm stages four headline tournaments that give the community a major moment to train toward — combining open divisions, member divisions, academy showcases, spectator experiences, food and beverage, merchandise and future brand activations.";
+
+/** Publishing caveat shown beside the tournament windows. */
+export const QUARTERLY_NOTE =
+  "Exact dates, capacity and the final game schedule are confirmed with the opening programme.";
 
 /* --------------------------------------------------------------------------
-   The full-day picture (brief §16).
+   A full day at the venue — the journey told as one visit (brief §16).
+   Kept on the About page only, so the homepage stays short.
    -------------------------------------------------------------------------- */
 
 export const FULL_DAY = [
@@ -388,7 +417,7 @@ export const FULL_DAY = [
   },
   {
     title: "Follow the league table",
-    body: "Standings, rivalries and finals moments across the season.",
+    body: "Monthly league windows, standings and rivalries across the season.",
   },
   {
     title: "Return for a quarterly tournament",
@@ -408,8 +437,8 @@ export const ARENA_EVENTS = [
   {
     title: "Community League",
     description:
-      "Seasonal or monthly league windows with divisions, standings and Realm Points — the recurring reason to come back.",
-    status: SEASONAL,
+      "Monthly league windows with divisions, standings and Realm Points — the recurring reason to come back.",
+    status: MONTHLY,
     href: "/arena-events/#league",
     image: "/images/team-play.jpg",
     alt: "Esports team playing together at their stations",
@@ -498,7 +527,7 @@ export const TOURNAMENT_JOURNEY = [
   },
   {
     step: "Qualify & compete",
-    body: "Open and member divisions play across the five titles, with brackets and running order published ahead of the event.",
+    body: "Planned open and member divisions play across the five titles, with brackets and running order published ahead of the event.",
   },
   {
     step: "Finals in the Arena",
@@ -551,6 +580,11 @@ export const PRICING_FAQ = [
       "No. The gaming lounge is the easiest way in — walk in at the published hourly rates or buy a prepaid gaming pack. Memberships add gaming hours, coaching, booking priority and Realm Points.",
   },
   {
+    question: "How is a programme paid for?",
+    answer:
+      "Monthly. Each programme is billed as a monthly fee across its commitment period — Beginner is R1,500 per month over three months, Intermediate is R2,200 per month over six months and Pro is R1,800 per month over twelve months. Every fee remains proposed pilot pricing until confirmed.",
+  },
+  {
     question: "Are these final prices?",
     answer:
       "No. Every price on this site is proposed pilot pricing. Final rates are confirmed against station capacity, operating costs and the opening programme before enrolment opens.",
@@ -558,12 +592,12 @@ export const PRICING_FAQ = [
   {
     question: "What are Realm Points?",
     answer:
-      "Realm Points are earned through paid gaming hours, coaching, league matches and tournaments. Membership tiers multiply what you earn, and points unlock booking priority, discounts, guest passes and recognition — never an in-game advantage.",
+      "Realm Points are a proposed loyalty and participation system, earned through paid gaming hours, coaching, league matches and tournaments. Membership tiers would multiply what you earn, and points would unlock booking priority, discounts, guest passes and recognition — never an in-game advantage. The earning and redemption rules remain proposed until finalised.",
   },
   {
     question: "Which programme is right for me?",
     answer:
-      "Most people start with the Beginner programme, whatever their experience. The team will place you after an introductory conversation, and you can move up as your review points improve.",
+      "Most people start with the Beginner programme, whatever their experience. The first four weeks establish fundamentals, and performance assessments then guide progression. The team will place you after an introductory conversation, and you can move up as your review points improve.",
   },
   {
     question: "Is equipment included?",
@@ -573,7 +607,7 @@ export const PRICING_FAQ = [
   {
     question: "When do leagues and tournaments start?",
     answer:
-      "League windows and the four quarterly tournament windows are announced with the opening programme. Members get priority placement and discounted tournament entry.",
+      "Monthly league windows and the four quarterly tournament windows are announced with the opening programme. Members get priority placement and discounted tournament entry.",
   },
   {
     question: "How do I secure a place?",

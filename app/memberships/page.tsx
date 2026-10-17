@@ -44,7 +44,7 @@ const LOUNGE_BENEFITS = [
   },
   {
     title: "Booking rules",
-    body: "Members book pods ahead of time; walk-ins and packs are served subject to station capacity. Final booking rules are published with the launch programme.",
+    body: "Once the lounge opens, members book pods ahead of time and walk-ins are served subject to station capacity. Final booking rules are published with the opening programme.",
   },
   {
     title: "Food, drinks & consumables",
@@ -352,6 +352,12 @@ export default function MembershipsPage() {
               title={REALM_POINTS.headline}
               lede={REALM_POINTS.copy}
             />
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <StatusBadge tone="neutral">Proposed rewards system</StatusBadge>
+              <span className="text-[0.875rem] leading-relaxed text-paper-400">
+                {REALM_POINTS.status}
+              </span>
+            </div>
             <ul className="mt-8 max-w-2xl space-y-4">
               {REALM_POINTS.rules.map((line) => (
                 <li key={line} className="flex gap-4">
