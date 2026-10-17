@@ -222,7 +222,7 @@
 :root {
   --page-gutter: 1.25rem;
   /* Single width shared by the header, footer and every page section. */
-  --container-max: 64rem;
+  --container-max: 75rem;
   /* Brief D: 56px mobile / 96px desktop between sections. */
   --section-y: 3.5rem;
   --header-h: 5.5rem;
