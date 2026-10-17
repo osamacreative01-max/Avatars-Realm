@@ -24,3 +24,6 @@ yarn-error.log*
 # oversized unused stock photos (kept local only)
 public/images/low-angle-man-playing-videogame.jpg
 public/images/smiley-man-fist-bumping-with-colleague.jpg
+
+# client review material (kept local only, not site source)
+*.pdf

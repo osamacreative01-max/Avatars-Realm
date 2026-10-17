@@ -243,7 +243,8 @@
 
 /* One container width everywhere (brief D): content is capped at 1200px and
    centred, with the gutters below keeping it off the physical screen edges.
-   Reading length inside blocks is still capped per block with `.measure`. */
+   Header and footer keep the full width - see `.container-page`. Reading
+   length inside blocks is still capped per block with `.measure`. */
 @media (min-width: 1400px) {
   :root {
     --page-gutter: 3rem;
@@ -335,6 +336,14 @@ button {
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: var(--page-gutter);
+}
+
+/* Header and footer are chrome, not content: they stay edge-to-edge so the
+   full nav, logo and CTA fit on one line. Everything between them is capped
+   at the 1200px container above. */
+header .container-page,
+footer .container-page {
+  max-width: none;
 }
 
 .section {
