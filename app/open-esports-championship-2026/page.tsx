@@ -270,8 +270,8 @@ export default function ChampionshipPage() {
           <Reveal>
             <SectionHeading
               eyebrow="The Wider Rhythm"
-              title="Four tournament windows around it."
-              lede="The championship anchors a wider calendar of four quarterly headline tournaments, so members always have the next moment to train toward."
+              title="Four tournament windows across the season."
+              lede="The championship is the fourth and final window — the season-closing moment the earlier three build toward."
             />
           </Reveal>
 

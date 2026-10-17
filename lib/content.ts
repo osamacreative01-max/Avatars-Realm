@@ -359,7 +359,7 @@ export const LEAGUE = {
     "A published match rhythm with clear rules and standings.",
     "Points for participation, match results, sportsmanship and verified development activity.",
     "Season finals or a showcase event in the Arena.",
-    "Title rotation across EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX.",
+    "Title rotation across a planned line-up of EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX.",
   ],
 } as const;
 
@@ -367,6 +367,9 @@ export const LEAGUE = {
  * The four headline tournament windows. They are labelled by sequence, not by
  * a fixed calendar quarter — the opening programme has not been published, so a
  * hard-coded 2026 quarter plan would already be out of date.
+ *
+ * Window 4 IS the Open Esports Championship 2026 — it is the season-closing
+ * window, not a second year-end event.
  */
 export const QUARTERLY_TOURNAMENTS = [
   {
@@ -386,8 +389,9 @@ export const QUARTERLY_TOURNAMENTS = [
   },
   {
     slot: "Window 4",
-    direction: "Year-end championship finals",
-    detail: "Multi-title Arena showcase.",
+    direction: "Season finals — the Open Esports Championship",
+    detail:
+      "The flagship championship closes the season on the Arena stage. See the championship page for titles, divisions and format.",
   },
 ] as const;
 
@@ -396,7 +400,7 @@ export const QUARTERLY_COPY =
 
 /** Publishing caveat shown beside the tournament windows. */
 export const QUARTERLY_NOTE =
-  "Exact dates, capacity and the final game schedule are confirmed with the opening programme.";
+  "Exact dates, capacity and the final game schedule are still to be confirmed, and are published with the opening programme.";
 
 /* --------------------------------------------------------------------------
    A full day at the venue — the journey told as one visit (brief §16).
