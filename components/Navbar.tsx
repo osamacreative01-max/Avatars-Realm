@@ -71,18 +71,19 @@ export default function Navbar() {
           : "border-b border-transparent bg-gradient-to-b from-ink-950/85 to-transparent"
       }`}
     >
-      {/* min-w-0 on the logo link lets its grid column shrink instead of
-         forcing the 1fr track to overflow; the nav has no min-width so it
-         is the only thing that reflows when the box gets tight. */}
-      <div className="container-page grid h-[var(--header-h)] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:gap-6">
+      {/* Header is full-bleed like the body content: no centred max-width,
+         so wide monitors show no empty side margins. min-w-0 on the logo
+         lets its column shrink, and the nav keeps its intrinsic width so
+         items never wrap or overlap — the CTA is pushed to the right edge. */}
+      <div className="container-page flex h-[var(--header-h)] items-center gap-4">
         <Link href="/" aria-label="Avatars Realm — home" className="min-w-0">
           <Logo priority />
         </Link>
 
-        {/* Desktop navigation — centred between logo and CTA */}
+        {/* Desktop navigation — sits next to the logo, CTA pushed right */}
         <nav
           aria-label="Primary"
-          className="hidden items-center gap-5 justify-self-center xl:flex 2xl:gap-6"
+          className="hidden items-center gap-5 xl:flex 2xl:gap-6"
         >
           {NAV.map((item) => (
             <Link
@@ -96,14 +97,15 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden xl:block xl:justify-self-end">
+        {/* ml-auto pushes this to the right edge of the flex row */}
+        <div className="ml-auto hidden xl:block">
           <Button href={ctaHref}>{ctaLabel}</Button>
         </div>
 
         {/* Mobile trigger */}
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded border border-white/15 text-paper-50 transition-colors hover:border-flame-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flame-500 xl:hidden"
+          className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded border border-white/15 text-paper-50 transition-colors hover:border-flame-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flame-500 xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
