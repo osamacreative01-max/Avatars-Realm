@@ -85,6 +85,11 @@ export default function Navbar() {
           <Logo priority />
         </Link>
 
+        {/* Equal flex spacers on both sides centre the nav between the logo
+             and the CTA instead of letting it hug the logo, so the gap reads
+             the same on the left and the right at any desktop width. */}
+        <div className="hidden flex-1 xl:block" />
+
         {/* Desktop navigation — sits next to the logo, CTA pushed right */}
         <nav
           aria-label="Primary"
@@ -102,7 +107,10 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* ml-auto pushes this to the right edge of the flex row */}
+        <div className="hidden flex-1 xl:block" />
+
+        {/* ml-auto pushes this to the right edge of the flex row on mobile;
+             on desktop the flex-1 spacers already centre the nav. */}
         <div className="ml-auto hidden xl:block">
           <Button href={ctaHref} size="sm">{ctaLabel}</Button>
         </div>
