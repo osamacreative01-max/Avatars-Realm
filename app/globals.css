@@ -221,6 +221,8 @@
 
 :root {
   --page-gutter: 1.25rem;
+  /* Single width shared by the header, footer and every page section. */
+  --container-max: 64rem;
   /* Brief D: 56px mobile / 96px desktop between sections. */
   --section-y: 3.5rem;
   --header-h: 5.5rem;
@@ -329,21 +331,15 @@ button {
    Layout primitives
    -------------------------------------------------------------------------- */
 
-/* Full-bleed: no max-width. The layout uses the whole viewport and only
-   stops at `--page-gutter`, so wide monitors show no empty side margins. */
+/* One container width everywhere (brief D). Header, footer and page content
+   all share this exact box, so the left edge of the logo, the left edge of
+   every heading and the left edge of the footer sit on the same line — and
+   the right margin mirrors the left one, on any monitor. */
 .container-page {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: var(--page-gutter);
-}
-
-/* Header and footer are chrome, not content: they stay edge-to-edge so the
-   full nav, logo and CTA fit on one line. Everything between them is capped
-   at the 1200px container above. */
-header .container-page,
-footer .container-page {
-  max-width: none;
 }
 
 .section {
