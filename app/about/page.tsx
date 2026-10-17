@@ -161,7 +161,7 @@ export default function AboutPage() {
       </section>
 
       {/* --------------------------------------------------------- Pathway */}
-      <section className="section relative overflow-hidden">
+      <section id="pathway" className="section relative overflow-hidden">
         <SectionDragon side="left" />
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal>
@@ -215,13 +215,15 @@ export default function AboutPage() {
                   <div className="flex items-start gap-4">
                     <span
                       aria-hidden="true"
-                      className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded border border-flame-600/40 bg-flame-600/10 text-[0.8rem] font-semibold text-flame-400"
+                      className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded border border-white/15 bg-white/[0.04] text-[0.65rem] font-semibold tracking-[0.06em] text-paper-400"
                     >
-                      {(person.name ?? person.role)
-                        .split(" ")
-                        .map((word) => word[0])
-                        .slice(0, 2)
-                        .join("")}
+                      {person.name
+                        ? person.name
+                            .split(" ")
+                            .map((word) => word[0])
+                            .slice(0, 2)
+                            .join("")
+                        : "TBA"}
                     </span>
                     <div>
                       <h3 className="text-[1rem] font-semibold text-paper-50">

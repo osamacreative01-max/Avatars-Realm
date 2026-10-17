@@ -8,7 +8,7 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import { PARTNER_LABEL, PROGRAMMES, PROGRESSION } from "@/lib/content";
+import { PARTNER_LABEL, PROGRAMMES } from "@/lib/content";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -195,7 +195,7 @@ export default function AcademyProgrammesPage() {
         <GridBackdrop className="opacity-40" />
         <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem]" />
 
-        <div className="container-page relative">
+        <div className="container-page relative grid items-center gap-8 lg:grid-cols-[1.3fr_0.7fr]">
           <Reveal>
             <SectionHeading
               eyebrow="Progression"
@@ -205,23 +205,11 @@ export default function AcademyProgrammesPage() {
             />
           </Reveal>
 
-          <div className="mt-10">
-            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {PROGRESSION.map((step) => (
-                <li
-                  key={step.step}
-                  className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[9rem_1fr] sm:items-center sm:gap-6"
-                >
-                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
-                    {step.step}
-                  </span>
-                  <span className="text-[0.9375rem] leading-relaxed text-paper-300">
-                    {step.body}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Reveal delay={90} className="lg:justify-self-end">
+            <Button href="/about/#pathway" variant="outline">
+              See the full Start → Belong journey
+            </Button>
+          </Reveal>
         </div>
       </section>
 

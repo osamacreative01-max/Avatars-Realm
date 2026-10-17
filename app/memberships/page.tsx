@@ -27,12 +27,8 @@ const PROMISES = [
 /** Secondary spend that makes the lounge work as a destination. */
 const LOUNGE_BENEFITS = [
   {
-    title: "Longer visits",
-    body: "Affordable hourly rates and prepaid packs make it easy to stay — the goal is dwell time, not the price of a single hour.",
-  },
-  {
-    title: "Food & beverage",
-    body: "Affordable refreshments on the floor, with member pricing on selected items.",
+    title: "Food, drink & consumables",
+    body: "Affordable snacks, drinks and consumables on the floor, with member pricing on selected items — the goal is dwell time, not the price of a single visit.",
   },
   {
     title: "Coaching & upgrades",
@@ -45,10 +41,6 @@ const LOUNGE_BENEFITS = [
   {
     title: "Booking rules",
     body: "Once the lounge opens, members book pods ahead of time and walk-ins are served subject to station capacity. Final booking rules are published with the opening programme.",
-  },
-  {
-    title: "Food, drinks & consumables",
-    body: "Snacks, drinks and consumables are available on the floor, with member pricing on selected items.",
   },
 ];
 
@@ -194,12 +186,7 @@ export default function MembershipsPage() {
                   }`}
                 >
                   <div className="flex items-start justify-between gap-4 lg:min-h-[6rem]">
-                    <div>
-                      <h3 className="display-3">{tier.name}</h3>
-                      <p className="mt-2 text-[0.875rem] text-paper-400">
-                        {tier.included}
-                      </p>
-                    </div>
+                    <h3 className="display-3">{tier.name}</h3>
                     {tier.featured ? (
                       <span className="flex-none">
                         <StatusBadge tone="live">Most popular</StatusBadge>
@@ -275,7 +262,7 @@ export default function MembershipsPage() {
                 <div>
                   <div className="flex flex-wrap items-center gap-3">
                     <h3 className="display-3">{institution.name}</h3>
-                    <StatusBadge tone="neutral">{institution.period}</StatusBadge>
+                    <StatusBadge tone="neutral">Groups &amp; schools</StatusBadge>
                   </div>
                   <div className="mt-5 flex items-end gap-2">
                     <span className="text-[1rem] font-semibold text-flame-400">

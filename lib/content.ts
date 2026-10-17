@@ -211,7 +211,6 @@ export const MEMBERSHIPS = [
     name: "Social Pass",
     price: "399",
     period: "per month",
-    included: "8 off-peak gaming hours",
     featured: false,
     note: null,
     includes: [
@@ -226,7 +225,6 @@ export const MEMBERSHIPS = [
     name: "Competitive Pass",
     price: "899",
     period: "per month",
-    included: "24 gaming hours",
     featured: true,
     note: null,
     includes: [
@@ -242,7 +240,6 @@ export const MEMBERSHIPS = [
     name: "Pro Pathway",
     price: "1,999",
     period: "per month",
-    included: "50 gaming hours",
     featured: false,
     includes: [
       "50 gaming hours, or an approved off-peak model",
@@ -258,7 +255,6 @@ export const MEMBERSHIPS = [
     name: "Institution / School",
     price: "12,500",
     period: "per term",
-    included: "Up to 20 learners",
     featured: false,
     note: null,
     includes: [

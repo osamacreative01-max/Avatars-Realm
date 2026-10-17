@@ -53,25 +53,27 @@ export default function AppLoader() {
       <noscript>
         <style>{`#route-loader{display:none!important}`}</style>
       </noscript>
-      <div
-        id="route-loader"
-        role="status"
-        aria-live="polite"
-        aria-label="Loading"
-        className={`fixed inset-0 z-[120] flex flex-col items-center justify-center overflow-hidden bg-ink-950 transition-[opacity,visibility] duration-500 ${
-          visible ? "visible opacity-100" : "invisible opacity-0"
-        }`}
-      >
-        <GridBackdrop className="opacity-50" />
-        <DragonLoader className="relative" />
+        {/* Unmounted once hidden so the "Loading" text leaves the DOM and the
+            accessibility tree instead of lingering at the end of every page. */}
+        {visible ? (
+          <div
+            id="route-loader"
+            role="status"
+            aria-live="polite"
+            aria-label="Loading"
+            className="fixed inset-0 z-[120] flex flex-col items-center justify-center overflow-hidden bg-ink-950 transition-[opacity,visibility] duration-500 visible opacity-100"
+          >
+            <GridBackdrop className="opacity-50" />
+            <DragonLoader className="relative" />
 
-        <p className="relative mt-10 text-[0.7rem] font-semibold tracking-[0.42em] text-paper-400 uppercase">
-          Loading
-        </p>
-        <div className="relative mt-4 h-px w-44 overflow-hidden bg-white/10">
-          <div className="loader-bar h-full w-1/2 bg-gradient-to-r from-transparent via-flame-500 to-transparent" />
-        </div>
-      </div>
+            <p className="relative mt-10 text-[0.7rem] font-semibold tracking-[0.42em] text-paper-400 uppercase">
+              Loading
+            </p>
+            <div className="relative mt-4 h-px w-44 overflow-hidden bg-white/10">
+              <div className="loader-bar h-full w-1/2 bg-gradient-to-r from-transparent via-flame-500 to-transparent" />
+            </div>
+          </div>
+        ) : null}
     </>
   );
 }
