@@ -48,7 +48,7 @@ export default function Navbar() {
   const ctaLabel = onAcademy ? "Register Interest" : "View Programmes";
 
   const linkClass = (href: string) =>
-    `group relative py-2 text-[0.875rem] font-medium tracking-[0.01em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flame-500 2xl:text-[0.9375rem] ${
+    `group relative py-2 text-[0.875rem] font-medium tracking-[0.01em] whitespace-nowrap transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flame-500 ${
       current === href
         ? "text-paper-50"
         : "text-paper-300 hover:text-paper-50"
@@ -83,7 +83,7 @@ export default function Navbar() {
         {/* Desktop navigation — sits next to the logo, CTA pushed right */}
         <nav
           aria-label="Primary"
-          className="hidden items-center gap-5 xl:flex 2xl:gap-6"
+          className="hidden shrink-0 items-center gap-4 whitespace-nowrap xl:flex 2xl:gap-6"
         >
           {NAV.map((item) => (
             <Link
@@ -99,7 +99,7 @@ export default function Navbar() {
 
         {/* ml-auto pushes this to the right edge of the flex row */}
         <div className="ml-auto hidden xl:block">
-          <Button href={ctaHref}>{ctaLabel}</Button>
+          <Button href={ctaHref} size="sm">{ctaLabel}</Button>
         </div>
 
         {/* Mobile trigger */}
