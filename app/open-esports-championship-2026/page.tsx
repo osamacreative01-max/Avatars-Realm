@@ -299,7 +299,7 @@ export default function ChampionshipPage() {
             <SectionHeading
               eyebrow="Tournament Atmosphere"
               title="Competition people can feel."
-              lede="Reference photography from competitive gaming environments of the kind the championship is built around — stage, setup and crowd format."
+              lede="The atmosphere the championship is built around — arena seating, focused competition and the crowd format the venue is designed to host."
               tone="blue"
             />
           </Reveal>
@@ -311,12 +311,12 @@ export default function ChampionshipPage() {
                 alt: "Pro teams competing on a stadium stage",
               },
               {
-                src: "/images/keyarena_seattle.jpg",
-                alt: "Packed arena watching a final on the big screen",
+                src: "/images/arena-chairs.jpg",
+                alt: "Rows of empty arena seating facing a competition stage",
               },
               {
-                src: "/images/copper_box_arena.jpg",
-                alt: "Arena crowd around a lit competition stage",
+                src: "/images/duo-competition.jpg",
+                alt: "Two players focused side by side during a competitive match",
               },
               {
                 src: "/images/2-male-gamers-high-fiving.jpg",

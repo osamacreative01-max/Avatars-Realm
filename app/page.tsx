@@ -139,8 +139,8 @@ export default function HomePage() {
       {/* ------------------------------------------------------ Championship */}
       <section className="relative isolate overflow-hidden border-y border-white/[0.07]">
         <Image
-          src="/images/sse_arena_wembley.jpg"
-          alt="A packed arena crowd under red and blue stage lights"
+          src="/images/event-crowd.jpg"
+          alt="Players competing on a tournament stage in front of a live audience"
           fill
           sizes="100vw"
           className="object-cover opacity-35"
