@@ -9,6 +9,7 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
+import TournamentTimeline from "@/components/TournamentTimeline";
 import {
   ARENA_EVENTS,
   ARENA_ZONES,
@@ -16,7 +17,6 @@ import {
   LEAGUE,
   QUARTERLY_COPY,
   QUARTERLY_NOTE,
-  QUARTERLY_TOURNAMENTS,
   TOURNAMENTS,
 } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
@@ -85,6 +85,13 @@ export default function ArenaEventsPage() {
                       aria-hidden="true"
                       className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-transparent"
                     />
+                    <div className="absolute top-3.5 left-3.5">
+                      <StatusBadge
+                        tone={zone.status === "Future" ? "soon" : "neutral"}
+                      >
+                        {zone.status}
+                      </StatusBadge>
+                    </div>
                   </div>
                   <div className="flex flex-1 flex-col p-5 sm:p-6">
                     <h3 className="display-3">{zone.title}</h3>
@@ -186,26 +193,7 @@ export default function ArenaEventsPage() {
             </div>
           </Reveal>
 
-          <div className="mt-10">
-            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {QUARTERLY_TOURNAMENTS.map((item) => (
-                <li
-                  key={item.slot}
-                  className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[5rem_1fr_1.4fr] sm:items-center sm:gap-6"
-                >
-                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
-                    {item.slot}
-                  </span>
-                  <span className="text-[0.95rem] font-semibold text-paper-50">
-                    {item.direction}
-                  </span>
-                  <span className="text-[1rem] leading-relaxed text-paper-300">
-                    {item.detail}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <TournamentTimeline />
 
           <Reveal delay={120}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">

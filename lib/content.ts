@@ -286,6 +286,7 @@ export const REALM_POINTS = {
 export const ARENA_ZONES = [
   {
     title: "PC Gaming Zone",
+    status: "Open at launch",
     description:
       "Competitive-spec stations for casual play, structured practice, scrimmages and league matches.",
     image: "/images/pc-stations.jpg",
@@ -293,6 +294,7 @@ export const ARENA_ZONES = [
   },
   {
     title: "Academy Rooms",
+    status: "Open at launch",
     description:
       "Dedicated spaces for Beginner, Intermediate and Pro sessions, game analysis and coaching.",
     image: "/images/player-setup.jpg",
@@ -300,6 +302,7 @@ export const ARENA_ZONES = [
   },
   {
     title: "Arena / Stage",
+    status: "Open at launch",
     description:
       "A visible competition environment for finals, showcases, watch parties, broadcasts and quarterly tournaments.",
     image: "/images/arena-stage.png",
@@ -307,6 +310,7 @@ export const ARENA_ZONES = [
   },
   {
     title: "Social Lounge",
+    status: "Open at launch",
     description:
       "A welcoming area where players, families and community members spend time between sessions.",
     image: "/images/community-play.jpg",
@@ -314,6 +318,7 @@ export const ARENA_ZONES = [
   },
   {
     title: "Streaming & Content Corner",
+    status: "Future",
     description:
       "A future-ready space for commentary, creator sessions, broadcast preparation and event coverage.",
     image: "/images/esports-setup.jpg",
@@ -321,6 +326,7 @@ export const ARENA_ZONES = [
   },
   {
     title: "Food & Beverage",
+    status: "Open at launch",
     description:
       "Affordable refreshments designed to support longer visits and a stronger social experience.",
     image: "/images/arena-chairs.jpg",
@@ -328,6 +334,7 @@ export const ARENA_ZONES = [
   },
   {
     title: "Merchandise / Partner Zone",
+    status: "Future",
     description:
       "Future space for approved Avatars Realm merchandise, equipment demonstrations and manufacturer activations.",
     image: "/images/gaming-gear.jpg",

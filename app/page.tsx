@@ -93,10 +93,7 @@ export default function HomePage() {
             {PROGRAMMES.map((programme, index) => (
               <Reveal key={programme.id} delay={index * 70}>
                 <div className="card flex h-full flex-col card-pad">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="display-3">{programme.name}</h3>
-                    <StatusBadge tone="neutral">{programme.duration}</StatusBadge>
-                  </div>
+                  <h3 className="display-3">{programme.name}</h3>
                   <p className="mt-4 text-[1rem] font-semibold text-azure-400">
                     {programme.headline}
                   </p>
@@ -111,8 +108,17 @@ export default function HomePage() {
                       {programme.period}
                     </span>
                   </div>
+                  {/* Duration is secondary to the fee; pilot pricing is a tag. */}
+                  <div className="mt-3 flex flex-wrap items-center gap-3">
+                    <span className="text-[0.875rem] font-medium text-paper-300">
+                      {programme.duration}
+                    </span>
+                    <StatusBadge tone="proposed">
+                      Proposed pilot pricing
+                    </StatusBadge>
+                  </div>
                   <p className="mt-2 text-[0.8125rem] leading-relaxed text-paper-400">
-                    {programme.commitment} commitment · proposed pilot fee
+                    {programme.commitment} commitment
                   </p>
                   <p className="mt-4 flex-1 text-[1rem] leading-relaxed text-paper-300">
                     {programme.copy}

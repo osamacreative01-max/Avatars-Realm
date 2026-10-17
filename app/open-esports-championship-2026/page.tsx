@@ -7,7 +7,8 @@ import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/componen
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import { CHAMPIONSHIP, QUARTERLY_NOTE, QUARTERLY_TOURNAMENTS, TOURNAMENT_JOURNEY, TOURNAMENTS } from "@/lib/content";
+import TournamentTimeline from "@/components/TournamentTimeline";
+import { CHAMPIONSHIP, QUARTERLY_NOTE, TOURNAMENT_JOURNEY, TOURNAMENTS } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
@@ -278,26 +279,7 @@ export default function ChampionshipPage() {
             />
           </Reveal>
 
-          <div className="mt-10">
-            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {QUARTERLY_TOURNAMENTS.map((item) => (
-                <li
-                  key={item.slot}
-                  className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[5rem_1fr_1.4fr] sm:items-center sm:gap-6"
-                >
-                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
-                    {item.slot}
-                  </span>
-                  <span className="text-[0.95rem] font-semibold text-paper-50">
-                    {item.direction}
-                  </span>
-                  <span className="text-[1rem] leading-relaxed text-paper-300">
-                    {item.detail}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <TournamentTimeline />
 
           <Reveal delay={100}>
             <p className="mt-6 text-[0.875rem] leading-relaxed text-paper-400">

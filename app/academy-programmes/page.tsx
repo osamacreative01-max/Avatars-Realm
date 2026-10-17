@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
 import { DragonWatermark, GridBackdrop, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
+import ProgrammeStepper from "@/components/ProgrammeStepper";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
@@ -108,20 +109,17 @@ export default function AcademyProgrammesPage() {
             </div>
           </Reveal>
 
+          <ProgrammeStepper />
+
           <div className="mt-12 space-y-6">
             {PROGRAMMES.map((programme, index) => (
               <Reveal key={programme.id} delay={index * 60}>
                 <div className="card overflow-hidden">
                   <div className="grid gap-8 p-7 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:p-9">
                     <div>
-                      <div className="flex flex-wrap items-center gap-3">
-                        <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <StatusBadge tone="neutral">
-                          {programme.duration}
-                        </StatusBadge>
-                      </div>
+                      <span className="flex font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
                       <h3 className="display-2 mt-4">
                         {programme.name} Programme
                       </h3>
@@ -139,9 +137,19 @@ export default function AcademyProgrammesPage() {
                           {programme.period}
                         </span>
                       </div>
+                      {/* Duration reads as a secondary label beneath the fee,
+                          with pilot pricing as its own amber tag. */}
+                      <div className="mt-3 flex flex-wrap items-center gap-3">
+                        <span className="text-[0.875rem] font-medium text-paper-300">
+                          {programme.duration}
+                        </span>
+                        <StatusBadge tone="proposed">
+                          Proposed pilot pricing
+                        </StatusBadge>
+                      </div>
                       <p className="mt-2 text-[0.8125rem] leading-relaxed text-paper-400">
                         {programme.commitment} commitment · {programme.total}{" "}
-                        over the full programme · proposed pilot fee
+                        over the full programme
                       </p>
                       <p className="mt-5 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
                         Best for
