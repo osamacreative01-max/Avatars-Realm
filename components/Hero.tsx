@@ -101,7 +101,7 @@ export default function Hero({
         <div className="w-full">
           <Reveal>
             {eyebrow ? <p className="eyebrow mb-5">{eyebrow}</p> : null}
-            <h1 className="max-w-[16ch]">
+            <h1 className="max-w-[11ch]">
               <span className="block text-[clamp(34px,4.2vw,58px)] leading-[1.08] font-bold tracking-[-0.03em] text-paper-50">
                 {headlineTop}
               </span>
