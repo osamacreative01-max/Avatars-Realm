@@ -31,11 +31,21 @@
   --color-flame-500: #ff2f42;
   --color-flame-400: #ff6b78;
 
-  /* Blue: secondary accent — links, informational states, cool highlights. */
+  /* Blue: secondary accent - links, informational states, cool highlights. */
   --color-azure-700: #0f5bb5;
   --color-azure-600: #1e7be0;
   --color-azure-500: #3b93f5;
   --color-azure-400: #7dbbff;
+
+  /* Amber: proposed states - published but not yet approved. */
+  --color-amber-600: #b87400;
+  --color-amber-500: #f5a524;
+  --color-amber-400: #ffc46b;
+
+  /* Purple: to-be-announced states - coming, date or detail not yet published. */
+  --color-violet-600: #7c3aed;
+  --color-violet-500: #a855f7;
+  --color-violet-400: #c6a0ff;
 
   /* Ink-on-dark text scale. */
   --color-paper-50: #f5f8ff;
@@ -731,6 +741,28 @@ section[id] {
     rgb(255 255 255 / 0.03) 72%
   );
   color: var(--color-paper-200);
+}
+
+/* Proposed - published for consideration, not yet approved. */
+.status-proposed {
+  border-left-color: var(--color-amber-500);
+  background-image: linear-gradient(
+    90deg,
+    rgb(245 165 36 / 0.34),
+    rgb(245 165 36 / 0.06) 72%
+  );
+  color: var(--color-amber-400);
+}
+
+/* Coming soon - will happen, detail or date still to be announced. */
+.status-coming {
+  border-left-color: var(--color-violet-500);
+  background-image: linear-gradient(
+    90deg,
+    rgb(168 85 247 / 0.34),
+    rgb(168 85 247 / 0.06) 72%
+  );
+  color: var(--color-violet-400);
 }
 
 /* --------------------------------------------------------------------------

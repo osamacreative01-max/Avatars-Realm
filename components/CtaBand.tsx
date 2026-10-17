@@ -74,9 +74,9 @@ export default function CtaBand({
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                <StatusBadge tone="soon">Enrolment opening soon</StatusBadge>
-                <StatusBadge tone="neutral">Proposed pilot pricing</StatusBadge>
-                <StatusBadge tone="soon">Championship 2026</StatusBadge>
+                <StatusBadge tone="coming">Enrolment opening soon</StatusBadge>
+                <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
+                <StatusBadge tone="neutral">Championship 2026</StatusBadge>
               </div>
 
               <p className="mt-5 text-[0.875rem] leading-relaxed text-paper-400">

@@ -170,7 +170,7 @@ export default function HomePage() {
 
           <Reveal delay={180}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-200">
-              <StatusBadge tone="soon">Registration to be announced</StatusBadge>
+              <StatusBadge tone="coming">Registration to be announced</StatusBadge>
               {CHAMPIONSHIP.prizePool}
             </p>
           </Reveal>

@@ -7,7 +7,7 @@ type Props = {
   eyebrow: string;
   title: ReactNode;
   lede?: ReactNode;
-  status?: { label: string; tone?: "live" | "soon" | "neutral" };
+  status?: { label: string; tone?: "live" | "soon" | "neutral" | "proposed" | "coming" };
   image: { src: string; alt: string };
   children?: ReactNode;
 };

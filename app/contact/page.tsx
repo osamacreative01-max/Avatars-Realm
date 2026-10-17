@@ -84,7 +84,7 @@ const STATUS_ROWS = [
   {
     ask: "Academy programmes",
     answer: "Enrolment opening soon",
-    tone: "soon" as const,
+    tone: "coming" as const,
   },
   {
     ask: "Gaming lounge & memberships",
@@ -94,12 +94,12 @@ const STATUS_ROWS = [
   {
     ask: "League & quarterly tournaments",
     answer: "Announced with the launch programme",
-    tone: "soon" as const,
+    tone: "coming" as const,
   },
   {
     ask: "Open Esports Championship 2026",
     answer: "Registration to be announced",
-    tone: "soon" as const,
+    tone: "coming" as const,
   },
   {
     ask: "Partnerships",
@@ -273,8 +273,8 @@ export default function ContactPage() {
               lede="The status of the things people ask about most often — updated as the opening programme is confirmed."
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="soon">Proposed pilot pricing</StatusBadge>
-              <StatusBadge tone="soon">Championship 2026</StatusBadge>
+              <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
+              <StatusBadge tone="neutral">Championship 2026</StatusBadge>
             </div>
           </Reveal>
 

@@ -99,7 +99,7 @@ export default function Hero({
           {/* The single status badge — the hero's only status message. */}
           <Reveal delay={150}>
             <div className="mt-7">
-              <StatusBadge tone="soon">{badge}</StatusBadge>
+              <StatusBadge tone="coming">{badge}</StatusBadge>
             </div>
           </Reveal>
 

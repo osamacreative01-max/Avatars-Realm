@@ -24,7 +24,7 @@ const DIRECTION = [
   {
     title: "Academy programmes",
     body: "Beginner, Intermediate and Pro programmes with coaching, review and league readiness built into every stage.",
-    status: { label: "Enrolment opening soon", tone: "soon" as const },
+    status: { label: "Enrolment opening soon", tone: "coming" as const },
   },
   {
     title: "Gaming lounge & memberships",
@@ -51,7 +51,7 @@ export default function AboutPage() {
           </>
         }
         lede="Avatars Realm (Pty) Ltd is developing a structured esports academy and gaming experience centre in Northcliff — a place where players start as beginners, grow through guided programmes, earn rewards through participation and progress toward competitive play."
-        status={{ label: SITE.statusLine, tone: "soon" }}
+        status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/esports-setup.jpg",
           alt: "Competitive gaming stations lit with RGB lighting",
@@ -105,9 +105,9 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="soon">Opening programme to be announced</StatusBadge>
-              <StatusBadge tone="neutral">Proposed pilot pricing</StatusBadge>
-              <StatusBadge tone="soon">Championship 2026</StatusBadge>
+              <StatusBadge tone="coming">Opening programme to be announced</StatusBadge>
+              <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
+              <StatusBadge tone="neutral">Championship 2026</StatusBadge>
             </div>
           </Reveal>
 

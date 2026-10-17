@@ -43,7 +43,7 @@ export default function ArenaEventsPage() {
           </>
         }
         lede="A complete gaming experience centre — PC zone, academy rooms, a competition stage, a social lounge, a content corner and food and beverage — with a recurring league and tournament programme."
-        status={{ label: SITE.statusLine, tone: "soon" }}
+        status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/event-crowd.jpg",
           alt: "Players competing at a live gaming event",
@@ -100,7 +100,7 @@ export default function ArenaEventsPage() {
             <Reveal delay={140} className="lg:col-span-2">
               <div className="card flex h-full flex-col justify-between card-pad">
                 <div>
-                  <StatusBadge tone="soon">
+                  <StatusBadge tone="coming">
                     Opening programme to be announced
                   </StatusBadge>
                   <h3 className="display-3 mt-5">Come and see it.</h3>
@@ -141,8 +141,8 @@ export default function ArenaEventsPage() {
               tone="blue"
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="soon">Windows announced at launch</StatusBadge>
-              <StatusBadge tone="neutral">Realm Points planned</StatusBadge>
+              <StatusBadge tone="coming">Windows announced at launch</StatusBadge>
+              <StatusBadge tone="soon">Realm Points planned</StatusBadge>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/contact/" size="lg">
@@ -209,7 +209,7 @@ export default function ArenaEventsPage() {
 
           <Reveal delay={120}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
-              <StatusBadge tone="neutral">
+              <StatusBadge tone="soon">
                 Member &amp; open divisions planned
               </StatusBadge>
               Tournaments combine open divisions, member divisions, academy
@@ -322,7 +322,7 @@ export default function ArenaEventsPage() {
 
           <Reveal delay={160}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-200">
-              <StatusBadge tone="soon">Registration to be announced</StatusBadge>
+              <StatusBadge tone="coming">Registration to be announced</StatusBadge>
               {CHAMPIONSHIP.prizePool}
             </p>
           </Reveal>

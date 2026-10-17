@@ -63,7 +63,7 @@ export default function MembershipsPage() {
           </>
         }
         lede="A gaming lounge with accessible hourly rates, prepaid packs and monthly memberships — backed by Realm Points that make time here more valuable than casual play at home."
-        status={{ label: SITE.statusLine, tone: "soon" }}
+        status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/community-play.jpg",
           alt: "Group of players at a community gaming session",
@@ -105,7 +105,7 @@ export default function MembershipsPage() {
                 lede="The lounge is the lowest-friction way in. The commercial logic is simple: make the first visit easy, increase dwell time and turn one session into a habit."
               />
               <div className="md:pb-2">
-                <StatusBadge tone="neutral">Proposed pilot pricing</StatusBadge>
+                <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -173,7 +173,7 @@ export default function MembershipsPage() {
                 tone="blue"
               />
               <div className="md:pb-2">
-                <StatusBadge tone="soon">Enrolment opening soon</StatusBadge>
+                <StatusBadge tone="coming">Enrolment opening soon</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -309,7 +309,7 @@ export default function MembershipsPage() {
 
           <Reveal delay={200}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
-              <StatusBadge tone="neutral">Proposed pilot pricing</StatusBadge>
+              <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
               {SITE.pilotNote}
             </p>
           </Reveal>
@@ -343,7 +343,7 @@ export default function MembershipsPage() {
               lede={REALM_POINTS.copy}
             />
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <StatusBadge tone="neutral">Proposed rewards system</StatusBadge>
+              <StatusBadge tone="proposed">Proposed rewards system</StatusBadge>
               <span className="text-[0.875rem] leading-relaxed text-paper-400">
                 {REALM_POINTS.status}
               </span>

@@ -10,20 +10,21 @@
 
 export type Status = {
   label: string;
-  tone: "live" | "soon" | "neutral";
+  /** amber = proposed · blue = planned · purple = to be announced · grey = fact. */
+  tone: "live" | "soon" | "neutral" | "proposed" | "coming";
 };
 
 export const ANNOUNCING: Status = {
   label: "Enrolment opening soon",
-  tone: "soon",
+  tone: "coming",
 };
 
 export const PILOT_PRICING: Status = {
   label: "Proposed pilot pricing",
-  tone: "neutral",
+  tone: "proposed",
 };
 
-export const UPCOMING: Status = { label: "Upcoming", tone: "soon" };
+export const UPCOMING: Status = { label: "Upcoming", tone: "coming" };
 
 /**
  * League cadence is monthly everywhere. Seasonal was deliberately retired so
@@ -32,7 +33,7 @@ export const UPCOMING: Status = { label: "Upcoming", tone: "soon" };
 export const MONTHLY: Status = { label: "Monthly", tone: "soon" };
 
 /** For programme items whose cadence or dates are not yet published. */
-export const TBC: Status = { label: "Windows TBC", tone: "neutral" };
+export const TBC: Status = { label: "Windows TBC", tone: "coming" };
 
 export const ONGOING: Status = { label: "Ongoing", tone: "neutral" };
 

@@ -93,8 +93,8 @@ export default function ChampionshipPage() {
 
             <Reveal delay={210}>
               <div className="mt-8 flex flex-wrap items-center gap-2.5">
-                <StatusBadge tone="soon">Upcoming — 2026 season</StatusBadge>
-                <StatusBadge tone="neutral">
+                <StatusBadge tone="coming">Upcoming — 2026 season</StatusBadge>
+                <StatusBadge tone="coming">
                   Registration to be announced
                 </StatusBadge>
               </div>
@@ -201,8 +201,8 @@ export default function ChampionshipPage() {
               lede="Every entrant follows the same clear route — no invited shortlists, no hidden brackets."
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="soon">Dates to be announced</StatusBadge>
-              <StatusBadge tone="neutral">Open &amp; member divisions planned</StatusBadge>
+              <StatusBadge tone="coming">Dates to be announced</StatusBadge>
+              <StatusBadge tone="soon">Open &amp; member divisions planned</StatusBadge>
             </div>
           </Reveal>
 
@@ -238,7 +238,7 @@ export default function ChampionshipPage() {
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
               <StatusBadge tone="soon">Two-day format planned</StatusBadge>
-              <StatusBadge tone="neutral">
+              <StatusBadge tone="soon">
                 Member &amp; open divisions planned
               </StatusBadge>
             </div>

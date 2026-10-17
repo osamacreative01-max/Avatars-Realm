@@ -61,7 +61,7 @@ export default function AcademyProgrammesPage() {
           </>
         }
         lede="Three monthly-fee pathways — Beginner, Intermediate and Pro — with published commitments, outcomes and what is included at every stage."
-        status={{ label: SITE.statusLine, tone: "soon" }}
+        status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/pc-stations.jpg",
           alt: "Row of illuminated gaming PCs at competitive stations",
@@ -103,7 +103,7 @@ export default function AcademyProgrammesPage() {
                 lede="Each programme is sold as a monthly fee across a longer commitment, with a defined outcome at every stage. Visitors do not need to be elite to enter the ecosystem — they need a starting point."
               />
               <div className="md:pb-2">
-                <StatusBadge tone="soon">Enrolment opening soon</StatusBadge>
+                <StatusBadge tone="coming">Enrolment opening soon</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -185,7 +185,7 @@ export default function AcademyProgrammesPage() {
 
           <Reveal delay={160}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[0.9375rem] text-paper-300">
-              <StatusBadge tone="neutral">Proposed pilot pricing</StatusBadge>
+              <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
               Coach costs, facility hours, equipment, curriculum, staffing and
               payment terms are confirmed before enrolment opens. {SITE.pilotNote}
             </p>
