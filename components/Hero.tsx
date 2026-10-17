@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import Button from "@/components/Button";
+import HeroSlider from "@/components/HeroSlider";
 import { GridBackdrop } from "@/components/Marks";
 import Reveal from "@/components/Reveal";
 import StatusBadge from "@/components/StatusBadge";
@@ -31,11 +32,38 @@ const HERO_STATS = [
 ] as const;
 
 /**
- * Homepage hero. One full-bleed priority photograph is darkened left to right
- * so the copy always sits on near-black, with a single status badge beneath the
- * headline instead of a status board. Paired CTAs are equal height and stack
- * full width on mobile. Entrance motion comes from Reveal, which is disabled
- * entirely under prefers-reduced-motion.
+ * Backdrop photography. The cross-fade cycles through owned arena imagery
+ * behind the copy; only the first frame is fetched eagerly.
+ */
+const HERO_SLIDES = [
+  {
+    src: "/images/player-focus.jpg",
+    alt: "Player focused at an esports station",
+    position: "68% 50%",
+  },
+  {
+    src: "/images/pc-stations.jpg",
+    alt: "Row of gaming PCs in the arena",
+    position: "50% 50%",
+  },
+  {
+    src: "/images/arena-stage.png",
+    alt: "Esports arena stage",
+    position: "50% 45%",
+  },
+  {
+    src: "/images/event-crowd.jpg",
+    alt: "Crowd watching a live esports match",
+    position: "50% 50%",
+  },
+] as const;
+
+/**
+ * Homepage hero. A slow cross-fade of owned arena photography sits behind the
+ * copy, darkened left to right so the text always lands on near-black, with a
+ * single status badge beneath the headline instead of a status board. Paired
+ * CTAs are equal height and stack full width on mobile. Entrance motion comes
+ * from Reveal, which is disabled entirely under prefers-reduced-motion.
  */
 export default function Hero({
   eyebrow = "Avatars Realm Esports Academy & Gaming Arena",
@@ -58,15 +86,8 @@ export default function Hero({
       className={`relative isolate flex min-h-[calc(100svh-var(--header-h))] flex-col overflow-hidden ${className}`.trim()}
     >
       {/* ------------------------------------------------- Backdrop layers */}
+      <HeroSlider slides={HERO_SLIDES} />
       <div aria-hidden="true" className="absolute inset-0">
-        <Image
-          src="/images/player-focus.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[68%_center]"
-        />
         {/* Left-to-right darkening: copy sits on the opaque side. */}
         <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/40" />
         {/* Extra wash on small screens, where copy spans the full width. */}
@@ -77,7 +98,7 @@ export default function Hero({
 
       {/* ----------------------------------------------------------- Copy */}
       <div className="container-page relative flex flex-1 items-center py-16 lg:py-20">
-        <div className="w-full max-w-[46rem]">
+        <div className="w-full">
           <Reveal>
             {eyebrow ? <p className="eyebrow mb-5">{eyebrow}</p> : null}
             <h1>
