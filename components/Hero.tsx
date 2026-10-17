@@ -105,7 +105,7 @@ export default function Hero({
               <span className="block text-[clamp(38px,4.6vw,64px)] leading-[1.06] font-bold tracking-[-0.03em] text-paper-50 [text-wrap:balance]">
                 {headlineTop}
               </span>
-              <span className="mt-1.5 block text-[clamp(56px,6.8vw,100px)] leading-[1.02] font-bold tracking-[-0.03em] text-[#FF2B55] [text-shadow:0_0_38px_rgba(255,43,85,0.45)]">
+              <span className="mt-1.5 block text-[clamp(56px,6.8vw,100px)] leading-[1.02] font-bold tracking-[-0.03em] text-[#D9323B] [text-shadow:0_0_38px_rgba(217,50,59,0.45)]">
                 {headlineBottom}
               </span>
             </h1>
