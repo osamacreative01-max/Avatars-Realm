@@ -1,10 +1,6 @@
-import Image from "next/image";
-
 import Button from "@/components/Button";
 import HeroSlider from "@/components/HeroSlider";
-import { GridBackdrop } from "@/components/Marks";
 import Reveal from "@/components/Reveal";
-import StatusBadge from "@/components/StatusBadge";
 import {
   ARENA_ZONES,
   PROGRAMMES,
@@ -58,12 +54,19 @@ const HERO_SLIDES = [
   },
 ] as const;
 
+/** Shared display sizing — all three headline lines are set at one size, and
+    the h1 carries it so its `em`-based max-width resolves against the
+    display size rather than the inherited body size. */
+const HEADLINE =
+  "text-[clamp(2.4rem,1.5rem+3.2vw,5rem)] leading-[1.02] font-extrabold uppercase tracking-[-0.025em]";
+
 /**
- * Homepage hero. A slow cross-fade of owned arena photography sits behind the
- * copy, darkened left to right so the text always lands on near-black, with a
- * single status badge beneath the headline instead of a status board. Paired
- * CTAs are equal height and stack full width on mobile. Entrance motion comes
- * from Reveal, which is disabled entirely under prefers-reduced-motion.
+ * Homepage hero. One rounded card holds the copy on the left and a slow
+ * cross-fade of owned arena photography on the right; the photograph is
+ * chamfered away at the bottom-left so the status plate notches into it.
+ * The paired CTAs and the four stat coupons sit on the page ground beneath
+ * the card. Entrance motion comes from Reveal, disabled under
+ * prefers-reduced-motion.
  */
 export default function Hero({
   eyebrow = "Avatars Realm Esports Academy & Gaming Arena",
@@ -82,83 +85,79 @@ export default function Hero({
   className = "",
 }: Props) {
   return (
-    <section
-      className={`relative isolate flex min-h-[calc(100svh-var(--header-h))] flex-col overflow-hidden ${className}`.trim()}
-    >
-      {/* ------------------------------------------------- Backdrop layers */}
-      <HeroSlider slides={HERO_SLIDES} />
-      <div aria-hidden="true" className="absolute inset-0">
-        {/* Left-to-right darkening: copy sits on the opaque side. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/40" />
-        {/* Extra wash on small screens, where copy spans the full width. */}
-        <div className="absolute inset-0 bg-ink-950/55 lg:bg-transparent" />
-        <GridBackdrop className="opacity-40" />
-        <div className="absolute top-1/3 right-[-14%] hidden h-[38rem] w-[38rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,43,85,0.2),transparent_65%)] blur-3xl lg:block" />
-      </div>
+    <section className={`relative ${className}`.trim()}>
+      <div className="container-page pt-6 sm:pt-8 lg:pt-10">
+        {/* ------------------------------------------------------------ Card */}
+        <div className="hero-card relative isolate overflow-hidden">
+          <div className="hero-media absolute inset-0">
+            <HeroSlider slides={HERO_SLIDES} />
+            <div aria-hidden="true" className="hero-scrim absolute inset-0" />
+          </div>
+          <div aria-hidden="true" className="hero-wash absolute inset-0" />
 
-      {/* ----------------------------------------------------------- Copy */}
-      <div className="container-page relative flex flex-1 items-center py-16 lg:py-20">
-        <div className="w-full">
-          <Reveal>
-            {eyebrow ? <p className="eyebrow mb-5">{eyebrow}</p> : null}
-            <h1 className="mx-auto max-w-[52rem] lg:mx-0">
-              <span className="block text-[clamp(38px,4.6vw,64px)] leading-[1.06] font-bold tracking-[-0.03em] text-paper-50 [text-wrap:balance]">
-                {headlineTop}
-              </span>
-              <span className="mt-1.5 block text-[clamp(56px,6.8vw,100px)] leading-[1.02] font-bold tracking-[-0.03em] text-[#D9323B] [text-shadow:0_0_38px_rgba(217,50,59,0.45)]">
-                {headlineBottom}
-              </span>
-            </h1>
-          </Reveal>
+          {/* The copy stops short of the status plate so the two never
+              collide: the plate is absolutely placed in the card's bottom
+              left, and this padding reserves the band it occupies. */}
+          <div className="relative z-10 flex min-h-[26rem] flex-col justify-center px-6 py-12 sm:px-10 lg:min-h-[38rem] lg:px-16 lg:pt-14 lg:pb-[clamp(9rem,13vw,15.5rem)]">
+            <Reveal>
+              {eyebrow ? <p className="hero-eyebrow">{eyebrow}</p> : null}
+              {/* One size across every line, and 8.5em is wide enough for
+                  "Train. Play." on one line but not for "Compete." to join
+                  it, so "Belong." always lands on its own red line. */}
+              <h1 className={`mt-5 max-w-[8.5em] ${HEADLINE}`}>
+                <span className="block text-paper-50">{headlineTop}</span>
+                <span className="mt-1 block text-[#d9323b]">
+                  {headlineBottom}
+                </span>
+              </h1>
+            </Reveal>
 
-          <Reveal delay={90}>
-            <p className="mt-7 max-w-[32em] text-[19px] leading-[1.7] text-[#C4CAD8]">
-              {body}
+            <Reveal delay={90}>
+              <p className="mt-6 max-w-[34rem] text-[1.125rem] leading-[1.6] text-paper-100 sm:text-[1.25rem]">
+                {body}
+              </p>
+            </Reveal>
+          </div>
+
+          {/* ----------------------------------------- Status plate (notch) */}
+          <Reveal delay={150} className="hero-status">
+            <p className="text-[clamp(1.5rem,1.1rem+1.5vw,2.5rem)] leading-[1.2] font-medium tracking-[-0.01em] text-paper-50">
+              {badge}
             </p>
           </Reveal>
-
-          {/* The single status badge — the hero's only status message. */}
-          <Reveal delay={150}>
-            <div className="mt-7">
-              <StatusBadge tone="coming">{badge}</StatusBadge>
-            </div>
-          </Reveal>
-
-          {/* Paired CTAs: equal height, stacked full width on mobile. */}
-          <Reveal delay={210}>
-            <div className="mt-8 flex flex-col gap-3.5 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-4">
-              <Button href={primary.href} size="lg" className="btn-glow w-full sm:w-auto">
-                {primary.label}
-              </Button>
-              <Button
-                href={secondary.href}
-                variant="secondary"
-                size="lg"
-                className="w-full sm:w-auto"
-              >
-                {secondary.label}
-              </Button>
-            </div>
-          </Reveal>
         </div>
-      </div>
 
-      {/* --------------------------------------------------- Facts strip */}
-      <div className="relative border-t border-white/[0.08] bg-ink-950/75 backdrop-blur-sm">
-        <div className="container-page grid grid-cols-2 gap-x-6 gap-y-7 py-7 sm:grid-cols-4 lg:py-8">
-          {HERO_STATS.map((stat, index) => (
-            <Reveal
-              key={stat.label}
-              delay={index * 60}
-              className="md:border-l md:border-white/[0.08] md:pl-7 md:first:border-l-0 md:first:pl-0"
+        {/* ------------------------------------------------------------- CTAs */}
+        <Reveal delay={200}>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <Button
+              href={primary.href}
+              variant="plate"
+              className="w-full sm:w-auto"
             >
-              <p className="text-[2rem] leading-none font-bold tracking-[-0.02em] text-paper-50">
-                {stat.value}
-                <span className="text-[#FF2B55]">.</span>
-              </p>
-              <p className="mt-2.5 text-[0.7rem] font-medium tracking-[0.18em] text-paper-400 uppercase">
-                {stat.label}
-              </p>
+              {primary.label}
+            </Button>
+            <Button
+              href={secondary.href}
+              variant="plate-outline"
+              className="w-full sm:w-auto"
+            >
+              {secondary.label}
+            </Button>
+          </div>
+        </Reveal>
+
+        {/* ----------------------------------------------------------- Stats */}
+        <div className="mt-7 grid grid-cols-2 gap-4 pb-14 lg:mt-8 lg:grid-cols-4 lg:gap-5 lg:pb-20">
+          {HERO_STATS.map((stat, index) => (
+            <Reveal key={stat.label} delay={index * 60}>
+              <div className="plate hero-stat h-full w-full">
+                <p className="hero-stat__value">
+                  {stat.value}
+                  <span>.</span>
+                </p>
+                <p className="hero-stat__label">{stat.label}</p>
+              </div>
             </Reveal>
           ))}
         </div>

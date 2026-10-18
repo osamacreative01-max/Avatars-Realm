@@ -112,7 +112,7 @@ export default function Navbar() {
         {/* ml-auto pushes this to the right edge of the flex row on mobile;
              on desktop the flex-1 spacers already centre the nav. */}
         <div className="ml-auto hidden xl:block">
-          <Button href={ctaHref} size="sm">{ctaLabel}</Button>
+          <Button href={ctaHref} variant="tag">{ctaLabel}</Button>
         </div>
 
         {/* Mobile trigger */}

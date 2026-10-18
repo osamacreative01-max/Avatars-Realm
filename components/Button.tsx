@@ -1,7 +1,14 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "outline" | "ghost";
+type Variant =
+  | "primary"
+  | "secondary"
+  | "outline"
+  | "ghost"
+  | "plate"
+  | "plate-outline"
+  | "tag";
 type Size = "sm" | "md" | "lg";
 
 type Props = {
@@ -18,6 +25,9 @@ const VARIANT: Record<Variant, string> = {
   secondary: "btn-secondary",
   outline: "btn-outline",
   ghost: "btn-ghost",
+  plate: "btn-plate",
+  "plate-outline": "btn-plate-outline",
+  tag: "btn-tag",
 };
 
 const SIZE: Record<Size, string> = {

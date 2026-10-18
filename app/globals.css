@@ -572,6 +572,132 @@ section[id] {
   font-size: 0.9375rem;
 }
 
+/* --------------------------------------------------------------------------
+   Coupon plates — the silhouette that carries the whole home hero: a rounded
+   plate whose vertical edges step outward through a middle band.
+   The rim is the element's own background showing around an inset pseudo
+   element clipped to the same shape, so the outline follows the notch
+   instead of being cut off by it.
+   -------------------------------------------------------------------------- */
+
+.plate,
+.btn-plate,
+.btn-plate-outline {
+  --plate-tab: 0.55rem;
+  --plate-top: 28%;
+  --plate-bottom: 72%;
+  --plate-radius: 0.8rem;
+  --plate-edge: 1.5px;
+  --plate-stroke: rgb(255 255 255 / 0.72);
+  --plate-fill: rgb(255 255 255 / 0.03);
+
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--plate-radius);
+  background-color: var(--plate-stroke);
+  clip-path: polygon(
+    var(--plate-tab) 0,
+    calc(100% - var(--plate-tab)) 0,
+    calc(100% - var(--plate-tab)) var(--plate-top),
+    100% calc(var(--plate-top) + var(--plate-tab)),
+    100% calc(var(--plate-bottom) - var(--plate-tab)),
+    calc(100% - var(--plate-tab)) var(--plate-bottom),
+    calc(100% - var(--plate-tab)) 100%,
+    var(--plate-tab) 100%,
+    var(--plate-tab) var(--plate-bottom),
+    0 calc(var(--plate-bottom) - var(--plate-tab)),
+    0 calc(var(--plate-top) + var(--plate-tab)),
+    var(--plate-tab) var(--plate-top)
+  );
+}
+
+.plate::before,
+.btn-plate::before,
+.btn-plate-outline::before {
+  content: "";
+  position: absolute;
+  inset: var(--plate-edge);
+  z-index: -1;
+  border-radius: calc(var(--plate-radius) - var(--plate-edge));
+  background: var(--plate-fill);
+  clip-path: inherit;
+}
+
+/* Filled coupon — the hero's primary CTA. */
+.btn-plate {
+  --plate-fill: linear-gradient(122deg, #c8282e, #a51f26 55%, #7a161c);
+  --plate-stroke: rgb(255 255 255 / 0.8);
+  --plate-radius: 0.7rem;
+  padding: 0.95rem 2.6rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  white-space: normal;
+}
+
+.btn-plate:hover {
+  --plate-fill: linear-gradient(122deg, #e32d36, #bd242c 55%, #8f1b22);
+}
+
+/* Outlined coupon — same silhouette, red rim on the page ground. The fill is
+   the page ground itself rather than `transparent`: the rim is the element's
+   own background showing around the inset fill layer, so an interior of any
+   other colour would fill the whole plate with rim. */
+.btn-plate-outline {
+  --plate-fill: #05070f;
+  --plate-stroke: #d9323b;
+  --plate-radius: 0.7rem;
+  padding: 0.95rem 2.6rem;
+  color: var(--color-paper-50);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  white-space: normal;
+}
+
+.btn-plate-outline:hover {
+  --plate-fill: #1d0a0f;
+  --plate-stroke: #ff5b66;
+  color: #fff;
+}
+
+/* Chevron tag — the header CTA. Hexagonal ends with a chevron mark drawn
+   into each point, as in the hero artwork. */
+.btn-tag {
+  --tag-point: 0.72rem;
+  --chev-l: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 20'%3E%3Cpath d='M7.5 3 3 10l4.5 7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --chev-r: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 20'%3E%3Cpath d='M2.5 3 7 10l-4.5 7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  padding: 0.6rem 2.15rem;
+  border: 0;
+  border-radius: 0;
+  background-color: #b02128;
+  background-image: var(--chev-l), var(--chev-r),
+    linear-gradient(115deg, #d4262d, #a01e25 58%, #7d161c);
+  background-repeat: no-repeat;
+  background-size: 0.7rem 1.4rem, 0.7rem 1.4rem, 100% 100%;
+  background-position: 0.55rem center, right 0.55rem center, 0 0;
+  color: #fff;
+  font-weight: 700;
+  clip-path: polygon(
+    var(--tag-point) 0,
+    calc(100% - var(--tag-point)) 0,
+    100% 50%,
+    calc(100% - var(--tag-point)) 100%,
+    var(--tag-point) 100%,
+    0 50%
+  );
+}
+
+.btn-tag:hover {
+  background-color: #c6252c;
+  background-image: var(--chev-l), var(--chev-r),
+    linear-gradient(115deg, #ea3038, #b6232b 58%, #8f1a20);
+}
+
 /* Arrow affordance shared by text links and buttons. */
 .arrow-link {
   position: relative;
@@ -688,6 +814,147 @@ section[id] {
 .card-hover:hover .card-media img {
   transform: scale(1.06);
   filter: saturate(1.15) brightness(1.06);
+}
+
+/* --------------------------------------------------------------------------
+   Home hero — a rounded card holding the copy and the photography, with the
+   status plate notched into its bottom-left corner. The media is cut away on
+   the same diagonal the plate is, so the two read as one shape.
+   -------------------------------------------------------------------------- */
+
+.hero-card {
+  border-radius: 1.75rem;
+  background: #1e2027;
+}
+
+/* Bottom-left of the photograph is chamfered away for the status plate — one
+   diagonal, so no horizontal seam is left across the card. */
+.hero-media {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 53% 100%, 0 74%);
+}
+
+/* Left-to-right scrim: the copy sits on the opaque side, matching the card
+   ground exactly so the chamfer edge does not show a seam. */
+.hero-scrim {
+  background: linear-gradient(
+    90deg,
+    #1e2027 0%,
+    #1e2027 30%,
+    rgb(30 32 39 / 0.9) 44%,
+    rgb(30 32 39 / 0.45) 62%,
+    rgb(30 32 39 / 0.08) 80%,
+    rgb(30 32 39 / 0) 92%
+  );
+}
+
+/* Darkens the corner the status plate notches into, so the channel between
+   the plate and the photograph reads as ground rather than card. */
+.hero-wash {
+  background: radial-gradient(
+    68% 78% at 16% 108%,
+    #08090e 0%,
+    rgb(8 9 14 / 0.85) 34%,
+    rgb(8 9 14 / 0) 70%
+  );
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #d9323b;
+  font-size: clamp(0.9375rem, 0.7rem + 0.55vw, 1.125rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.hero-eyebrow::before {
+  content: "";
+  flex: none;
+  width: 1.9rem;
+  height: 2px;
+  background: currentColor;
+}
+
+/* Status plate. Flush with the card's bottom-left corner, cut away on the
+   diagonal that the photograph mirrors. */
+.hero-status {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  width: min(48%, 44rem);
+  min-height: clamp(10rem, 13vw, 13.5rem);
+  padding: 1.75rem clamp(1.5rem, 4.5vw, 4.25rem) 1.75rem
+    clamp(1.5rem, 3.4vw, 3.9rem);
+  border-radius: 1.75rem 0 0 1.75rem;
+  background: linear-gradient(112deg, #2d1017 0%, #1e0c14 46%, #0f0a11 100%);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 5.5rem) 100%, 0 100%);
+}
+
+/* Below the desktop card the plate becomes a full-width band and the
+   photograph runs edge to edge behind the copy. With the copy now spanning
+   the full card, the side gradient is swapped for a near-opaque wash so the
+   text keeps its contrast over the photography. */
+@media (max-width: 1023.98px) {
+  .hero-media {
+    clip-path: none;
+  }
+
+  .hero-scrim {
+    background: linear-gradient(
+      180deg,
+      rgb(30 32 39 / 0.92) 0%,
+      rgb(30 32 39 / 0.88) 52%,
+      rgb(30 32 39 / 0.74) 100%
+    );
+  }
+
+  .hero-status {
+    position: relative;
+    width: 100%;
+    border-radius: 0;
+    clip-path: none;
+  }
+}
+
+/* Stat plate: the coupon silhouette with a flat neutral fill. */
+.hero-stat {
+  --plate-stroke: transparent;
+  --plate-fill: #1e2027;
+  --plate-edge: 0px;
+  --plate-radius: 0.9rem;
+  --plate-tab: 0.62rem;
+
+  display: flex;
+  min-height: 9.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+
+.hero-stat__value {
+  color: #d9323b;
+  font-size: clamp(2.4rem, 1.6rem + 2.4vw, 4.25rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.hero-stat__value span {
+  color: var(--color-paper-50);
+}
+
+.hero-stat__label {
+  color: #6c6c73;
+  font-size: clamp(0.9375rem, 0.75rem + 0.6vw, 1.6rem);
+  font-weight: 400;
+  line-height: 1.25;
 }
 
 /* --------------------------------------------------------------------------
