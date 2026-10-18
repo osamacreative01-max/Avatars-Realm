@@ -27,3 +27,6 @@ public/images/smiley-man-fist-bumping-with-colleague.jpg
 
 # client review material (kept local only, not site source)
 *.pdf
+
+# original high-resolution banner masters (web versions live in public/images/page-banners)
+design-src/

@@ -47,29 +47,28 @@ export default function ChampionshipPage() {
     <>
       {/* ------------------------------------------------------------- Hero */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.07]">
+        {/* Same pre-graded banner treatment as PageHero: the artwork is dark
+            down the left already, so it runs at full strength behind a light
+            scrim instead of being crushed. */}
         <Image
-          src="/images/event-crowd.jpg"
-          alt="Players competing on stage at a live gaming event"
+          src="/images/page-banners/open-championship-2026.jpg"
+          alt="A packed esports arena with a lit stage and a live crowd"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-45"
+          className="object-cover object-center"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/88 to-ink-950/40"
+          className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/55 to-ink-950/10"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/75"
+          className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-transparent to-ink-950/40"
         />
-        <GridBackdrop className="opacity-70" />
+        <GridBackdrop className="opacity-40" />
 
-        <div
-          aria-hidden="true"
-          className="absolute top-1/3 -right-24 h-72 w-72 rounded-full bg-flame-700/25 blur-[120px]"
-        />
-        <RedArc className="pointer-events-none absolute -top-28 -left-24 h-[32rem] w-[32rem] opacity-80" />
+        <RedArc className="pointer-events-none absolute -top-28 -left-24 h-[32rem] w-[32rem] opacity-45" />
         <DragonWatermark className="pointer-events-none absolute -right-20 bottom-0 h-[28rem] w-[28rem]" />
 
         <div className="container-page relative py-20 sm:py-24 lg:py-32">

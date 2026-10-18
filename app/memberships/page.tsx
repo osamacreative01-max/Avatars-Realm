@@ -65,8 +65,8 @@ export default function MembershipsPage() {
         lede="A gaming lounge with accessible hourly rates, prepaid packs and monthly memberships — backed by Realm Points that make time here more valuable than casual play at home."
         status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
-          src: "/images/community-play.jpg",
-          alt: "Group of players at a community gaming session",
+          src: "/images/page-banners/memberships-and-lounge.jpg",
+          alt: "A long row of gaming stations in the lounge",
         }}
       >
         <Button href="#memberships" size="lg">

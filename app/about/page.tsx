@@ -53,8 +53,8 @@ export default function AboutPage() {
         lede="Avatars Realm (Pty) Ltd is developing a structured esports academy and gaming experience centre in Northcliff — a place where players start as beginners, grow through guided programmes, earn rewards through participation and progress toward competitive play."
         status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
-          src: "/images/esports-setup.jpg",
-          alt: "Competitive gaming stations lit with RGB lighting",
+          src: "/images/page-banners/about.jpg",
+          alt: "Rows of gaming PCs lit in purple across the arena floor",
         }}
       >
         <Button href="/academy-programmes/" size="lg">

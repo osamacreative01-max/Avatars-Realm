@@ -123,8 +123,8 @@ export default function ContactPage() {
         lede="Whether you are a player, a parent, a school, a team or a business — this is the fastest way to reach us. We reply within one business day."
         status={{ label: "Replies within one business day", tone: "live" }}
         image={{
-          src: "/images/player-headset.jpg",
-          alt: "Player wearing a headset during an online gaming session",
+          src: "/images/esports-setup.jpg",
+          alt: "A row of gaming stations and red racing seats lit in blue and red",
         }}
       >
         <Button href={`mailto:${SITE.email}`} size="lg">

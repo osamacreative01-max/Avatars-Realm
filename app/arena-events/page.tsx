@@ -45,8 +45,8 @@ export default function ArenaEventsPage() {
         lede="A complete gaming experience centre — PC zone, academy rooms, a competition stage, a social lounge, a content corner and food and beverage — with a recurring league and tournament programme."
         status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
-          src: "/images/event-crowd.jpg",
-          alt: "Players competing at a live gaming event",
+          src: "/images/page-banners/arena-and-events.jpg",
+          alt: "Players competing side by side at lit gaming stations",
         }}
       >
         <Button href="#quarterly" size="lg">

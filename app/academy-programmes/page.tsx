@@ -64,8 +64,8 @@ export default function AcademyProgrammesPage() {
         lede="Three monthly-fee pathways — Beginner, Intermediate and Pro — with published commitments, outcomes and what is included at every stage."
         status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
-          src: "/images/pc-stations.jpg",
-          alt: "Row of illuminated gaming PCs at competitive stations",
+          src: "/images/page-banners/academy-programmes.jpg",
+          alt: "A player celebrating at a station while wearing a headset",
         }}
       >
         <Button href="/memberships/" size="lg">
