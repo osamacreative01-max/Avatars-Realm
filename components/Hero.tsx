@@ -28,28 +28,30 @@ const HERO_STATS = [
 ] as const;
 
 /**
- * Backdrop photography. The cross-fade cycles through owned arena imagery
- * behind the copy; only the first frame is fetched eagerly.
+ * Backdrop photography. Ordered so the first frame — a row of players at
+ * their stations under arena light — is the one that lands with the headline;
+ * the rest carry the same room from other angles. Only the first frame is
+ * fetched eagerly.
  */
 const HERO_SLIDES = [
   {
-    src: "/images/player-focus.jpg",
-    alt: "Player focused at an esports station",
-    position: "68% 50%",
+    src: "/images/arena-chairs.jpg",
+    alt: "Players competing side by side at arena stations",
+    position: "52% 46%",
   },
   {
-    src: "/images/pc-stations.jpg",
-    alt: "Row of gaming PCs in the arena",
+    src: "/images/young-professional-esports-players-playing-games-i-2021-12-09-13-29-30-utc.jpg",
+    alt: "Two players at a row of competitive gaming PCs",
+    position: "58% 50%",
+  },
+  {
+    src: "/images/esports-setup.jpg",
+    alt: "Row of competition stations lit for an event",
     position: "50% 50%",
   },
   {
-    src: "/images/arena-stage.png",
-    alt: "Esports arena stage",
-    position: "50% 45%",
-  },
-  {
-    src: "/images/event-crowd.jpg",
-    alt: "Crowd watching a live esports match",
+    src: "/images/pc-stations.jpg",
+    alt: "Gaming PCs lined up in the arena",
     position: "50% 50%",
   },
 ] as const;
@@ -89,9 +91,14 @@ export default function Hero({
       <div className="container-page pt-6 sm:pt-8 lg:pt-10">
         {/* ------------------------------------------------------------ Card */}
         <div className="hero-card relative isolate overflow-hidden">
-          <div className="hero-media absolute inset-0">
-            <HeroSlider slides={HERO_SLIDES} />
-            <div aria-hidden="true" className="hero-scrim absolute inset-0" />
+          <div className="hero-media">
+            {/* The media panel is 64% of the card on desktop and full bleed
+                below that, so the LCP image is not fetched at full-viewport
+                width where it is never shown that wide. */}
+            <HeroSlider
+              slides={HERO_SLIDES}
+              sizes="(min-width: 1024px) 60vw, 100vw"
+            />
           </div>
           <div aria-hidden="true" className="hero-wash absolute inset-0" />
 

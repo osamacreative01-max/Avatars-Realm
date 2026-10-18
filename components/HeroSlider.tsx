@@ -14,6 +14,8 @@ type Props = {
   slides: readonly Slide[];
   /** Time each slide is held before the next cross-fade. */
   interval?: number;
+  /** Passed to next/image — the rendered width of the media region. */
+  sizes?: string;
 };
 
 /**
@@ -25,7 +27,11 @@ type Props = {
  * motion, and the timer pauses while the tab is hidden so a backgrounded tab
  * does not burn through the sequence.
  */
-export default function HeroSlider({ slides, interval = 5200 }: Props) {
+export default function HeroSlider({
+  slides,
+  interval = 5200,
+  sizes = "100vw",
+}: Props) {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -67,7 +73,7 @@ export default function HeroSlider({ slides, interval = 5200 }: Props) {
           alt={slide.alt}
           fill
           priority={index === 0}
-          sizes="100vw"
+          sizes={sizes}
           className={`hero-slide object-cover transition-opacity duration-[1200ms] ease-out ${
             index === active ? "opacity-100" : "opacity-0"
           }`}

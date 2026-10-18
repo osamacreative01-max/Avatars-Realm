@@ -822,40 +822,48 @@ section[id] {
    the same diagonal the plate is, so the two read as one shape.
    -------------------------------------------------------------------------- */
 
+/* The ground is not a flat panel: it holds the card grey behind the copy and
+   falls away to near-black across the bottom-right, which is what lets the
+   status plate and the photograph's dissolve meet without a grey wedge
+   showing between them. */
 .hero-card {
   border-radius: 1.75rem;
-  background: #1e2027;
-}
-
-/* Bottom-left of the photograph is chamfered away for the status plate — one
-   diagonal, so no horizontal seam is left across the card. */
-.hero-media {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 53% 100%, 0 74%);
-}
-
-/* Left-to-right scrim: the copy sits on the opaque side, matching the card
-   ground exactly so the chamfer edge does not show a seam. */
-.hero-scrim {
   background: linear-gradient(
-    90deg,
-    #1e2027 0%,
-    #1e2027 30%,
-    rgb(30 32 39 / 0.9) 44%,
-    rgb(30 32 39 / 0.45) 62%,
-    rgb(30 32 39 / 0.08) 80%,
-    rgb(30 32 39 / 0) 92%
+    150deg,
+    #212329 0%,
+    #1e2027 26%,
+    #101118 58%,
+    #08090d 100%
   );
 }
 
-/* Darkens the corner the status plate notches into, so the channel between
-   the plate and the photograph reads as ground rather than card. */
+/* The photograph lives in the right of the card and dissolves into the card
+   ground along its own left edge, rather than sitting under a scrim across
+   the whole card — which is what keeps it vivid instead of muddy. */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 34%);
+  /* Bottom-left is chamfered away for the status plate. */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 25% 100%, 12% 66%, 0 66%);
+}
+
+.hero-media img {
+  filter: saturate(1.08) contrast(1.04);
+}
+
+@media (min-width: 1024px) {
+  .hero-media {
+    right: 0;
+    left: auto;
+    width: 64%;
+  }
+}
+
+/* Desktop gets its depth from the card gradient, so no wash is needed. */
 .hero-wash {
-  background: radial-gradient(
-    68% 78% at 16% 108%,
-    #08090e 0%,
-    rgb(8 9 14 / 0.85) 34%,
-    rgb(8 9 14 / 0) 70%
-  );
+  display: none;
 }
 
 .hero-eyebrow {
@@ -896,19 +904,22 @@ section[id] {
 
 /* Below the desktop card the plate becomes a full-width band and the
    photograph runs edge to edge behind the copy. With the copy now spanning
-   the full card, the side gradient is swapped for a near-opaque wash so the
-   text keeps its contrast over the photography. */
+   the full card, the left-edge dissolve is swapped for a near-opaque vertical
+   wash so the text keeps its contrast over the photography. */
 @media (max-width: 1023.98px) {
   .hero-media {
+    -webkit-mask-image: none;
+    mask-image: none;
     clip-path: none;
   }
 
-  .hero-scrim {
+  .hero-wash {
+    display: block;
     background: linear-gradient(
       180deg,
-      rgb(30 32 39 / 0.92) 0%,
-      rgb(30 32 39 / 0.88) 52%,
-      rgb(30 32 39 / 0.74) 100%
+      rgb(30 32 39 / 0.9) 0%,
+      rgb(30 32 39 / 0.86) 50%,
+      rgb(30 32 39 / 0.7) 100%
     );
   }
 
