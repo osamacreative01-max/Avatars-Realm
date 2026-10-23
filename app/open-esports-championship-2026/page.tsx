@@ -16,7 +16,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/open-esports-championship-2026/",
   title: "Open Esports Championship 2026",
   description:
-    "The Arena's flagship multi-title championship at Avatars Realm — EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX. Dates and registration to be announced.",
+    "The Arena's flagship multi-title championship at Avatars Realm — EA Sports FC 26, Call of Duty BO6, Valorant, PUBG Mobile and League of Legends. Dates and registration to be announced.",
   image: "/images/arena-stage.png",
 });
 

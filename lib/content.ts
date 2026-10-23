@@ -358,7 +358,7 @@ export const LEAGUE = {
     "A published match rhythm with clear rules and standings.",
     "Points for participation, match results, sportsmanship and verified development activity.",
     "Season finals or a showcase event in the Arena.",
-    "Title rotation across a planned line-up of EA Sports FC 25, Call of Duty BO6, Valorant, PUBG Mobile and Free Fire MAX.",
+    "Title rotation across a planned line-up of EA Sports FC 26, Call of Duty BO6, Valorant, PUBG Mobile and League of Legends.",
   ],
 } as const;
 
@@ -374,7 +374,7 @@ export const QUARTERLY_TOURNAMENTS = [
   {
     slot: "Window 1",
     direction: "Open community launch tournament",
-    detail: "EA Sports FC 25 and mobile showcase.",
+    detail: "EA Sports FC 26 and mobile showcase.",
   },
   {
     slot: "Window 2",
@@ -384,7 +384,7 @@ export const QUARTERLY_TOURNAMENTS = [
   {
     slot: "Window 3",
     direction: "Mobile and grassroots tournament",
-    detail: "PUBG Mobile and Free Fire MAX.",
+    detail: "PUBG Mobile and League of Legends.",
   },
   {
     slot: "Window 4",
@@ -444,7 +444,7 @@ export const FULL_DAY = [
 /** The five confirmed titles, each with its website angle. */
 export const TOURNAMENTS = [
   {
-    title: "EA Sports FC 25",
+    title: "EA Sports FC 26",
     format: "1v1",
     note: "Accessible individual competition and a strong entry point for casual-to-competitive progression.",
   },
@@ -464,9 +464,9 @@ export const TOURNAMENTS = [
     note: "Mobile community participation and squad coordination.",
   },
   {
-    title: "Free Fire MAX",
-    format: "Solo Battle Royale",
-    note: "Fast, accessible solo competition with a broad mobile audience.",
+    title: "League of Legends",
+    format: "5v5",
+    note: "Deep team strategy, distinct roles and objective control across a match.",
   },
 ] as const;
 
