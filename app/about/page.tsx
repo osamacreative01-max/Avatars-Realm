@@ -3,12 +3,11 @@ import Image from "next/image";
 
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
-import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
+import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import StatusBadge from "@/components/StatusBadge";
-import { FULL_DAY, LEADERSHIP, PARTNER_LABEL, PROGRESSION, VALUES } from "@/lib/content";
+import { FULL_DAY, LEADERSHIP, PROGRESSION } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
@@ -16,27 +15,9 @@ export const metadata: Metadata = pageMetadata({
   path: "/about/",
   title: "About",
   description:
-    "Avatars Realm (Pty) Ltd is building an esports academy and gaming arena in Northcliff, Randburg — its mission, progression pathway, leadership and community direction.",
+    "Avatars Realm (Pty) Ltd is building a new home for esports in South Africa, north of Johannesburg — its progression pathway, leadership and community direction. Powered by Gen.G.",
   image: "/images/community-play.jpg",
 });
-
-const DIRECTION = [
-  {
-    title: "Academy programmes",
-    body: "Beginner, Intermediate and Pro programmes with coaching, review and league readiness built into every stage.",
-    status: { label: "Enrolment opening soon", tone: "coming" as const },
-  },
-  {
-    title: "Gaming lounge & memberships",
-    body: "Accessible hourly rates, prepaid gaming packs and monthly memberships with Realm Points rewards.",
-    status: { label: "Pilot pricing published", tone: "neutral" as const },
-  },
-  {
-    title: "Arena, league & events",
-    body: "A competition stage, monthly community league windows and four quarterly tournaments, anchored by the Open Esports Championship 2026.",
-    status: { label: "Monthly league", tone: "soon" as const },
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -45,12 +26,31 @@ export default function AboutPage() {
         eyebrow="About"
         title={
           <>
-            An academy and arena
+            Bringing World-Class
             <br />
-            built around progression.
+            Esports to SA.
           </>
         }
-        lede="Avatars Realm (Pty) Ltd is developing a structured esports academy and gaming experience centre in Northcliff — a place where players start as beginners, grow through guided programmes, earn rewards through participation and progress toward competitive play."
+        lede={
+          <>
+            <span className="block">
+              Avatars Realm is building a new home for esports in South Africa —
+              where gaming talent is developed, skills are sharpened and
+              competition creates opportunity.
+            </span>
+            <span className="mt-4 block text-[0.9375rem] leading-relaxed text-paper-300">
+              Powered by Gen.G. Gen.G branding is featured through Avatars
+              Realm&apos;s partner agreement. Our focus is to give South African
+              players a place to learn, play and prepare for competition.
+            </span>
+            <span className="mt-4 block">
+              Our ambition is bigger than the game. We want to help grow the
+              next generation of esports talent and create more opportunities
+              for people to participate in, progress through and contribute to
+              the gaming industry.
+            </span>
+          </>
+        }
         status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/page-banners/about.jpg",
@@ -64,104 +64,6 @@ export default function AboutPage() {
           Email the team
         </Button>
       </PageHero>
-
-      {/* --------------------------------------------------------- Who we are */}
-      <section className="section relative overflow-hidden">
-        <div className="container-page grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Who We Are"
-              title="A destination and a progression journey."
-              lede="Avatars Realm sells belonging, progression and exposure to an industry — not just wins. The organisation exists to give local players somewhere to start, improve and compete."
-            />
-
-            <div className="mt-8 card card-pad">
-              <p className="eyebrow eyebrow-blue">Our Mission</p>
-              <p className="measure mt-4 text-[1.05rem] leading-relaxed text-paper-100">
-                A place to start as a beginner, grow through guided programmes,
-                earn rewards through participation and progress toward
-                competitive play.
-              </p>
-              <p className="measure mt-3 text-[1rem] leading-relaxed text-paper-300">
-                A structured esports academy and gaming experience centre where
-                players develop, communities connect and competition comes
-                alive.
-              </p>
-            </div>
-
-            <div className="measure mt-6 space-y-5 text-[1rem] leading-relaxed text-paper-300">
-              <p>
-                The academy delivers structured programmes; the gaming lounge
-                keeps the door open to everyone; the league and tournament
-                programme give members recurring reasons to return; the arena
-                supports spectating, broadcasts and community events.
-              </p>
-              <p>
-                We publish what we are building — programme structures, pilot
-                pricing and status — as it stands. If something appears on this
-                site, it is part of the plan we are working to, and we say
-                plainly what is still to be confirmed.
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="coming">Opening programme to be announced</StatusBadge>
-              <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
-              <StatusBadge tone="neutral">Championship 2026</StatusBadge>
-            </div>
-          </Reveal>
-
-          <Reveal delay={90} className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">
-              <Image
-                src="/images/team-play.jpg"
-                alt="Esports team playing together at their stations"
-                fill
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="object-cover"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"
-              />
-              <div className="absolute right-5 bottom-5 left-5">
-                <StatusBadge tone="neutral">{SITE.address}</StatusBadge>
-              </div>
-            </div>
-            <DragonWatermark className="pointer-events-none absolute -top-14 -left-14 h-56 w-56" />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------------- Direction */}
-      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
-        <SectionDragon side="right" />
-        <div className="container-page">
-          <Reveal>
-            <SectionHeading
-              eyebrow="What We Are Building"
-              title="Three connected programmes, one venue."
-              lede="The commercial model is visible before every operational detail is finalised — so visitors can see what they can buy, join, practise, watch or return to."
-            />
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {DIRECTION.map((item, index) => (
-              <Reveal key={item.title} delay={index * 70}>
-                <div className="card h-full card-pad">
-                  <StatusBadge tone={item.status.tone}>
-                    {item.status.label}
-                  </StatusBadge>
-                  <h3 className="display-3 mt-5">{item.title}</h3>
-                  <p className="mt-3 text-[1rem] leading-relaxed text-paper-300">
-                    {item.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* --------------------------------------------------------- Pathway */}
       <section id="pathway" className="section relative overflow-hidden">
@@ -204,7 +106,7 @@ export default function AboutPage() {
         <GridBackdrop className="opacity-40" />
         <RedArc className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 -scale-x-100 opacity-70" />
 
-        <div className="container-page relative grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="container-page relative">
           <Reveal>
             <SectionHeading
               eyebrow="Leadership"
@@ -212,7 +114,7 @@ export default function AboutPage() {
               lede="A small leadership team runs the organisation day to day, with coaching capacity confirmed before each programme intake."
             />
 
-            <div className="mt-8 space-y-4">
+            <div className="mt-8 max-w-3xl space-y-4">
               {LEADERSHIP.map((person) => (
                 <div key={person.role} className="card card-pad">
                   <div className="flex items-start gap-4">
@@ -249,68 +151,6 @@ export default function AboutPage() {
               ))}
             </div>
           </Reveal>
-
-          <Reveal delay={90}>
-            <SectionHeading
-              eyebrow="How We Operate"
-              title="What you can expect from us."
-              tone="blue"
-              lede="Honesty about status is a value, not a disclaimer."
-            />
-
-            <div className="mt-8 card card-pad">
-              <h3 className="text-[0.95rem] font-semibold text-paper-50">
-                Published, not negotiated
-              </h3>
-              <p className="measure mt-2 text-[1rem] leading-relaxed text-paper-300">
-                Programme structures, membership entitlements, lounge rates and
-                reward rules are all published on this site as proposed pilot
-                pricing, and confirmed before enrolment opens.
-              </p>
-            </div>
-
-            <div className="mt-4 card card-pad">
-              <h3 className="text-[0.95rem] font-semibold text-paper-50">
-                Future features stay marked as planned
-              </h3>
-              <p className="measure mt-2 text-[1rem] leading-relaxed text-paper-300">
-                Analytics, AI player feedback, manufacturer benefits and formal
-                accreditation remain marked as planned or partner-dependent
-                until they are contracted and verified. {PARTNER_LABEL}
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ----------------------------------------------------------- Values */}
-      <section className="section relative overflow-hidden">
-        <SectionDragon side="right" />
-        <div className="container-page relative">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Values"
-              title="What we hold to on the floor."
-            />
-          </Reveal>
-
-          <div className="mt-10 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2">
-            {VALUES.map((value, index) => (
-              <Reveal key={value.title} delay={index * 60}>
-                <div className="h-full bg-ink-900 p-7 transition-colors duration-200 hover:bg-ink-800">
-                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 text-[1.05rem] font-semibold text-paper-50">
-                    {value.title}
-                  </h3>
-                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
-                    {value.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 

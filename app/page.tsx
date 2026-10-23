@@ -3,7 +3,9 @@ import Link from "next/link";
 
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
+import GenGLockup from "@/components/GenGLockup";
 import Hero from "@/components/Hero";
+import InterestForm from "@/components/InterestForm";
 import JourneyStrip from "@/components/JourneyStrip";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import Reveal from "@/components/Reveal";
@@ -29,6 +31,17 @@ export default function HomePage() {
       {/* ---------------------------------------------------------------- Hero */}
       <Hero />
 
+      {/* ------------------------------------------------------- Gen.G partner */}
+      {/* Slim partner band directly below the hero, before the pathways. */}
+      <section
+        aria-label="Powered by Gen.G"
+        className="border-b border-white/[0.07] bg-navy-950"
+      >
+        <div className="container-page flex justify-center py-6 sm:justify-start sm:py-7">
+          <GenGLockup />
+        </div>
+      </section>
+
       {/* ---------------------------------------------------- Journey strip */}
       <JourneyStrip />
 
@@ -38,7 +51,6 @@ export default function HomePage() {
         <div className="container-page relative">
           <Reveal>
             <SectionHeading
-              eyebrow="The Avatars Realm Ecosystem"
               title="One destination, three ways in."
               lede="Avatars Realm is an esports academy and gaming experience centre. Whether you want to learn, play casually or compete, there is a clear way in — and a reason to come back."
             />
@@ -79,11 +91,11 @@ export default function HomePage() {
               <SectionHeading
                 eyebrow="Academy Programmes"
                 title="A clear path from beginner to pro."
-                lede="Three monthly-fee pathways for every stage — you do not need to be elite to start. Each carries a published commitment, outcome and proposed pilot fee."
+                lede="Whether you're starting out or ready to compete, find the programme that matches your level."
               />
               <div className="md:pb-2">
                 <Button href="/academy-programmes/" variant="primary">
-                  Explore Programmes
+                  Find The Programme Fit for You!
                 </Button>
               </div>
             </div>
@@ -155,8 +167,10 @@ export default function HomePage() {
         <div className="container-page relative py-16 sm:py-20">
           <Reveal className="max-w-3xl">
             <p className="eyebrow">Open Esports Championship 2026</p>
-            <h2 className="display-2 mt-4">{CHAMPIONSHIP.headline}</h2>
-            <p className="lede mt-5">{CHAMPIONSHIP.copy}</p>
+            <h2 className="display-2 mt-4">Ready to Compete? Game on!</h2>
+            <p className="lede mt-5">
+              There are multiple titles to compete for — Enter the Realm
+            </p>
           </Reveal>
 
           <div className="mt-10 flex flex-wrap gap-2.5">
@@ -186,9 +200,11 @@ export default function HomePage() {
               <Button href="/open-esports-championship-2026/" size="lg">
                 Championship details
               </Button>
-              <Link href="/contact/" className="arrow-link">
-                Register your interest <span aria-hidden="true">→</span>
-              </Link>
+              {/* Opens the game-selection interest form. */}
+              <InterestForm
+                label="I'm Interested, Game On!"
+                variant="outline"
+              />
             </div>
           </Reveal>
         </div>

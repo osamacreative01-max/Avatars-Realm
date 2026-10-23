@@ -81,11 +81,13 @@ export const PROGRAMMES = [
   {
     id: "beginner",
     name: "Beginner",
-    headline: "A three-month foundation pathway",
-    copy: "A three-month foundation pathway for new and developing players. The first four weeks establish the fundamentals, and further performance assessments then determine progression, support requirements and readiness for Intermediate-level training.",
+    /* Time-period dropped from the pathway names, and billing reads as
+       month-to-month — both directed by the Kayleen handoff. */
+    headline: "A foundation pathway",
+    copy: "A foundation pathway for new and developing players. The first four weeks establish the fundamentals, and further performance assessments then determine progression, support requirements and readiness for Intermediate-level training.",
     bestFor: "New players, casual players and learners building fundamentals.",
     duration: "3 months",
-    commitment: "three-month",
+    commitment: "month-to-month",
     period: "per month",
     price: "1,500",
     total: "R4,500",
@@ -100,12 +102,13 @@ export const PROGRAMMES = [
   {
     id: "intermediate",
     name: "Intermediate",
-    headline: "A six-month development pathway",
-    copy: "A six-month development pathway for players ready to turn practice into reliable match performance and prepare for league competition.",
+    /* Time-period dropped; billing reads as month-to-month — Kayleen handoff. */
+    headline: "A development pathway",
+    copy: "A development pathway for players ready to turn practice into reliable match performance and prepare for league competition.",
     bestFor:
       "Players ready for structured improvement and regular competitive preparation.",
     duration: "6 months",
-    commitment: "six-month",
+    commitment: "month-to-month",
     period: "per month",
     price: "2,200",
     total: "R13,200",
@@ -431,53 +434,6 @@ export const FULL_DAY = [
   {
     title: "Progress from Beginner to Pro",
     body: "From your first session to organised competition — one connected journey.",
-  },
-] as const;
-
-/* --------------------------------------------------------------------------
-   The arena & events listing shown on the Arena & Events page.
-   -------------------------------------------------------------------------- */
-
-export const ARENA_EVENTS = [
-  {
-    title: "Community League",
-    description:
-      "Monthly league windows with divisions, standings and Realm Points — the recurring reason to come back.",
-    status: MONTHLY,
-    href: "/arena-events/#league",
-    image: "/images/team-play.jpg",
-    alt: "Esports team playing together at their stations",
-    ctaLabel: "How the league works",
-  },
-  {
-    title: "Quarterly Tournaments",
-    description:
-      "Four headline tournament windows per year, with title rotation and member and non-member divisions.",
-    status: TBC,
-    href: "/arena-events/#quarterly",
-    image: "/images/duo-competition.jpg",
-    alt: "Two players competing side by side during a match",
-    ctaLabel: "See the tournament windows",
-  },
-  {
-    title: "Open Esports Championship 2026",
-    description:
-      "The flagship named championship across five titles, sitting inside the wider recurring event programme.",
-    status: UPCOMING,
-    href: "/open-esports-championship-2026/",
-    image: "/images/arena-stage.png",
-    alt: "Pro teams competing on a stadium stage",
-    ctaLabel: "Championship details",
-  },
-  {
-    title: "Watch Parties & Community Sessions",
-    description:
-      "Viewing parties, open play and community sessions that keep the scene connected between competitive windows.",
-    status: ONGOING,
-    href: "/contact/",
-    image: "/images/community-gaming.webp",
-    alt: "Community gamers playing together at a LAN setup",
-    ctaLabel: "Register your interest",
   },
 ] as const;
 

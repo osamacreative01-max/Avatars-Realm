@@ -2,31 +2,25 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import Button from "@/components/Button";
-import CtaBand from "@/components/CtaBand";
-import EventCard from "@/components/EventCard";
-import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
+import { SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import TournamentTimeline from "@/components/TournamentTimeline";
-import {
-  ARENA_EVENTS,
-  ARENA_ZONES,
-  CHAMPIONSHIP,
-  LEAGUE,
-  QUARTERLY_COPY,
-  QUARTERLY_NOTE,
-  TOURNAMENTS,
-} from "@/lib/content";
+import { ARENA_ZONES } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
+
+/* The community league, quarterly tournaments, calendar, championship block
+   and event-enquiries CTA were moved off this page per the Kayleen handoff:
+   the league now sits with the academy programmes, and the quarterly windows,
+   championship and event enquiries live on the League - Tournaments - Events
+   page. What remains here is the arena itself. */
 
 export const metadata: Metadata = pageMetadata({
   path: "/arena-events/",
   title: "Arena & Events",
   description:
-    "The Avatars Realm arena — PC zone, academy rooms, stage, social lounge and content corner, with community league play, quarterly tournaments and the Open Esports Championship 2026.",
+    "The Avatars Realm arena — PC zone, academy rooms, stage, social lounge, content corner and food & beverage: a complete gaming experience centre north of Johannesburg.",
   image: "/images/audience.jpg",
 });
 
@@ -37,19 +31,19 @@ export default function ArenaEventsPage() {
         eyebrow="Arena & Events"
         title={
           <>
-            A destination for play,
+            Get in the Game
             <br />
-            spectating and competition.
+            and feel the energy.
           </>
         }
-        lede="A complete gaming experience centre — PC zone, academy rooms, a competition stage, a social lounge, a content corner and food and beverage — with a recurring league and tournament programme."
+        lede="From high-performance gaming setups and coaching spaces to live competitions, social hangouts and content creation, the Realm brings every side of gaming together under one roof."
         status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/page-banners/arena-and-events.jpg",
           alt: "Players competing side by side at lit gaming stations",
         }}
       >
-        <Button href="#quarterly" size="lg">
+        <Button href="/open-esports-championship-2026/#quarterly" size="lg">
           Tournament windows
         </Button>
         <Button href="/contact/" variant="outline" size="lg">
@@ -58,18 +52,11 @@ export default function ArenaEventsPage() {
       </PageHero>
 
       {/* ------------------------------------------------------------ Zones */}
+      {/* The "Arena Experience" heading was removed — the zone images lead. */}
       <section className="section relative overflow-hidden">
         <SectionDragon side="right" />
         <div className="container-page relative">
-          <Reveal>
-            <SectionHeading
-              eyebrow="The Arena Experience"
-              title="A gaming experience centre, not a room with PCs."
-              lede="Every zone has a job: some open with the launch programme, others are future-ready spaces that complete the destination."
-            />
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ARENA_ZONES.map((zone, index) => (
               <Reveal key={zone.title} delay={(index % 3) * 70}>
                 <article className="card card-hover group flex h-full flex-col overflow-hidden">
@@ -130,208 +117,6 @@ export default function ArenaEventsPage() {
           </div>
         </div>
       </section>
-
-      {/* ------------------------------------------------------------ League */}
-      <section
-        id="league"
-        className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950"
-      >
-        <GridBackdrop className="opacity-40" />
-        <RedArc className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 -scale-x-100 opacity-70" />
-
-        <div className="container-page relative grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Community League"
-              title="A reason to come back, month after month."
-              lede={LEAGUE.copy}
-              tone="blue"
-            />
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="coming">Windows announced at launch</StatusBadge>
-              <StatusBadge tone="soon">Realm Points planned</StatusBadge>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/contact/" size="lg">
-                Join the league
-              </Button>
-            </div>
-          </Reveal>
-
-          <Reveal delay={90}>
-            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {LEAGUE.structure.map((line) => (
-                <li key={line} className="flex gap-4 bg-ink-900/60 px-6 py-4">
-                  <span
-                    aria-hidden="true"
-                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
-                  />
-                  <span className="text-[1rem] leading-relaxed text-paper-300">
-                    {line}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* -------------------------------------------------------- Quarterly */}
-      <section id="quarterly" className="section relative overflow-hidden">
-        <SectionDragon side="left" />
-        <div className="container-page relative">
-          <Reveal>
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <SectionHeading
-                eyebrow="Quarterly Tournaments"
-                title="Four headline moments a year."
-                lede={QUARTERLY_COPY}
-              />
-              <div className="md:pb-2">
-                <StatusBadge tone="soon">Title rotation planned</StatusBadge>
-              </div>
-            </div>
-          </Reveal>
-
-          <TournamentTimeline />
-
-          <Reveal delay={120}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
-              <StatusBadge tone="soon">
-                Member &amp; open divisions planned
-              </StatusBadge>
-              Tournaments combine open divisions, member divisions, academy
-              showcases, spectator experiences and future brand activations.
-              {` ${QUARTERLY_NOTE}`}
-            </p>
-          </Reveal>
-
-          <Reveal delay={140}>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/contact/" size="lg">
-                Follow quarterly announcements
-              </Button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ----------------------------------------------------- Event list */}
-      <section className="section relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
-        <GridBackdrop className="opacity-40" />
-        <SectionDragon side="right" />
-
-        <div className="container-page relative">
-          <Reveal>
-            <SectionHeading
-              eyebrow="The Programme"
-              title="What the calendar looks like."
-              lede="League windows, quarterly tournaments, the flagship championship and community sessions — one recurring rhythm instead of one-off events."
-              tone="blue"
-            />
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {ARENA_EVENTS.map((event, index) => (
-              <Reveal key={event.title} delay={index * 70}>
-                <EventCard
-                  title={event.title}
-                  description={event.description}
-                  status={event.status}
-                  href={event.href}
-                  image={event.image}
-                  alt={event.alt}
-                  ctaLabel={event.ctaLabel}
-                />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------- Championship */}
-      <section className="relative isolate overflow-hidden border-b border-white/[0.07]">
-        <Image
-          src="/images/audience.jpg"
-          alt="Audience gathered at an indoor event"
-          fill
-          sizes="100vw"
-          className="object-cover opacity-30"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/88 to-ink-950"
-        />
-        <RedArc className="pointer-events-none absolute -bottom-28 -left-24 h-[26rem] w-[26rem] -rotate-90 opacity-70" />
-
-        <div className="container-page relative py-16 sm:py-20">
-          <Reveal className="max-w-3xl">
-            <p className="eyebrow">Flagship event</p>
-            <h2 className="display-2 mt-4">Open Esports Championship 2026</h2>
-            <p className="lede mt-5">
-              The named championship sits inside the recurring event rhythm
-              rather than carrying the whole calendar — {CHAMPIONSHIP.copy}
-            </p>
-          </Reveal>
-
-          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
-            {TOURNAMENTS.map((tournament, index) => (
-              <Reveal
-                key={tournament.title}
-                delay={index * 60}
-                /* Three equal cards across the first row, two centred below. */
-                className={
-                  index < 3
-                    ? "lg:col-span-2"
-                    : index === 3
-                      ? "lg:col-span-2 lg:col-start-2"
-                      : "sm:col-span-2 lg:col-span-2"
-                }
-              >
-                <article className="card card-hover group relative h-full overflow-hidden p-6">
-                  <div className="relative flex items-start justify-between gap-4">
-                    <span className="font-mono text-[0.75rem] font-medium tracking-[0.2em] text-flame-400">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="rounded border border-white/15 bg-white/[0.04] px-2.5 py-1 text-[0.6875rem] font-semibold tracking-[0.1em] text-paper-200 uppercase">
-                      {tournament.format}
-                    </span>
-                  </div>
-                  <h3 className="relative mt-6 text-[1.25rem] leading-tight font-semibold tracking-[-0.01em] text-paper-50">
-                    {tournament.title}
-                  </h3>
-                  <p className="relative mt-2.5 text-[0.875rem] leading-relaxed text-paper-300">
-                    {tournament.note}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={160}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-200">
-              <StatusBadge tone="coming">Registration to be announced</StatusBadge>
-              {CHAMPIONSHIP.prizePool}
-            </p>
-          </Reveal>
-
-          <Reveal delay={180}>
-            <div className="mt-10">
-              <Button href="/open-esports-championship-2026/" size="lg">
-                Championship details
-              </Button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <CtaBand
-        eyebrow="Event enquiries"
-        title="Compete, spectate or host."
-        body="Register your interest in league play, a quarterly tournament, watch parties or hosting an event at the arena — the team confirms formats and dates as the programme is announced."
-        primary={{ label: "Email the team", href: "/contact/" }}
-        secondary={{ label: "View memberships", href: "/memberships/" }}
-      />
     </>
   );
 }

@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/contact/",
   title: "Contact",
   description:
-    "Contact Avatars Realm (Pty) Ltd — programme, membership, lounge, league, event and partnership enquiries for the Avatars Realm Esports Academy & Gaming Arena in Northcliff.",
+    "Contact Avatars Realm (Pty) Ltd — programme, membership, lounge, league, event and partnership enquiries for the Avatars Realm Esports Academy & Gaming Arena, north of Johannesburg.",
   image: "/images/esports-setup.jpg",
 });
 
@@ -352,8 +352,8 @@ export default function ContactPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Venue"
-              title="Northcliff, Randburg."
-              lede="Indicative venue hours are listed below. Final opening hours are confirmed with the opening programme and membership enrolment."
+              title="North of Johannesburg."
+              lede="Planned facility — exact location to be confirmed. Indicative venue hours are listed below. Final opening hours are confirmed with the opening programme and membership enrolment."
             />
             <div className="mt-8 card card-pad">
               <ul className="divide-y divide-white/[0.08]">

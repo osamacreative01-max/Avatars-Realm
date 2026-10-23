@@ -74,7 +74,9 @@ export default function Hero({
   eyebrow = "Avatars Realm Esports Academy & Gaming Arena",
   headlineTop = "Train. Play. Compete.",
   headlineBottom = "Belong.",
-  body = "An esports academy, gaming lounge and arena in Northcliff, Randburg.",
+  /* Venue wording per the Kayleen handoff — the Northcliff/Randburg line is
+     obsolete, and the hero opens on the South Africa positioning. */
+  body = "Esports development, now in South Africa. Learn through structured programmes, play with your squad and prepare for competition at Avatars Realm.",
   badge = "Opening programme to be announced",
   primary = {
     label: "Explore Programmes",
@@ -110,13 +112,19 @@ export default function Hero({
               {eyebrow ? <p className="hero-eyebrow">{eyebrow}</p> : null}
               {/* One size across every line, and 8.5em is wide enough for
                   "Train. Play." on one line but not for "Compete." to join
-                  it, so "Belong." always lands on its own red line. */}
-              <h1 className={`mt-5 max-w-[8.5em] ${HEADLINE}`}>
-                <span className="block text-paper-50">{headlineTop}</span>
-                <span className="mt-1 block text-[#d9323b]">
-                  {headlineBottom}
-                </span>
-              </h1>
+                  it, so "Belong." always lands on its own red line. The
+                  headline is framed by the yellow brackets kept per the
+                  Kayleen handoff. */}
+              <div className="hero-headline-frame relative mt-5">
+                <span aria-hidden="true" className="hero-bracket hero-bracket--left" />
+                <span aria-hidden="true" className="hero-bracket hero-bracket--right" />
+                <h1 className={`max-w-[8.5em] ${HEADLINE}`}>
+                  <span className="block text-paper-50">{headlineTop}</span>
+                  <span className="mt-1 block text-[#d9323b]">
+                    {headlineBottom}
+                  </span>
+                </h1>
+              </div>
             </Reveal>
 
             <Reveal delay={90}>

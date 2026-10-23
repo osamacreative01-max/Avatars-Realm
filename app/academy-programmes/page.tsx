@@ -3,13 +3,15 @@ import Image from "next/image";
 
 import Button from "@/components/Button";
 import CtaBand from "@/components/CtaBand";
-import { DragonWatermark, GridBackdrop, SectionDragon } from "@/components/Marks";
+import GenGLockup from "@/components/GenGLockup";
+import InterestForm from "@/components/InterestForm";
+import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import ProgrammeStepper from "@/components/ProgrammeStepper";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import { PARTNER_LABEL, PROGRAMMES } from "@/lib/content";
+import { LEAGUE, PARTNER_LABEL, PROGRAMMES } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
@@ -61,7 +63,7 @@ export default function AcademyProgrammesPage() {
             beginner to pro.
           </>
         }
-        lede="Three monthly-fee pathways — Beginner, Intermediate and Pro — with published commitments, outcomes and what is included at every stage."
+        lede="3 ways to get into the game. Build your skills through guided programmes for different experience levels."
         status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/page-banners/academy-programmes.jpg",
@@ -71,9 +73,7 @@ export default function AcademyProgrammesPage() {
         <Button href="/memberships/" size="lg">
           View Memberships
         </Button>
-        <Button href="/contact/" variant="outline" size="lg">
-          Register your interest
-        </Button>
+        <InterestForm label="I'm Interested, GAME ON!" variant="outline" size="lg" />
       </PageHero>
 
       {/* -------------------------------------------------------- Facts strip */}
@@ -89,6 +89,17 @@ export default function AcademyProgrammesPage() {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------- Gen.G partner */}
+      {/* Smaller version of the homepage lockup, above the programme cards. */}
+      <section
+        aria-label="Powered by Gen.G"
+        className="border-b border-white/[0.07] bg-navy-950"
+      >
+        <div className="container-page flex justify-center py-6 sm:justify-start sm:py-7">
+          <GenGLockup />
         </div>
       </section>
 
@@ -151,38 +162,68 @@ export default function AcademyProgrammesPage() {
                         {programme.commitment} commitment · {programme.total}{" "}
                         over the full programme
                       </p>
-                      <p className="mt-5 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
-                        Best for
-                      </p>
-                      <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
-                        {programme.bestFor}
-                      </p>
+                      {/* "Best for" and the full detail sit after the pricing —
+                          for the Pro programme they live in the brochure instead
+                          (keep everything up to Pro pricing). */}
+                      {programme.id !== "pro" ? (
+                        <>
+                          <p className="mt-5 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
+                            Best for
+                          </p>
+                          <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
+                            {programme.bestFor}
+                          </p>
+                        </>
+                      ) : null}
                     </div>
 
                     <div className="flex flex-col">
-                      <p className="text-[1rem] leading-relaxed text-paper-200">
-                        {programme.copy}
-                      </p>
-                      <p className="mt-6 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
-                        What&apos;s included
-                      </p>
-                      <ul className="mt-3 grid gap-3 sm:grid-cols-2">
-                        {programme.includes.map((line) => (
-                          <li key={line} className="flex gap-3">
-                            <span
-                              aria-hidden="true"
-                              className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
-                            />
-                            <span className="text-[1rem] leading-relaxed text-paper-300">
-                              {line}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
+                      {programme.id === "pro" ? (
+                        /* Pro keeps everything up to its pricing; the detail
+                           lives in the downloadable brochure. */
+                        <>
+                          <p className="text-[1rem] leading-relaxed text-paper-200">
+                            The full Pro programme — schedule, curriculum and
+                            what&apos;s included — is in the downloadable
+                            brochure.
+                          </p>
+                          <div className="mt-6">
+                            <Button
+                              href="/brochures/academy-programmes.pdf"
+                              variant="outline"
+                            >
+                              Download the brochure
+                            </Button>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-[1rem] leading-relaxed text-paper-200">
+                            {programme.copy}
+                          </p>
+                          <p className="mt-6 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
+                            What&apos;s included
+                          </p>
+                          <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+                            {programme.includes.map((line) => (
+                              <li key={line} className="flex gap-3">
+                                <span
+                                  aria-hidden="true"
+                                  className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
+                                />
+                                <span className="text-[1rem] leading-relaxed text-paper-300">
+                                  {line}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
                       <div className="mt-auto pt-7">
-                        <Button href="/contact/" variant="outline">
-                          Register interest in {programme.name}
-                        </Button>
+                        <InterestForm
+                          label="I'm Interested, GAME ON!"
+                          variant="outline"
+                        />
                       </div>
                     </div>
                   </div>
@@ -191,12 +232,69 @@ export default function AcademyProgrammesPage() {
             ))}
           </div>
 
+          {/* Brochure download sits directly after the pricing cards, per the
+              Brochure Download Link Developer Addendum. */}
+          <Reveal delay={140}>
+            <div className="mt-10">
+              <Button href="/brochures/academy-programmes.pdf" size="lg">
+                Download the brochure
+              </Button>
+            </div>
+          </Reveal>
+
           <Reveal delay={160}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
               <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
               Coach costs, facility hours, equipment, curriculum, staffing and
               payment terms are confirmed before enrolment opens. {SITE.pilotNote}
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------ League */}
+      {/* Moved here from Arena & Events per the Kayleen handoff — the league
+          now lives with the academy programmes it feeds. */}
+      <section
+        id="league"
+        className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950"
+      >
+        <GridBackdrop className="opacity-40" />
+        <RedArc className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 -scale-x-100 opacity-70" />
+
+        <div className="container-page relative grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Community League"
+              title="A reason to come back, month after month."
+              lede={LEAGUE.copy}
+              tone="blue"
+            />
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              <StatusBadge tone="coming">Windows announced at launch</StatusBadge>
+              <StatusBadge tone="soon">Realm Points planned</StatusBadge>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href="/contact/" size="lg">
+                Join the league
+              </Button>
+            </div>
+          </Reveal>
+
+          <Reveal delay={90}>
+            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
+              {LEAGUE.structure.map((line) => (
+                <li key={line} className="flex gap-4 bg-ink-900/60 px-6 py-4">
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
+                  />
+                  <span className="text-[1rem] leading-relaxed text-paper-300">
+                    {line}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>

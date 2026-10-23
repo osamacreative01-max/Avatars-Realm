@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import GenGLockup from "@/components/GenGLockup";
 import Logo from "@/components/Logo";
 import { NAV, SITE } from "@/lib/site";
 
@@ -33,6 +34,19 @@ export default function Footer() {
             {SITE.email}
             <span aria-hidden="true">→</span>
           </a>
+          {/* Small partner mark — secondary to the Avatars Realm identity,
+              full tagline deliberately omitted here. */}
+          <div className="mt-6 border-t border-white/10 pt-5">
+            <GenGLockup variant="compact" />
+          </div>
+          <p className="mt-5">
+            <Link
+              href="/brochures/academy-programmes.pdf"
+              className="arrow-link"
+            >
+              Download the programme brochure
+            </Link>
+          </p>
         </div>
 
         <nav aria-label="Footer">

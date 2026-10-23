@@ -8,7 +8,7 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import TournamentTimeline from "@/components/TournamentTimeline";
-import { CHAMPIONSHIP, QUARTERLY_NOTE, TOURNAMENT_JOURNEY, TOURNAMENTS } from "@/lib/content";
+import { CHAMPIONSHIP, QUARTERLY_COPY, QUARTERLY_NOTE, TOURNAMENT_JOURNEY, TOURNAMENTS } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
@@ -25,21 +25,6 @@ const DETAILS = [
   { label: "Format", value: "Planned two-day event" },
   { label: "Divisions", value: "Planned open & member divisions" },
   { label: "Registration", value: "To be announced" },
-];
-
-const EXPECT = [
-  {
-    title: "One part of a wider programme",
-    body: "The championship is the flagship named event, but it sits inside a recurring rhythm of league windows and quarterly tournaments rather than carrying the whole proposition.",
-  },
-  {
-    title: "Academy, lounge and community in one field",
-    body: "The Open Esports Championship 2026 brings Academy, lounge and community players into one multi-title competition experience.",
-  },
-  {
-    title: "Accessible by design",
-    body: "Built to be open to a broad field of players — from casual-to-competitive progression through to high-commitment squads.",
-  },
 ];
 
 export default function ChampionshipPage() {
@@ -107,6 +92,14 @@ export default function ChampionshipPage() {
                 </Button>
                 <Button href="#titles" variant="outline" size="lg">
                   View the titles
+                </Button>
+                {/* Championship detail as a downloadable brochure. */}
+                <Button
+                  href="/brochures/open-esports-championship-2026.pdf"
+                  variant="outline"
+                  size="lg"
+                >
+                  Download the brochure
                 </Button>
               </div>
             </Reveal>
@@ -226,64 +219,44 @@ export default function ChampionshipPage() {
         </div>
       </section>
 
-      {/* ---------------------------------------------------------- Expect */}
-      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
-        <div className="container-page grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
-          <Reveal>
-            <SectionHeading
-              eyebrow="How It Fits"
-              title="Flagship, not the whole story."
-              tone="blue"
-              lede="The championship works because it sits inside a living ecosystem — academy progression, lounge play, Realm Points and monthly league windows feed the field across the season."
-            />
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="soon">Two-day format planned</StatusBadge>
-              <StatusBadge tone="soon">
-                Member &amp; open divisions planned
-              </StatusBadge>
-            </div>
-          </Reveal>
-
-          <Reveal delay={90}>
-            <ul className="max-w-2xl space-y-6">
-              {EXPECT.map((item, index) => (
-                <li key={item.title} className="flex gap-5">
-                  <span className="mt-0.5 font-mono text-[0.75rem] tracking-[0.2em] text-flame-400">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="text-[1.05rem] font-semibold text-paper-50">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
-                      {item.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------ Quarterly rhythm */}
-      <section className="section relative overflow-hidden">
+      {/* ------------------------------------------------------ Quarterly */}
+      {/* Moved here from Arena & Events per the handoff; replaces the older
+          "Wider Rhythm" block so the timeline is not duplicated. */}
+      <section id="quarterly" className="section relative overflow-hidden">
         <SectionDragon side="left" />
         <div className="container-page relative">
           <Reveal>
-            <SectionHeading
-              eyebrow="The Wider Rhythm"
-              title="Four tournament windows across the season."
-              lede="The championship is the fourth and final window — the season-closing moment the earlier three build toward."
-            />
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <SectionHeading
+                eyebrow="Quarterly Tournaments"
+                title="Four headline moments a year."
+                lede={QUARTERLY_COPY}
+              />
+              <div className="md:pb-2">
+                <StatusBadge tone="soon">Title rotation planned</StatusBadge>
+              </div>
+            </div>
           </Reveal>
 
           <TournamentTimeline />
 
-          <Reveal delay={100}>
-            <p className="mt-6 text-[0.875rem] leading-relaxed text-paper-400">
-              {QUARTERLY_NOTE}
+          <Reveal delay={120}>
+            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
+              <StatusBadge tone="soon">
+                Member &amp; open divisions planned
+              </StatusBadge>
+              Tournaments combine open divisions, member divisions, academy
+              showcases, spectator experiences and future brand activations.
+              {` ${QUARTERLY_NOTE}`}
             </p>
+          </Reveal>
+
+          <Reveal delay={140}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href="/contact/" size="lg">
+                Follow quarterly announcements
+              </Button>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -297,8 +270,8 @@ export default function ChampionshipPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Tournament Atmosphere"
-              title="Competition people can feel."
-              lede="The atmosphere the championship is built around — arena seating, focused competition and the crowd format the venue is designed to host."
+              title="Feel the Action."
+              lede="Get a front-row seat to the competition. Experience the energy, cheer on your favourites and watch champions rise. Find an event and book your ticket."
               tone="blue"
             />
           </Reveal>
@@ -361,12 +334,14 @@ export default function ChampionshipPage() {
         </div>
       </section>
 
+      {/* Moved here from Arena & Events per the handoff — this page now
+          carries the league, the quarterly tournaments and event enquiries. */}
       <CtaBand
-        eyebrow="Championship 2026"
-        title="Register your interest."
-        body="Tell the team whether you want to play, volunteer, cover or partner on the championship — we will confirm formats, eligibility and registration as the details are announced."
+        eyebrow="Event enquiries"
+        title="Compete, spectate or host."
+        body="Register your interest in league play, a quarterly tournament, watch parties or hosting an event at the arena — the team confirms formats and dates as the programme is announced."
         primary={{ label: "Email the team", href: "/contact/" }}
-        secondary={{ label: "See arena & events", href: "/arena-events/" }}
+        secondary={{ label: "View memberships", href: "/memberships/" }}
       />
     </>
   );

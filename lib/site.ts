@@ -15,7 +15,9 @@ export const SITE = {
   email: "info@avatarsrealm.co.za",
   phone: "+27 84 906 7711",
   phoneHref: "tel:+27849067711",
-  address: "9 Madge Ave, Northcliff, Randburg",
+  /* The Northcliff/Randburg venue wording is obsolete per the Kayleen handoff —
+     the exact location is still to be confirmed. */
+  address: "Planned facility north of Johannesburg — exact location to be confirmed",
   founded: "Est. 2023",
   /** Indicative only until the opening programme is published. */
   hours: [
@@ -34,10 +36,14 @@ export const SITE = {
  */
 export const NAV = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about/" },
+  /* Academy sits directly after Home on the top ribbon, per the handoff. */
   { label: "Academy Programmes", href: "/academy-programmes/" },
+  { label: "About", href: "/about/" },
   { label: "Memberships & Lounge", href: "/memberships/" },
   { label: "Arena & Events", href: "/arena-events/" },
-  { label: "Open Championship 2026", href: "/open-esports-championship-2026/" },
+  /* The championship tab now carries the league, the quarterly tournaments
+     and the event enquiries — see the Kayleen developer handoff. */
+  { label: "League - Tournaments - Events", href: "/open-esports-championship-2026/" },
+  { label: "FAQ", href: "/faq/" },
   { label: "Contact", href: "/contact/" },
 ] as const;
