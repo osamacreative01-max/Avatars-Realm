@@ -16,7 +16,7 @@ const GAMES = [
    info@avatarsrealm.co.za — request one at https://web3forms.com) to send the
    form straight to the inbox. While it is empty, the form falls back to
    composing a pre-filled email in the visitor's mail app. */
-const WEB3FORMS_ACCESS_KEY = "";
+const WEB3FORMS_ACCESS_KEY = "20e6948f-7382-4ada-a053-00e9a22d45b6";
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 type Props = {
