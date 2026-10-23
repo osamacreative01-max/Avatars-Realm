@@ -41,10 +41,10 @@ export default function Footer() {
           </div>
           <p className="mt-5">
             <Link
-              href="/brochures/academy-programmes.pdf"
+              href="/downloads/avatars-realm-brochure.pdf"
               className="arrow-link"
             >
-              Download the programme brochure
+              Download brochure
             </Link>
           </p>
         </div>

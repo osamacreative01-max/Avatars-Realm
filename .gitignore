@@ -27,9 +27,10 @@ public/images/smiley-man-fist-bumping-with-colleague.jpg
 
 # client review material (kept local only, not site source)
 *.pdf
-# ...except the downloadable brochure PDFs in public/brochures, which are
-# site assets served to visitors.
-!public/brochures/*.pdf
+*.docx
+# ...except the downloadable brochure PDF in public/downloads, which is a
+# site asset served to visitors.
+!public/downloads/*.pdf
 
 # original high-resolution banner masters (web versions live in public/images/page-banners)
 design-src/

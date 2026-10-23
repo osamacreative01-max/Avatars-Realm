@@ -93,9 +93,9 @@ export default function ChampionshipPage() {
                 <Button href="#titles" variant="outline" size="lg">
                   View the titles
                 </Button>
-                {/* Championship detail as a downloadable brochure. */}
+                {/* Championship detail within the supplied brochure. */}
                 <Button
-                  href="/brochures/open-esports-championship-2026.pdf"
+                  href="/downloads/avatars-realm-brochure.pdf"
                   variant="outline"
                   size="lg"
                 >

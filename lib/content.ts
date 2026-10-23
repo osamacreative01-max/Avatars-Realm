@@ -543,7 +543,7 @@ export const PRICING_FAQ = [
   {
     question: "How is a programme paid for?",
     answer:
-      "Monthly. Each programme is billed as a monthly fee across its commitment period — Beginner is R1,500 per month over three months, Intermediate is R2,200 per month over six months and Pro is R1,800 per month over twelve months. Every fee remains proposed pilot pricing until confirmed.",
+      "Monthly. Beginner is R1,500 per month and Intermediate is R2,200 per month — both proposed month-to-month. Pro is R1,800 per month across its twelve-month pathway, with commitment and cancellation terms still to be confirmed. Every fee remains proposed pilot pricing until confirmed.",
   },
   {
     question: "Are these final prices?",

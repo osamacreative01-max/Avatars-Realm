@@ -158,9 +158,19 @@ export default function AcademyProgrammesPage() {
                           Proposed pilot pricing
                         </StatusBadge>
                       </div>
+                      {/* Beginner and Intermediate state their commitment and
+                          running total; the Pro pathway's commitment, billing
+                          and cancellation terms are still to be confirmed
+                          (Brochure Download Link Developer Addendum). */}
                       <p className="mt-2 text-[0.8125rem] leading-relaxed text-paper-400">
-                        {programme.commitment} commitment · {programme.total}{" "}
-                        over the full programme
+                        {programme.id === "pro" ? (
+                          "12-month pathway · commitment terms TBC"
+                        ) : (
+                          <>
+                            {programme.commitment} commitment ·{" "}
+                            {programme.total} over the full programme
+                          </>
+                        )}
                       </p>
                       {/* "Best for" and the full detail sit after the pricing —
                           for the Pro programme they live in the brochure instead
@@ -187,14 +197,19 @@ export default function AcademyProgrammesPage() {
                             what&apos;s included — is in the downloadable
                             brochure.
                           </p>
-                          <div className="mt-6">
-                            <Button
-                              href="/brochures/academy-programmes.pdf"
-                              variant="outline"
+                          <p className="mt-6">
+                            {/* A discreet text link, not a second competing
+                                button — the single primary download sits after
+                                the pricing cards (Brochure Download Link
+                                Developer Addendum). */}
+                            <a
+                              href="/downloads/avatars-realm-brochure.pdf"
+                              className="arrow-link"
                             >
                               Download the brochure
-                            </Button>
-                          </div>
+                              <span aria-hidden="true">→</span>
+                            </a>
+                          </p>
                         </>
                       ) : (
                         <>
@@ -232,13 +247,20 @@ export default function AcademyProgrammesPage() {
             ))}
           </div>
 
-          {/* Brochure download sits directly after the pricing cards, per the
-              Brochure Download Link Developer Addendum. */}
+          {/* The single primary brochure download, directly after the pricing
+              cards, per the Brochure Download Link Developer Addendum. */}
           <Reveal delay={140}>
             <div className="mt-10">
-              <Button href="/brochures/academy-programmes.pdf" size="lg">
-                Download the brochure
+              <Button href="/downloads/avatars-realm-brochure.pdf" size="lg">
+                Download the Avatars Realm Brochure
               </Button>
+              <p className="mt-3 max-w-[42rem] text-[0.8125rem] leading-relaxed text-paper-400">
+                Explore Academy pathways, monthly fees, gaming lounge options
+                and planned competitions.{" "}
+                <span className="text-paper-500">
+                  PDF · 12 pages · approximately 383 KB
+                </span>
+              </p>
             </div>
           </Reveal>
 
