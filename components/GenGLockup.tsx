@@ -14,12 +14,16 @@ type Props = {
  * emphasis on "GOLD". The compact variant drops the tagline for the footer.
  */
 export default function GenGLockup({ variant = "full", className = "" }: Props) {
+  /* Full lockup stacks the logo above the wording on small screens and sits
+     the two side by side from sm up, per the handoff's mobile direction. The
+     compact footer mark always stays on one row. */
+  const row =
+    variant === "compact"
+      ? "flex items-center gap-3"
+      : "flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5";
+
   return (
-    <div
-      className={`flex items-center gap-4 ${
-        variant === "compact" ? "gap-3" : "sm:gap-5"
-      } ${className}`.trim()}
-    >
+    <div className={`${row} ${className}`.trim()}>
       <Image
         src="/images/geng-logo.png"
         alt="Gen.G"

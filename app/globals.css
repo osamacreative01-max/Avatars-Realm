@@ -884,6 +884,35 @@ section[id] {
   background: currentColor;
 }
 
+/* Yellow brackets framing the hero headline — a kept motif from the current
+   theme (Kayleen handoff: "Keep yellow brackets"). Each is a square bracket
+   drawn with borders: a vertical spine with arms reaching inward at the top
+   and bottom. The frame carries the padding that gives them room, so the
+   headline never collides with the strokes. */
+.hero-headline-frame {
+  padding-inline: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+.hero-bracket {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(0.75rem, 1.2vw, 1rem);
+  border-top: 3px solid var(--color-amber-500);
+  border-bottom: 3px solid var(--color-amber-500);
+  pointer-events: none;
+}
+
+.hero-bracket--left {
+  left: 0;
+  border-left: 3px solid var(--color-amber-500);
+}
+
+.hero-bracket--right {
+  right: 0;
+  border-right: 3px solid var(--color-amber-500);
+}
+
 /* Status plate. Flush with the card's bottom-left corner, cut away on the
    diagonal that the photograph mirrors. */
 .hero-status {
