@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 
 /** Games listed in the Kayleen copy deck. "Other" reveals a free-text field. */
 const GAMES = [
-  "EA Sports FC26",
+  "EA Sports FC 26",
   "Call of Duty",
   "Valorant",
   "PUBG Mobile",
@@ -12,12 +12,7 @@ const GAMES = [
   "Other",
 ] as const;
 
-/* Auto-send endpoint. Paste a free Web3Forms access key (tied to
-   info@avatarsrealm.co.za — request one at https://web3forms.com) to send the
-   form straight to the inbox. While it is empty, the form falls back to
-   composing a pre-filled email in the visitor's mail app. */
-const WEB3FORMS_ACCESS_KEY = "20e6948f-7382-4ada-a053-00e9a22d45b6";
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 type Props = {
   label?: string;
@@ -26,6 +21,16 @@ type Props = {
   className?: string;
 };
 
+type FieldKey =
+  | "name"
+  | "email"
+  | "phone"
+  | "games"
+  | "otherText"
+  | "consent";
+type FieldErrors = Partial<Record<FieldKey, string>>;
+type Status = "idle" | "sending" | "sent" | "failed";
+
 const BTN_BASE = "btn";
 const BTN_VARIANT = {
   primary: "btn-primary",
@@ -33,13 +38,18 @@ const BTN_VARIANT = {
 } as const;
 const BTN_SIZE = { sm: "btn-sm", md: "", lg: "btn-lg" } as const;
 
+const INPUT_CLASS =
+  "mt-2 w-full rounded border border-white/12 bg-white/[0.04] px-3.5 py-2.5 text-[1rem] text-paper-50 placeholder:text-paper-500 focus:border-flame-500 focus:ring-1 focus:ring-flame-500 focus:outline-none";
+
+const ERROR_CLASS =
+  "mt-2 text-[0.8125rem] leading-snug text-flame-400";
+
 /**
- * "I'm Interested, Game On!" enquiry. Opens a modal contact form with the
- * visitor's contact details plus a multi-select of the championship game
- * titles (with a free-text option for "Other"). Submitting composes the
- * details into an email addressed to info@avatarsrealm.co.za — the site is
- * static, so this hands off to the visitor's mail client with everything
- * pre-filled rather than silently posting to a backend that does not exist.
+ * "I'm Interested, Game On!" enquiry. Opens an accessible modal with the
+ * visitor's contact details, a multi-select of the championship game titles
+ * (with a free-text option for "Other") and a consent tick. Submissions go to
+ * the /api/interest route handler, which validates them again server-side and
+ * emails the team; a failed send falls back to the published address.
  */
 export default function InterestForm({
   label = "I'm Interested, Game On!",
@@ -53,25 +63,83 @@ export default function InterestForm({
   const [phone, setPhone] = useState("");
   const [selected, setSelected] = useState<string[]>([]);
   const [otherText, setOtherText] = useState("");
-  const [composed, setComposed] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState(false);
+  const [consent, setConsent] = useState(false);
+  /* Honeypot — hidden from people, tempting to bots. */
+  const [website, setWebsite] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [formError, setFormError] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
+  /* Modal behaviour: focus is moved in on open, trapped while open, Esc
+     closes, and focus returns to the trigger on close. */
   useEffect(() => {
     if (!open) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
+
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const dialog = dialogRef.current;
     document.body.style.overflow = "hidden";
+
+    const focusables = () =>
+      Array.from(
+        dialog?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      ).filter((element) => element.tabIndex >= 0);
+
+    const focusTimer = window.setTimeout(() => {
+      const items = focusables();
+      const firstField = items.find(
+        (element) => element.tagName === "INPUT" || element.tagName === "TEXTAREA",
+      );
+      (firstField ?? items[0])?.focus();
+    }, 0);
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const items = focusables();
+      if (items.length === 0) return;
+
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey) {
+        if (active === first || !dialog?.contains(active)) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (active === last || !dialog?.contains(active)) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+
     return () => {
-      document.removeEventListener("keydown", onKey);
+      window.clearTimeout(focusTimer);
+      document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = "";
+      previouslyFocused?.focus?.();
     };
   }, [open]);
 
+  function openDialog() {
+    setErrors({});
+    setFormError(null);
+    setStatus("idle");
+    setOpen(true);
+  }
+
   function toggleGame(game: string) {
+    setErrors((current) => ({ ...current, games: undefined }));
     setSelected((current) =>
       current.includes(game)
         ? current.filter((item) => item !== game)
@@ -79,71 +147,110 @@ export default function InterestForm({
     );
   }
 
+  function validate(): FieldErrors {
+    const next: FieldErrors = {};
+
+    if (!name.trim()) next.name = "Please enter your full name.";
+
+    if (!email.trim()) {
+      next.email = "Please enter your email address.";
+    } else if (!EMAIL_RE.test(email.trim())) {
+      next.email = "Please enter a valid email address.";
+    }
+
+    if (!phone.trim()) {
+      next.phone = "Please enter a phone or WhatsApp number.";
+    }
+
+    if (selected.length === 0) {
+      next.games = "Select at least one game.";
+    } else if (selected.includes("Other") && !otherText.trim()) {
+      next.otherText = "Tell us which game you mean.";
+    }
+
+    if (!consent) {
+      next.consent = "Please tick the box so the team can reply to you.";
+    }
+
+    return next;
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const games = selected
-      .map((game) =>
-        game === "Other" && otherText.trim()
-          ? `Other — ${otherText.trim()}`
-          : game,
-      )
-      .join(", ");
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone || "—"}`,
-      "",
-      `Games of interest: ${games || "—"}`,
-    ].join("\n");
 
-    /* Auto-send when a Web3Forms key is configured; otherwise hand off to the
-       visitor's mail app with everything pre-filled. */
-    if (WEB3FORMS_ACCESS_KEY) {
-      setSending(true);
-      setError(false);
-      try {
-        const res = await fetch(WEB3FORMS_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_ACCESS_KEY,
-            subject: "I'm Interested, Game On!",
-            from_name: "Avatars Realm website",
-            name,
-            email,
-            phone,
-            games,
-            message: body,
-          }),
-        });
-        if (!res.ok) throw new Error("Request failed");
-        setComposed(true);
-      } catch {
-        setError(true);
-      } finally {
-        setSending(false);
-      }
+    const clientErrors = validate();
+    if (Object.keys(clientErrors).length > 0) {
+      setErrors(clientErrors);
+      setFormError("Please check the highlighted fields and try again.");
+      setStatus("idle");
       return;
     }
 
-    const mailto = `mailto:info@avatarsrealm.co.za?subject=${encodeURIComponent(
-      "I'm Interested, Game On!",
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    setComposed(true);
+    setErrors({});
+    setFormError(null);
+    setStatus("sending");
+
+    try {
+      const response = await fetch("/api/interest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          games: selected,
+          otherText: otherText.trim(),
+          consent,
+          website,
+          page: window.location.pathname,
+        }),
+      });
+
+      const data = (await response.json().catch(() => ({}))) as {
+        ok?: boolean;
+        errors?: FieldErrors;
+        error?: string;
+      };
+
+      if (response.ok && data.ok) {
+        setStatus("sent");
+        setName("");
+        setEmail("");
+        setPhone("");
+        setSelected([]);
+        setOtherText("");
+        setConsent(false);
+        return;
+      }
+
+      if (data.errors && Object.keys(data.errors).length > 0) {
+        setErrors(data.errors);
+        setFormError("Please check the highlighted fields and try again.");
+        setStatus("idle");
+        return;
+      }
+
+      setFormError(
+        data.error ??
+          "We could not send that just now. Email info@avatarsrealm.co.za directly and the team will take it from there.",
+      );
+      setStatus("failed");
+    } catch {
+      setFormError(
+        "We could not send that just now. Email info@avatarsrealm.co.za directly and the team will take it from there.",
+      );
+      setStatus("failed");
+    }
   }
 
   const otherSelected = selected.includes("Other");
+  const sending = status === "sending";
 
   return (
     <>
       <button
         type="button"
-        onClick={() => {
-          setComposed(false);
-          setError(false);
-          setOpen(true);
-        }}
+        onClick={openDialog}
         className={`${BTN_BASE} ${BTN_VARIANT[variant]} ${BTN_SIZE[size]} ${className}`.trim()}
       >
         {label}
@@ -162,6 +269,7 @@ export default function InterestForm({
             role="dialog"
             aria-modal="true"
             aria-labelledby="interest-form-title"
+            aria-describedby="interest-form-intro"
             className="card max-h-[92vh] w-full max-w-xl overflow-y-auto card-pad"
           >
             <div className="flex items-start justify-between gap-4">
@@ -173,6 +281,13 @@ export default function InterestForm({
                 >
                   I&apos;m Interested, Game On!
                 </h2>
+                <p
+                  id="interest-form-intro"
+                  className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300"
+                >
+                  Tell the team which games you are into and how to reach you —
+                  we reply within one business day.
+                </p>
               </div>
               <button
                 type="button"
@@ -184,16 +299,19 @@ export default function InterestForm({
               </button>
             </div>
 
-            {composed ? (
+            {status === "sent" ? (
               <div className="mt-6">
-                <p className="text-[1rem] leading-relaxed text-paper-200">
-                  {WEB3FORMS_ACCESS_KEY
-                    ? "Thanks — your enquiry is on its way to the team. They'll reply at"
-                    : "Your email app should now be open with the details filled in — press send and the team will reply at"}{" "}
+                <p
+                  role="status"
+                  aria-live="polite"
+                  className="text-[1rem] leading-relaxed text-paper-200"
+                >
+                  Thanks — your interest is on its way to the team. They&apos;ll
+                  reply at{" "}
                   <span className="font-semibold text-paper-50">
                     info@avatarsrealm.co.za
                   </span>
-                  . If nothing opened, email us directly.
+                  .
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <a
@@ -212,77 +330,188 @@ export default function InterestForm({
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+              <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-5">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Field
-                    label="Name"
+                    label="Full name"
                     id="if-name"
                     value={name}
-                    onChange={setName}
+                    onChange={(value) => {
+                      setName(value);
+                      setErrors((current) => ({ ...current, name: undefined }));
+                    }}
+                    autoComplete="name"
                     required
+                    error={errors.name}
                   />
                   <Field
                     label="Email"
                     id="if-email"
                     type="email"
                     value={email}
-                    onChange={setEmail}
+                    onChange={(value) => {
+                      setEmail(value);
+                      setErrors((current) => ({
+                        ...current,
+                        email: undefined,
+                      }));
+                    }}
+                    autoComplete="email"
                     required
+                    error={errors.email}
                   />
                 </div>
                 <Field
-                  label="Phone (optional)"
+                  label="Phone / WhatsApp"
                   id="if-phone"
                   type="tel"
                   value={phone}
-                  onChange={setPhone}
+                  onChange={(value) => {
+                    setPhone(value);
+                    setErrors((current) => ({
+                      ...current,
+                      phone: undefined,
+                    }));
+                  }}
+                  autoComplete="tel"
+                  required
+                  error={errors.phone}
                 />
 
                 <fieldset>
                   <legend className="text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
-                    Games you&apos;re interested in
+                    Games of interest
                   </legend>
-                  <p className="mt-1 text-[0.8125rem] text-paper-400">
+                  <p
+                    id="if-games-hint"
+                    className="mt-1 text-[0.8125rem] text-paper-400"
+                  >
                     Select one or more.
                   </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
+                  {/* role="group" cannot carry aria-invalid — the group's
+                      error is announced by the alert below it instead. */}
+                  <div
+                    className="mt-3 flex flex-wrap gap-2"
+                    role="group"
+                    aria-describedby="if-games-hint"
+                  >
                     {GAMES.map((game) => {
                       const active = selected.includes(game);
                       return (
-                        <button
+                        <label
                           key={game}
-                          type="button"
-                          aria-pressed={active}
-                          onClick={() => toggleGame(game)}
-                          className={`rounded border px-3.5 py-2 text-[0.875rem] font-medium transition-colors ${
-                            active
-                              ? "border-flame-500 bg-flame-600/15 text-paper-50"
-                              : "border-white/12 bg-white/[0.04] text-paper-200 hover:border-white/25"
-                          }`}
+                          className="cursor-pointer"
                         >
-                          {game}
-                        </button>
+                          <input
+                            type="checkbox"
+                            name="games"
+                            value={game}
+                            checked={active}
+                            onChange={() => toggleGame(game)}
+                            className="peer sr-only"
+                          />
+                          <span
+                            className={`inline-flex items-center rounded border px-3.5 py-2 text-[0.875rem] font-medium transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-flame-500 ${
+                              active
+                                ? "border-flame-500 bg-flame-600/15 text-paper-50"
+                                : "border-white/12 bg-white/[0.04] text-paper-200 hover:border-white/25"
+                            }`}
+                          >
+                            {game}
+                          </span>
+                        </label>
                       );
                     })}
                   </div>
+                  {errors.games ? (
+                    <p role="alert" className={ERROR_CLASS}>
+                      {errors.games}
+                    </p>
+                  ) : null}
+
                   {otherSelected ? (
                     <div className="mt-4">
                       <Field
                         label="Which game?"
                         id="if-other"
                         value={otherText}
-                        onChange={setOtherText}
+                        onChange={(value) => {
+                          setOtherText(value);
+                          setErrors((current) => ({
+                            ...current,
+                            otherText: undefined,
+                          }));
+                        }}
                         placeholder="Add your game"
+                        required
+                        error={errors.otherText}
                       />
                     </div>
                   ) : null}
                 </fieldset>
 
-                {error ? (
-                  <p className="text-[0.875rem] leading-relaxed text-flame-400">
-                    Something went wrong sending that — please email{" "}
-                    {`info@avatarsrealm.co.za`} directly and we&apos;ll take it
-                    from there.
+                <div>
+                  <label
+                    htmlFor="if-consent"
+                    className="flex cursor-pointer items-start gap-3 text-[0.9375rem] leading-relaxed text-paper-200"
+                  >
+                    <input
+                      id="if-consent"
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(event) => {
+                        setConsent(event.target.checked);
+                        setErrors((current) => ({
+                          ...current,
+                          consent: undefined,
+                        }));
+                      }}
+                      aria-invalid={errors.consent ? true : undefined}
+                      aria-describedby={
+                        errors.consent ? "if-consent-error" : undefined
+                      }
+                      className="mt-1 h-4 w-4 flex-none accent-[#d9323b]"
+                    />
+                    <span>
+                      I agree to Avatars Realm contacting me about my interest.
+                    </span>
+                  </label>
+                  {errors.consent ? (
+                    <p id="if-consent-error" role="alert" className={ERROR_CLASS}>
+                      {errors.consent}
+                    </p>
+                  ) : null}
+                </div>
+
+                {/* Honeypot: off-screen and out of the tab order, so only
+                    automated submissions ever fill it. */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -left-[9999px] h-px w-px overflow-hidden"
+                >
+                  <label htmlFor="if-website">Website</label>
+                  <input
+                    id="if-website"
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(event) => setWebsite(event.target.value)}
+                  />
+                </div>
+
+                <p role="status" aria-live="polite" className="sr-only">
+                  {sending
+                    ? "Sending your interest…"
+                    : status === "failed"
+                      ? formError ?? ""
+                      : ""}
+                </p>
+
+                {formError ? (
+                  <p role="alert" className="text-[0.875rem] leading-relaxed text-flame-400">
+                    {formError}
                   </p>
                 ) : null}
 
@@ -303,11 +532,14 @@ export default function InterestForm({
                   </button>
                 </div>
                 <p className="text-[0.8125rem] leading-relaxed text-paper-400">
-                  {WEB3FORMS_ACCESS_KEY
-                    ? "This sends your details straight to the team's inbox."
-                    : "This opens your email app addressed to " +
-                      "info@avatarsrealm.co.za" +
-                      " with your details filled in — no account required."}
+                  This sends your details straight to the team&apos;s inbox at{" "}
+                  <a
+                    href="mailto:info@avatarsrealm.co.za"
+                    className="text-paper-200 underline-offset-4 hover:text-flame-400 hover:underline"
+                  >
+                    info@avatarsrealm.co.za
+                  </a>
+                  .
                 </p>
               </form>
             )}
@@ -326,6 +558,8 @@ type FieldProps = {
   type?: string;
   required?: boolean;
   placeholder?: string;
+  autoComplete?: string;
+  error?: string;
 };
 
 function Field({
@@ -336,7 +570,11 @@ function Field({
   type = "text",
   required,
   placeholder,
+  autoComplete,
+  error,
 }: FieldProps) {
+  const errorId = `${id}-error`;
+
   return (
     <div>
       <label
@@ -344,16 +582,29 @@ function Field({
         className="text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase"
       >
         {label}
+        {required ? (
+          <span aria-hidden="true" className="ml-1 text-flame-400">
+            *
+          </span>
+        ) : null}
       </label>
       <input
         id={id}
         type={type}
         required={required}
         placeholder={placeholder}
+        autoComplete={autoComplete}
         value={value}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errorId : undefined}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 w-full rounded border border-white/12 bg-white/[0.04] px-3.5 py-2.5 text-[1rem] text-paper-50 placeholder:text-paper-500 focus:border-flame-500 focus:ring-1 focus:ring-flame-500 focus:outline-none"
+        className={`${INPUT_CLASS} ${error ? "border-flame-500" : ""}`.trim()}
       />
+      {error ? (
+        <p id={errorId} role="alert" className={ERROR_CLASS}>
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 }

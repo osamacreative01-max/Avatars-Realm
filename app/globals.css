@@ -960,43 +960,6 @@ section[id] {
   }
 }
 
-/* Stat plate: the coupon silhouette with a flat neutral fill. */
-.hero-stat {
-  --plate-stroke: transparent;
-  --plate-fill: #1e2027;
-  --plate-edge: 0px;
-  --plate-radius: 0.9rem;
-  --plate-tab: 0.62rem;
-
-  display: flex;
-  min-height: 9.5rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
-  padding: 1.75rem 1.5rem;
-  text-align: center;
-}
-
-.hero-stat__value {
-  color: #d9323b;
-  font-size: clamp(2.4rem, 1.6rem + 2.4vw, 4.25rem);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-}
-
-.hero-stat__value span {
-  color: var(--color-paper-50);
-}
-
-.hero-stat__label {
-  color: #6c6c73;
-  font-size: clamp(0.9375rem, 0.75rem + 0.6vw, 1.6rem);
-  font-weight: 400;
-  line-height: 1.25;
-}
-
 /* --------------------------------------------------------------------------
    Status treatments — the operational layer of this site.
    Cut-corner plate: dark tinted slate, tone gradient, 3px accent rule on the

@@ -33,7 +33,7 @@ export default function ArenaEventsPage() {
           <>
             Get in the Game
             <br />
-            and feel the energy.
+            and feel the energy
           </>
         }
         lede="From high-performance gaming setups and coaching spaces to live competitions, social hangouts and content creation, the Realm brings every side of gaming together under one roof."

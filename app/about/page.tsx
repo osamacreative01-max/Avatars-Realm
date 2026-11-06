@@ -158,7 +158,10 @@ export default function AboutPage() {
         title="Talk to the team."
         body="Ask a question about programmes, memberships, school groups or partnerships — we respond within one business day and confirm details as the opening programme is announced."
         primary={{ label: "Get in touch", href: "/contact/" }}
-        secondary={{ label: "Championship 2026", href: "/open-esports-championship-2026/" }}
+        secondary={{
+          label: "League - Tournaments - Events",
+          href: "/open-esports-championship-2026/",
+        }}
       />
     </>
   );

@@ -15,7 +15,7 @@ export const SITE = {
   email: "info@avatarsrealm.co.za",
   phone: "+27 84 906 7711",
   phoneHref: "tel:+27849067711",
-  /* The Northcliff/Randburg venue wording is obsolete per the Kayleen handoff —
+  /* The old venue wording is obsolete per the Kayleen handoff —
      the exact location is still to be confirmed. */
   address: "Planned facility north of Johannesburg — exact location to be confirmed",
   founded: "Est. 2023",

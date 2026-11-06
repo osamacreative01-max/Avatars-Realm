@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import Button from "@/components/Button";
-import CtaBand from "@/components/CtaBand";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
@@ -38,7 +37,7 @@ export default function MembershipsPage() {
           <>
             More ways to
             <br />
-            enter the Realm.
+            enter the Realm
           </>
         }
         lede="From quick gaming sessions to monthly passes, choose how you play. Get in the game, bring your squad and earn Realm Points as you go."
@@ -147,7 +146,7 @@ export default function MembershipsPage() {
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
                 eyebrow="Monthly Memberships"
-                title="Level up & get rewarded."
+                title="Level up & get rewarded"
                 lede="Choose your tier and get more out of every visit. Enjoy bundled gaming hours, coaching and booking perks, plus opportunities to earn more Realm Points. All memberships are billed monthly."
                 tone="blue"
               />
@@ -295,13 +294,9 @@ export default function MembershipsPage() {
         </div>
       </section>
 
-      <CtaBand
-        eyebrow="Memberships"
-        title="Choose a membership, or start with an hour."
-        body="Tell the team whether you want lounge time, a monthly membership or a place in a programme — and we will confirm rates, capacity and start dates as the opening programme is announced."
-        primary={{ label: "Email the team", href: "/contact/" }}
-        secondary={{ label: "See programmes", href: "/academy-programmes/" }}
-      />
+      {/* Removed per the handoff: the Realm Points / XP, Lounge Experience
+          and Questions sections and this repeated closing "Memberships" block
+          now live on /faq (verified — nothing lost). */}
     </>
   );
 }

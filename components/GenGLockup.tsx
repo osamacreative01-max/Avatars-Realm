@@ -26,7 +26,7 @@ export default function GenGLockup({ variant = "full", className = "" }: Props) 
     <div className={`${row} ${className}`.trim()}>
       <Image
         src="/images/geng-logo.png"
-        alt="Gen.G"
+        alt="Gen.G logo"
         width={600}
         height={600}
         sizes={

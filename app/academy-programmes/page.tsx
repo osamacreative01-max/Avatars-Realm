@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
 import Button from "@/components/Button";
-import CtaBand from "@/components/CtaBand";
 import GenGLockup from "@/components/GenGLockup";
 import InterestForm from "@/components/InterestForm";
-import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
+import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import ProgrammeStepper from "@/components/ProgrammeStepper";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import { LEAGUE, PARTNER_LABEL, PROGRAMMES } from "@/lib/content";
+import { LEAGUE, PROGRAMMES } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
@@ -30,25 +28,6 @@ const FACTS = [
     value: `R${programme.price} ${programme.period} — ${programme.duration}`,
   })),
   { label: "Pricing", value: "Proposed pilot fees" },
-];
-
-const PRINCIPLES = [
-  {
-    title: "Everyone starts somewhere",
-    body: "You do not need competitive experience to enter the ecosystem. The Beginner programme assumes nothing except that you want to improve.",
-  },
-  {
-    title: "Coaching, not just screen time",
-    body: "Sessions are structured with a purpose — fundamentals, review, role development and match preparation — rather than open-ended play.",
-  },
-  {
-    title: "Progress you can point at",
-    body: "Beginner opens with a four-week foundation phase, and every phase ends with a performance assessment — so improvement is visible and the next step is obvious.",
-  },
-  {
-    title: "A route into competition",
-    body: "Programmes feed directly into league play and the quarterly tournament windows when those launch with the opening programme.",
-  },
 ];
 
 export default function AcademyProgrammesPage() {
@@ -93,13 +72,14 @@ export default function AcademyProgrammesPage() {
       </section>
 
       {/* ------------------------------------------------------- Gen.G partner */}
-      {/* Smaller version of the homepage lockup, above the programme cards. */}
+      {/* Compact version of the homepage lockup, directly below the heading
+          and intro and before the programme cards. No logo on the cards. */}
       <section
         aria-label="Powered by Gen.G"
         className="border-b border-white/[0.07] bg-navy-950"
       >
         <div className="container-page flex justify-center py-6 sm:justify-start sm:py-7">
-          <GenGLockup />
+          <GenGLockup variant="compact" />
         </div>
       </section>
 
@@ -321,120 +301,18 @@ export default function AcademyProgrammesPage() {
         </div>
       </section>
 
-      {/* ------------------------------------------------------- Progression */}
-      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
-        <GridBackdrop className="opacity-40" />
-        <DragonWatermark className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem]" />
+      {/* ------------------------------------------------------------------
+          Removed from this page per the handoff (update 02): Progression,
+          How Sessions Are Run, Schools & Groups / Planned capabilities and
+          the "Academy enrolment" closing block. Their text now lives in
+          /content/brochure-content.md for the downloadable brochure.
 
-        <div className="container-page relative grid items-center gap-8 lg:grid-cols-[1.3fr_0.7fr]">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Progression"
-              title="How players move through the ecosystem."
-              lede="A player can begin with casual play, move into a Beginner programme, progress to Intermediate and Pro, and then enter leagues or tournaments."
-              tone="blue"
-            />
-          </Reveal>
-
-          <Reveal delay={90} className="lg:justify-self-end">
-            <Button href="/about/#pathway" variant="outline">
-              See the full Start → Belong journey
-            </Button>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* --------------------------------------------------------- Principles */}
-      <section className="section relative overflow-hidden">
-        <SectionDragon side="left" />
-        <div className="container-page grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <Reveal className="relative order-2 lg:order-1">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">
-              <Image
-                src="/images/player-setup.jpg"
-                alt="Player at a dual-monitor gaming setup wearing a headset"
-                fill
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="object-cover"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-ink-950/80 to-transparent"
-              />
-            </div>
-          </Reveal>
-
-          <Reveal delay={90} className="order-1 lg:order-2">
-            <SectionHeading
-              eyebrow="How Sessions Are Run"
-              title="Programmes built around development."
-              lede="Four principles shape every block, from the first fundamentals session through to league readiness."
-            />
-            <ul className="mt-8 max-w-2xl space-y-5">
-              {PRINCIPLES.map((item) => (
-                <li key={item.title} className="flex gap-4">
-                  <span
-                    aria-hidden="true"
-                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-azure-500"
-                  />
-                  <div>
-                    <h3 className="text-[0.95rem] font-semibold text-paper-50">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 text-[1rem] leading-relaxed text-paper-300">
-                      {item.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------------ Groups */}
-      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
-        <SectionDragon side="right" />
-        <div className="container-page grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Schools & Groups"
-              title="Institutional programmes, aligned to curriculum."
-              tone="blue"
-              lede="Schools and institutions can book curriculum-aligned academy activity for up to 20 learners per term, with scheduled sessions, reporting and a term-end showcase."
-            />
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/memberships/#institutions">Institution offer</Button>
-              <Button href="/contact/" variant="outline">
-                Email the team
-              </Button>
-            </div>
-          </Reveal>
-
-          <Reveal delay={90}>
-            <div className="card card-pad">
-              <p className="eyebrow eyebrow-blue">Planned capabilities</p>
-              <p className="measure mt-4 text-[1rem] leading-relaxed text-paper-300">
-                Data analytics, AI player feedback and manufacturer-led benefits
-                are reserved as future or partner-enabled features. They are
-                marked as planned until they have been contracted and
-                implemented.
-              </p>
-              <p className="measure mt-4 text-[0.875rem] leading-relaxed text-paper-400">
-                {PARTNER_LABEL}
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <CtaBand
-        eyebrow="Academy enrolment"
-        title="Register your interest in a programme."
-        body="Tell us which programme fits — Beginner, Intermediate or Pro — and the team will confirm your place, the schedule and final pricing when the opening programme is announced."
-        primary={{ label: "Email the team", href: "/contact/" }}
-        secondary={{ label: "See memberships", href: "/memberships/" }}
-      />
+          TODO(client-confirm): update 02 §Academy lists "enrolment sections"
+          among the removals (that was this closing block, eyebrow "Academy
+          enrolment"), while a later line asks to retitle its "Register your
+          interest" to "I'm Interested, GAME ON!". We removed the block, since
+          the two InterestForm triggers on this page already carry that label.
+          Restore a closing CTA here if the client would rather keep one. */}
     </>
   );
 }

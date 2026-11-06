@@ -8,24 +8,19 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import TournamentTimeline from "@/components/TournamentTimeline";
-import { CHAMPIONSHIP, QUARTERLY_COPY, QUARTERLY_NOTE, TOURNAMENT_JOURNEY, TOURNAMENTS } from "@/lib/content";
+import { CHAMPIONSHIP, QUARTERLY_COPY, QUARTERLY_NOTE } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
-import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   path: "/open-esports-championship-2026/",
-  title: "Open Esports Championship 2026",
+  /* The tab was renamed "League - Tournaments - Events" — the route is
+     unchanged so no link breaks. The hero keeps the old name until the
+     client supplies new wording (TODO(client-confirm)). */
+  title: "League - Tournaments - Events",
   description:
     "The Arena's flagship multi-title championship at Avatars Realm — EA Sports FC 26, Call of Duty BO6, Valorant, PUBG Mobile and League of Legends. Dates and registration to be announced.",
   image: "/images/arena-stage.png",
 });
-
-const DETAILS = [
-  { label: "Titles", value: "Five titles, three platforms" },
-  { label: "Format", value: "Planned two-day event" },
-  { label: "Divisions", value: "Planned open & member divisions" },
-  { label: "Registration", value: "To be announced" },
-];
 
 export default function ChampionshipPage() {
   return (
@@ -86,12 +81,13 @@ export default function ChampionshipPage() {
             </Reveal>
 
             <Reveal delay={280}>
+              {/* TODO(client-confirm): keep the current hero wording until the
+                  client supplies new copy for the renamed page. The "View the
+                  titles" button pointed at the removed Titles section and is
+                  gone with it. */}
               <div className="mt-9 flex flex-wrap gap-3">
                 <Button href="/contact/" size="lg">
                   Register your interest
-                </Button>
-                <Button href="#titles" variant="outline" size="lg">
-                  View the titles
                 </Button>
                 {/* Championship detail within the supplied brochure. */}
                 <Button
@@ -107,117 +103,10 @@ export default function ChampionshipPage() {
         </div>
       </section>
 
-      {/* --------------------------------------------------------- Key details */}
-      <section className="border-b border-white/[0.07] bg-navy-950">
-        <div className="container-page grid gap-px bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
-          {DETAILS.map((item) => (
-            <div key={item.label} className="bg-navy-950 px-6 py-8">
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
-                {item.label}
-              </p>
-              <p className="mt-2.5 text-[1rem] font-medium text-azure-400">
-                {item.value}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* -------------------------------------------------------------- Titles */}
-      <section id="titles" className="section relative overflow-hidden">
-        <SectionDragon side="left" />
-
-        <div className="container-page relative">
-          <Reveal>
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <SectionHeading
-                eyebrow="Tournament Titles"
-                title="Five titles, three platforms."
-                lede="Console, PC and mobile competition inside a single championship programme — each title with its own angle, bracket and running order."
-              />
-              <div className="md:pb-2">
-                <StatusBadge tone="soon">Final line-up planned at launch</StatusBadge>
-              </div>
-            </div>
-          </Reveal>
-
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-            {TOURNAMENTS.map((tournament, index) => (
-              <Reveal
-                key={tournament.title}
-                delay={index * 60}
-                /* Three equal cards across the first row, two centred below. */
-                className={
-                  index < 3
-                    ? "lg:col-span-2"
-                    : index === 3
-                      ? "lg:col-span-2 lg:col-start-2"
-                      : "sm:col-span-2 lg:col-span-2"
-                }
-              >
-                <article className="card card-hover group relative h-full overflow-hidden p-6">
-                  <div
-                    aria-hidden="true"
-                    className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-flame-600/10 blur-2xl"
-                  />
-                  <div className="relative flex items-start justify-between gap-4">
-                    <span className="font-mono text-[0.75rem] font-medium tracking-[0.2em] text-flame-400">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="rounded border border-white/15 bg-white/[0.04] px-2.5 py-1 text-[0.6875rem] font-semibold tracking-[0.1em] text-paper-200 uppercase">
-                      {tournament.format}
-                    </span>
-                  </div>
-                  <h3 className="relative mt-6 text-[1.25rem] leading-tight font-semibold tracking-[-0.01em] text-paper-50">
-                    {tournament.title}
-                  </h3>
-                  <p className="relative mt-2.5 text-[0.875rem] leading-relaxed text-paper-300">
-                    {tournament.note}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --------------------------------------------------- Tournament journey */}
-      <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
-        <GridBackdrop className="opacity-40" />
-        <SectionDragon side="right" />
-        <div className="container-page relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <Reveal>
-            <SectionHeading
-              eyebrow="The Tournament Journey"
-              title="From interest to the Arena stage."
-              tone="blue"
-              lede="Every entrant follows the same clear route — no invited shortlists, no hidden brackets."
-            />
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="coming">Dates to be announced</StatusBadge>
-              <StatusBadge tone="soon">Open &amp; member divisions planned</StatusBadge>
-            </div>
-          </Reveal>
-
-          <Reveal delay={90}>
-            <ul className="divide-y divide-white/[0.08] overflow-hidden rounded-lg border border-white/[0.08]">
-              {TOURNAMENT_JOURNEY.map((stage) => (
-                <li
-                  key={stage.step}
-                  className="grid gap-2 bg-ink-900/60 px-6 py-5 sm:grid-cols-[10rem_1fr] sm:items-center sm:gap-6"
-                >
-                  <span className="font-mono text-[0.75rem] tracking-[0.2em] text-flame-400 uppercase">
-                    {stage.step}
-                  </span>
-                  <span className="text-[1rem] leading-relaxed text-paper-300">
-                    {stage.body}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
+      {/* Hero details (Titles / Format / Divisions / Registration), the
+          five-title section and the tournament journey were removed from this
+          page and moved into the downloadable brochure (content/
+          brochure-content.md), per the handoff. */}
 
       {/* ------------------------------------------------------ Quarterly */}
       {/* Moved here from Arena & Events per the handoff; replaces the older
@@ -313,29 +202,14 @@ export default function ChampionshipPage() {
             ))}
           </div>
 
-          <Reveal delay={120}>
-            <div className="mt-10 card card-pad">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div className="max-w-2xl">
-                  <h3 className="text-[1.05rem] font-semibold text-paper-50">
-                    Dates, entries and prize pool
-                  </h3>
-                  <p className="mt-2 text-[1rem] leading-relaxed text-paper-300">
-                    Dates, registration and final event details will be
-                    announced as they are confirmed. {CHAMPIONSHIP.prizePool}{" "}
-                    The prize pool and event budget are not published
-                    commitments until the event is funded and approved.
-                  </p>
-                </div>
-                <StatusBadge tone="neutral">{SITE.statusLine}</StatusBadge>
-              </div>
-            </div>
-          </Reveal>
+          {/* The "Dates, entries and prize pool" note left this page for the
+              downloadable brochure (content/brochure-content.md). */}
         </div>
       </section>
 
       {/* Moved here from Arena & Events per the handoff — this page now
-          carries the league, the quarterly tournaments and event enquiries. */}
+          carries the quarterly tournaments and the event enquiries; the
+          Community League sits on Academy Programmes. */}
       <CtaBand
         eyebrow="Event enquiries"
         title="Compete, spectate or host."

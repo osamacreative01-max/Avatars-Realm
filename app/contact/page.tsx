@@ -143,7 +143,7 @@ export default function ContactPage() {
             <SectionHeading
               eyebrow="Get in Touch"
               title="Reach us directly."
-              lede="There is no contact form on this site. Use the details below and your message will reach the right person."
+              lede="There is no general contact form on this site. For programme or championship interest, use the I'm Interested, Game On! form on the Home and Academy pages — otherwise use the details below and your message will reach the right person."
             />
           </Reveal>
 
@@ -210,7 +210,7 @@ export default function ContactPage() {
             <SectionHeading
               eyebrow="What to ask about"
               title="Five ways we can help."
-              lede="There is no form on this site — pick the closest subject below and email the team directly."
+              lede="There is no general enquiry form on this site — pick the closest subject below and email the team directly."
               tone="blue"
             />
           </Reveal>

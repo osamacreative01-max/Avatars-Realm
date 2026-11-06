@@ -441,8 +441,20 @@ export const FULL_DAY = [
    Championship (brief §11).
    -------------------------------------------------------------------------- */
 
-/** The five confirmed titles, each with its website angle. */
-export const TOURNAMENTS = [
+/**
+ * The five confirmed titles, each with its website angle.
+ *
+ * `href` is optional and empty for now: the Home championship chips stay
+ * plain, non-clickable items until a per-title registration page exists.
+ */
+export type Tournament = {
+  title: string;
+  format: string;
+  note: string;
+  href?: string;
+};
+
+export const TOURNAMENTS: readonly Tournament[] = [
   {
     title: "EA Sports FC 26",
     format: "1v1",
@@ -468,7 +480,7 @@ export const TOURNAMENTS = [
     format: "5v5",
     note: "Deep team strategy, distinct roles and objective control across a match.",
   },
-] as const;
+];
 
 export const CHAMPIONSHIP = {
   headline: "The Arena's flagship multi-title championship.",
