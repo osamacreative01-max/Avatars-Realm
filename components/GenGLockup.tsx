@@ -24,6 +24,9 @@ export default function GenGLockup({ variant = "full", className = "" }: Props) 
 
   return (
     <div className={`${row} ${className}`.trim()}>
+      {/* Width comes only from the variant classes below — a `w-auto` here
+          would override them in the cascade and render the 600px source at
+          full size. */}
       <Image
         src="/images/geng-logo.png"
         alt="Gen.G logo"
@@ -32,7 +35,7 @@ export default function GenGLockup({ variant = "full", className = "" }: Props) 
         sizes={
           variant === "compact" ? "36px" : "(max-width: 640px) 44px, 52px"
         }
-        className={`h-auto w-auto flex-none ${
+        className={`h-auto flex-none ${
           variant === "compact" ? "w-9" : "w-11 sm:w-[3.25rem]"
         }`}
       />
