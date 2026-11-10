@@ -55,6 +55,19 @@ export default function AcademyProgrammesPage() {
         <InterestForm label="I'm Interested, GAME ON!" variant="outline" size="lg" />
       </PageHero>
 
+      {/* ------------------------------------------------------- Gen.G partner */}
+      {/* A smaller version of the homepage lockup — same logo, same two
+          lines of copy — sitting directly below the heading and short intro
+          and before the programme cards. No logo on the cards. */}
+      <section
+        aria-label="Powered by Gen.G"
+        className="border-b border-white/[0.07] bg-navy-950"
+      >
+        <div className="container-page flex justify-center py-6 sm:justify-start sm:py-7">
+          <GenGLockup size="sm" />
+        </div>
+      </section>
+
       {/* -------------------------------------------------------- Facts strip */}
       <section className="border-b border-white/[0.07] bg-navy-950">
         <div className="container-page grid gap-px bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
@@ -68,18 +81,6 @@ export default function AcademyProgrammesPage() {
               </p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------- Gen.G partner */}
-      {/* Compact version of the homepage lockup, directly below the heading
-          and intro and before the programme cards. No logo on the cards. */}
-      <section
-        aria-label="Powered by Gen.G"
-        className="border-b border-white/[0.07] bg-navy-950"
-      >
-        <div className="container-page flex justify-center py-6 sm:justify-start sm:py-7">
-          <GenGLockup variant="compact" />
         </div>
       </section>
 

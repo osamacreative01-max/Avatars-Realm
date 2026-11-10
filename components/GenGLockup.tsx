@@ -3,6 +3,13 @@ import Image from "next/image";
 type Props = {
   /** "full" shows the tagline; "compact" is the small footer mark. */
   variant?: "full" | "compact";
+  /**
+   * "md" is the Home lockup; "sm" is the reduced Academy lockup. The Academy
+   * placement keeps both lines of copy (logo + "Powered by Gen.G" + the
+   * tagline) and only steps the sizing down — per the handoff, it is "a
+   * smaller version of the homepage lockup".
+   */
+  size?: "md" | "sm";
   className?: string;
 };
 
@@ -13,7 +20,11 @@ type Props = {
  * identity, so it is set small and restrained on a dark ground with gold
  * emphasis on "GOLD". The compact variant drops the tagline for the footer.
  */
-export default function GenGLockup({ variant = "full", className = "" }: Props) {
+export default function GenGLockup({
+  variant = "full",
+  size = "md",
+  className = "",
+}: Props) {
   /* Full lockup stacks the logo above the wording on small screens and sits
      the two side by side from sm up, per the handoff's mobile direction. The
      compact footer mark always stays on one row. */
@@ -21,6 +32,13 @@ export default function GenGLockup({ variant = "full", className = "" }: Props) 
     variant === "compact"
       ? "flex items-center gap-3"
       : "flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5";
+
+  /* Logo proportions stay the same at both sizes — only the rendered width
+     steps down for the Academy placement. */
+  const logoWidth =
+    variant === "compact" ? "w-9" : size === "sm" ? "w-10 sm:w-11" : "w-11 sm:w-[3.25rem]";
+  const logoSizes =
+    variant === "compact" ? "36px" : size === "sm" ? "40px" : "(max-width: 640px) 44px, 52px";
 
   return (
     <div className={`${row} ${className}`.trim()}>
@@ -32,12 +50,8 @@ export default function GenGLockup({ variant = "full", className = "" }: Props) 
         alt="Gen.G logo"
         width={600}
         height={600}
-        sizes={
-          variant === "compact" ? "36px" : "(max-width: 640px) 44px, 52px"
-        }
-        className={`h-auto flex-none ${
-          variant === "compact" ? "w-9" : "w-11 sm:w-[3.25rem]"
-        }`}
+        sizes={logoSizes}
+        className={`h-auto flex-none ${logoWidth}`}
       />
       <div
         className={
@@ -50,13 +64,21 @@ export default function GenGLockup({ variant = "full", className = "" }: Props) 
           className={`font-semibold tracking-[0.01em] text-paper-100 ${
             variant === "compact"
               ? "text-[0.8125rem]"
-              : "text-[0.9375rem] sm:text-[1rem]"
+              : size === "sm"
+                ? "text-[0.875rem] sm:text-[0.9375rem]"
+                : "text-[0.9375rem] sm:text-[1rem]"
           }`}
         >
           Powered by Gen.G
         </p>
         {variant === "full" ? (
-          <p className="text-[0.8125rem] leading-snug text-paper-300 sm:text-[0.875rem]">
+          <p
+            className={`leading-snug text-paper-300 ${
+              size === "sm"
+                ? "text-[0.75rem] sm:text-[0.8125rem]"
+                : "text-[0.8125rem] sm:text-[0.875rem]"
+            }`}
+          >
             The{" "}
             <span className="font-bold tracking-[0.02em] text-[#f0c419]">
               GOLD
