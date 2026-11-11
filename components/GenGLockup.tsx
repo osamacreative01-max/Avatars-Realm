@@ -71,7 +71,7 @@ export default function GenGLockup({
         className={
           variant === "compact"
             ? "flex flex-col gap-0.5"
-            : "flex flex-col items-center gap-1 sm:items-start sm:border-l sm:border-white/10 sm:pl-6"
+            : "flex flex-col items-center gap-1 sm:items-start sm:border-l sm:border-[#c9a86a]/60 sm:pl-6"
         }
       >
         <p
@@ -79,7 +79,7 @@ export default function GenGLockup({
             variant === "compact"
               ? "text-[0.8125rem]"
               : size === "lg"
-                ? "text-[1.0625rem] sm:text-[1.25rem]"
+                ? "text-[0.9375rem] sm:text-[1rem]"
                 : size === "sm"
                   ? "text-[0.875rem] sm:text-[0.9375rem]"
                   : "text-[0.9375rem] sm:text-[1rem]"
@@ -91,7 +91,7 @@ export default function GenGLockup({
           <p
             className={`leading-snug text-paper-200 ${
               size === "lg"
-                ? "text-[1.125rem] sm:text-[1.5rem] lg:text-[1.75rem]"
+                ? "text-[1.375rem] sm:text-[1.75rem] lg:text-[2rem]"
                 : size === "sm"
                   ? "text-[0.75rem] sm:text-[0.8125rem]"
                   : "text-[0.8125rem] sm:text-[0.875rem]"

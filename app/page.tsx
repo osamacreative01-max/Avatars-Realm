@@ -35,12 +35,8 @@ export default function HomePage() {
         partner={
           <div
             aria-label="Powered by Gen.G"
-            className="gen-g-feature relative overflow-hidden rounded-lg border border-amber-500/25 px-5 py-6 sm:px-8 sm:py-8"
+            className="gen-g-feature relative overflow-hidden rounded-lg border border-[#c9a86a]/30 px-5 py-6 sm:px-8 sm:py-8"
           >
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_12%_50%,rgba(240,196,25,0.14),transparent_60%)]"
-            />
             <div className="relative">
               <GenGLockup size="lg" />
             </div>
