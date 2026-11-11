@@ -1,23 +1,63 @@
 import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 import { DragonWatermark, GridBackdrop, RedArc } from "@/components/Marks";
 import Reveal from "@/components/Reveal";
 import StatusBadge from "@/components/StatusBadge";
 import { SITE } from "@/lib/site";
 
+type Action = {
+  label: string;
+  /** Standard link action. */
+  href?: string;
+  /** Opens the general contact form instead of navigating. */
+  contact?: boolean;
+  /** Pre-selects the contact form subject. */
+  subject?: string;
+};
+
 type Props = {
   eyebrow?: string;
   title: string;
   body: string;
-  primary?: { label: string; href: string };
-  secondary?: { label: string; href: string };
+  primary?: Action;
+  secondary?: Action;
 };
+
+function ActionButton({
+  action,
+  variant,
+}: {
+  action: Action;
+  variant: "primary" | "outline";
+}) {
+  if (action.contact) {
+    return (
+      <ContactForm
+        label={action.label}
+        variant={variant}
+        size="lg"
+        defaultSubject={action.subject ?? "General enquiry"}
+      />
+    );
+  }
+
+  return (
+    <Button href={action.href ?? "/contact/"} variant={variant} size="lg">
+      {action.label}
+    </Button>
+  );
+}
 
 /** The single closing call-to-action repeated across the site. */
 export default function CtaBand({
   eyebrow = "Get in Touch",
   title,
   body,
-  primary,
+  primary = {
+    label: "Contact us",
+    contact: true,
+    subject: "General enquiry",
+  },
   secondary,
 }: Props) {
   return (
@@ -38,15 +78,9 @@ export default function CtaBand({
             <p className="lede mt-5 max-w-2xl">{body}</p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {primary ? (
-                <Button href={primary.href} size="lg">
-                  {primary.label}
-                </Button>
-              ) : null}
+              <ActionButton action={primary} variant="primary" />
               {secondary ? (
-                <Button href={secondary.href} variant="outline" size="lg">
-                  {secondary.label}
-                </Button>
+                <ActionButton action={secondary} variant="outline" />
               ) : null}
             </div>
           </Reveal>
@@ -55,21 +89,17 @@ export default function CtaBand({
             <div className="card card-pad">
               <p className="eyebrow eyebrow-blue">General enquiries</p>
 
-              <a
-                href={`mailto:${SITE.email}`}
-                className="mt-4 block text-[1.1rem] font-semibold break-words text-paper-50 transition-colors hover:text-flame-400"
-              >
+              <p className="mt-4 text-[1rem] leading-relaxed text-paper-200">
+                Send the team a message about programmes, memberships, school
+                groups, league entry or event hosting. We reply within one
+                business day.
+              </p>
+
+              <p className="mt-4 text-[0.875rem] text-paper-400">
                 {SITE.email}
-              </a>
+              </p>
 
-              <a
-                href={SITE.phoneHref}
-                className="mt-2 block text-[1rem] font-medium text-paper-200 transition-colors hover:text-flame-400"
-              >
-                {SITE.phone}
-              </a>
-
-              <p className="mt-3 text-[0.875rem] text-paper-400">
+              <p className="mt-2 text-[0.875rem] text-paper-400">
                 {SITE.address}
               </p>
 
@@ -79,9 +109,17 @@ export default function CtaBand({
                 <StatusBadge tone="neutral">Championship 2026</StatusBadge>
               </div>
 
+              <div className="mt-5">
+                <ContactForm
+                  label="Open the contact form"
+                  variant="link"
+                  defaultSubject="General enquiry"
+                />
+              </div>
+
               <p className="mt-5 text-[0.875rem] leading-relaxed text-paper-400">
                 Programmes, memberships and lounge rates are published as
-                proposed pilot pricing — email the team to register your
+                proposed pilot pricing — use the contact form to register your
                 interest before enrolment opens.
               </p>
             </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
@@ -221,13 +222,12 @@ export default function MembershipsPage() {
                   )}
 
                   <div className="mt-6">
-                    <Button
-                      href="/contact/"
+                    <ContactForm
+                      label={`Register interest in ${tier.name}`}
                       variant={tier.featured ? "primary" : "outline"}
                       className="w-full"
-                    >
-                      Register interest in {tier.name}
-                    </Button>
+                      defaultSubject="Memberships & lounge"
+                    />
                   </div>
                 </div>
               </Reveal>
@@ -276,9 +276,12 @@ export default function MembershipsPage() {
                     {institution.reward}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
-                    <Button href="/contact/" variant="outline" size="sm">
-                      Enquire about a school group
-                    </Button>
+                    <ContactForm
+                      label="Enquire about a school group"
+                      variant="outline"
+                      size="sm"
+                      defaultSubject="Schools & groups"
+                    />
                   </div>
                 </div>
               </div>

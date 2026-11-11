@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 import CtaBand from "@/components/CtaBand";
 import { DragonWatermark, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
@@ -68,9 +69,12 @@ export default function FaqPage() {
         <Button href="#realm-points" size="lg">
           How Realm Points work
         </Button>
-        <Button href="/contact/" variant="outline" size="lg">
-          Ask a question
-        </Button>
+        <ContactForm
+          label="Ask a question"
+          variant="outline"
+          size="lg"
+          defaultSubject="General enquiry"
+        />
       </PageHero>
 
       {/* -------------------------------------------------- Realm Points */}
@@ -172,9 +176,11 @@ export default function FaqPage() {
               lede="If your question is not answered here, the team will respond within one business day."
             />
             <div className="mt-8">
-              <Button href="/contact/" size="lg">
-                Ask a question
-              </Button>
+              <ContactForm
+                label="Ask a question"
+                size="lg"
+                defaultSubject="General enquiry"
+              />
             </div>
           </Reveal>
 
@@ -198,8 +204,12 @@ export default function FaqPage() {
       <CtaBand
         eyebrow="Get in Touch"
         title="Still have a question?"
-        body="Email the team about programmes, memberships, lounge rates, league entry or events — we respond within one business day and confirm details as the opening programme is announced."
-        primary={{ label: "Email the team", href: "/contact/" }}
+        body="Send the team a message about programmes, memberships, lounge rates, league entry or events — we respond within one business day and confirm details as the opening programme is announced."
+        primary={{
+          label: "Contact us",
+          contact: true,
+          subject: "General enquiry",
+        }}
         secondary={{ label: "See memberships", href: "/memberships/" }}
       />
     </>

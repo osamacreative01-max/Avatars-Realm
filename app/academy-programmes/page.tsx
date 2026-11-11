@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 import GenGLockup from "@/components/GenGLockup";
 import InterestForm from "@/components/InterestForm";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
@@ -278,9 +279,11 @@ export default function AcademyProgrammesPage() {
               <StatusBadge tone="soon">Realm Points planned</StatusBadge>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/contact/" size="lg">
-                Join the league
-              </Button>
+              <ContactForm
+                label="Join the league"
+                size="lg"
+                defaultSubject="League, tournaments & events"
+              />
             </div>
           </Reveal>
 

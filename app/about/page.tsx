@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 import CtaBand from "@/components/CtaBand";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
@@ -59,9 +60,12 @@ export default function AboutPage() {
         <Button href="/academy-programmes/" size="lg">
           Explore Programmes
         </Button>
-        <Button href="/contact/" variant="outline" size="lg">
-          Email the team
-        </Button>
+        <ContactForm
+          label="Contact us"
+          variant="outline"
+          size="lg"
+          defaultSubject="General enquiry"
+        />
       </PageHero>
 
       {/* --------------------------------------------------------- Pathway */}
@@ -157,7 +161,7 @@ export default function AboutPage() {
         eyebrow="Contact"
         title="Talk to the team."
         body="Ask a question about programmes, memberships, school groups or partnerships — we respond within one business day and confirm details as the opening programme is announced."
-        primary={{ label: "Get in touch", href: "/contact/" }}
+        primary={{ label: "Contact us", contact: true, subject: "General enquiry" }}
         secondary={{
           label: "League - Tournaments - Events",
           href: "/open-esports-championship-2026/",

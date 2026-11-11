@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import ContactForm from "@/components/ContactForm";
 import GenGLockup from "@/components/GenGLockup";
 import Logo from "@/components/Logo";
 import { NAV, SITE } from "@/lib/site";
@@ -27,13 +28,13 @@ export default function Footer() {
             quarterly tournaments. Opening programme and membership enrolment to
             be announced.
           </p>
-          <a
-            href={`mailto:${SITE.email}`}
-            className="arrow-link mt-6 inline-flex"
-          >
-            {SITE.email}
-            <span aria-hidden="true">→</span>
-          </a>
+          <div className="mt-6">
+            <ContactForm
+              label="Send us a message"
+              variant="link"
+              defaultSubject="General enquiry"
+            />
+          </div>
           {/* Small partner mark — secondary to the Avatars Realm identity,
               full tagline deliberately omitted here. */}
           <div className="mt-6 border-t border-white/10 pt-5">
@@ -73,21 +74,13 @@ export default function Footer() {
           </h2>
           <ul className="mt-5 space-y-3 text-[1rem] text-paper-200">
             <li>
-              <a
-                href={`mailto:${SITE.email}`}
-                className="transition-colors hover:text-flame-400"
-              >
-                {SITE.email}
-              </a>
+              <ContactForm
+                label="Contact us"
+                variant="link"
+                defaultSubject="General enquiry"
+              />
             </li>
-            <li>
-              <a
-                href={SITE.phoneHref}
-                className="transition-colors hover:text-flame-400"
-              >
-                {SITE.phone}
-              </a>
-            </li>
+            <li className="text-paper-400">{SITE.email}</li>
             <li className="text-paper-400">{SITE.address}</li>
             <li className="text-paper-400">{SITE.statusLine}</li>
           </ul>

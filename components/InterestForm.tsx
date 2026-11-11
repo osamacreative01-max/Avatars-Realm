@@ -307,19 +307,9 @@ export default function InterestForm({
                   className="text-[1rem] leading-relaxed text-paper-200"
                 >
                   Thanks — your interest is on its way to the team. They&apos;ll
-                  reply at{" "}
-                  <span className="font-semibold text-paper-50">
-                    info@avatarsrealm.co.za
-                  </span>
-                  .
+                  reply using the contact details you gave us.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <a
-                    href="mailto:info@avatarsrealm.co.za"
-                    className="btn btn-primary btn-md"
-                  >
-                    Email the team
-                  </a>
                   <button
                     type="button"
                     onClick={() => setOpen(false)}
@@ -532,14 +522,8 @@ export default function InterestForm({
                   </button>
                 </div>
                 <p className="text-[0.8125rem] leading-relaxed text-paper-400">
-                  This sends your details straight to the team&apos;s inbox at{" "}
-                  <a
-                    href="mailto:info@avatarsrealm.co.za"
-                    className="text-paper-200 underline-offset-4 hover:text-flame-400 hover:underline"
-                  >
-                    info@avatarsrealm.co.za
-                  </a>
-                  .
+                  This sends your details straight to the team at
+                  info@avatarsrealm.co.za.
                 </p>
               </form>
             )}

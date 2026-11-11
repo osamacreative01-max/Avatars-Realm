@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   authors: [{ name: SITE.legalName }],
   creator: SITE.legalName,
   publisher: SITE.legalName,
-  formatDetection: { telephone: true, email: true, address: false },
+  formatDetection: { telephone: false, email: true, address: false },
   openGraph: {
     type: "website",
     locale: SITE.locale,

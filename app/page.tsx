@@ -28,18 +28,25 @@ export default function HomePage() {
   return (
     <>
       {/* ---------------------------------------------------------------- Hero */}
-      <Hero />
-
-      {/* ------------------------------------------------------- Gen.G partner */}
-      {/* Slim partner band directly below the hero, before the pathways. */}
-      <section
-        aria-label="Powered by Gen.G"
-        className="border-b border-white/[0.07] bg-navy-950"
-      >
-        <div className="container-page flex justify-center py-6 sm:justify-start sm:py-7">
-          <GenGLockup />
-        </div>
-      </section>
+      {/* The Gen.G partner feature sits inside the hero, directly below the
+          supporting copy and action buttons, before "One destination, three
+          ways in." It is a brand signal, not a CTA or a link. */}
+      <Hero
+        partner={
+          <div
+            aria-label="Powered by Gen.G"
+            className="gen-g-feature relative overflow-hidden rounded-lg border border-amber-500/25 px-5 py-6 sm:px-8 sm:py-8"
+          >
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_12%_50%,rgba(240,196,25,0.14),transparent_60%)]"
+            />
+            <div className="relative">
+              <GenGLockup size="lg" />
+            </div>
+          </div>
+        }
+      />
 
       {/* The four hero counters (Academy programmes / Arena zones /
           Championship titles / Quarterly tournaments) and the 01–04
@@ -224,8 +231,12 @@ export default function HomePage() {
       <CtaBand
         eyebrow="Get in Touch"
         title="Where players start, improve, compete and find their people."
-        body="Email the team about programmes, memberships, school groups, league entry or event hosting — we will point you to the right way in and confirm details as the opening programme is announced."
-        primary={{ label: "Email the team", href: "/contact/" }}
+        body="Send the team a message about programmes, memberships, school groups, league entry or event hosting — we will point you to the right way in and confirm details as the opening programme is announced."
+        primary={{
+          label: "Contact us",
+          contact: true,
+          subject: "General enquiry",
+        }}
         secondary={{ label: "View programmes", href: "/academy-programmes/" }}
       />
     </>

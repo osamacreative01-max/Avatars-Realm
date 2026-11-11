@@ -492,7 +492,7 @@ export const CHAMPIONSHIP = {
 export const TOURNAMENT_JOURNEY = [
   {
     step: "Register interest",
-    body: "Players, teams, volunteers and media contacts email the team — registration opens with the announced dates.",
+    body: "Players, teams, volunteers and media contacts send an enquiry through the website — registration opens with the announced dates.",
   },
   {
     step: "Confirm your entry",
@@ -585,7 +585,7 @@ export const PRICING_FAQ = [
   {
     question: "How do I secure a place?",
     answer:
-      "Email the team to register your interest in a programme, a membership or a school group booking. Enrolment opens with the announced opening programme.",
+      "Use the contact form to register your interest in a programme, a membership or a school group booking. Enrolment opens with the announced opening programme.",
   },
 ] as const;
 

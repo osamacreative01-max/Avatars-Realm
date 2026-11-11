@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 import CtaBand from "@/components/CtaBand";
 import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import Reveal from "@/components/Reveal";
@@ -86,9 +87,11 @@ export default function ChampionshipPage() {
                   titles" button pointed at the removed Titles section and is
                   gone with it. */}
               <div className="mt-9 flex flex-wrap gap-3">
-                <Button href="/contact/" size="lg">
-                  Register your interest
-                </Button>
+                <ContactForm
+                  label="Register your interest"
+                  size="lg"
+                  defaultSubject="League, tournaments & events"
+                />
                 {/* Championship detail within the supplied brochure. */}
                 <Button
                   href="/downloads/avatars-realm-brochure.pdf"
@@ -142,9 +145,11 @@ export default function ChampionshipPage() {
 
           <Reveal delay={140}>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/contact/" size="lg">
-                Follow quarterly announcements
-              </Button>
+              <ContactForm
+                label="Follow quarterly announcements"
+                size="lg"
+                defaultSubject="League, tournaments & events"
+              />
             </div>
           </Reveal>
         </div>
@@ -214,7 +219,11 @@ export default function ChampionshipPage() {
         eyebrow="Event enquiries"
         title="Compete, spectate or host."
         body="Register your interest in league play, a quarterly tournament, watch parties or hosting an event at the arena — the team confirms formats and dates as the programme is announced."
-        primary={{ label: "Email the team", href: "/contact/" }}
+        primary={{
+          label: "Send an event enquiry",
+          contact: true,
+          subject: "League, tournaments & events",
+        }}
         secondary={{ label: "View memberships", href: "/memberships/" }}
       />
     </>

@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import Button from "@/components/Button";
 import HeroSlider from "@/components/HeroSlider";
 import Reveal from "@/components/Reveal";
@@ -10,6 +12,8 @@ type Props = {
   badge?: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
+  /** Partner feature rendered directly below the hero buttons. */
+  partner?: ReactNode;
   className?: string;
 };
 
@@ -72,6 +76,7 @@ export default function Hero({
     label: "League - Tournaments - Events",
     href: "/open-esports-championship-2026/",
   },
+  partner,
   className = "",
 }: Props) {
   return (
@@ -153,6 +158,12 @@ export default function Hero({
             </Button>
           </div>
         </Reveal>
+
+        {/* Partner feature sits immediately below the hero buttons, before the
+            next section — per the Gen.G placement handoff. It is deliberately
+            not wrapped in Reveal: the handoff says the feature must not
+            animate. */}
+        {partner ? <div>{partner}</div> : null}
       </div>
     </section>
   );
