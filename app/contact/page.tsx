@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
@@ -19,64 +20,37 @@ export const metadata: Metadata = pageMetadata({
   image: "/images/esports-setup.jpg",
 });
 
-const CARDS = [
-  {
-    label: "General enquiries",
-    title: "Email",
-    value: SITE.email,
-    href: `mailto:${SITE.email}`,
-    action: "Send an email",
-    note: "Programmes, memberships, league entry, school groups and partnerships.",
-  },
-  {
-    label: "Telephone",
-    title: "Phone",
-    value: SITE.phone,
-    href: SITE.phoneHref,
-    action: "Call this number",
-    note: "For direct questions while the opening programme is being finalised.",
-  },
-  {
-    label: "Location",
-    title: "Based in",
-    value: SITE.address,
-    href: "",
-    action: "",
-    note: SITE.statusLine,
-  },
-];
-
 /** Enquiry prompts the brief asks the contact page to carry (§4). */
 const ENQUIRIES = [
   {
     label: "Programme enquiries",
     title: "Academy programmes",
     body: "Beginner, Intermediate and Pro — monthly fees, commitment periods and start dates.",
-    subject: "Programme enquiry",
+    subject: "Academy programmes",
   },
   {
     label: "Membership enquiries",
     title: "Memberships & gaming lounge",
     body: "Social, Competitive and Pro Pathway memberships, hourly rates and gaming packs.",
-    subject: "Membership enquiry",
+    subject: "Memberships & lounge",
   },
   {
     label: "Venue & event enquiries",
     title: "League, tournaments & hosting",
     body: "League entry, quarterly tournaments, watch parties and event hosting at the arena.",
-    subject: "Event enquiry",
+    subject: "League, tournaments & events",
   },
   {
     label: "Group enquiries",
     title: "Schools & institutions",
     body: "Curriculum-aligned academy activity for up to 20 learners per term.",
-    subject: "School group enquiry",
+    subject: "Schools & groups",
   },
   {
     label: "Partnership enquiries",
     title: "Partner opportunities",
     body: "Technology, equipment, education, food and beverage, production and community collaborations.",
-    subject: "Partnership enquiry",
+    subject: "Partnerships",
   },
 ];
 
@@ -120,81 +94,56 @@ export default function ContactPage() {
             with Avatars Realm.
           </>
         }
-        lede="Whether you are a player, a parent, a school, a team or a business — this is the fastest way to reach us. We reply within one business day."
+        lede="Whether you are a player, a parent, a school, a team or a business — send the team a message below. We reply within one business day."
         status={{ label: "Replies within one business day", tone: "live" }}
         image={{
           src: "/images/esports-setup.jpg",
           alt: "A row of gaming stations and red racing seats lit in blue and red",
         }}
       >
-        <Button href={`mailto:${SITE.email}`} size="lg">
-          Email the team
-        </Button>
-        <Button href={SITE.phoneHref} variant="outline" size="lg">
-          Call {SITE.phone}
+        <ContactForm
+          label="Send us a message"
+          size="lg"
+          defaultSubject="General enquiry"
+        />
+        <Button href="#contact-form" variant="outline" size="lg">
+          Go to the form
         </Button>
       </PageHero>
 
-      {/* -------------------------------------------------------- Contact cards */}
-      <section className="section relative overflow-hidden">
+      {/* ------------------------------------------------------ Contact form */}
+      {/* The general contact form lives on the page itself. Visitors complete
+          it here — nothing sends them to an external email application. */}
+      <section id="contact-form" className="section relative overflow-hidden">
         <SectionDragon side="right" />
-        <div className="container-page">
+        <div className="container-page relative grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
           <Reveal>
             <SectionHeading
               eyebrow="Get in Touch"
-              title="Reach us directly."
-              lede="There is no contact form on this site. Use the details below and your message will reach the right person."
+              title="Tell us what you need."
+              lede="Add your name, surname, email, contact number and a message. The form sends your details straight to the team, so you do not need to open an email application."
             />
+            <ul className="mt-8 space-y-3">
+              {[
+                "Every message reaches the team directly.",
+                "We reply within one business day using the details you give us.",
+                "For game interest, use the I'm Interested, Game On! form on the Home and Academy pages.",
+              ].map((line) => (
+                <li key={line} className="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
+                  />
+                  <span className="text-[1rem] leading-relaxed text-paper-300">
+                    {line}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {CARDS.map((card, index) => {
-              const inner = (
-                <>
-                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
-                    {card.label}
-                  </p>
-                  <h2 className="mt-4 text-[1.15rem] font-semibold text-paper-50">
-                    {card.title}
-                  </h2>
-                  <p className="mt-2 break-words text-[1rem] font-medium text-flame-400">
-                    {card.value}
-                  </p>
-                  <p className="mt-4 text-[0.875rem] leading-relaxed text-paper-400">
-                    {card.note}
-                  </p>
-                </>
-              );
-
-              return (
-                <Reveal key={card.title} delay={index * 70}>
-                  {card.href ? (
-                    <a
-                      href={card.href}
-                      className="card card-hover flex h-full flex-col card-pad"
-                    >
-                      {inner}
-                      <span className="arrow-link mt-6 pt-1">
-                        {card.action} <span aria-hidden="true">→</span>
-                      </span>
-                    </a>
-                  ) : (
-                    <div className="card flex h-full flex-col card-pad">{inner}</div>
-                  )}
-                </Reveal>
-              );
-            })}
-          </div>
-
-          <Reveal delay={140}>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button href={`mailto:${SITE.email}`} size="lg">
-                Email {SITE.email}
-              </Button>
-              <Button href={SITE.phoneHref} variant="outline" size="lg">
-                Call {SITE.phone}
-              </Button>
-            </div>
+          <Reveal delay={90}>
+            <ContactForm inline defaultSubject="General enquiry" />
           </Reveal>
         </div>
       </section>
@@ -210,7 +159,7 @@ export default function ContactPage() {
             <SectionHeading
               eyebrow="What to ask about"
               title="Five ways we can help."
-              lede="There is no form on this site — pick the closest subject below and email the team directly."
+              lede="Pick the closest subject and the contact form opens with it selected — you can change it before sending."
               tone="blue"
             />
           </Reveal>
@@ -218,10 +167,7 @@ export default function ContactPage() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ENQUIRIES.map((item, index) => (
               <Reveal key={item.title} delay={index * 60}>
-                <a
-                  href={`mailto:${SITE.email}?subject=${encodeURIComponent(item.subject)}`}
-                  className="card card-hover flex h-full flex-col card-pad"
-                >
+                <div className="card flex h-full flex-col card-pad">
                   <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
                     {item.label}
                   </p>
@@ -229,31 +175,34 @@ export default function ContactPage() {
                   <p className="mt-3 flex-1 text-[1rem] leading-relaxed text-paper-300">
                     {item.body}
                   </p>
-                  <span className="arrow-link mt-6 pt-1">
-                    {item.subject} <span aria-hidden="true">→</span>
-                  </span>
-                </a>
+                  <div className="mt-6">
+                    <ContactForm
+                      label={item.subject}
+                      variant="link"
+                      defaultSubject={item.subject}
+                    />
+                  </div>
+                </div>
               </Reveal>
             ))}
 
-            {/* Sixth tile balances the grid and repeats the direct details. */}
+            {/* Sixth tile balances the grid and repeats the general route. */}
             <Reveal delay={300}>
               <div className="card flex h-full flex-col card-pad">
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
                   Direct contact
                 </p>
-                <h3 className="display-3 mt-4">Email or call</h3>
+                <h3 className="display-3 mt-4">Not sure where to start?</h3>
                 <p className="mt-3 flex-1 text-[1rem] leading-relaxed text-paper-300">
-                  Not sure which category fits? Write or call and the team will
-                  route your message to the right person.
+                  Send a general message and the team will route it to the right
+                  person.
                 </p>
-                <div className="mt-6 flex flex-col items-start gap-3">
-                  <a href={`mailto:${SITE.email}`} className="arrow-link">
-                    {SITE.email} <span aria-hidden="true">→</span>
-                  </a>
-                  <a href={SITE.phoneHref} className="arrow-link">
-                    {SITE.phone} <span aria-hidden="true">→</span>
-                  </a>
+                <div className="mt-6">
+                  <ContactForm
+                    label="Send a general message"
+                    variant="link"
+                    defaultSubject="General enquiry"
+                  />
                 </div>
               </div>
             </Reveal>
@@ -261,7 +210,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* -------------------------------------------------------- What to ask */}
+      {/* -------------------------------------------------------- Status */}
       <section className="section relative overflow-hidden">
         <SectionDragon side="left" />
         <div className="container-page relative grid gap-12 lg:grid-cols-2 lg:gap-16">

@@ -10,7 +10,10 @@ type Props = {
  * Cropped from the company letterhead and exported as a transparent PNG.
  */
 export default function Logo({
-  className = "h-20 sm:h-24",
+  /* No height classes: they conflict with `h-auto` below — `.sm:h-24` sits
+     in a media query and wins on desktop, stretching the fixed-width logo
+     out of ratio. Height follows the width instead (158/178px → ~61/69px). */
+  className = "",
   priority = false,
 }: Props) {
   return (

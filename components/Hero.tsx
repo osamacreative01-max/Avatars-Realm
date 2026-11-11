@@ -1,12 +1,8 @@
+import type { ReactNode } from "react";
+
 import Button from "@/components/Button";
 import HeroSlider from "@/components/HeroSlider";
 import Reveal from "@/components/Reveal";
-import {
-  ARENA_ZONES,
-  PROGRAMMES,
-  QUARTERLY_TOURNAMENTS,
-  TOURNAMENTS,
-} from "@/lib/content";
 
 type Props = {
   eyebrow?: string;
@@ -16,16 +12,10 @@ type Props = {
   badge?: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
+  /** Partner feature rendered directly below the hero buttons. */
+  partner?: ReactNode;
   className?: string;
 };
-
-/** Authority figures anchoring the base of the hero. */
-const HERO_STATS = [
-  { value: PROGRAMMES.length, label: "Academy programmes" },
-  { value: ARENA_ZONES.length, label: "Arena zones" },
-  { value: TOURNAMENTS.length, label: "Championship titles" },
-  { value: QUARTERLY_TOURNAMENTS.length, label: "Quarterly tournaments" },
-] as const;
 
 /**
  * Backdrop photography. Ordered so the first frame — a row of players at
@@ -66,15 +56,14 @@ const HEADLINE =
  * Homepage hero. One rounded card holds the copy on the left and a slow
  * cross-fade of owned arena photography on the right; the photograph is
  * chamfered away at the bottom-left so the status plate notches into it.
- * The paired CTAs and the four stat coupons sit on the page ground beneath
- * the card. Entrance motion comes from Reveal, disabled under
- * prefers-reduced-motion.
+ * The paired CTAs sit on the page ground beneath the card. Entrance motion
+ * comes from Reveal, disabled under prefers-reduced-motion.
  */
 export default function Hero({
   eyebrow = "Avatars Realm Esports Academy & Gaming Arena",
   headlineTop = "Train. Play. Compete.",
   headlineBottom = "Belong.",
-  /* Venue wording per the Kayleen handoff — the Northcliff/Randburg line is
+  /* Venue wording per the Kayleen handoff — the old venue line is
      obsolete, and the hero opens on the South Africa positioning. */
   body = "Esports development, now in South Africa. Learn through structured programmes, play with your squad and prepare for competition at Avatars Realm.",
   badge = "Opening programme to be announced",
@@ -82,15 +71,17 @@ export default function Hero({
     label: "Explore Programmes",
     href: "/academy-programmes/",
   },
+  /* The championship tab was renamed — same route, new label. */
   secondary = {
-    label: "Open Championship 2026",
+    label: "League - Tournaments - Events",
     href: "/open-esports-championship-2026/",
   },
+  partner,
   className = "",
 }: Props) {
   return (
     <section className={`relative ${className}`.trim()}>
-      <div className="container-page pt-6 sm:pt-8 lg:pt-10">
+      <div className="container-page pt-6 pb-14 sm:pt-8 lg:pt-10 lg:pb-20">
         {/* ------------------------------------------------------------ Card */}
         <div className="hero-card relative isolate overflow-hidden">
           <div className="hero-media">
@@ -168,20 +159,11 @@ export default function Hero({
           </div>
         </Reveal>
 
-        {/* ----------------------------------------------------------- Stats */}
-        <div className="mt-7 grid grid-cols-2 gap-4 pb-14 lg:mt-8 lg:grid-cols-4 lg:gap-5 lg:pb-20">
-          {HERO_STATS.map((stat, index) => (
-            <Reveal key={stat.label} delay={index * 60}>
-              <div className="plate hero-stat h-full w-full">
-                <p className="hero-stat__value">
-                  {stat.value}
-                  <span>.</span>
-                </p>
-                <p className="hero-stat__label">{stat.label}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        {/* Partner feature sits immediately below the hero buttons, before the
+            next section — per the Gen.G placement handoff. It is deliberately
+            not wrapped in Reveal: the handoff says the feature must not
+            animate. */}
+        {partner ? <div>{partner}</div> : null}
       </div>
     </section>
   );

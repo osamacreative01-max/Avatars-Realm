@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 import { SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
@@ -33,7 +34,7 @@ export default function ArenaEventsPage() {
           <>
             Get in the Game
             <br />
-            and feel the energy.
+            and feel the energy
           </>
         }
         lede="From high-performance gaming setups and coaching spaces to live competitions, social hangouts and content creation, the Realm brings every side of gaming together under one roof."
@@ -46,9 +47,12 @@ export default function ArenaEventsPage() {
         <Button href="/open-esports-championship-2026/#quarterly" size="lg">
           Tournament windows
         </Button>
-        <Button href="/contact/" variant="outline" size="lg">
-          Register your interest
-        </Button>
+        <ContactForm
+          label="Register your interest"
+          variant="outline"
+          size="lg"
+          defaultSubject="League, tournaments & events"
+        />
       </PageHero>
 
       {/* ------------------------------------------------------------ Zones */}
@@ -105,9 +109,12 @@ export default function ArenaEventsPage() {
                   </p>
                 </div>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <Button href="/contact/" variant="primary" size="sm">
-                    Register interest
-                  </Button>
+                  <ContactForm
+                    label="Register interest"
+                    variant="primary"
+                    size="sm"
+                    defaultSubject="League, tournaments & events"
+                  />
                   <Button href="/memberships/" variant="outline" size="sm">
                     Lounge rates
                   </Button>

@@ -6,7 +6,6 @@ import CtaBand from "@/components/CtaBand";
 import GenGLockup from "@/components/GenGLockup";
 import Hero from "@/components/Hero";
 import InterestForm from "@/components/InterestForm";
-import JourneyStrip from "@/components/JourneyStrip";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -19,8 +18,8 @@ import {
 } from "@/lib/content";
 
 /**
- * Home is a summary, not a duplicate of the inner pages: hero → the four-step
- * strip → Academy / Lounge / Arena cards → programme teaser → championship
+ * Home is a summary, not a duplicate of the inner pages: hero → Gen.G partner
+ * band → Academy / Lounge / Arena cards → programme teaser → championship
  * teaser → contact. Detail lives on /academy-programmes, /memberships and
  * /arena-events.
  */
@@ -29,21 +28,27 @@ export default function HomePage() {
   return (
     <>
       {/* ---------------------------------------------------------------- Hero */}
-      <Hero />
+      {/* The Gen.G partner feature sits inside the hero, directly below the
+          supporting copy and action buttons, before "One destination, three
+          ways in." It is a brand signal, not a CTA or a link. */}
+      <Hero
+        partner={
+          <div
+            aria-label="Powered by Gen.G"
+            className="gen-g-feature relative overflow-hidden rounded-lg border border-[#c9a86a]/30 px-5 py-6 sm:px-8 sm:py-8"
+          >
+            <div className="relative">
+              <GenGLockup size="lg" />
+            </div>
+          </div>
+        }
+      />
 
-      {/* ------------------------------------------------------- Gen.G partner */}
-      {/* Slim partner band directly below the hero, before the pathways. */}
-      <section
-        aria-label="Powered by Gen.G"
-        className="border-b border-white/[0.07] bg-navy-950"
-      >
-        <div className="container-page flex justify-center py-6 sm:justify-start sm:py-7">
-          <GenGLockup />
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------- Journey strip */}
-      <JourneyStrip />
+      {/* The four hero counters (Academy programmes / Arena zones /
+          Championship titles / Quarterly tournaments) and the 01–04
+          Train / Play / Compete / Belong strip that sat under the hero buttons
+          are removed. TODO(client-confirm): the client wrote "removal of this
+          section which is at the top"; this is our reading of it. */}
 
       {/* -------------------------------------------------------- Pathways */}
       <section className="section relative overflow-hidden">
@@ -120,11 +125,16 @@ export default function HomePage() {
                       {programme.period}
                     </span>
                   </div>
-                  {/* Duration is secondary to the fee; pilot pricing is a tag. */}
+                  {/* Duration is secondary to the fee; pilot pricing is a tag.
+                      The pathway time period is dropped for Beginner and
+                      Intermediate — their billing reads month-to-month. Pro
+                      keeps its twelve-month pathway. */}
                   <div className="mt-3 flex flex-wrap items-center gap-3">
-                    <span className="text-[0.875rem] font-medium text-paper-300">
-                      {programme.duration}
-                    </span>
+                    {programme.id === "pro" ? (
+                      <span className="text-[0.875rem] font-medium text-paper-300">
+                        {programme.duration}
+                      </span>
+                    ) : null}
                     <StatusBadge tone="proposed">
                       Proposed pilot pricing
                     </StatusBadge>
@@ -166,6 +176,10 @@ export default function HomePage() {
 
         <div className="container-page relative py-16 sm:py-20">
           <Reveal className="max-w-3xl">
+            {/* TODO(client-confirm): the tab this block links to was renamed
+                "League - Tournaments - Events"; the eyebrow still names the
+                championship itself, which the handoff did not ask us to
+                rename. */}
             <p className="eyebrow">Open Esports Championship 2026</p>
             <h2 className="display-2 mt-4">Ready to Compete? Game on!</h2>
             <p className="lede mt-5">
@@ -213,8 +227,12 @@ export default function HomePage() {
       <CtaBand
         eyebrow="Get in Touch"
         title="Where players start, improve, compete and find their people."
-        body="Email the team about programmes, memberships, school groups, league entry or event hosting — we will point you to the right way in and confirm details as the opening programme is announced."
-        primary={{ label: "Email the team", href: "/contact/" }}
+        body="Send the team a message about programmes, memberships, school groups, league entry or event hosting — we will point you to the right way in and confirm details as the opening programme is announced."
+        primary={{
+          label: "Contact us",
+          contact: true,
+          subject: "General enquiry",
+        }}
         secondary={{ label: "View programmes", href: "/academy-programmes/" }}
       />
     </>

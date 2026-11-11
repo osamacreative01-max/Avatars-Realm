@@ -441,8 +441,20 @@ export const FULL_DAY = [
    Championship (brief §11).
    -------------------------------------------------------------------------- */
 
-/** The five confirmed titles, each with its website angle. */
-export const TOURNAMENTS = [
+/**
+ * The five confirmed titles, each with its website angle.
+ *
+ * `href` is optional and empty for now: the Home championship chips stay
+ * plain, non-clickable items until a per-title registration page exists.
+ */
+export type Tournament = {
+  title: string;
+  format: string;
+  note: string;
+  href?: string;
+};
+
+export const TOURNAMENTS: readonly Tournament[] = [
   {
     title: "EA Sports FC 26",
     format: "1v1",
@@ -468,7 +480,7 @@ export const TOURNAMENTS = [
     format: "5v5",
     note: "Deep team strategy, distinct roles and objective control across a match.",
   },
-] as const;
+];
 
 export const CHAMPIONSHIP = {
   headline: "The Arena's flagship multi-title championship.",
@@ -480,7 +492,7 @@ export const CHAMPIONSHIP = {
 export const TOURNAMENT_JOURNEY = [
   {
     step: "Register interest",
-    body: "Players, teams, volunteers and media contacts email the team — registration opens with the announced dates.",
+    body: "Players, teams, volunteers and media contacts send an enquiry through the website — registration opens with the announced dates.",
   },
   {
     step: "Confirm your entry",
@@ -573,7 +585,7 @@ export const PRICING_FAQ = [
   {
     question: "How do I secure a place?",
     answer:
-      "Email the team to register your interest in a programme, a membership or a school group booking. Enrolment opens with the announced opening programme.",
+      "Use the contact form to register your interest in a programme, a membership or a school group booking. Enrolment opens with the announced opening programme.",
   },
 ] as const;
 
