@@ -233,12 +233,12 @@ export default function InterestForm({
 
       setFormError(
         data.error ??
-          "We could not send that just now. Email info@avatarsrealm.co.za directly and the team will take it from there.",
+          "We could not send that just now. Please try again in a moment.",
       );
       setStatus("failed");
     } catch {
       setFormError(
-        "We could not send that just now. Email info@avatarsrealm.co.za directly and the team will take it from there.",
+        "We could not send that just now. Please try again in a moment.",
       );
       setStatus("failed");
     }
@@ -525,8 +525,7 @@ export default function InterestForm({
                   </button>
                 </div>
                 <p className="text-[0.8125rem] leading-relaxed text-paper-400">
-                  This sends your details straight to the team at
-                  info@avatarsrealm.co.za.
+                  This sends your details straight to the team.
                 </p>
               </form>
             )}

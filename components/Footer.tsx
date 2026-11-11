@@ -80,7 +80,6 @@ export default function Footer() {
                 defaultSubject="General enquiry"
               />
             </li>
-            <li className="text-paper-400">{SITE.email}</li>
             <li className="text-paper-400">{SITE.address}</li>
             <li className="text-paper-400">{SITE.statusLine}</li>
           </ul>

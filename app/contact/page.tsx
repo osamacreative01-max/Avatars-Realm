@@ -125,7 +125,7 @@ export default function ContactPage() {
             />
             <ul className="mt-8 space-y-3">
               {[
-                "Every message reaches the team at info@avatarsrealm.co.za.",
+                "Every message reaches the team directly.",
                 "We reply within one business day using the details you give us.",
                 "For game interest, use the I'm Interested, Game On! form on the Home and Academy pages.",
               ].map((line) => (

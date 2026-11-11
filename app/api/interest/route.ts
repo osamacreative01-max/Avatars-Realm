@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
       {
         ok: false,
         error:
-          "Too many attempts from this connection. Please wait a few minutes, or email info@avatarsrealm.co.za directly.",
+          "Too many attempts from this connection. Please wait a few minutes and try again.",
       },
       { status: 429 },
     );
@@ -172,7 +172,7 @@ export async function POST(request: NextRequest) {
       {
         ok: false,
         error:
-          "Sending is temporarily unavailable. Email info@avatarsrealm.co.za directly and the team will take it from there.",
+          "Sending is temporarily unavailable. Please try again in a few minutes.",
       },
       { status: 500 },
     );
@@ -232,7 +232,7 @@ export async function POST(request: NextRequest) {
       {
         ok: false,
         error:
-          "We could not send that just now. Email info@avatarsrealm.co.za directly and the team will take it from there.",
+          "We could not send that just now. Please try again in a moment.",
       },
       { status: 502 },
     );

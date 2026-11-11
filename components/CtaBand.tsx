@@ -95,10 +95,6 @@ export default function CtaBand({
                 business day.
               </p>
 
-              <p className="mt-4 text-[0.875rem] text-paper-400">
-                {SITE.email}
-              </p>
-
               <p className="mt-2 text-[0.875rem] text-paper-400">
                 {SITE.address}
               </p>
