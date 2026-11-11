@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import { createPortal } from "react-dom";
 
 /** Subjects offered by the general contact form. */
 const SUBJECTS = [
@@ -518,53 +519,62 @@ export default function ContactForm({
         {variant === "link" ? <span aria-hidden="true">→</span> : null}
       </button>
 
-      {open ? (
-        <div
-          role="presentation"
-          className="fixed inset-0 z-100 flex items-end justify-center bg-ink-950/80 p-0 backdrop-blur-sm sm:items-center sm:p-6"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) setOpen(false);
-          }}
-        >
-          <div
-            ref={dialogRef}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={`${uid}-title`}
-            aria-describedby={`${uid}-intro`}
-            className="card max-h-[92vh] w-full max-w-xl overflow-y-auto card-pad"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="eyebrow">Contact</p>
-                <h2
-                  id={`${uid}-title`}
-                  className="display-3 mt-3 text-[1.6rem]"
-                >
-                  Contact Avatars Realm
-                </h2>
-                <p
-                  id={`${uid}-intro`}
-                  className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300"
-                >
-                  Send the team your details and a message. We reply within one
-                  business day.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Close"
-                className="flex-none rounded border border-white/12 px-2.5 py-1 text-[1.1rem] leading-none text-paper-300 transition-colors hover:border-flame-500 hover:text-paper-50"
+      {/* Portalled to <body> so the dialog escapes any ancestor stacking
+          context (PageHero/CtaBand use `isolate`) and always paints above the
+          page. */}
+      {open
+        ? createPortal(
+            <div
+              role="presentation"
+              className="fixed inset-0 z-100 flex items-end justify-center bg-ink-950/80 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+              onMouseDown={(event) => {
+                if (event.target === event.currentTarget) setOpen(false);
+              }}
+            >
+              <div
+                ref={dialogRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby={`${uid}-title`}
+                aria-describedby={`${uid}-intro`}
+                style={{
+                  background: "linear-gradient(160deg, #12223c, #08101e)",
+                }}
+                className="card max-h-[92vh] w-full max-w-xl overflow-y-auto card-pad"
               >
-                ×
-              </button>
-            </div>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="eyebrow">Contact</p>
+                    <h2
+                      id={`${uid}-title`}
+                      className="display-3 mt-3 text-[1.6rem]"
+                    >
+                      Contact Avatars Realm
+                    </h2>
+                    <p
+                      id={`${uid}-intro`}
+                      className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300"
+                    >
+                      Send the team your details and a message. We reply within
+                      one business day.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    aria-label="Close"
+                    className="flex-none rounded border border-white/12 px-2.5 py-1 text-[1.1rem] leading-none text-paper-300 transition-colors hover:border-flame-500 hover:text-paper-50"
+                  >
+                    ×
+                  </button>
+                </div>
 
-            {formBody}
-          </div>
-        </div>
-      ) : null}
+                {formBody}
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </>
   );
 }

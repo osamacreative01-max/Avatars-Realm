@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { createPortal } from "react-dom";
 
 /** Games listed in the Kayleen copy deck. "Other" reveals a free-text field. */
 const GAMES = [
@@ -256,7 +257,8 @@ export default function InterestForm({
         {label}
       </button>
 
-      {open ? (
+      {open
+        ? createPortal(
         <div
           role="presentation"
           className="fixed inset-0 z-100 flex items-end justify-center bg-ink-950/80 p-0 backdrop-blur-sm sm:items-center sm:p-6"
@@ -270,6 +272,7 @@ export default function InterestForm({
             aria-modal="true"
             aria-labelledby="interest-form-title"
             aria-describedby="interest-form-intro"
+            style={{ background: "linear-gradient(160deg, #12223c, #08101e)" }}
             className="card max-h-[92vh] w-full max-w-xl overflow-y-auto card-pad"
           >
             <div className="flex items-start justify-between gap-4">
@@ -528,8 +531,10 @@ export default function InterestForm({
               </form>
             )}
           </div>
-        </div>
-      ) : null}
+        </div>,
+        document.body,
+      )
+        : null}
     </>
   );
 }
