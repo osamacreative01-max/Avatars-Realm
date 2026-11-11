@@ -106,7 +106,7 @@ export default function Hero({
                   it, so "Belong." always lands on its own red line. The
                   headline is framed by the yellow brackets kept per the
                   Kayleen handoff. */}
-              <div className="hero-headline-frame relative mt-5">
+              <div className="hero-headline-frame relative mt-5 w-fit">
                 <span
                   aria-hidden="true"
                   className="hero-bracket hero-bracket--left"
