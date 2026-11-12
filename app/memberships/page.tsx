@@ -9,21 +9,22 @@ import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import { LOUNGE_RATES, MEMBERSHIPS } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
-import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   path: "/memberships/",
   title: "Memberships & Gaming Lounge",
   description:
-    "Gaming lounge hourly rates, prepaid packs and monthly memberships at Avatars Realm — Social, Competitive and Pro Pathway tiers with Realm Points rewards. Proposed pilot pricing.",
+    "Gaming lounge hourly rates, prepaid packs and monthly memberships at Avatars Realm — Social, Social Plus, Competitive and Pro Lounge passes with Realm Points rewards.",
   image: "/images/pc-stations.jpg",
 });
 
+/* Owner-approved November 2026 rates: lowest hourly (student), lowest pass
+   and the prepaid entry point. */
 const PROMISES = [
-  { label: "Lounge access", value: "From R40 per hour" },
-  { label: "Memberships", value: "From R399 per month" },
-  { label: "Rewards", value: "Planned Realm Points on every hour" },
-  { label: "Pricing", value: "Proposed pilot rates" },
+  { label: "Lounge access", value: "From R25 per hour" },
+  { label: "Memberships", value: "From R180 per month" },
+  { label: "Rewards", value: "Realm Points on every paid hour" },
+  { label: "Prepaid packs", value: "5 hours from R135" },
 ];
 
 export default function MembershipsPage() {
@@ -42,7 +43,6 @@ export default function MembershipsPage() {
           </>
         }
         lede="From quick gaming sessions to monthly passes, choose how you play. Get in the game, bring your squad and earn Realm Points as you go."
-        status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/page-banners/memberships-and-lounge.jpg",
           alt: "A long row of gaming stations in the lounge",
@@ -83,9 +83,6 @@ export default function MembershipsPage() {
                 title="Play without a membership."
                 lede="Just drop in and play. Choose an hourly rate or grab a prepaid pack that gives you more time in the game."
               />
-              <div className="md:pb-2">
-                <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
-              </div>
             </div>
           </Reveal>
 
@@ -151,13 +148,11 @@ export default function MembershipsPage() {
                 lede="Choose your tier and get more out of every visit. Enjoy bundled gaming hours, coaching and booking perks, plus opportunities to earn more Realm Points. All memberships are billed monthly."
                 tone="blue"
               />
-              <div className="md:pb-2">
-                <StatusBadge tone="coming">Enrolment opening soon</StatusBadge>
-              </div>
             </div>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {/* Four published passes sit across one row on wide screens. */}
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {publicTiers.map((tier, index) => (
               <Reveal key={tier.id} delay={index * 70}>
                 <div
@@ -217,7 +212,7 @@ export default function MembershipsPage() {
                     </p>
                   ) : (
                     /* Reserved slot keeps the rewards boxes and buttons
-                       aligned across all three tier cards. */
+                       aligned across all four tier cards. */
                     <div aria-hidden="true" className="mt-4 lg:min-h-[3.5rem]" />
                   )}
 
@@ -275,6 +270,11 @@ export default function MembershipsPage() {
                   <p className="mt-4 text-[1rem] leading-relaxed text-paper-300">
                     {institution.reward}
                   </p>
+                  {institution.note ? (
+                    <p className="mt-4 text-[0.8125rem] leading-relaxed text-paper-400 italic">
+                      {institution.note}
+                    </p>
+                  ) : null}
                   <div className="mt-6 flex flex-wrap gap-3">
                     <ContactForm
                       label="Enquire about a school group"
@@ -287,13 +287,6 @@ export default function MembershipsPage() {
               </div>
             </Reveal>
           ) : null}
-
-          <Reveal delay={200}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
-              <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
-              {SITE.pilotNote}
-            </p>
-          </Reveal>
         </div>
       </section>
 

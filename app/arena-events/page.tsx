@@ -9,7 +9,6 @@ import Reveal from "@/components/Reveal";
 import StatusBadge from "@/components/StatusBadge";
 import { ARENA_ZONES } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
-import { SITE } from "@/lib/site";
 
 /* The community league, quarterly tournaments, calendar, championship block
    and event-enquiries CTA were moved off this page per the Kayleen handoff:
@@ -38,7 +37,6 @@ export default function ArenaEventsPage() {
           </>
         }
         lede="From high-performance gaming setups and coaching spaces to live competitions, social hangouts and content creation, the Realm brings every side of gaming together under one roof."
-        status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/page-banners/arena-and-events.jpg",
           alt: "Players competing side by side at lit gaming stations",
@@ -98,10 +96,10 @@ export default function ArenaEventsPage() {
             <Reveal delay={140} className="lg:col-span-2">
               <div className="card flex h-full flex-col justify-between card-pad">
                 <div>
-                  <StatusBadge tone="coming">
-                    Opening programme to be announced
-                  </StatusBadge>
-                  <h3 className="display-3 mt-5">Come and see it.</h3>
+                  {/* Availability notice removed per the November 2026
+                      handoff — the card converts without an opening-status
+                      badge. */}
+                  <h3 className="display-3">Come and see it.</h3>
                   <p className="mt-3 text-[1rem] leading-relaxed text-paper-300">
                     Some zones open with the launch programme, others are
                     future-ready. Register your interest and be first to know

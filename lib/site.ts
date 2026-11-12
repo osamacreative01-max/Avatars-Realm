@@ -4,12 +4,7 @@ export const SITE = {
   fullName: "Avatars Realm Esports Academy & Gaming Arena",
   tagline: "Train. Play. Compete. Belong.",
   description:
-    "Avatars Realm Esports Academy & Gaming Arena — structured esports programmes for Beginner, Intermediate and Pro players, a gaming lounge with hourly access and monthly memberships, Realm Points rewards, community leagues and quarterly tournaments.",
-  /** Public status line. Must match reality — see brief §15. */
-  statusLine: "Opening programme and membership enrolment to be announced.",
-  /** Applied to every published price until they are confirmed. */
-  pilotNote:
-    "Proposed pilot pricing — not final or binding. Final rates are confirmed with the opening programme.",
+    "Avatars Realm Esports Academy & Gaming Arena — structured esports programmes for Beginner, Intermediate, Advanced and Pro players, a gaming lounge with hourly access and monthly memberships, Realm Points rewards, community leagues and quarterly tournaments.",
   locale: "en-ZA",
   url: "https://www.avatarsrealm.co.za",
   email: "info@avatarsrealm.co.za",
@@ -34,9 +29,9 @@ export const SITE = {
  */
 export const NAV = [
   { label: "Home", href: "/" },
-  /* Academy sits directly after Home on the top ribbon, per the handoff. */
-  { label: "Academy Programmes", href: "/academy-programmes/" },
+  /* About sits directly after Home, per the November 2026 handoff. */
   { label: "About", href: "/about/" },
+  { label: "Academy Programmes", href: "/academy-programmes/" },
   { label: "Memberships & Lounge", href: "/memberships/" },
   { label: "Arena & Events", href: "/arena-events/" },
   /* The championship tab now carries the league, the quarterly tournaments

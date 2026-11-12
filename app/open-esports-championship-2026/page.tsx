@@ -170,33 +170,37 @@ export default function ChampionshipPage() {
             />
           </Reveal>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Three larger landscape frames (4:3) instead of four narrow
+              portrait cards — per the November 2026 handoff, so faces and
+              the action stay readable at desktop and mobile widths. The
+              imagery is illustrative of tournament atmosphere, not venue
+              photography, so the alt text says so. */}
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                src: "/images/arena-stage.png",
-                alt: "Pro teams competing on a stadium stage",
-              },
-              {
                 src: "/images/team-play.jpg",
-                alt: "Players at a live event on orange arena seating behind a Game Time lit desk",
+                alt: "Representative esports imagery: players competing behind a lit tournament desk",
+                position: "object-center",
               },
               {
                 src: "/images/duo-competition.jpg",
-                alt: "Two players focused side by side during a competitive match",
+                alt: "Representative esports imagery: two players focused side by side during a competitive match",
+                position: "object-center",
               },
               {
                 src: "/images/2-male-gamers-high-fiving.jpg",
-                alt: "Two gamers celebrating a win with a high five",
+                alt: "Representative esports imagery: two teammates celebrating a win with a high five",
+                position: "object-center",
               },
             ].map((image, index) => (
               <Reveal key={image.src} delay={index * 60}>
-                <div className="group relative aspect-[4/5] overflow-hidden rounded-lg border border-white/10">
+                <div className="group relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className={`object-cover transition-transform duration-500 group-hover:scale-105 ${image.position}`}
                   />
                   <div
                     aria-hidden="true"

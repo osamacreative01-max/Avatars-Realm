@@ -11,7 +11,6 @@ import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import { PRICING_FAQ, REALM_POINTS } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
-import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   path: "/faq/",
@@ -38,7 +37,7 @@ const LOUNGE_BENEFITS = [
   },
   {
     title: "Booking rules",
-    body: "Once the lounge opens, members book pods ahead of time and walk-ins are served subject to station capacity. Final booking rules are published with the opening programme.",
+    body: "Members book pods ahead of time and walk-ins are served subject to station capacity. Booking rules are published before the lounge opens.",
   },
 ];
 
@@ -59,8 +58,7 @@ export default function FaqPage() {
             answered.
           </>
         }
-        lede="Everything players ask before joining — how Realm Points work, what the lounge experience includes and how the pricing holds together. If your question is not here, the team responds within one business day."
-        status={{ label: SITE.statusLine, tone: "coming" }}
+        lede="Everything players ask before joining — how Realm Points work, what the lounge experience includes and how the pricing holds together."
         image={{
           src: "/images/page-banners/memberships-and-lounge.jpg",
           alt: "A long row of gaming stations in the lounge",
@@ -173,7 +171,7 @@ export default function FaqPage() {
               eyebrow="Questions"
               title="What players ask before joining."
               tone="blue"
-              lede="If your question is not answered here, the team will respond within one business day."
+              lede="If your question is not answered here, send the team a message."
             />
             <div className="mt-8">
               <ContactForm
@@ -204,7 +202,7 @@ export default function FaqPage() {
       <CtaBand
         eyebrow="Get in Touch"
         title="Still have a question?"
-        body="Send the team a message about programmes, memberships, lounge rates, league entry or events — we respond within one business day and confirm details as the opening programme is announced."
+        body="Send the team a message about programmes, memberships, lounge rates, league entry or events — the team reads every enquiry and confirms details as they are published."
         primary={{
           label: "Contact us",
           contact: true,

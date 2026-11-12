@@ -25,13 +25,13 @@ const ENQUIRIES = [
   {
     label: "Programme enquiries",
     title: "Academy programmes",
-    body: "Beginner, Intermediate and Pro — monthly fees and start dates.",
+    body: "Beginner, Intermediate, Advanced and Pro — month-to-month fees.",
     subject: "Academy programmes",
   },
   {
     label: "Membership enquiries",
     title: "Memberships & gaming lounge",
-    body: "Social, Competitive and Pro Pathway memberships, hourly rates and gaming packs.",
+    body: "Social, Social Plus, Competitive and Pro Lounge passes, hourly rates and gaming packs.",
     subject: "Memberships & lounge",
   },
   {
@@ -57,18 +57,18 @@ const ENQUIRIES = [
 const STATUS_ROWS = [
   {
     ask: "Academy programmes",
-    answer: "Enrolment opening soon",
-    tone: "coming" as const,
+    answer: "Month-to-month programmes published",
+    tone: "neutral" as const,
   },
   {
     ask: "Gaming lounge & memberships",
-    answer: "Pilot pricing published",
+    answer: "Rates published",
     tone: "neutral" as const,
   },
   {
     ask: "League & quarterly tournaments",
-    answer: "Announced with the launch programme",
-    tone: "coming" as const,
+    answer: "Schedule published before entry",
+    tone: "neutral" as const,
   },
   {
     ask: "Open Esports Championship 2026",
@@ -94,8 +94,7 @@ export default function ContactPage() {
             with Avatars Realm.
           </>
         }
-        lede="Whether you are a player, a parent, a school, a team or a business — send the team a message below. We reply within one business day."
-        status={{ label: "Replies within one business day", tone: "live" }}
+        lede="Whether you are a player, a parent, a school, a team or a business — send the team a message below."
         image={{
           src: "/images/esports-setup.jpg",
           alt: "A row of gaming stations and red racing seats lit in blue and red",
@@ -126,7 +125,7 @@ export default function ContactPage() {
             <ul className="mt-8 space-y-3">
               {[
                 "Every message reaches the team directly.",
-                "We reply within one business day using the details you give us.",
+                "Add the best number or email for the team to reply to.",
                 "For game interest, use the I'm Interested, Game On! form on the Home and Academy pages.",
               ].map((line) => (
                 <li key={line} className="flex gap-3">
@@ -219,10 +218,9 @@ export default function ContactPage() {
               eyebrow="Where Things Stand"
               title="The current state of play."
               tone="blue"
-              lede="The status of the things people ask about most often — updated as the opening programme is confirmed."
+              lede="The status of the things people ask about most often."
             />
             <div className="mt-8 flex flex-wrap gap-2.5">
-              <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
               <StatusBadge tone="neutral">Championship 2026</StatusBadge>
             </div>
           </Reveal>
@@ -260,7 +258,7 @@ export default function ContactPage() {
                 tone="blue"
               />
               <div className="md:pb-2">
-                <StatusBadge tone="neutral">No partners confirmed yet</StatusBadge>
+                <StatusBadge tone="neutral">Partnerships open</StatusBadge>
               </div>
             </div>
           </Reveal>
@@ -286,9 +284,9 @@ export default function ContactPage() {
           <Reveal delay={200}>
             <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
               <StatusBadge tone="neutral">Partnership status</StatusBadge>
-              Partnership opportunities are under establishment — no partner
-              logos or confirmed partners are published until agreements are
-              signed.
+              The Gen.G partnership is described on the About page. Further
+              partnership opportunities are under establishment — no additional
+              partner logos are published until agreements are signed.
             </p>
           </Reveal>
         </div>
@@ -302,7 +300,7 @@ export default function ContactPage() {
             <SectionHeading
               eyebrow="Venue"
               title="North of Johannesburg."
-              lede="Planned facility — exact location to be confirmed. Indicative venue hours are listed below. Final opening hours are confirmed with the opening programme and membership enrolment."
+              lede="Planned facility — exact location to be confirmed. Indicative venue hours are listed below."
             />
             <div className="mt-8 card card-pad">
               <ul className="divide-y divide-white/[0.08]">
@@ -323,7 +321,6 @@ export default function ContactPage() {
             </div>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <StatusBadge tone="neutral">Indicative hours</StatusBadge>
-              <StatusBadge tone="soon">{SITE.statusLine}</StatusBadge>
             </div>
           </Reveal>
 

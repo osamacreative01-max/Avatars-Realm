@@ -852,6 +852,12 @@ section[id] {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 25% 100%, 12% 66%, 0 66%);
 }
 
+/* With no status plate (availability notices removed) the photograph keeps
+   its full rectangle — there is no plate for the chamfer to meet. */
+.hero-card--plain .hero-media {
+  clip-path: none;
+}
+
 .hero-media img {
   filter: saturate(1.08) contrast(1.04);
 }

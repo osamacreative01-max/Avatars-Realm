@@ -271,8 +271,8 @@ export default function ContactForm({
           aria-live="polite"
           className="text-[1rem] leading-relaxed text-paper-200"
         >
-          Thanks — your message is on its way to the team. We reply within one
-          business day using the contact details you gave us.
+          Thanks — your message is on its way to the team using the contact
+          details you gave us.
         </p>
         {!inline ? (
           <div className="mt-6">
@@ -555,8 +555,7 @@ export default function ContactForm({
                       id={`${uid}-intro`}
                       className="mt-3 text-[0.9375rem] leading-relaxed text-paper-300"
                     >
-                      Send the team your details and a message. We reply within
-                      one business day.
+                      Send the team your details and a message.
                     </p>
                   </div>
                   <button

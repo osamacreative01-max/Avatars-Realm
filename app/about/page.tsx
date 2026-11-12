@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import Button from "@/components/Button";
 import ContactForm from "@/components/ContactForm";
 import CtaBand from "@/components/CtaBand";
+import GenGLockup from "@/components/GenGLockup";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { LEADERSHIP, PROGRESSION } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
-import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about/",
@@ -38,11 +38,6 @@ export default function AboutPage() {
               where gaming talent is developed, skills are sharpened and
               competition creates opportunity.
             </span>
-            <span className="mt-4 block text-[0.9375rem] leading-relaxed text-paper-300">
-              Powered by Gen.G. Gen.G branding is featured through Avatars
-              Realm&apos;s partner agreement. Our focus is to give South African
-              players a place to learn, play and prepare for competition.
-            </span>
             <span className="mt-4 block">
               Our ambition is bigger than the game. We want to help grow the
               next generation of esports talent and create more opportunities
@@ -51,7 +46,6 @@ export default function AboutPage() {
             </span>
           </>
         }
-        status={{ label: SITE.statusLine, tone: "coming" }}
         image={{
           src: "/images/page-banners/about.jpg",
           alt: "Rows of gaming PCs lit in purple across the arena floor",
@@ -67,6 +61,35 @@ export default function AboutPage() {
           defaultSubject="General enquiry"
         />
       </PageHero>
+
+      {/* -------------------------------------------------- Gen.G partner */}
+      {/* Logo sits directly above the approved partnership copy, with the
+          exact supporting line from the November 2026 handoff. No permission
+          or branding-agreement wording is shown to visitors. */}
+      <section className="section-tight relative overflow-hidden border-b border-white/[0.07] bg-navy-950">
+        <GridBackdrop className="opacity-40" />
+        <div className="container-page relative">
+          <Reveal className="flex flex-col items-center gap-6 text-center">
+            <GenGLockup size="md" />
+            <h2 className="display-3">The Gen.G partnership</h2>
+            <p className="measure text-[1.0625rem] leading-relaxed text-paper-200">
+              Avatars Realm&apos;s partnership with Gen.G — the{" "}
+              <span className="font-semibold text-[#f0c419]">GOLD</span>{" "}
+              standard in Esports — helps us bring a world-class esports
+              learning experience to South Africa. Avatars Realm coaches have
+              been trained by Gen.G, and Avatars Realm has received approval to
+              use Gen.G&apos;s curriculum. Together, this expertise will support
+              structured development for players at every stage, from learning
+              the fundamentals to preparing for competition.
+            </p>
+            <p className="measure text-[1rem] leading-relaxed text-paper-300">
+              Gen.G supports Avatars Realm through coach training and
+              curriculum guidance; Avatars Realm delivers its own programmes
+              and player-development experience.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       {/* --------------------------------------------------------- Pathway */}
       <section id="pathway" className="section relative overflow-hidden">
@@ -104,6 +127,33 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ---------------------------------------------------- Inclusivity */}
+      {/* Exact vision paragraph from the November 2026 handoff — verbatim. */}
+      <section
+        id="inclusivity"
+        className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950"
+      >
+        <GridBackdrop className="opacity-40" />
+        <div className="container-page relative">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Inclusivity & Access"
+              title="Esports open to more people."
+              tone="blue"
+            />
+            <p className="measure mt-6 text-[1.0625rem] leading-relaxed text-paper-200">
+              We believe esports should be open to more people. Avatars Realm
+              aims to create an accessible place where players from different
+              backgrounds can learn, play and take part in organised
+              competition. We intend to work with government and other
+              community partners to widen access, build inclusive participation
+              pathways and help more young people engage with the
+              opportunities around esports.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ----------------------------------------------------------- People */}
       <section className="section-tight relative overflow-hidden border-y border-white/[0.07] bg-navy-950">
         <GridBackdrop className="opacity-40" />
@@ -126,28 +176,28 @@ export default function AboutPage() {
                       className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded border border-white/15 bg-white/[0.04] text-[0.65rem] font-semibold tracking-[0.06em] text-paper-400"
                     >
                       {person.name
-                        ? person.name
-                            .split(" ")
-                            .map((word) => word[0])
-                            .slice(0, 2)
-                            .join("")
-                        : "TBA"}
+                        .split(" ")
+                        .map((word) => word[0])
+                        .slice(0, 2)
+                        .join("")}
                     </span>
                     <div>
                       <h3 className="text-[1rem] font-semibold text-paper-50">
-                        {person.name ?? person.role}
+                        {person.name}
                       </h3>
-                      {person.name ? (
-                        <p className="mt-1 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-flame-400">
-                          {person.role}
-                        </p>
-                      ) : null}
+                      <p className="mt-1 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-flame-400">
+                        {person.role}
+                      </p>
                       <p className="measure mt-2 text-[1rem] leading-relaxed text-paper-300">
                         {person.focus}
                       </p>
-                      <p className="mt-3 text-[0.8125rem] text-paper-400 italic">
-                        {person.note}
-                      </p>
+                      {/* No placeholder / "to be announced" wording — a note
+                          only renders when one is published. */}
+                      {person.note ? (
+                        <p className="mt-3 text-[0.8125rem] text-paper-400 italic">
+                          {person.note}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -160,7 +210,7 @@ export default function AboutPage() {
       <CtaBand
         eyebrow="Contact"
         title="Talk to the team."
-        body="Ask a question about programmes, memberships, school groups or partnerships — we respond within one business day and confirm details as the opening programme is announced."
+        body="Ask a question about programmes, memberships, school groups or partnerships — the team reads every enquiry and confirms details as they are published."
         primary={{ label: "Contact us", contact: true, subject: "General enquiry" }}
         secondary={{
           label: "League - Tournaments - Events",

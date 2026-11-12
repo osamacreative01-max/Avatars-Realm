@@ -6,19 +6,17 @@ import GenGLockup from "@/components/GenGLockup";
 import InterestForm from "@/components/InterestForm";
 import { GridBackdrop, RedArc, SectionDragon } from "@/components/Marks";
 import PageHero from "@/components/PageHero";
-import ProgrammeStepper from "@/components/ProgrammeStepper";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
 import { LEAGUE, PROGRAMMES } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
-import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   path: "/academy-programmes/",
   title: "Academy Programmes",
   description:
-    "Beginner, Intermediate and Pro esports programmes at Avatars Realm — month-to-month fees with a defined outcome at every stage and proposed pilot pricing.",
+    "Beginner, Intermediate, Advanced and Pro esports programmes at Avatars Realm — month-to-month fees with a defined outcome at every stage.",
   image: "/images/player-focus.jpg",
 });
 
@@ -34,8 +32,7 @@ export default function AcademyProgrammesPage() {
             beginner to pro.
           </>
         }
-        lede="3 ways to get into the game. Build your skills through guided programmes for different experience levels."
-        status={{ label: SITE.statusLine, tone: "coming" }}
+        lede="4 ways to get into the game. Build your skills through guided programmes for different experience levels."
         image={{
           src: "/images/page-banners/academy-programmes.jpg",
           alt: "A player celebrating at a station while wearing a headset",
@@ -61,6 +58,9 @@ export default function AcademyProgrammesPage() {
       </section>
 
       {/* --------------------------------------------------------- Programmes */}
+      {/* One display only: the top price strip and the three-stage summary
+          were removed per the November 2026 handoff — the four cards below
+          are the single programme section. */}
       <section className="section relative overflow-hidden">
         <SectionDragon side="right" />
         <div className="container-page relative">
@@ -68,16 +68,11 @@ export default function AcademyProgrammesPage() {
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
                 eyebrow="Our Month-to-month programmes"
-                title="Three stages, one progression."
+                title="Four programmes, one progression."
                 lede="Our month-to-month programmes. Each programme is billed monthly, with a defined outcome at every stage. Visitors do not need to be elite to enter the ecosystem — they need a starting point."
               />
-              <div className="md:pb-2">
-                <StatusBadge tone="coming">Enrolment opening soon</StatusBadge>
-              </div>
             </div>
           </Reveal>
-
-          <ProgrammeStepper />
 
           <div className="mt-12 space-y-6">
             {PROGRAMMES.map((programme, index) => (
@@ -105,17 +100,17 @@ export default function AcademyProgrammesPage() {
                           {programme.period}
                         </span>
                       </div>
-                      {/* Only the pilot-pricing tag follows the fee — no
-                          fixed durations or programme totals. */}
+                      {/* Every programme bills month-to-month — no fixed
+                          durations, totals or pilot-pricing labels. */}
                       <div className="mt-3 flex flex-wrap items-center gap-3">
-                        <StatusBadge tone="proposed">
-                          Proposed pilot pricing
-                        </StatusBadge>
+                        <StatusBadge tone="neutral">Month-to-month</StatusBadge>
                       </div>
                       {/* "Best for" and the full detail sit after the pricing —
                           for the Pro programme they live in the brochure instead
-                          (keep everything up to Pro pricing). */}
-                      {programme.id !== "pro" ? (
+                          (keep everything up to Pro pricing). Advanced has no
+                          approved entry criteria yet, so its line is skipped
+                          rather than invented. */}
+                      {programme.id !== "pro" && programme.bestFor ? (
                         <>
                           <p className="mt-5 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
                             Best for
@@ -156,22 +151,34 @@ export default function AcademyProgrammesPage() {
                           <p className="text-[1rem] leading-relaxed text-paper-200">
                             {programme.copy}
                           </p>
-                          <p className="mt-6 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
-                            What&apos;s included
-                          </p>
-                          <ul className="mt-3 grid gap-3 sm:grid-cols-2">
-                            {programme.includes.map((line) => (
-                              <li key={line} className="flex gap-3">
-                                <span
-                                  aria-hidden="true"
-                                  className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
-                                />
-                                <span className="text-[1rem] leading-relaxed text-paper-300">
-                                  {line}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
+                          {programme.includes.length > 0 ? (
+                            <>
+                              <p className="mt-6 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
+                                What&apos;s included
+                              </p>
+                              <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+                                {programme.includes.map((line) => (
+                                  <li key={line} className="flex gap-3">
+                                    <span
+                                      aria-hidden="true"
+                                      className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-flame-600"
+                                    />
+                                    <span className="text-[1rem] leading-relaxed text-paper-300">
+                                      {line}
+                                    </span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </>
+                          ) : (
+                            /* Advanced: the owner has not supplied the
+                               curriculum or inclusions yet — say so instead
+                               of copying another programme's claims. */
+                            <p className="mt-6 text-[0.9375rem] leading-relaxed text-paper-400 italic">
+                              Curriculum, inclusions and entry criteria will be
+                              confirmed by the owner and published here.
+                            </p>
+                          )}
                         </>
                       )}
                       <div className="mt-auto pt-7">
@@ -203,14 +210,6 @@ export default function AcademyProgrammesPage() {
                 </span>
               </p>
             </div>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <p className="mt-8 flex flex-wrap items-center gap-3 text-[1rem] text-paper-300">
-              <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
-              Coach costs, facility hours, equipment, curriculum, staffing and
-              payment terms are confirmed before enrolment opens. {SITE.pilotNote}
-            </p>
           </Reveal>
         </div>
       </section>

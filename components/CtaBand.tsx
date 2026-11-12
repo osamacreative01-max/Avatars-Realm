@@ -91,8 +91,8 @@ export default function CtaBand({
 
               <p className="mt-4 text-[1rem] leading-relaxed text-paper-200">
                 Send the team a message about programmes, memberships, school
-                groups, league entry or event hosting. We reply within one
-                business day.
+                groups, league entry or event hosting — the team reads every
+                enquiry and replies using the details you give us.
               </p>
 
               <p className="mt-2 text-[0.875rem] text-paper-400">
@@ -100,8 +100,6 @@ export default function CtaBand({
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                <StatusBadge tone="coming">Enrolment opening soon</StatusBadge>
-                <StatusBadge tone="proposed">Proposed pilot pricing</StatusBadge>
                 <StatusBadge tone="neutral">Championship 2026</StatusBadge>
               </div>
 
@@ -114,9 +112,8 @@ export default function CtaBand({
               </div>
 
               <p className="mt-5 text-[0.875rem] leading-relaxed text-paper-400">
-                Programmes, memberships and lounge rates are published as
-                proposed pilot pricing — use the contact form to register your
-                interest before enrolment opens.
+                Programmes, memberships and lounge rates are published on this
+                site — use the contact form to register your interest.
               </p>
             </div>
           </Reveal>

@@ -66,7 +66,10 @@ export default function Hero({
   /* Venue wording per the Kayleen handoff — the old venue line is
      obsolete, and the hero opens on the South Africa positioning. */
   body = "Esports development, now in South Africa. Learn through structured programmes, play with your squad and prepare for competition at Avatars Realm.",
-  badge = "Opening programme to be announced",
+  /* No availability notice: the November 2026 handoff removes opening /
+     enrolment announcements from public pages, so the hero renders without
+     a status plate. */
+  badge = "",
   primary = {
     label: "Explore Programmes",
     href: "/academy-programmes/",
@@ -79,11 +82,17 @@ export default function Hero({
   partner,
   className = "",
 }: Props) {
+  /* Without a status plate the hero keeps its full-height photograph and
+     normal bottom padding — the reserved band exists only for the plate. */
+  const hasBadge = Boolean(badge);
+
   return (
     <section className={`relative ${className}`.trim()}>
       <div className="container-page pt-6 pb-14 sm:pt-8 lg:pt-10 lg:pb-20">
         {/* ------------------------------------------------------------ Card */}
-        <div className="hero-card relative isolate overflow-hidden">
+        <div
+          className={`hero-card relative isolate overflow-hidden${hasBadge ? "" : " hero-card--plain"}`}
+        >
           <div className="hero-media">
             {/* The media panel is 64% of the card on desktop and full bleed
                 below that, so the LCP image is not fetched at full-viewport
@@ -98,7 +107,11 @@ export default function Hero({
           {/* The copy stops short of the status plate so the two never
               collide: the plate is absolutely placed in the card's bottom
               left, and this padding reserves the band it occupies. */}
-          <div className="relative z-10 flex min-h-[26rem] flex-col justify-center px-6 py-12 sm:px-10 lg:min-h-[38rem] lg:px-16 lg:pt-14 lg:pb-[clamp(9rem,13vw,15.5rem)]">
+          <div
+            className={`relative z-10 flex min-h-[26rem] flex-col justify-center px-6 py-12 sm:px-10 lg:min-h-[38rem] lg:px-16 lg:pt-14 ${
+              hasBadge ? "lg:pb-[clamp(9rem,13vw,15.5rem)]" : "lg:pb-14"
+            }`}
+          >
             <Reveal>
               {eyebrow ? <p className="hero-eyebrow">{eyebrow}</p> : null}
               {/* One size across every line, and 8.5em is wide enough for
@@ -132,11 +145,13 @@ export default function Hero({
           </div>
 
           {/* ----------------------------------------- Status plate (notch) */}
-          <Reveal delay={150} className="hero-status">
-            <p className="text-[clamp(1.5rem,1.1rem+1.5vw,2.5rem)] leading-[1.2] font-medium tracking-[-0.01em] text-paper-50">
-              {badge}
-            </p>
-          </Reveal>
+          {hasBadge ? (
+            <Reveal delay={150} className="hero-status">
+              <p className="text-[clamp(1.5rem,1.1rem+1.5vw,2.5rem)] leading-[1.2] font-medium tracking-[-0.01em] text-paper-50">
+                {badge}
+              </p>
+            </Reveal>
+          ) : null}
         </div>
 
         {/* ------------------------------------------------------------- CTAs */}

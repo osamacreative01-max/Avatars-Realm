@@ -3,25 +3,15 @@
  * Modification Brief.
  *
  * Positioning: Avatars Realm is presented as an academy and arena proposition
- * with a visible commercial model. The venue is pre-launch, so the public
- * status line is "Opening programme and membership enrolment to be announced"
- * and every price carries the pilot-pricing note.
+ * with a visible commercial model. Prices are published as owner-approved
+ * month-to-month rates, without pilot-pricing disclaimers or availability
+ * notices (November 2026 handoff).
  */
 
 export type Status = {
   label: string;
   /** amber = proposed · blue = planned · purple = to be announced · grey = fact. */
   tone: "live" | "soon" | "neutral" | "proposed" | "coming";
-};
-
-export const ANNOUNCING: Status = {
-  label: "Enrolment opening soon",
-  tone: "coming",
-};
-
-export const PILOT_PRICING: Status = {
-  label: "Proposed pilot pricing",
-  tone: "proposed",
 };
 
 export const UPCOMING: Status = { label: "Upcoming", tone: "coming" };
@@ -46,7 +36,7 @@ export const PATHWAYS = [
     title: "Learn",
     tagline: "Structured academy programmes",
     description:
-      "Beginner, Intermediate and Pro programmes with coaching, review sessions and a clear outcome at the end of every stage.",
+      "Beginner, Intermediate, Advanced and Pro programmes with coaching, review sessions and a clear outcome at the end of every stage.",
     href: "/academy-programmes/",
     cta: "View programmes",
   },
@@ -75,9 +65,22 @@ export const PATHWAYS = [
 /**
  * Academy programmes are billed as a single monthly fee — never as a large
  * total price. `price` is the monthly fee and `period` is the billing unit
- * shown beside it; programmes run month-to-month.
+ * shown beside it; every programme runs month-to-month (November 2026
+ * owner-approved rates).
  */
-export const PROGRAMMES = [
+export type Programme = {
+  id: string;
+  name: string;
+  headline: string;
+  copy: string;
+  /** Empty until the owner supplies entry criteria (Advanced). */
+  bestFor: string;
+  period: string;
+  price: string;
+  includes: readonly string[];
+};
+
+export const PROGRAMMES: readonly Programme[] = [
   {
     id: "beginner",
     name: "Beginner",
@@ -87,7 +90,7 @@ export const PROGRAMMES = [
     copy: "A foundation pathway for new and developing players. The first four weeks establish the fundamentals, and further performance assessments then determine progression, support requirements and readiness for Intermediate-level training.",
     bestFor: "New players, casual players and learners building fundamentals.",
     period: "per month",
-    price: "1,500",
+    price: "950",
     includes: [
       "A four-week foundation phase",
       "Foundations, game settings and safe practice habits",
@@ -105,7 +108,7 @@ export const PROGRAMMES = [
     bestFor:
       "Players ready for structured improvement and regular competitive preparation.",
     period: "per month",
-    price: "2,200",
+    price: "1,200",
     includes: [
       "Advanced mechanics and match review",
       "Role development and team communication",
@@ -113,6 +116,19 @@ export const PROGRAMMES = [
       "Preparation for league participation",
       "Regular performance assessments",
     ],
+  },
+  {
+    id: "advanced",
+    name: "Advanced",
+    /* Owner supplied the name and rate only. No curriculum, inclusions or
+       entry criteria are approved yet — nothing is invented here; the card
+       asks for the owner's short approved description instead. */
+    headline: "Programme details to be confirmed",
+    copy: "The Advanced programme sits between Intermediate and Pro. The owner's approved description, curriculum and entry criteria will be published here once confirmed.",
+    bestFor: "",
+    period: "per month",
+    price: "1,500",
+    includes: [],
   },
   {
     id: "pro",
@@ -131,7 +147,7 @@ export const PROGRAMMES = [
       "Pathway assessment at the end of the year",
     ],
   },
-] as const;
+];
 
 /** How a player moves through the ecosystem (brief §3 and §6). */
 export const PROGRESSION = [
@@ -145,7 +161,7 @@ export const PROGRESSION = [
   },
   {
     step: "Compete",
-    body: "Enter league play and quarterly tournaments, with the Pro programme preparing the most committed players.",
+    body: "Enter league play and quarterly tournaments, with the Advanced and Pro programmes preparing the most committed players.",
   },
   {
     step: "Belong",
@@ -157,85 +173,86 @@ export const PROGRESSION = [
    Memberships and gaming lounge (brief §7).
    -------------------------------------------------------------------------- */
 
-/** Hourly and prepaid lounge access — the lowest-friction entry point. */
+/** Hourly and prepaid lounge access — the lowest-friction entry point.
+    Owner-confirmed November 2026 rates; pack savings are measured against
+    the R30 off-peak walk-in rate. */
 export const LOUNGE_RATES = [
   {
     label: "Walk-in off-peak gaming",
-    price: "50",
+    price: "30",
     unit: "per hour",
     note: "Low-friction weekday and daytime access.",
   },
   {
     label: "Walk-in peak gaming",
-    price: "70",
+    price: "50",
     unit: "per hour",
     note: "Evenings, weekends and high-demand periods.",
   },
   {
     label: "Student / school-hour rate",
-    price: "40",
+    price: "25",
     unit: "per hour",
     note: "Encourages daytime participation and youth access.",
   },
   {
     label: "5-hour gaming pack",
-    price: "225",
+    price: "135",
     unit: "prepaid",
-    note: "Simple prepaid bundle with a small saving.",
+    note: "Off-peak hours — versus R150 at the R30 walk-in rate.",
   },
   {
     label: "10-hour gaming pack",
-    price: "400",
+    price: "250",
     unit: "prepaid",
-    note: "Higher-retention bundle for regular players.",
+    note: "Off-peak hours — versus R300 at the R30 walk-in rate.",
   },
 ] as const;
 
-/** Monthly memberships, including the institutional offer. */
+/** Monthly memberships, including the institutional offer. Owner-approved
+    November 2026 prices, each discounted against the equivalent walk-in value. */
 export const MEMBERSHIPS = [
   {
     id: "social",
     name: "Social Pass",
-    price: "399",
+    price: "180",
     period: "per month",
     featured: false,
-    note: null,
-    includes: [
-      "8 off-peak gaming hours each month",
-      "Community session access",
-      "Member booking priority",
-    ],
+    includes: ["8 off-peak gaming hours each month"],
+    note: "Below the R240 walk-in equivalent for the same hours.",
+    reward: "1.0× Realm Points; member pricing on selected food, drinks and events.",
+  },
+  {
+    id: "social-plus",
+    name: "Social Pass Plus",
+    price: "340",
+    period: "per month",
+    featured: false,
+    includes: ["8 gaming hours each month, usable any time"],
+    note: "Subject to peak booking availability.",
     reward: "1.0× Realm Points; member pricing on selected food, drinks and events.",
   },
   {
     id: "competitive",
     name: "Competitive Pass",
-    price: "899",
+    price: "600",
     period: "per month",
     featured: true,
-    note: null,
-    includes: [
-      "24 gaming hours each month",
-      "Priority pod booking",
-      "2 group coaching sessions",
-    ],
+    includes: ["24 gaming hours each month"],
+    note: "Below the equivalent R720 at the off-peak walk-in rate.",
     reward:
       "1.25× Realm Points; league eligibility; discounted quarterly tournament entry.",
   },
   {
-    id: "pro-pathway",
-    name: "Pro Pathway",
-    price: "1,999",
+    id: "pro-lounge",
+    name: "Pro Lounge Pass",
+    price: "1,100",
     period: "per month",
     featured: false,
-    includes: [
-      "50 gaming hours, or an approved off-peak model",
-      "1 individual coaching session",
-      "Monthly performance review",
-    ],
+    includes: ["50 capped gaming hours each month"],
+    note: "Below the R1,500 off-peak walk-in equivalent.",
     reward:
       "1.5× Realm Points; priority league placement; tournament discounts; pathway assessment.",
-    note: "Sold as a capped credit model — not unlimited access — to protect the lounge experience at peak times.",
   },
   {
     id: "institution",
@@ -243,7 +260,6 @@ export const MEMBERSHIPS = [
     price: "12,500",
     period: "per term",
     featured: false,
-    note: null,
     includes: [
       "Up to 20 learners per term",
       "Scheduled sessions",
@@ -251,6 +267,7 @@ export const MEMBERSHIPS = [
     ],
     reward:
       "Institutional reporting, a group leaderboard and a term-end showcase opportunity.",
+    note: "Sold as a capped credit model — not unlimited access — to protect the lounge experience at peak times.",
   },
 ] as const;
 
@@ -290,7 +307,7 @@ export const ARENA_ZONES = [
     title: "Academy Rooms",
     status: "Open at launch",
     description:
-      "Dedicated spaces for Beginner, Intermediate and Pro sessions, game analysis and coaching.",
+      "Dedicated spaces for Beginner, Intermediate, Advanced and Pro sessions, game analysis and coaching.",
     image: "/images/player-setup.jpg",
     alt: "Player at a dual-monitor gaming setup wearing a headset",
   },
@@ -390,7 +407,7 @@ export const QUARTERLY_COPY =
 
 /** Publishing caveat shown beside the tournament windows. */
 export const QUARTERLY_NOTE =
-  "Exact dates, capacity and the final game schedule are still to be confirmed, and are published with the opening programme.";
+  "Exact dates, capacity and the final game schedule are still to be confirmed, and are published on this site once approved.";
 
 /* --------------------------------------------------------------------------
    A full day at the venue — the journey told as one visit (brief §16).
@@ -408,7 +425,7 @@ export const FULL_DAY = [
   },
   {
     title: "Attend a coaching block",
-    body: "A Beginner, Intermediate or Pro session with review and feedback.",
+    body: "A Beginner, Intermediate, Advanced or Pro session with review and feedback.",
   },
   {
     title: "Earn Realm Points",
@@ -487,7 +504,7 @@ export const TOURNAMENT_JOURNEY = [
   },
   {
     step: "Confirm your entry",
-    body: "Formats, eligibility and division placement are confirmed with the opening programme, with entry fees and closing dates published at the same time.",
+    body: "Formats, eligibility and division placement are confirmed with the published entry details, along with entry fees and closing dates.",
   },
   {
     step: "Qualify & compete",
@@ -546,12 +563,7 @@ export const PRICING_FAQ = [
   {
     question: "How is a programme paid for?",
     answer:
-      "Monthly. Beginner is R1,500 per month, Intermediate is R2,200 per month and Pro is R1,800 per month — all billed month-to-month. Every fee remains proposed pilot pricing until confirmed.",
-  },
-  {
-    question: "Are these final prices?",
-    answer:
-      "No. Every price on this site is proposed pilot pricing. Final rates are confirmed against station capacity, operating costs and the opening programme before enrolment opens.",
+      "Monthly, month-to-month. Beginner is R950 per month, Intermediate is R1,200 per month, Advanced is R1,500 per month and Pro is R1,800 per month.",
   },
   {
     question: "What are Realm Points?",
@@ -571,12 +583,12 @@ export const PRICING_FAQ = [
   {
     question: "When do leagues and tournaments start?",
     answer:
-      "Monthly league windows and the four quarterly tournament windows are announced with the opening programme. Members get priority placement and discounted tournament entry.",
+      "Monthly league windows and four quarterly tournament windows run through the year. Members get priority placement and discounted tournament entry.",
   },
   {
     question: "How do I secure a place?",
     answer:
-      "Use the contact form to register your interest in a programme, a membership or a school group booking. Enrolment opens with the announced opening programme.",
+      "Use the contact form to register your interest in a programme, a membership or a school group booking — the enquiry reaches the team directly at info@avatarsrealm.co.za.",
   },
 ] as const;
 
@@ -610,16 +622,16 @@ export const VALUES = [
 export const LEADERSHIP = [
   {
     role: "Founder and Director",
-    name: "Ricardo Bessit" as string | null,
+    name: "Ricardo Bessit" as string,
     focus:
       "Runs Avatars Realm end to end — the academy programme, the arena floor and the event calendar.",
     note: "Director, Avatars Realm (Pty) Ltd.",
   },
   {
-    role: "Head of Coaching",
-    name: null as string | null,
+    role: "Marketing and Communications Head",
+    name: "Kayleen Bessit" as string,
     focus:
-      "Owns the training curriculum, coach development and member progression across the Beginner, Intermediate and Pro programmes.",
-    note: "Name and profile to be published once approved.",
+      "Kayleen Bessit leads Avatars Realm's marketing and communications direction. She brings experience from Telesure, KFC Africa and MAST, a Vodacom subsidiary, to the way the organisation presents its programmes, builds community relationships and communicates the opportunities in esports. At Avatars Realm, she is responsible for shaping the brand voice, public communications and outreach that support broader awareness and inclusive access.",
+    note: "",
   },
 ] as const;

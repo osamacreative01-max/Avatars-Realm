@@ -106,7 +106,7 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {PROGRAMMES.map((programme, index) => (
               <Reveal key={programme.id} delay={index * 70}>
                 <div className="card flex h-full flex-col card-pad">
@@ -125,13 +125,10 @@ export default function HomePage() {
                       {programme.period}
                     </span>
                   </div>
-                  {/* Only the pilot-pricing tag follows the fee — no fixed
-                      durations or programme totals. Every programme bills
-                      month-to-month. */}
+                  {/* Every programme bills month-to-month — no fixed
+                      durations, totals or pilot-pricing labels. */}
                   <div className="mt-3 flex flex-wrap items-center gap-3">
-                    <StatusBadge tone="proposed">
-                      Proposed pilot pricing
-                    </StatusBadge>
+                    <StatusBadge tone="neutral">Month-to-month</StatusBadge>
                   </div>
                   <p className="mt-4 flex-1 text-[1rem] leading-relaxed text-paper-300">
                     {programme.copy}
@@ -205,13 +202,14 @@ export default function HomePage() {
               <Button href="/open-esports-championship-2026/" size="lg">
                 Championship details
               </Button>
-              {/* Opens the game-selection interest form. The Championship
-                  section carries no programme context, so the programme field
-                  is hidden for this entry point. */}
+              {/* Opens the programme/competition and game-selection interest
+                  form. The Championship entry point pre-selects
+                  "Championship / League" so that demand can be measured
+                  against the game selections. */}
               <InterestForm
                 label="I'm Interested, Game On!"
                 variant="outline"
-                hideProgramme
+                programme="Championship / League"
               />
             </div>
           </Reveal>
@@ -221,7 +219,7 @@ export default function HomePage() {
       <CtaBand
         eyebrow="Get in Touch"
         title="Where players start, improve, compete and find their people."
-        body="Send the team a message about programmes, memberships, school groups, league entry or event hosting — we will point you to the right way in and confirm details as the opening programme is announced."
+        body="Send the team a message about programmes, memberships, school groups, league entry or event hosting — we will point you to the right way in and confirm details as they are published."
         primary={{
           label: "Contact us",
           contact: true,

@@ -29,8 +29,14 @@ const GAMES = [
   "Other",
 ] as const;
 
-/** Single-select programmes offered by the academy entry points. */
-const PROGRAMMES = ["Beginner", "Intermediate", "Pro"] as const;
+/** Programme / competition interest options, matching the form exactly. */
+const PROGRAMMES = [
+  "Beginner",
+  "Intermediate",
+  "Advanced",
+  "Pro",
+  "Championship / League",
+] as const;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -114,9 +120,9 @@ function validate(body: Body): Record<string, string> {
   /* Only required when the field was actually shown for this entry point. */
   if (body.programme !== null) {
     if (!body.programme) {
-      errors.programme = "Select a programme of interest.";
+      errors.programme = "Select a programme or competition of interest.";
     } else if (!(PROGRAMMES as readonly string[]).includes(body.programme)) {
-      errors.programme = "Select your programme from the list.";
+      errors.programme = "Select your programme or competition from the list.";
     }
   }
 
@@ -209,7 +215,7 @@ export async function POST(request: NextRequest) {
     `Email: ${body.email}`,
     `Phone / WhatsApp: ${body.phone}`,
     ...(body.programme !== null
-      ? [`Programme of interest: ${body.programme}`]
+      ? [`Programme / competition interest: ${body.programme}`]
       : []),
     `Games of interest: ${gamesLabel}`,
     "Consent given: yes",
