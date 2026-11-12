@@ -218,7 +218,7 @@ export default function MembershipsPage() {
 
                   <div className="mt-6">
                     <ContactForm
-                      label={`Register interest in ${tier.name}`}
+                      label="Register interest"
                       variant={tier.featured ? "primary" : "outline"}
                       className="w-full"
                       defaultSubject="Memberships & lounge"

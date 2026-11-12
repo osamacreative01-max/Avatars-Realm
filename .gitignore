@@ -32,5 +32,8 @@ public/images/smiley-man-fist-bumping-with-colleague.jpg
 # site asset served to visitors.
 !public/downloads/*.pdf
 
+# generated screenshot report (scripts/generate-update-report.mjs)
+report-assets/
+
 # original high-resolution banner masters (web versions live in public/images/page-banners)
 design-src/
