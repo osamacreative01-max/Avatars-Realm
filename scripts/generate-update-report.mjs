@@ -451,7 +451,7 @@ const reportHtml = `<!doctype html>
     <tr><td>Reviewed</td><td>12 November 2026 handoff &mdash; applied to the site codebase</td></tr>
     <tr><td>Report date</td><td>12 November 2026</td></tr>
     <tr><td>Repository</td><td>https://github.com/osamacreative01-max/Avatars-Realm</td></tr>
-    <tr><td>Branch / commit</td><td>main &mdash; 3637980 (pushed)</td></tr>
+    <tr><td>Branch / commit</td><td>main &mdash; 3637980 (handoff changes) and 2ac0ae3 (CTA fix + report tooling), both pushed</td></tr>
     <tr><td>Scope</td><td>Content, navigation, imagery and copy only &mdash; the dark/red/gold theme, responsive behaviour and informational-site scope were preserved.</td></tr>
   </table>
 
@@ -500,7 +500,7 @@ ${itemsHtml}
   <div class="final">
     <h3>Delivered</h3>
     <ul>
-      <li>Committed as <strong>3637980</strong> &mdash; &ldquo;Apply November 2026 handoff: 4 programmes, new rates, Gen.G/About copy, form field, wording cleanup&rdquo; (18 files changed).</li>
+      <li>Committed as <strong>3637980</strong> &mdash; &ldquo;Apply November 2026 handoff: 4 programmes, new rates, Gen.G/About copy, form field, wording cleanup&rdquo; (18 files changed), plus <strong>2ac0ae3</strong> for the membership CTA fit and this report generator.</li>
       <li>Pushed to <strong>origin/main</strong> of https://github.com/osamacreative01-max/Avatars-Realm.</li>
       <li>Venue wording kept as &ldquo;Planned facility north of Johannesburg &mdash; exact location to be confirmed&rdquo;; no Northcliff/Randburg reference or map pin added.</li>
       <li>Still pending from the owner: the approved Advanced programme description, curriculum and entry criteria for the placeholder card.</li>
@@ -529,7 +529,7 @@ await pdfPage.pdf({
   headerTemplate:
     '<div style="font-size:7.5pt;color:#8a8a93;width:100%;padding:0 12mm;font-family:Segoe UI,Arial,sans-serif;">Avatars Realm &mdash; Website Update Report &middot; November 2026 handoff</div>',
   footerTemplate:
-    '<div style="font-size:7.5pt;color:#8a8a93;width:100%;padding:0 12mm;font-family:Segoe UI,Arial,sans-serif;display:flex;justify-content:space-between;"><span>github.com/osamacreative01-max/Avatars-Realm &middot; commit 3637980</span><span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>',
+    '<div style="font-size:7.5pt;color:#8a8a93;width:100%;padding:0 12mm;font-family:Segoe UI,Arial,sans-serif;display:flex;justify-content:space-between;"><span>github.com/osamacreative01-max/Avatars-Realm &middot; commit 2ac0ae3</span><span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span></div>',
 });
 await pdfBrowser.close();
 
