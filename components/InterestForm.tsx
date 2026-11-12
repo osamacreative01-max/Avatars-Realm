@@ -13,6 +13,9 @@ const GAMES = [
   "Other",
 ] as const;
 
+/** Single-select programmes, in the order the cards present them. */
+const PROGRAMMES = ["Beginner", "Intermediate", "Pro"] as const;
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 type Props = {
@@ -20,12 +23,23 @@ type Props = {
   variant?: "primary" | "outline";
   size?: "sm" | "md" | "lg";
   className?: string;
+  /**
+   * Pre-selects the "Programme of interest" chip — programme cards pass
+   * their own programme so the modal opens with that choice made.
+   */
+  programme?: string;
+  /**
+   * Hides the programme field entirely. The Championship section has no
+   * programme context, so its entry point opens without one.
+   */
+  hideProgramme?: boolean;
 };
 
 type FieldKey =
   | "name"
   | "email"
   | "phone"
+  | "programme"
   | "games"
   | "otherText"
   | "consent";
@@ -57,11 +71,14 @@ export default function InterestForm({
   variant = "primary",
   size = "md",
   className = "",
+  programme,
+  hideProgramme = false,
 }: Props) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [programmeChoice, setProgrammeChoice] = useState("");
   const [selected, setSelected] = useState<string[]>([]);
   const [otherText, setOtherText] = useState("");
   const [consent, setConsent] = useState(false);
@@ -71,6 +88,10 @@ export default function InterestForm({
   const [errors, setErrors] = useState<FieldErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  /* The programme field is shown for every entry point except the
+     Championship section, which has no programme context. */
+  const programmeVisible = !hideProgramme;
 
   /* Modal behaviour: focus is moved in on open, trapped while open, Esc
      closes, and focus returns to the trigger on close. */
@@ -136,6 +157,8 @@ export default function InterestForm({
     setErrors({});
     setFormError(null);
     setStatus("idle");
+    /* A programme card opens the modal with its own programme pre-selected. */
+    setProgrammeChoice(programmeVisible ? (programme ?? "") : "");
     setOpen(true);
   }
 
@@ -161,6 +184,10 @@ export default function InterestForm({
 
     if (!phone.trim()) {
       next.phone = "Please enter a phone or WhatsApp number.";
+    }
+
+    if (programmeVisible && !programmeChoice) {
+      next.programme = "Select a programme of interest.";
     }
 
     if (selected.length === 0) {
@@ -199,6 +226,9 @@ export default function InterestForm({
           name: name.trim(),
           email: email.trim(),
           phone: phone.trim(),
+          /* The key is omitted when the field is hidden, so the server can
+             tell "not asked" from "asked and left empty". */
+          ...(programmeVisible ? { programme: programmeChoice.trim() } : {}),
           games: selected,
           otherText: otherText.trim(),
           consent,
@@ -370,6 +400,63 @@ export default function InterestForm({
                   required
                   error={errors.phone}
                 />
+
+                {programmeVisible ? (
+                  <fieldset>
+                    <legend className="text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
+                      Programme of interest
+                      <span aria-hidden="true" className="ml-1 text-flame-400">
+                        *
+                      </span>
+                    </legend>
+                    <p
+                      id="if-programme-hint"
+                      className="mt-1 text-[0.8125rem] text-paper-400"
+                    >
+                      Select one.
+                    </p>
+                    <div
+                      className="mt-3 flex flex-wrap gap-2"
+                      aria-describedby="if-programme-hint"
+                    >
+                      {PROGRAMMES.map((option) => {
+                        const active = programmeChoice === option;
+                        return (
+                          <label key={option} className="cursor-pointer">
+                            <input
+                              type="radio"
+                              name="programme"
+                              value={option}
+                              checked={active}
+                              onChange={() => {
+                                setProgrammeChoice(option);
+                                setErrors((current) => ({
+                                  ...current,
+                                  programme: undefined,
+                                }));
+                              }}
+                              className="peer sr-only"
+                            />
+                            <span
+                              className={`inline-flex items-center rounded border px-3.5 py-2 text-[0.875rem] font-medium transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-flame-500 ${
+                                active
+                                  ? "border-flame-500 bg-flame-600/15 text-paper-50"
+                                  : "border-white/12 bg-white/[0.04] text-paper-200 hover:border-white/25"
+                              }`}
+                            >
+                              {option}
+                            </span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                    {errors.programme ? (
+                      <p role="alert" className={ERROR_CLASS}>
+                        {errors.programme}
+                      </p>
+                    ) : null}
+                  </fieldset>
+                ) : null}
 
                 <fieldset>
                   <legend className="text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">

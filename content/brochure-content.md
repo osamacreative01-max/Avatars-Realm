@@ -140,7 +140,7 @@ Stages:
 - Heading: Dates, entries and prize pool
 - Body: Dates, registration and final event details will be announced as they
   are confirmed. Indicative prize pool: R90,000, subject to confirmation. The
-  prize pool and event budget are not published commitments until the event is
+  prize pool and event budget remain provisional until the event is
   funded and approved.
 
 ### The Wider Rhythm

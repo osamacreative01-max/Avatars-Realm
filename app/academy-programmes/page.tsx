@@ -18,18 +18,9 @@ export const metadata: Metadata = pageMetadata({
   path: "/academy-programmes/",
   title: "Academy Programmes",
   description:
-    "Beginner, Intermediate and Pro esports programmes at Avatars Realm — monthly-fee pathways with published durations, outcomes and proposed pilot pricing.",
+    "Beginner, Intermediate and Pro esports programmes at Avatars Realm — month-to-month fees with a defined outcome at every stage and proposed pilot pricing.",
   image: "/images/player-focus.jpg",
 });
-
-/** Programme headline fees, derived so the strip can never drift from content. */
-const FACTS = [
-  ...PROGRAMMES.map((programme) => ({
-    label: programme.name,
-    value: `R${programme.price} ${programme.period} — ${programme.duration}`,
-  })),
-  { label: "Pricing", value: "Proposed pilot fees" },
-];
 
 export default function AcademyProgrammesPage() {
   return (
@@ -69,22 +60,6 @@ export default function AcademyProgrammesPage() {
         </div>
       </section>
 
-      {/* -------------------------------------------------------- Facts strip */}
-      <section className="border-b border-white/[0.07] bg-navy-950">
-        <div className="container-page grid gap-px bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
-          {FACTS.map((item) => (
-            <div key={item.label} className="bg-navy-950 px-6 py-7">
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
-                {item.label}
-              </p>
-              <p className="mt-2 text-[1rem] font-medium text-azure-400">
-                {item.value}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* --------------------------------------------------------- Programmes */}
       <section className="section relative overflow-hidden">
         <SectionDragon side="right" />
@@ -92,9 +67,9 @@ export default function AcademyProgrammesPage() {
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
-                eyebrow="The Programmes"
+                eyebrow="Our Month-to-month programmes"
                 title="Three stages, one progression."
-                lede="Each programme is sold as a monthly fee across a longer commitment, with a defined outcome at every stage. Visitors do not need to be elite to enter the ecosystem — they need a starting point."
+                lede="Our month-to-month programmes. Each programme is billed monthly, with a defined outcome at every stage. Visitors do not need to be elite to enter the ecosystem — they need a starting point."
               />
               <div className="md:pb-2">
                 <StatusBadge tone="coming">Enrolment opening soon</StatusBadge>
@@ -130,30 +105,13 @@ export default function AcademyProgrammesPage() {
                           {programme.period}
                         </span>
                       </div>
-                      {/* Duration reads as a secondary label beneath the fee,
-                          with pilot pricing as its own amber tag. */}
+                      {/* Only the pilot-pricing tag follows the fee — no
+                          fixed durations or programme totals. */}
                       <div className="mt-3 flex flex-wrap items-center gap-3">
-                        <span className="text-[0.875rem] font-medium text-paper-300">
-                          {programme.duration}
-                        </span>
                         <StatusBadge tone="proposed">
                           Proposed pilot pricing
                         </StatusBadge>
                       </div>
-                      {/* Beginner and Intermediate state their commitment and
-                          running total; the Pro pathway's commitment, billing
-                          and cancellation terms are still to be confirmed
-                          (Brochure Download Link Developer Addendum). */}
-                      <p className="mt-2 text-[0.8125rem] leading-relaxed text-paper-400">
-                        {programme.id === "pro" ? (
-                          "12-month pathway · commitment terms TBC"
-                        ) : (
-                          <>
-                            {programme.commitment} commitment ·{" "}
-                            {programme.total} over the full programme
-                          </>
-                        )}
-                      </p>
                       {/* "Best for" and the full detail sit after the pricing —
                           for the Pro programme they live in the brochure instead
                           (keep everything up to Pro pricing). */}
@@ -220,6 +178,7 @@ export default function AcademyProgrammesPage() {
                         <InterestForm
                           label="I'm Interested, GAME ON!"
                           variant="outline"
+                          programme={programme.name}
                         />
                       </div>
                     </div>

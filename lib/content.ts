@@ -73,24 +73,21 @@ export const PATHWAYS = [
    -------------------------------------------------------------------------- */
 
 /**
- * Academy programmes are sold on a monthly fee over a longer commitment —
- * never on a large total price. `price` is always the monthly fee, and the
- * full programme total is kept as supporting information only.
+ * Academy programmes are billed as a single monthly fee — never as a large
+ * total price. `price` is the monthly fee and `period` is the billing unit
+ * shown beside it; programmes run month-to-month.
  */
 export const PROGRAMMES = [
   {
     id: "beginner",
     name: "Beginner",
-    /* Time-period dropped from the pathway names, and billing reads as
-       month-to-month — both directed by the Kayleen handoff. */
+    /* Billing reads as month-to-month, with no fixed duration — directed by
+       the Kayleen handoff. */
     headline: "A foundation pathway",
     copy: "A foundation pathway for new and developing players. The first four weeks establish the fundamentals, and further performance assessments then determine progression, support requirements and readiness for Intermediate-level training.",
     bestFor: "New players, casual players and learners building fundamentals.",
-    duration: "3 months",
-    commitment: "month-to-month",
     period: "per month",
     price: "1,500",
-    total: "R4,500",
     includes: [
       "A four-week foundation phase",
       "Foundations, game settings and safe practice habits",
@@ -102,16 +99,13 @@ export const PROGRAMMES = [
   {
     id: "intermediate",
     name: "Intermediate",
-    /* Time-period dropped; billing reads as month-to-month — Kayleen handoff. */
+    /* Billing reads as month-to-month, with no fixed duration — Kayleen handoff. */
     headline: "A development pathway",
     copy: "A development pathway for players ready to turn practice into reliable match performance and prepare for league competition.",
     bestFor:
       "Players ready for structured improvement and regular competitive preparation.",
-    duration: "6 months",
-    commitment: "month-to-month",
     period: "per month",
     price: "2,200",
-    total: "R13,200",
     includes: [
       "Advanced mechanics and match review",
       "Role development and team communication",
@@ -123,15 +117,12 @@ export const PROGRAMMES = [
   {
     id: "pro",
     name: "Pro",
-    headline: "A twelve-month performance pathway",
-    copy: "A twelve-month performance pathway for committed players seeking disciplined training, advanced review and sustained competition preparation.",
+    headline: "A performance pathway",
+    copy: "A performance pathway for players seeking disciplined training, advanced review and sustained competition preparation.",
     bestFor:
-      "High-commitment players targeting advanced competition and a performance pathway.",
-    duration: "12 months",
-    commitment: "twelve-month",
+      "Advanced players targeting high-level competition and a performance pathway.",
     period: "per month",
     price: "1,800",
-    total: "R21,600",
     includes: [
       "Disciplined high-performance schedule",
       "Advanced coaching and individual review",
@@ -154,7 +145,7 @@ export const PROGRESSION = [
   },
   {
     step: "Compete",
-    body: "Enter league play and quarterly tournaments, with the Pro programme preparing the highest-commitment players.",
+    body: "Enter league play and quarterly tournaments, with the Pro programme preparing the most committed players.",
   },
   {
     step: "Belong",
@@ -555,7 +546,7 @@ export const PRICING_FAQ = [
   {
     question: "How is a programme paid for?",
     answer:
-      "Monthly. Beginner is R1,500 per month and Intermediate is R2,200 per month — both proposed month-to-month. Pro is R1,800 per month across its twelve-month pathway, with commitment and cancellation terms still to be confirmed. Every fee remains proposed pilot pricing until confirmed.",
+      "Monthly. Beginner is R1,500 per month, Intermediate is R2,200 per month and Pro is R1,800 per month — all billed month-to-month. Every fee remains proposed pilot pricing until confirmed.",
   },
   {
     question: "Are these final prices?",

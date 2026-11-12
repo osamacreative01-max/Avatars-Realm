@@ -25,7 +25,7 @@ const ENQUIRIES = [
   {
     label: "Programme enquiries",
     title: "Academy programmes",
-    body: "Beginner, Intermediate and Pro — monthly fees, commitment periods and start dates.",
+    body: "Beginner, Intermediate and Pro — monthly fees and start dates.",
     subject: "Academy programmes",
   },
   {

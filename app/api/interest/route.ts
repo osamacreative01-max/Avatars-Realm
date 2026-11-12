@@ -29,6 +29,9 @@ const GAMES = [
   "Other",
 ] as const;
 
+/** Single-select programmes offered by the academy entry points. */
+const PROGRAMMES = ["Beginner", "Intermediate", "Pro"] as const;
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /* ------------------------------------------------------------------ limits */
@@ -60,6 +63,11 @@ type Body = {
   name: string;
   email: string;
   phone: string;
+  /**
+   * null = the field was never shown (the Championship entry point), so it
+   * is not required. Any other value must be one of PROGRAMMES.
+   */
+  programme: string | null;
   games: string[];
   otherText: string;
   consent: boolean;
@@ -80,6 +88,8 @@ function readBody(raw: unknown): Body {
     name: asString(data.name),
     email: asString(data.email),
     phone: asString(data.phone),
+    /* An absent key means the field was hidden for this submission. */
+    programme: "programme" in data ? asString(data.programme) : null,
     games,
     otherText: asString(data.otherText),
     consent: data.consent === true,
@@ -100,6 +110,15 @@ function validate(body: Body): Record<string, string> {
   }
 
   if (!body.phone) errors.phone = "Please enter a phone or WhatsApp number.";
+
+  /* Only required when the field was actually shown for this entry point. */
+  if (body.programme !== null) {
+    if (!body.programme) {
+      errors.programme = "Select a programme of interest.";
+    } else if (!(PROGRAMMES as readonly string[]).includes(body.programme)) {
+      errors.programme = "Select your programme from the list.";
+    }
+  }
 
   if (body.games.length === 0) {
     errors.games = "Select at least one game.";
@@ -189,6 +208,9 @@ export async function POST(request: NextRequest) {
     `Full name: ${body.name}`,
     `Email: ${body.email}`,
     `Phone / WhatsApp: ${body.phone}`,
+    ...(body.programme !== null
+      ? [`Programme of interest: ${body.programme}`]
+      : []),
     `Games of interest: ${gamesLabel}`,
     "Consent given: yes",
     "",
@@ -212,6 +234,7 @@ export async function POST(request: NextRequest) {
         name: body.name,
         email: body.email,
         phone: body.phone,
+        programme: body.programme ?? "",
         games: gamesLabel,
         message,
         page: body.page,

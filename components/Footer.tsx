@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import ContactForm from "@/components/ContactForm";
-import GenGLockup from "@/components/GenGLockup";
 import Logo from "@/components/Logo";
 import { NAV, SITE } from "@/lib/site";
 
@@ -35,11 +34,8 @@ export default function Footer() {
               defaultSubject="General enquiry"
             />
           </div>
-          {/* Small partner mark — secondary to the Avatars Realm identity,
-              full tagline deliberately omitted here. */}
-          <div className="mt-6 border-t border-white/10 pt-5">
-            <GenGLockup variant="compact" />
-          </div>
+          {/* The Gen.G partner mark is deliberately not repeated here — the
+              Home hero carries the single "Powered by Gen.G" signal. */}
           <p className="mt-5">
             <Link
               href="/downloads/avatars-realm-brochure.pdf"

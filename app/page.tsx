@@ -94,9 +94,9 @@ export default function HomePage() {
           <Reveal>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading
-                eyebrow="Academy Programmes"
+                eyebrow="Our Month-to-month programmes"
                 title="A clear path from beginner to pro."
-                lede="Whether you're starting out or ready to compete, find the programme that matches your level."
+                lede="Our month-to-month programmes. Each programme is billed monthly, with a defined outcome at every stage. Visitors do not need to be elite to enter the ecosystem — they need a starting point."
               />
               <div className="md:pb-2">
                 <Button href="/academy-programmes/" variant="primary">
@@ -125,23 +125,14 @@ export default function HomePage() {
                       {programme.period}
                     </span>
                   </div>
-                  {/* Duration is secondary to the fee; pilot pricing is a tag.
-                      The pathway time period is dropped for Beginner and
-                      Intermediate — their billing reads month-to-month. Pro
-                      keeps its twelve-month pathway. */}
+                  {/* Only the pilot-pricing tag follows the fee — no fixed
+                      durations or programme totals. Every programme bills
+                      month-to-month. */}
                   <div className="mt-3 flex flex-wrap items-center gap-3">
-                    {programme.id === "pro" ? (
-                      <span className="text-[0.875rem] font-medium text-paper-300">
-                        {programme.duration}
-                      </span>
-                    ) : null}
                     <StatusBadge tone="proposed">
                       Proposed pilot pricing
                     </StatusBadge>
                   </div>
-                  <p className="mt-2 text-[0.8125rem] leading-relaxed text-paper-400">
-                    {programme.commitment} commitment
-                  </p>
                   <p className="mt-4 flex-1 text-[1rem] leading-relaxed text-paper-300">
                     {programme.copy}
                   </p>
@@ -214,10 +205,13 @@ export default function HomePage() {
               <Button href="/open-esports-championship-2026/" size="lg">
                 Championship details
               </Button>
-              {/* Opens the game-selection interest form. */}
+              {/* Opens the game-selection interest form. The Championship
+                  section carries no programme context, so the programme field
+                  is hidden for this entry point. */}
               <InterestForm
                 label="I'm Interested, Game On!"
                 variant="outline"
+                hideProgramme
               />
             </div>
           </Reveal>
