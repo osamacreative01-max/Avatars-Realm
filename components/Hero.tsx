@@ -116,18 +116,8 @@ export default function Hero({
               {eyebrow ? <p className="hero-eyebrow">{eyebrow}</p> : null}
               {/* One size across every line, and 8.5em is wide enough for
                   "Train. Play." on one line but not for "Compete." to join
-                  it, so "Belong." always lands on its own red line. The
-                  headline is framed by the yellow brackets kept per the
-                  Kayleen handoff. */}
-              <div className="hero-headline-frame relative mt-5 w-fit">
-                <span
-                  aria-hidden="true"
-                  className="hero-bracket hero-bracket--left"
-                />
-                <span
-                  aria-hidden="true"
-                  className="hero-bracket hero-bracket--right"
-                />
+                  it, so "Belong." always lands on its own red line. */}
+              <div className="mt-5 w-fit">
                 <h1 className={`max-w-[8.5em] ${HEADLINE}`}>
                   <span className="block text-paper-50">{headlineTop}</span>
                   <span className="mt-1 block text-[#d9323b]">

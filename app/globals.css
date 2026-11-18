@@ -42,9 +42,6 @@
   --color-amber-500: #f5a524;
   --color-amber-400: #ffc46b;
 
-  /* Hero bracket motif - the bright yellow kept from the existing theme. */
-  --color-bracket-yellow: #ffe600;
-
   /* Purple: to-be-announced states - coming, date or detail not yet published. */
   --color-violet-600: #7c3aed;
   --color-violet-500: #a855f7;
@@ -891,39 +888,6 @@ section[id] {
   width: 1.9rem;
   height: 2px;
   background: currentColor;
-}
-
-/* Yellow brackets framing the hero headline — a kept motif from the current
-   theme (Kayleen handoff: "Keep yellow brackets"). Each is a square bracket
-   drawn with borders: a vertical spine with arms reaching inward at the top
-   and bottom. The frame carries the padding that gives them room, so the
-   headline never collides with the strokes. */
-.hero-headline-frame {
-  padding-inline: clamp(0.75rem, 1.2vw, 1rem);
-}
-
-.hero-bracket {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: clamp(0.5rem, 0.8vw, 0.75rem);
-  border-top: 4px solid var(--color-bracket-yellow);
-  border-bottom: 4px solid var(--color-bracket-yellow);
-  pointer-events: none;
-}
-
-.hero-bracket--left {
-  left: 0;
-  border-left: 4px solid var(--color-bracket-yellow);
-  border-top-left-radius: 0.4rem;
-  border-bottom-left-radius: 0.4rem;
-}
-
-.hero-bracket--right {
-  right: 0;
-  border-right: 4px solid var(--color-bracket-yellow);
-  border-top-right-radius: 0.4rem;
-  border-bottom-right-radius: 0.4rem;
 }
 
 /* Status plate. Flush with the card's bottom-left corner, cut away on the
