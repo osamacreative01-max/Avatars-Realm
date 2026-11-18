@@ -50,7 +50,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={poppins.variable} suppressHydrationWarning>
+    <html lang={SITE.locale} className={poppins.variable} suppressHydrationWarning>
       <body className="min-h-screen antialiased" suppressHydrationWarning>
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>

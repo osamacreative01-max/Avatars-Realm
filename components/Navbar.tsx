@@ -93,7 +93,7 @@ export default function Navbar() {
         {/* Desktop navigation — sits next to the logo, CTA pushed right */}
         <nav
           aria-label="Primary"
-          className="hidden shrink-0 items-center gap-4 whitespace-nowrap xl:flex 2xl:gap-6"
+          className="hidden shrink-0 items-center gap-3 whitespace-nowrap xl:flex 2xl:gap-5"
         >
           {NAV.map((item) => (
             <Link
@@ -110,8 +110,11 @@ export default function Navbar() {
         <div className="hidden flex-1 xl:block" />
 
         {/* ml-auto pushes this to the right edge of the flex row on mobile;
-             on desktop the flex-1 spacers already centre the nav. */}
-        <div className="ml-auto hidden xl:block">
+             on desktop the flex-1 spacers already centre the nav. The CTA only
+             appears from 2xl: below that the full nav labels plus this button
+             cannot share one row, so the button would clip against the edge.
+             The nav's "Academy Programmes" link covers the same destination. */}
+        <div className="ml-auto hidden 2xl:block">
           <Button href={ctaHref} variant="tag">{ctaLabel}</Button>
         </div>
 

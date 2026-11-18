@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,6 +17,7 @@ import {
   PROGRAMMES,
   TOURNAMENTS,
 } from "@/lib/content";
+import { SITE } from "@/lib/site";
 
 /**
  * Home is a summary, not a duplicate of the inner pages: hero → Gen.G partner
@@ -23,6 +25,35 @@ import {
  * teaser → contact. Detail lives on /academy-programmes, /memberships and
  * /arena-events.
  */
+
+/* The root layout supplies the site-wide title and description. The homepage
+   adds the canonical URL and a share image, which the layout alone does not
+   emit — without them a link posted to social platforms has no preview card. */
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: SITE.locale,
+    url: SITE.url,
+    siteName: SITE.fullName,
+    title: `${SITE.fullName} — Train. Play. Compete. Belong.`,
+    description: SITE.description,
+    images: [
+      {
+        url: "/images/pc-stations.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Competition stations at the Avatars Realm arena",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE.fullName} — Train. Play. Compete. Belong.`,
+    description: SITE.description,
+    images: ["/images/pc-stations.jpg"],
+  },
+};
 
 export default function HomePage() {
   return (
