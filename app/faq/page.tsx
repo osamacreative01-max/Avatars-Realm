@@ -132,7 +132,7 @@ export default function FaqPage() {
             <SectionHeading
               eyebrow="The Lounge Experience"
               title="Built for repeat visits, not single hours."
-              lede="The lounge is the front door to everything else at Avatars Realm — coaching, leagues, tournaments and content."
+              lede="The lounge is the front door to everything else at Avatars Realm: coaching, leagues, tournaments and content."
               tone="blue"
             />
             <div className="mt-8">
