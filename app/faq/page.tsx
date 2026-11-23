@@ -131,7 +131,7 @@ export default function FaqPage() {
           <Reveal>
             <SectionHeading
               eyebrow="The Lounge Experience"
-              title="Built for repeat visits, not single hours."
+              title="Your Home away from home."
               lede="The lounge is the front door to everything else at Avatars Realm: coaching, leagues, tournaments and content."
               tone="blue"
             />
