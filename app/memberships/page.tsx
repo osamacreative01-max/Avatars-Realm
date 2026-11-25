@@ -156,19 +156,22 @@ export default function MembershipsPage() {
             {publicTiers.map((tier, index) => (
               <Reveal key={tier.id} delay={index * 70}>
                 <div
-                  className={`card flex h-full flex-col card-pad ${
+                  className={`card relative flex h-full flex-col card-pad ${
                     tier.featured
                       ? "border-flame-600/55 shadow-[0_0_0_1px_rgb(225_18_37/0.25),0_30px_60px_-30px_rgb(225_18_37/0.5)]"
                       : ""
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-4 lg:min-h-[6rem]">
+                  {/* The badge sits on the card's top edge as a tab. Beside
+                      the title it did not fit the four-column row and ran
+                      past the card's right edge. */}
+                  {tier.featured ? (
+                    <span className="absolute -top-3 right-6">
+                      <StatusBadge tone="live">Most popular</StatusBadge>
+                    </span>
+                  ) : null}
+                  <div className="lg:min-h-[6rem]">
                     <h3 className="display-3">{tier.name}</h3>
-                    {tier.featured ? (
-                      <span className="flex-none">
-                        <StatusBadge tone="live">Most popular</StatusBadge>
-                      </span>
-                    ) : null}
                   </div>
 
                   <div className="mt-7 flex items-end gap-2 border-t border-white/[0.08] pt-6">

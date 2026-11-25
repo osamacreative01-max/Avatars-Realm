@@ -257,6 +257,10 @@
   }
 }
 
+/* Element defaults live in the base layer. Unlayered, they outrank every
+   Tailwind utility — `p { margin: 0 }` was silently cancelling the `mt-*`
+   spacing on every paragraph and heading across the site. */
+@layer base {
 * {
   border-color: rgb(255 255 255 / 0.08);
 }
@@ -323,6 +327,7 @@ a {
 
 button {
   font: inherit;
+}
 }
 
 /* --------------------------------------------------------------------------

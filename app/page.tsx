@@ -92,7 +92,9 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+          {/* Three cards on a two-column tablet grid would leave an empty
+              cell, so the odd last card spans the full row until lg. */}
+          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.07] sm:grid-cols-2 sm:[&>*:last-child:nth-child(odd)]:col-span-2 lg:grid-cols-3 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
             {PATHWAYS.map((pathway, index) => (
               <Reveal key={pathway.title} delay={index * 60}>
                 <div className="flex h-full flex-col bg-ink-900 p-7 transition-colors duration-200 hover:bg-ink-800">
@@ -100,7 +102,7 @@ export default function HomePage() {
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="display-3 mt-4">{pathway.title}</h3>
-                  <p className="mt-2 min-h-[2.7rem] text-[0.8125rem] font-semibold tracking-[0.04em] text-azure-400 uppercase">
+                  <p className="mt-2 text-[0.8125rem] sm:min-h-[2.7rem] font-semibold tracking-[0.04em] text-azure-400 uppercase">
                     {pathway.tagline}
                   </p>
                   <p className="mt-3 flex-1 text-[1rem] leading-relaxed text-paper-300">
@@ -142,7 +144,9 @@ export default function HomePage() {
               <Reveal key={programme.id} delay={index * 70}>
                 <div className="card flex h-full flex-col card-pad">
                   <h3 className="display-3">{programme.name}</h3>
-                  <p className="mt-4 text-[1rem] font-semibold text-azure-400">
+                  {/* Room for a two-line headline on every card, so the
+                      prices line up across the row. */}
+                  <p className="mt-4 text-[1rem] leading-snug font-semibold text-azure-400 sm:min-h-[2.75em]">
                     {programme.headline}
                   </p>
                   <div className="mt-5 flex items-end gap-2">
