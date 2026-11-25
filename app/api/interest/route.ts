@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT } from "@/lib/web3forms";
 
 /**
  * Interest form endpoint for every "I'm Interested, Game On!" button.
@@ -17,7 +18,6 @@ import type { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
 
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 /** Options offered by the form, in the order the copy deck lists them. */
 const GAMES = [
@@ -188,21 +188,6 @@ export async function POST(request: NextRequest) {
     return Response.json({ ok: false, errors }, { status: 400 });
   }
 
-  const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
-  if (!accessKey) {
-    console.error(
-      "[interest] WEB3FORMS_ACCESS_KEY is not set — cannot deliver the enquiry.",
-    );
-    return Response.json(
-      {
-        ok: false,
-        error:
-          "Sending is temporarily unavailable. Please try again in a few minutes.",
-      },
-      { status: 500 },
-    );
-  }
-
   const submittedAt = new Date().toISOString();
   const gamesLabel = body.games
     .map((game) =>
@@ -224,46 +209,28 @@ export async function POST(request: NextRequest) {
     `Submitted at: ${submittedAt}`,
   ].join("\n");
 
-  try {
-    const response = await fetch(WEB3FORMS_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        access_key: accessKey,
-        subject: "I'm Interested, Game On! — Avatars Realm website",
-        from_name: "Avatars Realm website",
-        /* Web3Forms sets the message Reply-To from the `email` field, so the
-           team's reply goes back to the visitor. */
-        name: body.name,
-        email: body.email,
-        phone: body.phone,
-        programme: body.programme ?? "",
-        games: gamesLabel,
-        message,
-        page: body.page,
-        submitted_at: submittedAt,
-        /* Web3Forms' own honeypot field, kept empty. */
-        botcheck: "",
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Web3Forms responded ${response.status}`);
-    }
-
-    return Response.json({ ok: true });
-  } catch (error) {
-    console.error("[interest] delivery failed:", error);
-    return Response.json(
-      {
-        ok: false,
-        error:
-          "We could not send that just now. Please try again in a moment.",
-      },
-      { status: 502 },
-    );
-  }
+  /* Web3Forms rejects server-to-server requests (its Cloudflare challenge
+     answers 403), so delivery happens in the visitor's browser. This route
+     validates and rate-limits, then hands back the ready-made submission. */
+  return Response.json({
+    ok: true,
+    endpoint: WEB3FORMS_ENDPOINT,
+    submission: {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: "I'm Interested, Game On! — Avatars Realm website",
+      from_name: "Avatars Realm website",
+      /* Web3Forms sets the message Reply-To from the `email` field, so the
+         team's reply goes back to the visitor. */
+      name: body.name,
+      email: body.email,
+      phone: body.phone,
+      programme: body.programme ?? "",
+      games: gamesLabel,
+      message,
+      page: body.page,
+      submitted_at: submittedAt,
+      /* Web3Forms' own honeypot field, kept empty. */
+      botcheck: "",
+    },
+  });
 }

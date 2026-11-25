@@ -14,16 +14,15 @@ Node.js 20.9 or newer is required.
 
 ## Environment variables
 
-The contact and interest forms deliver enquiries through Web3Forms. Create a
-`.env.local` file in the project root (never committed) with:
+The contact and interest forms deliver enquiries through Web3Forms. The API
+routes (`/api/contact`, `/api/interest`) validate and rate-limit each enquiry
+and return the ready-made submission; the visitor's browser then sends it to
+Web3Forms, because Web3Forms blocks server-to-server requests.
 
-```
-WEB3FORMS_ACCESS_KEY=your-web3forms-access-key
-```
-
-The same variable must be added to the hosting provider's environment settings
-before the forms will send. Without it the forms show a friendly "sending is
-temporarily unavailable" message and log the missing key on the server.
+The Web3Forms access key is a public form identifier and ships in
+`lib/web3forms.ts`, so no hosting setup is needed. To send to a different
+Web3Forms inbox, set `WEB3FORMS_ACCESS_KEY` in `.env.local` or the hosting
+provider's environment settings; it overrides the built-in key.
 
 ## Checks
 
@@ -40,7 +39,7 @@ Node-capable host — Vercel or Netlify are the simplest options. A static host
 cannot run the form endpoints.
 
 1. Import this repository into the hosting provider.
-2. Set `WEB3FORMS_ACCESS_KEY` in the project's environment variables.
+2. (Optional) Set `WEB3FORMS_ACCESS_KEY` to override the built-in key.
 3. Deploy, then test both forms on the deployed URL.
 4. Point the domain's DNS at the host. The current `avatarsrealm.co.za` site is
    a GoDaddy Website Builder site, so the DNS records must be updated in the

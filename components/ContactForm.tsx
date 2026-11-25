@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
+import { deliverSubmission } from "@/lib/deliver-submission";
 
 /** Subjects offered by the general contact form. */
 const SUBJECTS = [
@@ -224,9 +225,11 @@ export default function ContactForm({
         ok?: boolean;
         errors?: FieldErrors;
         error?: string;
+        endpoint?: string;
+        submission?: Record<string, unknown>;
       };
 
-      if (response.ok && data.ok) {
+      if (response.ok && data.ok && (await deliverSubmission(data))) {
         setStatus("sent");
         setFirstName("");
         setLastName("");

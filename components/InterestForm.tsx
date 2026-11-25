@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
+import { deliverSubmission } from "@/lib/deliver-submission";
 
 /** Games listed in the Kayleen copy deck. "Other" reveals a free-text field. */
 const GAMES = [
@@ -238,9 +239,11 @@ export default function InterestForm({
         ok?: boolean;
         errors?: FieldErrors;
         error?: string;
+        endpoint?: string;
+        submission?: Record<string, unknown>;
       };
 
-      if (response.ok && data.ok) {
+      if (response.ok && data.ok && (await deliverSubmission(data))) {
         setStatus("sent");
         setName("");
         setEmail("");
