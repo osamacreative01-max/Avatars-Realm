@@ -144,6 +144,12 @@ export default function Hero({
           ) : null}
         </div>
 
+        {/* Partner feature sits between the hero card and the buttons, so
+            "Powered by Gen.G" comes before "Explore Programmes" — per the
+            18 November feedback. It is deliberately not wrapped in Reveal:
+            the handoff says the feature must not animate. */}
+        {partner ? <div className="mt-8">{partner}</div> : null}
+
         {/* ------------------------------------------------------------- CTAs */}
         <Reveal delay={200}>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
@@ -163,12 +169,6 @@ export default function Hero({
             </Button>
           </div>
         </Reveal>
-
-        {/* Partner feature sits immediately below the hero buttons, before the
-            next section — per the Gen.G placement handoff. It is deliberately
-            not wrapped in Reveal: the handoff says the feature must not
-            animate. */}
-        {partner ? <div>{partner}</div> : null}
       </div>
     </section>
   );

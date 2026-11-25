@@ -73,19 +73,12 @@ export default function AboutPage() {
             <GenGLockup size="md" />
             <h2 className="display-3">The Gen.G partnership</h2>
             <p className="measure text-[1.0625rem] leading-relaxed text-paper-200">
-              Avatars Realm&apos;s partnership with Gen.G — the{" "}
+              Through our approved partnership with Gen.G Global Academy — the{" "}
               <span className="font-semibold text-[#f0c419]">GOLD</span>{" "}
-              standard in Esports — helps us bring a world-class esports
-              learning experience to South Africa. Avatars Realm coaches have
-              been trained by Gen.G, and Avatars Realm has received approval to
-              use Gen.G&apos;s curriculum. Together, this expertise will support
-              structured development for players at every stage, from learning
-              the fundamentals to preparing for competition.
-            </p>
-            <p className="measure text-[1rem] leading-relaxed text-paper-300">
-              Gen.G supports Avatars Realm through coach training and
-              curriculum guidance; Avatars Realm delivers its own programmes
-              and player-development experience.
+              standard in Esports — Avatars Realm brings world-class esports
+              expertise to South Africa. Our Gen.G-trained coaches use
+              Gen.G&rsquo;s curriculum to help players build skills and prepare
+              for competition.
             </p>
           </Reveal>
         </div>

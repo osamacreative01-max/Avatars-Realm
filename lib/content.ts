@@ -628,10 +628,10 @@ export const LEADERSHIP = [
     note: "Director, Avatars Realm (Pty) Ltd.",
   },
   {
-    role: "Founding Partner and Strategic Director",
+    role: "Founding Partner & Director: Marketing and Communications",
     name: "Kayleen Bessit" as string,
     focus:
-      "Kayleen Bessit leads Avatars Realm's marketing and communications direction. She brings experience from Telesure, KFC Africa and MAST, a Vodacom subsidiary, to the way the organisation presents its programmes, builds community relationships and communicates the opportunities in esports. At Avatars Realm, she is responsible for shaping the brand voice, public communications and outreach that support broader awareness and inclusive access.",
+      "Kayleen brings a wealth of marketing and communications experience from Telesure, KFC Africa and MAST, a Vodacom subsidiary. She leads Avatars Realm’s brand, communications and community outreach.",
     note: "",
   },
 ] as const;

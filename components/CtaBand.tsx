@@ -2,8 +2,6 @@ import Button from "@/components/Button";
 import ContactForm from "@/components/ContactForm";
 import { DragonWatermark, GridBackdrop, RedArc } from "@/components/Marks";
 import Reveal from "@/components/Reveal";
-import StatusBadge from "@/components/StatusBadge";
-import { SITE } from "@/lib/site";
 
 type Action = {
   label: string;
@@ -71,53 +69,20 @@ export default function CtaBand({
       <DragonWatermark className="pointer-events-none absolute -bottom-28 -left-20 h-[24rem] w-[24rem]" />
 
       <div className="container-page relative py-16 sm:py-20">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14">
-          <Reveal>
-            <p className="eyebrow">{eyebrow}</p>
-            <h2 className="display-2 mt-4">{title}</h2>
-            <p className="lede mt-5 max-w-2xl">{body}</p>
+        {/* The "General enquiries" side card was removed per the 18 November
+            feedback — it repeated the body copy and contact action beside it. */}
+        <Reveal className="max-w-3xl">
+          <p className="eyebrow">{eyebrow}</p>
+          <h2 className="display-2 mt-4">{title}</h2>
+          <p className="lede mt-5 max-w-2xl">{body}</p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ActionButton action={primary} variant="primary" />
-              {secondary ? (
-                <ActionButton action={secondary} variant="outline" />
-              ) : null}
-            </div>
-          </Reveal>
-
-          <Reveal delay={90}>
-            <div className="card card-pad">
-              <p className="eyebrow eyebrow-blue">General enquiries</p>
-
-              <p className="mt-4 text-[1rem] leading-relaxed text-paper-200">
-                Send the team a message about programmes, memberships, school
-                groups, league entry or event hosting — the team reads every
-                enquiry and replies using the details you give us.
-              </p>
-
-              <p className="mt-2 text-[0.875rem] text-paper-400">
-                {SITE.address}
-              </p>
-
-              <div className="mt-5 flex flex-wrap gap-2">
-                <StatusBadge tone="neutral">Championship 2026</StatusBadge>
-              </div>
-
-              <div className="mt-5">
-                <ContactForm
-                  label="Open the contact form"
-                  variant="link"
-                  defaultSubject="General enquiry"
-                />
-              </div>
-
-              <p className="mt-5 text-[0.875rem] leading-relaxed text-paper-400">
-                Programmes, memberships and lounge rates are published on this
-                site — use the contact form to register your interest.
-              </p>
-            </div>
-          </Reveal>
-        </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <ActionButton action={primary} variant="primary" />
+            {secondary ? (
+              <ActionButton action={secondary} variant="outline" />
+            ) : null}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
