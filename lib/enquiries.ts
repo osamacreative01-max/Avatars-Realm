@@ -43,12 +43,17 @@ export function storageConfigured(): boolean {
 async function rest(path: string, init: RequestInit = {}) {
   const cfg = config();
   if (!cfg) throw new Error("Supabase is not configured");
+  /* New-style secret keys (sb_secret_…) are not JWTs and go in the apikey
+     header only; a legacy service_role JWT is also sent as the bearer. */
+  const auth: Record<string, string> = cfg.key.startsWith("sb_")
+    ? {}
+    : { Authorization: `Bearer ${cfg.key}` };
   const response = await fetch(`${cfg.url}/rest/v1/${path}`, {
     ...init,
     cache: "no-store",
     headers: {
       apikey: cfg.key,
-      Authorization: `Bearer ${cfg.key}`,
+      ...auth,
       "Content-Type": "application/json",
       ...init.headers,
     },
