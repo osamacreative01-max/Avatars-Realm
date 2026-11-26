@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { saveEnquiry } from "@/lib/enquiries";
 import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT } from "@/lib/web3forms";
 
 /**
@@ -208,6 +209,19 @@ export async function POST(request: NextRequest) {
     `Page: ${body.page || "(not provided)"}`,
     `Submitted at: ${submittedAt}`,
   ].join("\n");
+
+  /* Keep a copy in the enquiries database for the /admin dashboard. */
+  await saveEnquiry({
+    form: "interest",
+    name: body.name,
+    email: body.email,
+    phone: body.phone || null,
+    subject: null,
+    programme: body.programme ?? null,
+    games: gamesLabel,
+    message: null,
+    page: body.page || null,
+  });
 
   /* Web3Forms rejects server-to-server requests (its Cloudflare challenge
      answers 403), so delivery happens in the visitor's browser. This route

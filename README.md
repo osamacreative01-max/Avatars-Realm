@@ -24,6 +24,33 @@ The Web3Forms access key is a public form identifier and ships in
 Web3Forms inbox, set `WEB3FORMS_ACCESS_KEY` in `.env.local` or the hosting
 provider's environment settings; it overrides the built-in key.
 
+## Enquiries dashboard (Supabase)
+
+Every valid contact and "I'm Interested, Game On!" submission is also saved
+to a Supabase table, and the team can view, filter, mark and export them at
+`/admin/`.
+
+1. Create a free project at [supabase.com](https://supabase.com).
+2. In the Supabase dashboard open **SQL Editor**, paste
+   `supabase/enquiries.sql` and run it once.
+3. From **Project Settings → API**, copy the Project URL and the
+   `service_role` key.
+4. Add these environment variables in Vercel (and `.env.local` for local
+   development), then redeploy:
+
+   ```
+   SUPABASE_URL=https://your-project.supabase.co
+   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+   ADMIN_PASSWORD=choose-a-strong-password
+   ```
+
+5. Open `/admin/`, sign in with `ADMIN_PASSWORD`, and use **Download
+   spreadsheet (CSV)** to open the enquiries in Excel or Google Sheets.
+
+The service-role key bypasses Row Level Security, so it lives only in server
+environment variables. Without the Supabase variables, the forms still email
+every enquiry; they just are not stored.
+
 ## Checks
 
 ```bash
