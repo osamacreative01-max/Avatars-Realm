@@ -9,7 +9,7 @@
  */
 export const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
-const DEFAULT_ACCESS_KEY = "56c68f18-fe3e-4533-a28a-29c800cfecc3";
+const DEFAULT_ACCESS_KEY = "283b0097-05c6-4498-811d-b3ff89db1075";
 
 export const WEB3FORMS_ACCESS_KEY =
   process.env.WEB3FORMS_ACCESS_KEY || DEFAULT_ACCESS_KEY;
