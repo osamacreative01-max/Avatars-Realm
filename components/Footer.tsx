@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import ContactForm from "@/components/ContactForm";
 import Logo from "@/components/Logo";
+import SocialLinks from "@/components/SocialLinks";
 import { NAV, SITE } from "@/lib/site";
 
 export default function Footer() {
@@ -77,6 +78,13 @@ export default function Footer() {
             </li>
             <li className="text-paper-400">{SITE.address}</li>
           </ul>
+
+          <h2 className="mt-8 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-paper-400">
+            Follow us
+          </h2>
+          <div className="mt-4">
+            <SocialLinks compact />
+          </div>
 
           <div className="mt-6 flex flex-wrap gap-2">
             <span className="status status-soon">Championship 2026</span>

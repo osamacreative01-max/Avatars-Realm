@@ -120,11 +120,10 @@ export const PROGRAMMES: readonly Programme[] = [
   {
     id: "advanced",
     name: "Advanced",
-    /* Owner supplied the name and rate only. No curriculum, inclusions or
-       entry criteria are approved yet — nothing is invented here; the card
-       asks for the owner's short approved description instead. */
-    headline: "Programme details to be confirmed",
-    copy: "The Advanced programme sits between Intermediate and Pro. The owner's approved description, curriculum and entry criteria will be published here once confirmed.",
+    /* Description approved by the client (27 Nov 2026). No inclusions list
+       or entry criteria are approved yet, so none are shown. */
+    headline: "A refinement pathway",
+    copy: "For players ready to move beyond Intermediate. Refine your mechanics, game sense and team play through focused practice and performance feedback, building consistency for higher-level competition.",
     bestFor: "",
     period: "per month",
     price: "1,500",
@@ -134,7 +133,8 @@ export const PROGRAMMES: readonly Programme[] = [
     id: "pro",
     name: "Pro",
     headline: "A performance pathway",
-    copy: "A performance pathway for players seeking disciplined training, advanced review and sustained competition preparation.",
+    /* Approved by the client (27 Nov 2026). */
+    copy: "For committed players pursuing high-level competitive performance. Develop through structured training, advanced coaching, match review and preparation for league and tournament play.",
     bestFor:
       "Advanced players targeting high-level competition and a performance pathway.",
     period: "per month",

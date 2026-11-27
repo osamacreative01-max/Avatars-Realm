@@ -20,6 +20,21 @@ export const SITE = {
     { label: "School holidays", value: "09:00 – 21:00 daily" },
   ],
   currency: "R",
+  /* Official profiles, supplied by the client (tracking parameters removed). */
+  socials: [
+    {
+      network: "instagram",
+      label: "Instagram",
+      handle: "@avatarsrealm",
+      href: "https://www.instagram.com/avatarsrealm/",
+    },
+    {
+      network: "tiktok",
+      label: "TikTok",
+      handle: "@avatarsrealm",
+      href: "https://www.tiktok.com/@avatarsrealm",
+    },
+  ],
 } as const;
 
 /**

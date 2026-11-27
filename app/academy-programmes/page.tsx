@@ -124,13 +124,11 @@ export default function AcademyProgrammesPage() {
 
                     <div className="flex flex-col">
                       {programme.id === "pro" ? (
-                        /* Pro keeps everything up to its pricing; the detail
-                           lives in the downloadable brochure. */
+                        /* Pro shows the client's approved description; the
+                           full detail lives in the downloadable brochure. */
                         <>
                           <p className="text-[1rem] leading-relaxed text-paper-200">
-                            The full Pro programme — schedule, curriculum and
-                            what&apos;s included — is in the downloadable
-                            brochure.
+                            {programme.copy}
                           </p>
                           <p className="mt-6">
                             {/* A discreet text link, not a second competing

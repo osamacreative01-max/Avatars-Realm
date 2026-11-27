@@ -7,6 +7,7 @@ import { DragonWatermark, GridBackdrop, RedArc, SectionDragon } from "@/componen
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import SocialLinks from "@/components/SocialLinks";
 import StatusBadge from "@/components/StatusBadge";
 import { PARTNER_CATEGORIES, PARTNER_LABEL } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
@@ -139,6 +140,12 @@ export default function ContactPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-10 text-[0.8125rem] font-semibold tracking-[0.06em] text-paper-400 uppercase">
+              Follow Avatars Realm
+            </p>
+            <div className="mt-3">
+              <SocialLinks />
+            </div>
           </Reveal>
 
           <Reveal delay={90}>
